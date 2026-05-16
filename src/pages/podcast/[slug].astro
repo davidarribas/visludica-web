@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getEpisodes } from '../../lib/rss';
+import { sanitizeRssHtml } from '../../lib/html';
 
 export async function getStaticPaths() {
   const episodes = await getEpisodes();
@@ -87,7 +88,7 @@ const platformLinks = [
 
         <!-- Descripción / shownotes -->
         {episode.content && (
-          <div class="prose episode-content" set:html={episode.content} />
+          <div class="prose episode-content" set:html={sanitizeRssHtml(episode.content)} />
         )}
       </div>
 

@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import EpisodeCard from '../components/EpisodeCard.astro';
 import CommunityCard from '../components/CommunityCard.astro';
 import { getEpisodes, getFeedMeta } from '../lib/rss';
+import { SITE } from '../config';
 
 const [episodes, meta] = await Promise.all([getEpisodes(), getFeedMeta()]);
 const latestEpisode = episodes[0];
@@ -11,7 +12,7 @@ const recentEpisodes = episodes.slice(1, 4);
 
 <BaseLayout
   title="Vis Lúdica"
-  description="Podcast sobre juegos de mesa. Eurogames, análisis, estrategia y conversaciones profundas sobre el hobby."
+  description={SITE.description}
 >
 
   <!-- Hero -->
@@ -20,28 +21,10 @@ const recentEpisodes = episodes.slice(1, 4);
       <div class="hero-text">
         <span class="label">Podcast de juegos de mesa</span>
         <h1>Vis Lúdica</h1>
-        <p class="hero-tagline">
-          Más de 300 episodios sobre eurogames, análisis de mecánicas,
-          estrategia y conversaciones profundas sobre el hobby lúdico.
-          Sin prisa. Con criterio.
-        </p>
+        <p class="hero-tagline">{SITE.tagline}</p>
         <div class="hero-ctas">
           <a href="/podcast" class="btn btn-primary">Ver todos los episodios</a>
-          <a href="/comunidad" class="btn btn-outline">Únete a la comunidad</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <span class="stat-num">300+</span>
-            <span class="stat-label">episodios</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">7.000</span>
-            <span class="stat-label">suscriptores YouTube</span>
-          </div>
-          <div class="stat">
-            <span class="stat-num">1.500</span>
-            <span class="stat-label">en Telegram</span>
-          </div>
+          <a href="#comunidad" class="btn btn-outline">Síguenos donde quieras</a>
         </div>
       </div>
       {meta.imageUrl && (
@@ -82,14 +65,13 @@ const recentEpisodes = episodes.slice(1, 4);
   )}
 
   <!-- Comunidad -->
-  <section class="section community-section">
+  <section class="section community-section" id="comunidad">
     <div class="container">
       <div class="section-header">
         <div>
           <span class="label">Comunidad</span>
           <h2>Encuéntranos aquí</h2>
         </div>
-        <a href="/comunidad" class="section-link">Ver todos los espacios →</a>
       </div>
       <div class="community-grid">
         <CommunityCard
@@ -120,6 +102,9 @@ const recentEpisodes = episodes.slice(1, 4);
           icon="twitch"
           accent="#9146FF"
         />
+      </div>
+      <div class="community-more">
+        <a href="/comunidad" class="section-link">Ver todos los espacios →</a>
       </div>
     </div>
   </section>
@@ -159,17 +144,6 @@ const recentEpisodes = episodes.slice(1, 4);
 
 .hero-ctas { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-2); }
 
-.hero-stats {
-  display: flex;
-  gap: var(--space-8);
-  margin-top: var(--space-4);
-  padding-top: var(--space-6);
-  border-top: 1px solid var(--color-border);
-}
-.stat { display: flex; flex-direction: column; }
-.stat-num { font-size: var(--text-2xl); font-weight: var(--fw-bold); }
-.stat-label { font-size: var(--text-xs); color: var(--color-text-secondary); }
-
 .hero-image img {
   width: 280px;
   height: 280px;
@@ -197,7 +171,11 @@ const recentEpisodes = episodes.slice(1, 4);
 .episodes-list { display: flex; flex-direction: column; gap: var(--space-3); }
 
 /* Comunidad */
-.community-section { background: var(--color-surface-raised); }
+.community-section {
+  background: var(--color-surface-raised);
+  /* compensa la altura del header sticky en el scroll */
+  scroll-margin-top: 72px;
+}
 .community-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -205,6 +183,10 @@ const recentEpisodes = episodes.slice(1, 4);
 }
 @media (max-width: 640px) {
   .community-grid { grid-template-columns: 1fr; }
+}
+.community-more {
+  margin-top: var(--space-6);
+  text-align: right;
 }
 
 /* Barton */

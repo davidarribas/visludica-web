@@ -121,12 +121,110 @@ hr {
   margin-block: var(--space-8);
 }
 
-/* Rich text content (markdown) */
-.prose h2 { margin-top: var(--space-8); margin-bottom: var(--space-3); }
-.prose h3 { margin-top: var(--space-6); margin-bottom: var(--space-2); }
-.prose p  { margin-bottom: var(--space-4); }
-.prose ul, .prose ol { padding-left: var(--space-6); margin-bottom: var(--space-4); }
-.prose li { margin-bottom: var(--space-1); }
-.prose a  { color: var(--color-accent); text-decoration: underline; }
-.prose a:hover { color: var(--color-accent-hover); }
-.prose strong { font-weight: var(--fw-bold); }
+/* Rich text content — RSS y Markdown */
+.prose {
+  font-size: 1.0625rem;   /* 17px */
+  line-height: 1.75;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  max-width: 68ch;        /* ~680px, cómodo de leer */
+}
+
+/* Encabezados */
+.prose h2 {
+  font-size: var(--text-2xl);
+  font-weight: var(--fw-bold);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  margin-top: var(--space-10);
+  margin-bottom: var(--space-3);
+  color: var(--color-text);
+}
+.prose h3 {
+  font-size: var(--text-xl);
+  font-weight: var(--fw-bold);
+  line-height: 1.3;
+  margin-top: var(--space-8);
+  margin-bottom: var(--space-2);
+  color: var(--color-text);
+}
+.prose h4 {
+  font-size: var(--text-lg);
+  font-weight: var(--fw-medium);
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-2);
+}
+
+/* Párrafos */
+.prose p {
+  margin-bottom: var(--space-5);
+  line-height: 1.75;
+  color: var(--color-text);
+}
+.prose p:last-child { margin-bottom: 0; }
+
+/* Enlaces */
+.prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color var(--transition);
+}
+.prose a:hover {
+  color: var(--color-accent-hover);
+  text-decoration-thickness: 2px;
+}
+
+/* Énfasis */
+.prose strong { font-weight: var(--fw-bold); color: var(--color-text); }
+.prose em     { font-style: italic; }
+
+/* Listas */
+.prose ul,
+.prose ol {
+  padding-left: 1.5rem;
+  margin-bottom: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.prose ul { list-style-type: disc; }
+.prose ol { list-style-type: decimal; }
+.prose li {
+  padding-left: var(--space-1);
+  line-height: 1.65;
+}
+.prose li p { margin-bottom: var(--space-2); }
+
+/* Citas */
+.prose blockquote {
+  border-left: 3px solid var(--color-accent);
+  padding-left: var(--space-4);
+  margin-block: var(--space-6);
+  color: var(--color-text-secondary);
+  font-style: italic;
+}
+
+/* Código inline */
+.prose code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.875em;
+  background: var(--color-surface-raised);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+
+/* Separador */
+.prose hr {
+  margin-block: var(--space-8);
+  border-top-color: var(--color-border);
+}
+
+/* Imágenes dentro de prose */
+.prose img {
+  border-radius: var(--radius-md);
+  margin-block: var(--space-6);
+  max-width: 100%;
+}
