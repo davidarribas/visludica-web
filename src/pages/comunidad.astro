@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CommunityCard from '../components/CommunityCard.astro';
+---
+
+<BaseLayout
+  title="Comunidad"
+  description="Todos los espacios donde encontrar a la comunidad de Vis Lúdica: Telegram, YouTube, Twitch, newsletter Destroquelar y más."
+>
+  <section class="section">
+    <div class="container">
+      <header class="page-header">
+        <span class="label">Dónde estamos</span>
+        <h1>Comunidad</h1>
+        <p class="page-desc">
+          Vis Lúdica vive en varios espacios. Aquí están todos, con una descripción
+          de qué encontrarás en cada uno.
+        </p>
+      </header>
+
+      <div class="community-group">
+        <h2 class="group-title">Contenido principal</h2>
+        <div class="community-grid">
+          <CommunityCard
+            href="https://t.me/TODO"
+            label="Telegram"
+            description="El corazón de la comunidad. Canal de noticias, novedades lúdicas, análisis rápidos y conversación directa. Más de 1.500 miembros."
+            icon="telegram"
+            accent="#0088cc"
+          />
+          <CommunityCard
+            href="https://youtube.com/@TODO"
+            label="YouTube"
+            description="El canal principal. Vídeos de análisis en profundidad, reseñas, partidas comentadas y directos grabados. Más de 7.000 suscriptores."
+            icon="youtube"
+            accent="#FF0000"
+          />
+          <CommunityCard
+            href="https://twitch.tv/TODO"
+            label="Twitch"
+            description="Directos con partidas en vivo, presentaciones de novedades de feria y charlas sin guión sobre el hobby."
+            icon="twitch"
+            accent="#9146FF"
+          />
+        </div>
+      </div>
+
+      <div class="community-group">
+        <h2 class="group-title">Leer y escuchar</h2>
+        <div class="community-grid">
+          <CommunityCard
+            href="https://visludica.substack.com"
+            label="Destroquelar"
+            description="La newsletter de Vis Lúdica. Reflexiones largas, ensayos y textos que no caben en un episodio. En Substack."
+            icon="substack"
+            accent="#FF6719"
+          />
+          <CommunityCard
+            href="https://open.spotify.com/show/TODO"
+            label="Spotify"
+            description="El podcast en Spotify. Todos los episodios, con reproducción offline y listas de reproducción."
+            icon="link"
+          />
+          <CommunityCard
+            href="https://podcasts.apple.com/TODO"
+            label="Apple Podcasts"
+            description="El podcast en Apple Podcasts. Si usas iPhone o Mac, aquí es donde suscribirte."
+            icon="link"
+          />
+          <CommunityCard
+            href="https://www.ivoox.com/TODO"
+            label="iVoox"
+            description="El podcast en iVoox, la plataforma de podcasts más usada en español."
+            icon="link"
+          />
+          <CommunityCard
+            href="https://feeds.captivate.fm/visludica/"
+            label="Feed RSS"
+            description="Suscríbete con tu aplicación de podcasts favorita usando el feed RSS directo."
+            icon="rss"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.page-header {
+  margin-bottom: var(--space-12);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.page-desc {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  max-width: 560px;
+  line-height: 1.6;
+}
+
+.community-group { margin-bottom: var(--space-10); }
+.group-title {
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-4);
+}
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-4);
+}
+</style>

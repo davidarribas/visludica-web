@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Sobre Vis Lúdica"
+  description="Qué es Vis Lúdica, quién está detrás y cuál es la filosofía del podcast de juegos de mesa."
+>
+  <section class="section">
+    <div class="container sobre-layout">
+      <header class="page-header">
+        <span class="label">El proyecto</span>
+        <h1>Sobre Vis Lúdica</h1>
+      </header>
+
+      <div class="prose sobre-content">
+        <!--
+          David: este es tu espacio. Edita el archivo src/pages/sobre.astro
+          y sustituye este texto con el contenido real de la página.
+
+          Puedes escribirlo directamente aquí como HTML/Astro,
+          o pedirme que lo convierta a una Content Collection si prefieres
+          editarlo como .md desde BBEdit o iA Writer.
+        -->
+
+        <h2>Qué es Vis Lúdica</h2>
+        <p>
+          <em>[Placeholder — añade aquí la descripción del proyecto]</em>
+        </p>
+
+        <h2>Quién está detrás</h2>
+        <p>
+          <em>[Placeholder — añade aquí tu presentación como David Arribas]</em>
+        </p>
+
+        <h2>La filosofía</h2>
+        <p>
+          <em>[Placeholder — añade aquí la filosofía del podcast: sin prisa, con criterio, etc.]</em>
+        </p>
+
+        <h2>El ecosistema</h2>
+        <p>
+          Vis Lúdica forma parte de un ecosistema más amplio de proyectos sobre el hobby lúdico:
+        </p>
+        <ul>
+          <li><a href="https://visbelica.com" target="_blank" rel="noopener noreferrer"><strong>Vis Bélica</strong></a> — el podcast hermano, centrado en wargames</li>
+          <li><a href="https://academiavisbelica.com" target="_blank" rel="noopener noreferrer"><strong>Academia Vis Bélica</strong></a> — cursos sobre wargames</li>
+          <li><a href="https://campamentobarton.com" target="_blank" rel="noopener noreferrer"><strong>Campamento Barton</strong></a> — el evento presencial anual</li>
+          <li><a href="https://visludica.substack.com" target="_blank" rel="noopener noreferrer"><strong>Destroquelar</strong></a> — la newsletter</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.sobre-layout { max-width: 720px; }
+
+.page-header {
+  margin-bottom: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sobre-content { font-size: var(--text-lg); }
+.sobre-content h2 { margin-top: var(--space-10); margin-bottom: var(--space-4); }
+.sobre-content p { color: var(--color-text-secondary); }
+.sobre-content ul { margin-bottom: var(--space-4); padding-left: var(--space-6); }
+.sobre-content li { margin-bottom: var(--space-2); color: var(--color-text-secondary); }
+.sobre-content a { color: var(--color-accent); }
+.sobre-content a:hover { color: var(--color-accent-hover); }
+</style>

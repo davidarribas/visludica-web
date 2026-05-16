@@ -1,0 +1,200 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getEpisodes } from '../../lib/rss';
+
+export async function getStaticPaths() {
+  const episodes = await getEpisodes();
+  return episodes.map(ep => ({
+    params: { slug: ep.slug },
+    props: { episode: ep },
+  }));
+}
+
+const { episode } = Astro.props;
+
+const formattedDate = episode.pubDate.toLocaleDateString('es-ES', {
+  weekday: 'long',
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const platformLinks = [
+  { href: `https://open.spotify.com/episode/TODO`, label: 'Spotify' },
+  { href: `https://podcasts.apple.com/TODO`,       label: 'Apple Podcasts' },
+  { href: `https://www.ivoox.com/TODO`,            label: 'iVoox' },
+];
+---
+
+<BaseLayout
+  title={episode.title}
+  description={episode.description}
+  image={episode.imageUrl || '/logo.png'}
+  type="article"
+>
+  <article class="section">
+    <div class="container episode-layout">
+
+      <aside class="episode-sidebar">
+        {episode.imageUrl && (
+          <img
+            src={episode.imageUrl}
+            alt={episode.title}
+            class="episode-cover"
+            width="280"
+            height="280"
+          />
+        )}
+        <div class="episode-meta-box">
+          <div class="meta-row">
+            <span class="meta-label">Fecha</span>
+            <time datetime={episode.pubDate.toISOString()}>{formattedDate}</time>
+          </div>
+          {episode.duration && (
+            <div class="meta-row">
+              <span class="meta-label">Duración</span>
+              <span>{episode.duration}</span>
+            </div>
+          )}
+        </div>
+        <div class="platform-links">
+          <p class="meta-label">Escuchar en</p>
+          <ul>
+            {platformLinks.map(p => (
+              <li><a href={p.href} target="_blank" rel="noopener noreferrer">{p.label} ↗</a></li>
+            ))}
+          </ul>
+        </div>
+      </aside>
+
+      <div class="episode-main">
+        <a href="/podcast" class="back-link">← Todos los episodios</a>
+        <h1>{episode.title}</h1>
+
+        <!-- Player de Captivate -->
+        <div class="player-wrap">
+          <iframe
+            src={`https://player.captivate.fm/episode/${episode.captivateId}`}
+            title={`Reproductor: ${episode.title}`}
+            width="100%"
+            height="200"
+            frameborder="0"
+            scrolling="no"
+            loading="lazy"
+          ></iframe>
+        </div>
+
+        <!-- Descripción / shownotes -->
+        {episode.content && (
+          <div class="prose episode-content" set:html={episode.content} />
+        )}
+      </div>
+
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+.episode-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .episode-layout {
+    grid-template-columns: 1fr;
+  }
+  .episode-sidebar {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: var(--space-6);
+    align-items: start;
+  }
+  .episode-cover { width: 100% !important; }
+}
+
+@media (max-width: 540px) {
+  .episode-sidebar { grid-template-columns: 1fr; }
+}
+
+/* Sidebar */
+.episode-sidebar { display: flex; flex-direction: column; gap: var(--space-6); }
+
+.episode-cover {
+  width: 280px;
+  height: 280px;
+  border-radius: var(--radius-xl);
+  object-fit: cover;
+  box-shadow: var(--shadow-md);
+}
+
+.episode-meta-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.meta-row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+}
+.meta-label {
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+
+.platform-links { display: flex; flex-direction: column; gap: var(--space-2); }
+.platform-links ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.platform-links a {
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.platform-links a:hover { color: var(--color-accent-hover); }
+
+/* Main */
+.episode-main { display: flex; flex-direction: column; gap: var(--space-6); min-width: 0; }
+
+.back-link {
+  display: inline-block;
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  text-decoration: none;
+}
+.back-link:hover { color: var(--color-accent-hover); }
+
+.episode-main h1 {
+  font-size: var(--text-3xl);
+  line-height: 1.2;
+}
+@media (max-width: 640px) {
+  .episode-main h1 { font-size: var(--text-2xl); }
+}
+
+.player-wrap {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+.player-wrap iframe { display: block; }
+
+.episode-content { margin-top: var(--space-2); }
+</style>

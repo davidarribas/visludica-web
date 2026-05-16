@@ -1,0 +1,267 @@
+---
+const navLinks = [
+  { href: '/',          label: 'Inicio' },
+  { href: '/podcast',   label: 'Podcast' },
+  { href: '/comunidad', label: 'Comunidad' },
+  { href: '/sobre',     label: 'Sobre' },
+];
+
+const masLinks = [
+  { href: 'https://visbelica.com',          label: 'Vis Bélica' },
+  { href: 'https://academiavisbelica.com',  label: 'Academia' },
+  { href: 'https://campamentobarton.com',   label: 'Barton' },
+  { href: 'https://visludica.substack.com', label: 'Destroquelar' },
+];
+
+const path = Astro.url.pathname;
+function isActive(href: string) {
+  if (href === '/') return path === '/';
+  return path.startsWith(href);
+}
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo-link" aria-label="Vis Lúdica — Inicio">
+      <img src="/logo.png" alt="Vis Lúdica" class="logo" width="40" height="40" />
+      <span class="logo-name">Vis Lúdica</span>
+    </a>
+
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
+      <ul class="nav-list">
+        {navLinks.map(link => (
+          <li>
+            <a
+              href={link.href}
+              class:list={['nav-link', { 'nav-link--active': isActive(link.href) }]}
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+        <li class="dropdown">
+          <button class="nav-link dropdown-btn" aria-haspopup="true" aria-expanded="false">
+            Más <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            {masLinks.map(link => (
+              <li role="none">
+                <a
+                  href={link.href}
+                  class="dropdown-item"
+                  role="menuitem"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.label}
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><path d="M2 8L8 2M8 2H4M8 2v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </li>
+      </ul>
+    </nav>
+
+    <button class="menu-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<style>
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  height: 64px;
+}
+
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+  color: var(--color-text);
+  text-decoration: none;
+}
+.logo {
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+.logo-name {
+  font-weight: var(--fw-bold);
+  font-size: var(--text-lg);
+  letter-spacing: -0.01em;
+}
+
+/* Nav */
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  list-style: none;
+  padding: 0;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition), background-color var(--transition);
+  background: none;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--color-text);
+  background-color: var(--color-surface-raised);
+}
+.nav-link--active {
+  color: var(--color-accent);
+}
+
+/* Dropdown */
+.dropdown { position: relative; }
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  right: 0;
+  min-width: 180px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  list-style: none;
+  padding: var(--space-2) 0;
+  z-index: 10;
+}
+.dropdown-menu.open { display: block; }
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition), background-color var(--transition);
+}
+.dropdown-item:hover {
+  color: var(--color-text);
+  background-color: var(--color-surface-raised);
+}
+
+/* Mobile toggle */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: var(--space-2);
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-md);
+}
+.menu-toggle span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform var(--transition), opacity var(--transition);
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  .menu-toggle { display: flex; }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-4);
+  }
+  .main-nav.open { display: block; }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-1);
+  }
+
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-top: 1px solid var(--color-border);
+    border-radius: 0;
+    padding: var(--space-2) 0 0;
+    margin-top: var(--space-2);
+    display: none;
+  }
+  .dropdown-menu.open { display: block; }
+}
+</style>
+
+<script>
+const dropdownBtn = document.querySelector('.dropdown-btn') as HTMLButtonElement | null;
+const dropdownMenu = document.querySelector('.dropdown-menu');
+const menuToggle = document.querySelector('.menu-toggle') as HTMLButtonElement | null;
+const mainNav = document.getElementById('main-nav');
+
+dropdownBtn?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const open = dropdownMenu?.classList.toggle('open');
+  dropdownBtn.setAttribute('aria-expanded', String(open));
+});
+
+document.addEventListener('click', () => {
+  dropdownMenu?.classList.remove('open');
+  dropdownBtn?.setAttribute('aria-expanded', 'false');
+});
+
+menuToggle?.addEventListener('click', () => {
+  const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+  menuToggle.setAttribute('aria-expanded', String(!expanded));
+  mainNav?.classList.toggle('open');
+});
+</script>

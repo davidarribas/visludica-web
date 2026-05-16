@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Campamento Barton"
+  description="Campamento Barton, el evento presencial anual de la comunidad Vis Lúdica. Un fin de semana para jugar juntos."
+>
+  <section class="section">
+    <div class="container barton-layout">
+      <header class="page-header">
+        <span class="label">Evento presencial anual</span>
+        <h1>Campamento Barton</h1>
+      </header>
+
+      <div class="barton-body">
+        <div class="prose barton-content">
+          <!-- Placeholder — edita este contenido o enlaza al WordPress de Barton -->
+          <p>
+            <em>[Placeholder — añade aquí la descripción del Campamento Barton]</em>
+          </p>
+          <p>
+            Para más información y ediciones anteriores, visita el sitio oficial:
+          </p>
+        </div>
+
+        <div class="barton-cta">
+          <a
+            href="https://campamentobarton.com"
+            class="btn btn-primary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Ver sitio oficial de Campamento Barton ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.barton-layout { max-width: 720px; }
+
+.page-header {
+  margin-bottom: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.barton-body { display: flex; flex-direction: column; gap: var(--space-8); }
+.barton-content { font-size: var(--text-lg); }
+.barton-content p { color: var(--color-text-secondary); margin-bottom: var(--space-4); }
+.barton-cta { padding-top: var(--space-4); }
+</style>

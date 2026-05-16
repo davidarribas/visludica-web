@@ -1,0 +1,226 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EpisodeCard from '../components/EpisodeCard.astro';
+import CommunityCard from '../components/CommunityCard.astro';
+import { getEpisodes, getFeedMeta } from '../lib/rss';
+
+const [episodes, meta] = await Promise.all([getEpisodes(), getFeedMeta()]);
+const latestEpisode = episodes[0];
+const recentEpisodes = episodes.slice(1, 4);
+---
+
+<BaseLayout
+  title="Vis Lúdica"
+  description="Podcast sobre juegos de mesa. Eurogames, análisis, estrategia y conversaciones profundas sobre el hobby."
+>
+
+  <!-- Hero -->
+  <section class="hero section">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="label">Podcast de juegos de mesa</span>
+        <h1>Vis Lúdica</h1>
+        <p class="hero-tagline">
+          Más de 300 episodios sobre eurogames, análisis de mecánicas,
+          estrategia y conversaciones profundas sobre el hobby lúdico.
+          Sin prisa. Con criterio.
+        </p>
+        <div class="hero-ctas">
+          <a href="/podcast" class="btn btn-primary">Ver todos los episodios</a>
+          <a href="/comunidad" class="btn btn-outline">Únete a la comunidad</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">300+</span>
+            <span class="stat-label">episodios</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">7.000</span>
+            <span class="stat-label">suscriptores YouTube</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">1.500</span>
+            <span class="stat-label">en Telegram</span>
+          </div>
+        </div>
+      </div>
+      {meta.imageUrl && (
+        <div class="hero-image">
+          <img src={meta.imageUrl} alt="Vis Lúdica podcast" width="400" height="400" />
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Último episodio -->
+  {latestEpisode && (
+    <section class="section-sm">
+      <div class="container">
+        <div class="section-header">
+          <span class="label">Último episodio</span>
+        </div>
+        <EpisodeCard episode={latestEpisode} featured={true} />
+      </div>
+    </section>
+  )}
+
+  <!-- Episodios recientes -->
+  {recentEpisodes.length > 0 && (
+    <section class="section-sm">
+      <div class="container">
+        <div class="section-header">
+          <h2>Episodios recientes</h2>
+          <a href="/podcast" class="section-link">Ver todos →</a>
+        </div>
+        <div class="episodes-list">
+          {recentEpisodes.map(ep => (
+            <EpisodeCard episode={ep} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Comunidad -->
+  <section class="section community-section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="label">Comunidad</span>
+          <h2>Encuéntranos aquí</h2>
+        </div>
+        <a href="/comunidad" class="section-link">Ver todos los espacios →</a>
+      </div>
+      <div class="community-grid">
+        <CommunityCard
+          href="https://t.me/TODO"
+          label="Telegram"
+          description="El canal principal. Noticias, análisis y conversación sobre juegos de mesa."
+          icon="telegram"
+          accent="#0088cc"
+        />
+        <CommunityCard
+          href="https://youtube.com/@TODO"
+          label="YouTube"
+          description="Más de 7.000 suscriptores. Vídeos de análisis, partidas comentadas y directos."
+          icon="youtube"
+          accent="#FF0000"
+        />
+        <CommunityCard
+          href="https://visludica.substack.com"
+          label="Destroquelar"
+          description="La newsletter. Reflexiones largas sobre el hobby que no caben en un episodio."
+          icon="substack"
+          accent="#FF6719"
+        />
+        <CommunityCard
+          href="https://twitch.tv/TODO"
+          label="Twitch"
+          description="Directos con partidas en vivo, presentaciones de novedades y charlas sin guión."
+          icon="twitch"
+          accent="#9146FF"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Campamento Barton -->
+  <section class="section-sm barton-section">
+    <div class="container">
+      <div class="barton-card">
+        <div class="barton-text">
+          <span class="label">Evento anual presencial</span>
+          <h2>Campamento Barton</h2>
+          <p>Un fin de semana para encontrarnos en persona, jugar sin prisa y celebrar el hobby
+          que compartimos. Ediciones anuales con aforo limitado.</p>
+          <a href="/barton" class="btn btn-outline">Más información →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<style>
+/* Hero */
+.hero { background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-12);
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-image { display: none; }
+}
+
+.hero-text { display: flex; flex-direction: column; gap: var(--space-4); max-width: 560px; }
+.hero-tagline { font-size: var(--text-lg); color: var(--color-text-secondary); line-height: 1.6; }
+
+.hero-ctas { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-2); }
+
+.hero-stats {
+  display: flex;
+  gap: var(--space-8);
+  margin-top: var(--space-4);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+.stat { display: flex; flex-direction: column; }
+.stat-num { font-size: var(--text-2xl); font-weight: var(--fw-bold); }
+.stat-label { font-size: var(--text-xs); color: var(--color-text-secondary); }
+
+.hero-image img {
+  width: 280px;
+  height: 280px;
+  border-radius: var(--radius-xl);
+  object-fit: cover;
+  box-shadow: var(--shadow-lg);
+}
+
+/* Secciones */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+.section-link {
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-accent);
+  white-space: nowrap;
+}
+.section-link:hover { color: var(--color-accent-hover); }
+
+.episodes-list { display: flex; flex-direction: column; gap: var(--space-3); }
+
+/* Comunidad */
+.community-section { background: var(--color-surface-raised); }
+.community-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+@media (max-width: 640px) {
+  .community-grid { grid-template-columns: 1fr; }
+}
+
+/* Barton */
+.barton-section { background: var(--color-surface); }
+.barton-card {
+  background: linear-gradient(135deg, var(--color-accent-subtle) 0%, var(--color-surface) 60%);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-12);
+}
+.barton-text {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+.barton-text p { color: var(--color-text-secondary); line-height: 1.6; }
+</style>

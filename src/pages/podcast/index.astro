@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EpisodeCard from '../../components/EpisodeCard.astro';
+import { getEpisodes, paginateEpisodes } from '../../lib/rss';
+
+const PAGE_SIZE = 24;
+const episodes = await getEpisodes();
+const { items, totalPages, currentPage } = paginateEpisodes(episodes, 1, PAGE_SIZE);
+---
+
+<BaseLayout
+  title="Podcast"
+  description={`Todos los episodios de Vis Lúdica. ${episodes.length} episodios sobre juegos de mesa, eurogames y análisis en profundidad.`}
+>
+  <section class="section">
+    <div class="container">
+      <header class="page-header">
+        <span class="label">Archivo</span>
+        <h1>Todos los episodios</h1>
+        <p class="page-desc">
+          {episodes.length} episodios y contando. Análisis, reseñas,
+          mecánicas y conversaciones sobre eurogames.
+        </p>
+      </header>
+
+      <div class="episode-grid">
+        {items.map(ep => <EpisodeCard episode={ep} />)}
+      </div>
+
+      {totalPages > 1 && (
+        <nav class="pagination" aria-label="Paginación">
+          <span class="pagination__current">Página 1 de {totalPages}</span>
+          <a href="/podcast/pagina/2" class="btn btn-outline">
+            Siguientes episodios →
+          </a>
+        </nav>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.page-header {
+  margin-bottom: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.page-header h1 { max-width: 600px; }
+.page-desc {
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  max-width: 560px;
+}
+
+.episode-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-10);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+.pagination__current {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+</style>

@@ -1,0 +1,183 @@
+---
+const year = new Date().getFullYear();
+
+const platformLinks = [
+  { href: 'https://open.spotify.com/show/TODO',     label: 'Spotify' },
+  { href: 'https://podcasts.apple.com/TODO',         label: 'Apple Podcasts' },
+  { href: 'https://www.ivoox.com/podcast-vis-ludica_sq_TODO.html', label: 'iVoox' },
+  { href: 'https://feeds.captivate.fm/visludica/',   label: 'RSS' },
+];
+
+const sisterSites = [
+  { href: 'https://visbelica.com',          label: 'Vis Bélica' },
+  { href: 'https://academiavisbelica.com',  label: 'Academia' },
+  { href: 'https://campamentobarton.com',   label: 'Barton' },
+  { href: 'https://visludica.substack.com', label: 'Destroquelar' },
+];
+
+const socialLinks = [
+  { href: 'https://youtube.com/@TODO',    label: 'YouTube' },
+  { href: 'https://t.me/TODO',            label: 'Telegram' },
+  { href: 'https://twitch.tv/TODO',       label: 'Twitch' },
+];
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo-link">
+          <img src="/logo.png" alt="Vis Lúdica" width="48" height="48" />
+          <span>Vis Lúdica</span>
+        </a>
+        <p>Podcast de juegos de mesa en español. Eurogames, análisis y mucho más.</p>
+      </div>
+
+      <div class="footer-col">
+        <h3>Escuchar en</h3>
+        <ul>
+          {platformLinks.map(l => (
+            <li><a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Comunidad</h3>
+        <ul>
+          {socialLinks.map(l => (
+            <li><a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Más proyectos</h3>
+        <ul>
+          {sisterSites.map(l => (
+            <li><a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <a href="/aviso-legal">Aviso legal</a>
+        <a href="/privacidad">Política de privacidad</a>
+        <a href="mailto:hola@visludica.com">Contacto</a>
+      </div>
+      <p class="footer-credit">
+        © {year} Vis Lúdica · Hecho con <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+.site-footer {
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding-block: var(--space-12) var(--space-8);
+  margin-top: auto;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--space-8);
+  margin-bottom: var(--space-10);
+}
+
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer-brand { grid-column: 1 / -1; }
+}
+
+@media (max-width: 540px) {
+  .footer-grid { grid-template-columns: 1fr; }
+}
+
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.footer-logo-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-lg);
+  text-decoration: none;
+  color: var(--color-text);
+}
+.footer-logo-link img {
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+.footer-brand p {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  max-width: 280px;
+  line-height: 1.5;
+}
+
+.footer-col h3 {
+  font-size: var(--text-xs);
+  font-weight: var(--fw-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-3);
+}
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.footer-col a {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.footer-col a:hover { color: var(--color-accent); }
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-legal {
+  display: flex;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+}
+.footer-legal a {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.footer-legal a:hover { color: var(--color-text-secondary); }
+
+.footer-credit {
+  font-size: var(--text-xs);
+  color: var(--color-text-tertiary);
+}
+.footer-credit a {
+  color: inherit;
+  text-decoration: underline;
+}
+.footer-credit a:hover { color: var(--color-accent); }
+</style>

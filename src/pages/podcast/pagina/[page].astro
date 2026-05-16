@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import EpisodeCard from '../../../components/EpisodeCard.astro';
+import { getEpisodes, paginateEpisodes } from '../../../lib/rss';
+
+export async function getStaticPaths() {
+  const PAGE_SIZE = 24;
+  const episodes = await getEpisodes();
+  const totalPages = Math.ceil(episodes.length / PAGE_SIZE);
+
+  // Genera páginas 2..N (la 1 la sirve /podcast/index.astro)
+  return Array.from({ length: totalPages - 1 }, (_, i) => ({
+    params: { page: String(i + 2) },
+    props: { pageNum: i + 2, totalPages, episodes },
+  }));
+}
+
+interface Props {
+  pageNum: number;
+  totalPages: number;
+  episodes: Awaited<ReturnType<typeof getEpisodes>>;
+}
+
+const { pageNum, totalPages, episodes } = Astro.props;
+const PAGE_SIZE = 24;
+const { items } = paginateEpisodes(episodes, pageNum, PAGE_SIZE);
+---
+
+<BaseLayout
+  title={`Podcast — Página ${pageNum}`}
+  description={`Episodios de Vis Lúdica, página ${pageNum} de ${totalPages}.`}
+>
+  <section class="section">
+    <div class="container">
+      <header class="page-header">
+        <a href="/podcast" class="back-link">← Volver al archivo</a>
+        <h1>Episodios <span class="page-num">· {pageNum} / {totalPages}</span></h1>
+      </header>
+
+      <div class="episode-grid">
+        {items.map(ep => <EpisodeCard episode={ep} />)}
+      </div>
+
+      <nav class="pagination" aria-label="Paginación">
+        <div class="pagination__prev">
+          {pageNum > 2
+            ? <a href={`/podcast/pagina/${pageNum - 1}`} class="btn btn-outline">← Anteriores</a>
+            : <a href="/podcast" class="btn btn-outline">← Anteriores</a>
+          }
+        </div>
+        <span class="pagination__current">Página {pageNum} de {totalPages}</span>
+        <div class="pagination__next">
+          {pageNum < totalPages && (
+            <a href={`/podcast/pagina/${pageNum + 1}`} class="btn btn-outline">Siguientes →</a>
+          )}
+        </div>
+      </nav>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.page-header {
+  margin-bottom: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+.back-link {
+  font-size: var(--text-sm);
+  color: var(--color-accent);
+  text-decoration: none;
+}
+.back-link:hover { color: var(--color-accent-hover); }
+.page-num {
+  color: var(--color-text-tertiary);
+  font-weight: var(--fw-regular);
+}
+.episode-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-10);
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-8);
+  border-top: 1px solid var(--color-border);
+}
+.pagination__current {
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+</style>
