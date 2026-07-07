@@ -22,9 +22,10 @@ const recentEpisodes = episodes.slice(1, 4);
         <span class="label">Podcast de juegos de mesa</span>
         <h1>Vis Lúdica</h1>
         <p class="hero-tagline">{SITE.tagline}</p>
+        <p class="hero-note">Conversaciones sobre juegos modernos, estrategia y cultura de mesa.</p>
         <div class="hero-ctas">
           <a href="/podcast" class="btn btn-primary">Ver todos los episodios</a>
-          <a href="#comunidad" class="btn btn-outline">Síguenos donde quieras</a>
+          <a href="#comunidad" class="hero-secondary-link">Síguenos donde quieras →</a>
         </div>
       </div>
       {meta.imageUrl && (
@@ -127,29 +128,72 @@ const recentEpisodes = episodes.slice(1, 4);
 
 <style>
 /* Hero */
-.hero { background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+.hero {
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+.hero.section { padding-block: var(--space-20); }
 .hero-inner {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: var(--space-12);
+  grid-template-columns: minmax(0, 600px) auto;
+  gap: var(--space-16);
   align-items: center;
+  justify-content: space-between;
 }
 @media (max-width: 768px) {
   .hero-inner { grid-template-columns: 1fr; }
   .hero-image { display: none; }
+  .hero.section { padding-block: var(--space-16); }
 }
 
-.hero-text { display: flex; flex-direction: column; gap: var(--space-4); max-width: 560px; }
-.hero-tagline { font-size: var(--text-lg); color: var(--color-text-secondary); line-height: 1.6; }
+.hero-text { display: flex; flex-direction: column; gap: var(--space-4); max-width: 600px; }
+.hero h1 {
+  font-size: var(--text-5xl);
+  letter-spacing: 0;
+}
+.hero-tagline {
+  max-width: 520px;
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+.hero-note {
+  max-width: 480px;
+  font-size: var(--text-sm);
+  color: var(--color-text-tertiary);
+  line-height: 1.6;
+}
 
-.hero-ctas { display: flex; gap: var(--space-3); flex-wrap: wrap; margin-top: var(--space-2); }
+.hero-ctas {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-top: var(--space-2);
+}
+.hero-secondary-link {
+  font-size: var(--text-sm);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-secondary);
+}
+.hero-secondary-link:hover { color: var(--color-accent); }
 
 .hero-image img {
-  width: 280px;
-  height: 280px;
-  border-radius: var(--radius-xl);
+  width: 256px;
+  height: 256px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   object-fit: cover;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: var(--text-4xl); }
+  .hero-ctas {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
 }
 
 /* Secciones */
@@ -179,7 +223,7 @@ const recentEpisodes = episodes.slice(1, 4);
 .community-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-4);
+  gap: var(--space-3);
 }
 @media (max-width: 640px) {
   .community-grid { grid-template-columns: 1fr; }
