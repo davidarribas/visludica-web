@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import EpisodeCard from '../components/EpisodeCard.astro';
 import CommunityCard from '../components/CommunityCard.astro';
 import { getEpisodes, getFeedMeta } from '../lib/rss';
-import { SITE } from '../config';
+import { SITE, COMMUNITY_LINKS } from '../config';
 import { latestEdition, formatIndex, gameTitle } from '../lib/power-ranking';
 
 const [episodes, meta] = await Promise.all([getEpisodes(), getFeedMeta()]);
@@ -11,6 +11,7 @@ const latestEpisode = episodes[0];
 const recentEpisodes = episodes.slice(1, 4);
 const rankingProject = latestEdition.projects['vis-ludica'];
 const rankingTop = rankingProject.rankings.power.slice(0, 3);
+const communityLink = (label: string) => COMMUNITY_LINKS.find((l) => l.label === label)!;
 ---
 
 <BaseLayout
@@ -104,32 +105,32 @@ const rankingTop = rankingProject.rankings.power.slice(0, 3);
       </div>
       <div class="community-grid">
         <CommunityCard
-          href="https://t.me/visludicaarmy"
-          label="Telegram"
+          href={communityLink('Telegram').href}
+          label={communityLink('Telegram').label}
           description="El grupo principal donde se reune la comunidad. Noticias, análisis y conversación sobre juegos de mesa."
-          icon="telegram"
-          accent="#0088cc"
+          icon={communityLink('Telegram').icon}
+          accent={communityLink('Telegram').accent}
         />
         <CommunityCard
-          href="https://youtube.com/visludica"
-          label="YouTube"
+          href={communityLink('YouTube').href}
+          label={communityLink('YouTube').label}
           description="Más de 7.000 suscriptores. Vídeos de análisis, partidas comentadas y directos."
-          icon="youtube"
-          accent="#FF0000"
+          icon={communityLink('YouTube').icon}
+          accent={communityLink('YouTube').accent}
         />
         <CommunityCard
-          href="https://visludica.substack.com"
-          label="Destroquelar"
+          href={communityLink('Destroquelar').href}
+          label={communityLink('Destroquelar').label}
           description="La newsletter. Reflexiones largas sobre el hobby que no caben en un episodio."
-          icon="substack"
-          accent="#FF6719"
+          icon={communityLink('Destroquelar').icon}
+          accent={communityLink('Destroquelar').accent}
         />
         <CommunityCard
-          href="https://twitch.tv/visludica"
-          label="Twitch"
+          href={communityLink('Twitch').href}
+          label={communityLink('Twitch').label}
           description="Directos con partidas en vivo, presentaciones de novedades y charlas sin guión."
-          icon="twitch"
-          accent="#9146FF"
+          icon={communityLink('Twitch').icon}
+          accent={communityLink('Twitch').accent}
         />
       </div>
       <div class="community-more">
@@ -246,7 +247,7 @@ const rankingTop = rankingProject.rankings.power.slice(0, 3);
 .community-section {
   background: var(--color-surface-raised);
   /* compensa la altura del header sticky en el scroll */
-  scroll-margin-top: 72px;
+  scroll-margin-top: calc(var(--header-height) + 8px);
 }
 .community-grid {
   display: grid;

@@ -30,6 +30,17 @@ function scoreForRow(view: RankingView, row: any) {
 function scoreLabel(view: RankingView) {
   return view === 'monthly' ? 'Puntos' : 'Índice';
 }
+
+// Normaliza para búsqueda insensible a acentos: minúsculas + sin diacríticos.
+function normalizeSearch(value: string) {
+  return value
+    .toLocaleLowerCase('es')
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '');
+}
+
+// Separador de millares consistente (toLocaleString no agrupa números de 4 cifras en algunos runtimes).
+const numberFormatter = new Intl.NumberFormat('es-ES', { useGrouping: 'always' });
 ---
 
 <div class="ranking-app" data-ranking-app data-project="vis-ludica" data-view="power">
@@ -104,7 +115,7 @@ function scoreLabel(view: RankingView) {
               <span>juegos distintos</span>
             </div>
             <div class="stat-card">
-              <strong>{project.stats.totalPoints.toLocaleString('es-ES')}</strong>
+              <strong>{numberFormatter.format(project.stats.totalPoints)}</strong>
               <span>puntos repartidos</span>
             </div>
           </div>
@@ -222,7 +233,7 @@ function scoreLabel(view: RankingView) {
                           return (
                             <tr
                               data-ranking-row
-                              data-search-value={title.toLocaleLowerCase('es')}
+                              data-search-value={normalizeSearch(title)}
                               data-row-index={index}
                               hidden={index >= 25}
                             >
@@ -317,7 +328,7 @@ function scoreLabel(view: RankingView) {
 
                   <div class="chronicle-voices">
                     <span class="label">La grada</span>
-                    <h3>Las frases de julio</h3>
+                    <h3>Las frases de {edition.monthName.toLowerCase()}</h3>
                     {copy.chronicle.voices.map((voice: any) => (
                       <blockquote>
                         <p>“{voice.text}”</p>
@@ -426,7 +437,10 @@ function scoreLabel(view: RankingView) {
     });
 
     editionSelect?.addEventListener('change', () => {
-      window.location.href = editionSelect.value;
+      const target = new URL(editionSelect.value, window.location.href);
+      if (activeProject !== 'vis-ludica') target.searchParams.set('proyecto', activeProject);
+      if (activeView !== 'power') target.searchParams.set('vista', activeView);
+      window.location.href = target.toString();
     });
 
     app.querySelectorAll<HTMLElement>('[data-table-shell]').forEach((shell) => {
@@ -437,8 +451,15 @@ function scoreLabel(view: RankingView) {
       const pageSize = Number(shell.dataset.pageSize ?? 25);
       let visibleLimit = pageSize;
 
+      function normalizeSearch(value: string) {
+        return value
+          .toLocaleLowerCase('es')
+          .normalize('NFD')
+          .replace(/[̀-ͯ]/g, '');
+      }
+
       function filterRows() {
-        const query = search?.value.trim().toLocaleLowerCase('es') ?? '';
+        const query = normalizeSearch(search?.value.trim() ?? '');
         const matches = rows.filter((row) => row.dataset.searchValue?.includes(query));
         rows.forEach((row) => {
           const matchIndex = matches.indexOf(row);
@@ -531,7 +552,7 @@ function scoreLabel(view: RankingView) {
 
   .ranking-toolbar-wrap {
     position: sticky;
-    top: 64px;
+    top: var(--header-height);
     z-index: 50;
     background: color-mix(in srgb, var(--color-surface) 94%, transparent);
     border-bottom: 1px solid var(--color-border);
@@ -908,7 +929,6 @@ function scoreLabel(view: RankingView) {
   }
 
   @media (max-width: 430px) {
-    .ranking-toolbar-wrap { top: 64px; }
     .ranking-hero p, .edition-intro > div:first-child > p, .story-lead p { font-size: var(--text-base); }
     .voter-growth { padding: var(--space-5); }
     .voter-bars { gap: var(--space-2); }

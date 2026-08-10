@@ -17,11 +17,14 @@
   /* Texto */
   --color-text:           #0A0A0A;
   --color-text-secondary: #6B7280;
-  --color-text-tertiary:  #9CA3AF;
+  --color-text-tertiary:  #6D7480;
 
   /* Bordes y separadores */
   --color-border:         #E5E5E3;
   --color-border-strong:  #D1D1CF;
+
+  /* Layout: altura del header sticky */
+  --header-height: 64px;
 
   /* Tipografía */
   --font-sans:            'Inter Variable', 'Inter', system-ui, sans-serif;

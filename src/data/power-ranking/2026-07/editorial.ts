@@ -11,7 +11,7 @@ export const editorial = {
       deck: 'Gana el mes y conserva el Power Ranking. El Destino de la Comunidad salta al segundo puesto y D-Day aguanta por tercer mes consecutivo en el podio.',
       notes: {
         'the-elder-scrolls-la-traicion-de-la-segunda-era':
-          'Sigue primero con un índice de 0,1855. La inercia de primavera se enfría, pero ganar julio con 27 puntos le permite mantener una ventaja cómoda sobre el perseguidor.',
+          'Sigue primero con un índice de 18,6. La inercia de primavera se enfría, pero ganar julio con 27 puntos le permite mantener una ventaja cómoda sobre el perseguidor.',
         'el-senor-de-los-anillos-el-destino-de-la-comunidad':
           'Sube cuatro puestos y se coloca segundo. Sus 22 puntos de julio prolongan tres meses de presencia firme y lo convierten en la alternativa más seria al líder.',
         'd-day-at-omaha-beach':
@@ -145,9 +145,9 @@ export const editorial = {
       deck: 'El líder pierde algo de altura, pero conserva una ventaja enorme. Guerra del Anillo debuta segundo y Dune: War for Arrakis escala 32 puestos para cerrar el podio.',
       notes: {
         'd-day-at-omaha-beach':
-          'Continúa primero con 0,4402 y vuelve a ganar el ranking mensual: 16 puntos repartidos entre siete votantes. Baja respecto a junio, pero nadie amenaza todavía su mando.',
+          'Continúa primero con un índice de 44,0 y vuelve a ganar el ranking mensual: 16 puntos repartidos entre siete votantes. Baja respecto a junio, pero nadie amenaza todavía su mando.',
         'guerra-del-anillo':
-          'Entra directamente en el segundo puesto del Power con 0,2156. Sus 12 puntos y cinco votantes hacen de julio una ofensiva concentrada, sin apoyo de meses anteriores.',
+          'Entra directamente en el segundo puesto del Power con un índice de 21,6. Sus 12 puntos y cinco votantes hacen de julio una ofensiva concentrada, sin apoyo de meses anteriores.',
         'dune-war-for-arrakis':
           'Sube 32 posiciones y alcanza el tercer puesto. Un primero, dos segundos y un tercero le dan ocho puntos y consolidan su presencia en el Palmarés anual.',
       },

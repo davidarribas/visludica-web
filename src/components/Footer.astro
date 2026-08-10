@@ -1,25 +1,21 @@
 ---
+import { LISTEN_PLATFORMS, COMMUNITY_LINKS, SISTER_SITES } from '../config';
+
 const year = new Date().getFullYear();
 
+// El footer no incluye YouTube entre las plataformas de escucha (ya aparece en Comunidad).
 const platformLinks = [
-  { href: 'https://open.spotify.com/show/3EPdLM7Ozd1U5kq5iYhN43',     label: 'Spotify' },
-  { href: 'https://podcasts.apple.com/es/podcast/vis-ludica/id395259239',         label: 'Apple Podcasts' },
-  { href: 'https://www.ivoox.com/podcast-vis-ludica_sq_f1792_1.html', label: 'iVoox' },
-  { href: 'https://feeds.captivate.fm/visludica/',   label: 'RSS' },
+  { href: '/escuchar', label: 'Todas las plataformas', external: false },
+  ...LISTEN_PLATFORMS.filter((p) => p.icon !== 'youtube').map((p) => ({ href: p.href, label: p.label, external: true })),
 ];
 
-const sisterSites = [
-  { href: 'https://visbelica.com',          label: 'Vis Bélica' },
-  { href: 'https://academiavisbelica.com',  label: 'Academia' },
-  { href: 'https://campamentobarton.com',   label: 'Barton' },
-  { href: 'https://visludica.substack.com', label: 'Destroquelar' },
-];
+const sisterSites = SISTER_SITES;
 
-const socialLinks = [
-  { href: 'https://youtube.com/visludica',    label: 'YouTube' },
-  { href: 'https://t.me/visludicaarmy',            label: 'Telegram' },
-  { href: 'https://twitch.tv/visludica',       label: 'Twitch' },
-];
+// Orden visual original del footer: YouTube, Telegram, Twitch (sin Destroquelar, que va en "Más proyectos").
+const socialLinks = ['YouTube', 'Telegram', 'Twitch'].map((label) => {
+  const link = COMMUNITY_LINKS.find((l) => l.label === label)!;
+  return { href: link.href, label: link.label };
+});
 ---
 
 <footer class="site-footer">
@@ -37,7 +33,7 @@ const socialLinks = [
         <h3>Escuchar en</h3>
         <ul>
           {platformLinks.map(l => (
-            <li><a href={l.href} target="_blank" rel="noopener noreferrer">{l.label}</a></li>
+            <li><a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener noreferrer' : undefined}>{l.label}</a></li>
           ))}
         </ul>
       </div>

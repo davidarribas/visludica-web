@@ -1,4 +1,6 @@
 ---
+import { SISTER_SITES } from '../config';
+
 const navLinks = [
   { href: '/',          label: 'Inicio' },
   { href: '/podcast',   label: 'Podcast' },
@@ -7,12 +9,7 @@ const navLinks = [
   { href: '/sobre',     label: 'Sobre' },
 ];
 
-const masLinks = [
-  { href: 'https://visbelica.com',          label: 'Vis Bélica' },
-  { href: 'https://academiavisbelica.com',  label: 'Academia' },
-  { href: 'https://campamentobarton.com',   label: 'Barton' },
-  { href: 'https://visludica.substack.com', label: 'Destroquelar' },
-];
+const masLinks = SISTER_SITES;
 
 const path = Astro.url.pathname;
 function isActive(href: string) {
@@ -86,7 +83,7 @@ function isActive(href: string) {
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  height: 64px;
+  height: var(--header-height);
 }
 
 .logo-link {
@@ -214,7 +211,7 @@ function isActive(href: string) {
   .main-nav {
     display: none;
     position: absolute;
-    top: 64px;
+    top: var(--header-height);
     left: 0;
     right: 0;
     background: var(--color-surface);

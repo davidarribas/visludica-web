@@ -1,43 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { LISTEN_PLATFORMS } from '../config';
 
-const platforms = [
-  {
-    href: 'https://open.spotify.com/show/3EPdLM7Ozd1U5kq5iYhN43',
-    label: 'Spotify',
-    desc: 'Escuchar en Spotify',
-    color: '#1DB954',
-    icon: 'spotify',
-  },
-  {
-    href: 'https://podcasts.apple.com/es/podcast/vis-ludica/id395259239',
-    label: 'Apple Podcasts',
-    desc: 'Escuchar en Apple Podcasts',
-    color: '#B150E2',
-    icon: 'apple',
-  },
-  {
-    href: 'https://www.ivoox.com/podcast-vis-ludica_sq_f1792_1.html',
-    label: 'iVoox',
-    desc: 'Escuchar en iVoox',
-    color: '#00AAFF',
-    icon: 'ivoox',
-  },
-  {
-    href: 'https://www.youtube.com/visludica',
-    label: 'YouTube',
-    desc: 'Ver en YouTube',
-    color: '#FF0000',
-    icon: 'youtube',
-  },
-  {
-    href: 'https://feeds.captivate.fm/visludica/',
-    label: 'Feed RSS',
-    desc: 'Suscribirse con tu app favorita',
-    color: '#FF6B35',
-    icon: 'rss',
-  },
-];
+// Descripciones propias de esta página (no se centralizan, solo href/label/color/icon).
+const descriptions: Record<string, string> = {
+  Spotify: 'Escuchar en Spotify',
+  'Apple Podcasts': 'Escuchar en Apple Podcasts',
+  iVoox: 'Escuchar en iVoox',
+  YouTube: 'Ver en YouTube',
+  'Feed RSS': 'Suscribirse con tu app favorita',
+};
+
+const platforms = LISTEN_PLATFORMS.map((p) => ({ ...p, desc: descriptions[p.label] ?? p.label }));
 ---
 
 <BaseLayout

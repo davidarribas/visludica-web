@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CommunityCard from '../components/CommunityCard.astro';
+import { COMMUNITY_LINKS, LISTEN_PLATFORMS } from '../config';
+
+const communityLink = (label: string) => COMMUNITY_LINKS.find((l) => l.label === label)!;
+const listenLink = (label: string) => LISTEN_PLATFORMS.find((l) => l.label === label)!;
 ---
 
 <BaseLayout
@@ -22,25 +26,25 @@ import CommunityCard from '../components/CommunityCard.astro';
         <h2 class="group-title">Contenido principal</h2>
         <div class="community-grid">
           <CommunityCard
-            href="https://t.me/visludicaarmy"
-            label="Telegram"
+            href={communityLink('Telegram').href}
+            label={communityLink('Telegram').label}
             description="El corazón de la comunidad. Canal de noticias, novedades lúdicas, análisis rápidos y conversación directa. Más de 1.500 miembros."
-            icon="telegram"
-            accent="#0088cc"
+            icon={communityLink('Telegram').icon}
+            accent={communityLink('Telegram').accent}
           />
           <CommunityCard
-            href="https://youtube.com/visludica"
-            label="YouTube"
+            href={communityLink('YouTube').href}
+            label={communityLink('YouTube').label}
             description="El canal principal. Vídeos de análisis en profundidad, reseñas, partidas comentadas y directos grabados. Más de 7.000 suscriptores."
-            icon="youtube"
-            accent="#FF0000"
+            icon={communityLink('YouTube').icon}
+            accent={communityLink('YouTube').accent}
           />
           <CommunityCard
-            href="https://twitch.tv/visludica"
-            label="Twitch"
+            href={communityLink('Twitch').href}
+            label={communityLink('Twitch').label}
             description="Directos con partidas en vivo, presentaciones de novedades de feria y charlas sin guión sobre el hobby."
-            icon="twitch"
-            accent="#9146FF"
+            icon={communityLink('Twitch').icon}
+            accent={communityLink('Twitch').accent}
           />
         </div>
       </div>
@@ -49,35 +53,35 @@ import CommunityCard from '../components/CommunityCard.astro';
         <h2 class="group-title">Leer y escuchar</h2>
         <div class="community-grid">
           <CommunityCard
-            href="https://visludica.substack.com"
-            label="Destroquelar"
+            href={communityLink('Destroquelar').href}
+            label={communityLink('Destroquelar').label}
             description="La newsletter de Vis Lúdica. Reflexiones largas, ensayos y textos que no caben en un episodio. En Substack."
-            icon="substack"
-            accent="#FF6719"
+            icon={communityLink('Destroquelar').icon}
+            accent={communityLink('Destroquelar').accent}
           />
           <CommunityCard
-            href="https://open.spotify.com/show/3EPdLM7Ozd1U5kq5iYhN43"
-            label="Spotify"
+            href={listenLink('Spotify').href}
+            label={listenLink('Spotify').label}
             description="El podcast en Spotify. Todos los episodios, con reproducción offline y listas de reproducción."
             icon="link"
           />
           <CommunityCard
-            href="https://podcasts.apple.com/es/podcast/vis-ludica/id395259239"
-            label="Apple Podcasts"
+            href={listenLink('Apple Podcasts').href}
+            label={listenLink('Apple Podcasts').label}
             description="El podcast en Apple Podcasts. Si usas iPhone o Mac, aquí es donde suscribirte."
             icon="link"
           />
           <CommunityCard
-            href="https://www.ivoox.com/podcast-vis-ludica_sq_f1792_1.html"
-            label="iVoox"
+            href={listenLink('iVoox').href}
+            label={listenLink('iVoox').label}
             description="El podcast en iVoox, la plataforma de podcasts más usada en español."
             icon="link"
           />
           <CommunityCard
-            href="https://feeds.captivate.fm/visludica/"
-            label="Feed RSS"
+            href={listenLink('Feed RSS').href}
+            label={listenLink('Feed RSS').label}
             description="Suscríbete con tu aplicación de podcasts favorita usando el feed RSS directo."
-            icon="rss"
+            icon={listenLink('Feed RSS').icon}
           />
         </div>
       </div>
