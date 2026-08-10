@@ -2,12 +2,10 @@
 
 ## Power Ranking
 
-La edición mensual vive en `src/data/power-ranking/YYYY-MM/`:
+El runbook mensual completo, el esquema de los datos, los campos del editorial y
+los requisitos de los Excel están en **[docs/power-ranking.md](docs/power-ranking.md)**.
 
-- `data.json`: generado desde los Excel; no se edita a mano.
-- `editorial.ts`: crónica, notas de podio y citas seleccionadas.
-
-Para importar una nueva edición:
+Importar una edición nueva (primer paso de los cuatro):
 
 ```sh
 npm run ranking:import -- \
@@ -16,14 +14,6 @@ npm run ranking:import -- \
   --year 2026 \
   --month 7
 ```
-
-El importador usa Node.js y las dependencias ya incluidas en el proyecto. La
-clasificación POWER publicada se toma de su hoja final; el Palmarés se deriva de
-los valores normalizados del histórico. Los juegos repetidos por diferencias de
-mayúsculas o puntuación se agrupan para construir su evolución.
-
-Después de importar, añade la edición a `src/lib/power-ranking.ts`, crea su
-archivo editorial y ejecuta `npm run build`.
 
 ```sh
 npm create astro@latest -- --template minimal
