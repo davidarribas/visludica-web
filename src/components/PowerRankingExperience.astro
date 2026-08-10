@@ -596,7 +596,7 @@ function scoreLabel(view: RankingView) {
     background: var(--color-surface);
     overflow: hidden;
   }
-  .stat-card { padding: var(--space-5) var(--space-4); }
+  .stat-card { padding: var(--space-6); }
   .stat-card + .stat-card { border-left: 1px solid var(--color-border); }
   .stat-card strong { display: block; font-size: var(--text-2xl); line-height: 1.1; }
   .stat-card span { display: block; margin-top: var(--space-2); color: var(--color-text-tertiary); font-size: var(--text-xs); }
@@ -629,6 +629,7 @@ function scoreLabel(view: RankingView) {
   .voter-bars__label { color: var(--color-text-tertiary); font-size: var(--text-xs); }
 
   .story-lead { max-width: 920px; padding-top: var(--space-8); text-align: center; }
+  .story-lead .label { font-size: var(--text-sm); font-weight: var(--fw-bold); letter-spacing: 0.04em; }
   .story-lead h2 { margin-top: var(--space-2); font-size: clamp(2rem, 5vw, 3.5rem); }
   .story-lead p { max-width: 760px; margin: var(--space-4) auto 0; color: var(--color-text-secondary); font-size: var(--text-lg); }
 
@@ -880,7 +881,7 @@ function scoreLabel(view: RankingView) {
     .view-tabs__short { display: inline; }
     .edition-intro { padding-block: var(--space-12) var(--space-8); }
     .stat-grid { grid-template-columns: 1fr; }
-    .stat-card { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) var(--space-4); }
+    .stat-card { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); padding: var(--space-4); }
     .stat-card + .stat-card { border-left: 0; border-top: 1px solid var(--color-border); }
     .stat-card span { margin-top: 0; }
     .podium { grid-template-columns: 1fr; }
