@@ -25,6 +25,18 @@ const fullTitle = title === 'Vis Lúdica' ? title : `${title} | Vis Lúdica`;
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <script is:inline>
+    // Anti-FOUC: aplica el tema guardado antes de pintar, si el usuario forzó uno manualmente.
+    try {
+      const storedTheme = localStorage.getItem('theme');
+      if (storedTheme === 'dark' || storedTheme === 'light') {
+        document.documentElement.dataset.theme = storedTheme;
+      }
+    } catch {
+      // localStorage puede fallar (modo privado, cuotas, etc.)
+    }
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{fullTitle}</title>
@@ -46,7 +58,8 @@ const fullTitle = title === 'Vis Lúdica' ? title : `${title} | Vis Lúdica`;
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="alternate" type="application/rss+xml" title="Vis Lúdica" href={SITE.rss} />
-  <meta name="theme-color" content="#FAFAF8" />
+  <meta name="theme-color" content="#FAFAF8" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#141412" media="(prefers-color-scheme: dark)" />
 </head>
 <body>
   <Header />

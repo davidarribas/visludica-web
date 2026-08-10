@@ -75,9 +75,79 @@
   /* Transiciones */
   --transition: 150ms ease;
 
-  /*
-    Preparado para modo oscuro — cuando se implemente,
-    sobreescribir estas variables dentro de @media (prefers-color-scheme: dark)
-    o en [data-theme="dark"].
-  */
+  /* Colores de movimiento del ranking (Power Ranking) */
+  --movement-up-bg:      #eaf6ef;
+  --movement-up-text:    #177342;
+  --movement-down-bg:    #fff0ed;
+  --movement-down-text:  #b53b25;
+
+  /* Bloque destacado invertido ("Sigue la conversación") */
+  --callout-bg:   #0A0A0A;
+  --callout-text: #FAFAF8;
+}
+
+/* Modo oscuro — sigue la preferencia del sistema salvo que se fuerce con data-theme. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    /* mantener sincronizado con :root[data-theme="dark"] más abajo */
+    --color-accent:         #FF7A47;
+    --color-accent-hover:   #FF8F63;
+    --color-accent-warm:    #FFB347;
+    --color-accent-subtle:  #2E1E15;
+
+    --color-bg:             #141412;
+    --color-surface:        #1C1C1A;
+    --color-surface-raised: #242422;
+
+    --color-text:           #F4F4F1;
+    --color-text-secondary: #B0B4BC;
+    --color-text-tertiary:  #9BA0A8;
+
+    --color-border:         #2E2E2B;
+    --color-border-strong:  #3F3F3B;
+
+    --shadow-sm:  0 1px 3px rgba(0,0,0,.4), 0 1px 2px rgba(0,0,0,.3);
+    --shadow-md:  0 3px 10px rgba(0,0,0,.4), 0 1px 3px rgba(0,0,0,.3);
+    --shadow-lg:  0 8px 20px rgba(0,0,0,.5), 0 3px 6px rgba(0,0,0,.3);
+
+    --movement-up-bg:      #16301F;
+    --movement-up-text:    #7BD8A0;
+    --movement-down-bg:    #38201B;
+    --movement-down-text:  #F09380;
+
+    --callout-bg:   #242422;
+    --callout-text: #F4F4F1;
+  }
+}
+
+/* Modo oscuro forzado manualmente (toggle en el header). */
+:root[data-theme="dark"] {
+  /* mantener sincronizado con @media (prefers-color-scheme: dark) más arriba */
+  --color-accent:         #FF7A47;
+  --color-accent-hover:   #FF8F63;
+  --color-accent-warm:    #FFB347;
+  --color-accent-subtle:  #2E1E15;
+
+  --color-bg:             #141412;
+  --color-surface:        #1C1C1A;
+  --color-surface-raised: #242422;
+
+  --color-text:           #F4F4F1;
+  --color-text-secondary: #B0B4BC;
+  --color-text-tertiary:  #9BA0A8;
+
+  --color-border:         #2E2E2B;
+  --color-border-strong:  #3F3F3B;
+
+  --shadow-sm:  0 1px 3px rgba(0,0,0,.4), 0 1px 2px rgba(0,0,0,.3);
+  --shadow-md:  0 3px 10px rgba(0,0,0,.4), 0 1px 3px rgba(0,0,0,.3);
+  --shadow-lg:  0 8px 20px rgba(0,0,0,.5), 0 3px 6px rgba(0,0,0,.3);
+
+  --movement-up-bg:      #16301F;
+  --movement-up-text:    #7BD8A0;
+  --movement-down-bg:    #38201B;
+  --movement-down-text:  #F09380;
+
+  --callout-bg:   #242422;
+  --callout-text: #F4F4F1;
 }
