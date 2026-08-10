@@ -1,0 +1,715 @@
+---
+import {
+  editions,
+  formatIndex,
+  formatMovement,
+  gameTitle,
+  monthsForGame,
+  type ProjectId,
+  type RankingView,
+} from '../lib/power-ranking';
+
+interface Props {
+  edition: any;
+}
+
+const { edition } = Astro.props;
+const projectIds: ProjectId[] = ['vis-ludica', 'vis-belica'];
+const views: Array<{ id: RankingView; label: string; short: string }> = [
+  { id: 'power', label: 'Power Ranking', short: 'Power' },
+  { id: 'monthly', label: 'Ranking mensual', short: 'Este mes' },
+  { id: 'annual', label: `Palmarés ${edition.year}`, short: 'Palmarés' },
+];
+
+function scoreForRow(view: RankingView, row: any) {
+  return view === 'monthly' ? String(row.points) : formatIndex(row.score);
+}
+
+function scoreLabel(view: RankingView) {
+  return view === 'monthly' ? 'Puntos' : 'Índice';
+}
+---
+
+<div class="ranking-app" data-ranking-app data-project="vis-ludica" data-view="power">
+  <section class="ranking-hero">
+    <div class="container ranking-hero__inner">
+      <div class="ranking-hero__copy">
+        <span class="label">Clasificación de la comunidad</span>
+        <h1>Power Ranking</h1>
+        <p>Los juegos que están de verdad sobre la mesa. Resultados, contexto y memoria mensual de Vis Lúdica.</p>
+      </div>
+
+      <div class="edition-picker">
+        <label for="ranking-edition">Edición</label>
+        <select id="ranking-edition" data-edition-select>
+          {editions.map((candidate) => (
+            <option
+              value={`/power-ranking/${candidate.year}/${String(candidate.month).padStart(2, '0')}`}
+              selected={candidate.id === edition.id}
+            >
+              {candidate.monthName} {candidate.year}
+            </option>
+          ))}
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <div class="ranking-toolbar-wrap">
+    <div class="container ranking-toolbar">
+      <div class="project-switch" aria-label="Proyecto">
+        <button type="button" data-project-button="vis-ludica" aria-pressed="true">Vis Lúdica</button>
+        <button type="button" data-project-button="vis-belica" aria-pressed="false">Vis Bélica</button>
+      </div>
+
+      <div class="view-tabs" role="tablist" aria-label="Tipo de clasificación">
+        {views.map((view) => (
+          <button
+            type="button"
+            role="tab"
+            aria-selected={view.id === 'power' ? 'true' : 'false'}
+            data-view-button={view.id}
+          >
+            <span class="view-tabs__full">{view.label}</span>
+            <span class="view-tabs__short">{view.short}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {projectIds.map((projectId) => {
+    const project = edition.projects[projectId];
+    const copy = edition.editorial[projectId];
+    const latestVoters = project.voterHistory.at(-1)?.value ?? project.stats.voters;
+    const maxVoters = Math.max(...project.voterHistory.map((item: any) => item.value));
+    return (
+      <section class="project-view" data-project-panel={projectId} hidden={projectId !== 'vis-ludica'}>
+        <div class="container edition-intro">
+          <div>
+            <span class="label">{copy.eyebrow}</span>
+            <h2>{copy.name} · {edition.monthName} {edition.year}</h2>
+            <p>{copy.intro}</p>
+          </div>
+
+          <div class="stat-grid" aria-label="Resumen de la edición">
+            <div class="stat-card">
+              <strong>{project.stats.voters}</strong>
+              <span>{projectId === 'vis-belica' ? 'votantes de guerra' : 'votantes'}</span>
+            </div>
+            <div class="stat-card">
+              <strong>{project.stats.distinctGames}</strong>
+              <span>juegos distintos</span>
+            </div>
+            <div class="stat-card">
+              <strong>{project.stats.totalPoints.toLocaleString('es-ES')}</strong>
+              <span>puntos repartidos</span>
+            </div>
+          </div>
+        </div>
+
+        {projectId === 'vis-belica' && (
+          <div class="container voter-growth">
+            <div class="voter-growth__heading">
+              <div>
+                <span class="label">{copy.voterGrowth?.label ?? 'Evolución de la comunidad'}</span>
+                <h3>{copy.voterGrowth?.headline ?? `De 15 a ${latestVoters} votantes`}</h3>
+              </div>
+              <p>{copy.voterGrowth?.deck ?? 'La muestra sigue construyendo su histórico mes a mes.'}</p>
+            </div>
+            <ol class="voter-bars" aria-label="Evolución de votantes de guerra">
+              {project.voterHistory.map((item: any) => (
+                <li>
+                  <span class="voter-bars__value">{item.value}</span>
+                  <span class="voter-bars__track" aria-hidden="true">
+                    <span style={`--bar-size: ${(item.value / maxVoters) * 100}%`}></span>
+                  </span>
+                  <span class="voter-bars__label">{item.label}</span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        )}
+
+        {views.map((view) => {
+          const rows = project.rankings[view.id];
+          const podium = rows.slice(0, 3);
+          const viewCopy = copy[view.id];
+          return (
+            <div class="ranking-view" data-view-panel={view.id} hidden={view.id !== 'power'}>
+              <section class="container story-lead">
+                <span class="label">{view.label}</span>
+                <h2>{viewCopy.headline}</h2>
+                <p>{viewCopy.deck}</p>
+              </section>
+
+              <section class="container podium" aria-label={`Podio de ${view.label}`}>
+                {podium.map((row: any, index: number) => {
+                  const title = row.title ?? gameTitle(project, row.id);
+                  const note = viewCopy.notes?.[row.id];
+                  const history = project.games[row.id]?.history ?? [];
+                  return (
+                    <article class:list={['podium-card', `podium-card--${index + 1}`]}>
+                      <div class="podium-card__top">
+                        <span class="podium-position">{index + 1}</span>
+                        <span class="podium-score">
+                          <strong>{scoreForRow(view.id, row)}</strong>
+                          <small>{scoreLabel(view.id)}</small>
+                        </span>
+                      </div>
+                      <h3>{title}</h3>
+                      {view.id === 'monthly' && (
+                        <p class="vote-breakdown">
+                          {row.firstVotes}–{row.secondVotes}–{row.thirdVotes} · {row.votes} votantes
+                        </p>
+                      )}
+                      {view.id !== 'monthly' && (
+                        <ul class="month-strip" aria-label="Últimos cuatro meses">
+                          {monthsForGame(history, edition.month).map((month) => (
+                            <li class:list={{ 'month-strip--empty': month.value === null }}>
+                              <span>{month.label}</span>
+                              <strong>{month.value === null ? '—' : formatIndex(month.value)}</strong>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      {note && <p class="podium-card__note">{note}</p>}
+                    </article>
+                  );
+                })}
+              </section>
+
+              {'afterword' in viewCopy && viewCopy.afterword && (
+                <aside class="container field-note">
+                  <span>Zona noble</span>
+                  <p>{viewCopy.afterword}</p>
+                </aside>
+              )}
+
+              <section class="container ranking-table-section">
+                <div class="ranking-table-heading">
+                  <div>
+                    <span class="label">Clasificación completa</span>
+                    <h2>{view.label}</h2>
+                  </div>
+                  <label class="ranking-search">
+                    <span class="sr-only">Buscar juego</span>
+                    <input type="search" placeholder="Buscar un juego…" data-ranking-search />
+                  </label>
+                </div>
+
+                <div class="ranking-table-shell" data-table-shell data-page-size="25">
+                  <div class="ranking-table-scroll">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th scope="col" class="col-rank">Pos.</th>
+                          <th scope="col">Juego</th>
+                          <th scope="col" class="col-score">{scoreLabel(view.id)}</th>
+                          {view.id === 'monthly' && <th scope="col" class="col-detail">1º–2º–3º</th>}
+                          {view.id === 'monthly' && <th scope="col" class="col-detail">Votos</th>}
+                          {view.id === 'annual' && <th scope="col" class="col-detail">Meses</th>}
+                          <th scope="col" class="col-movement">Mov.</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {rows.map((row: any, index: number) => {
+                          const title = row.title ?? gameTitle(project, row.id);
+                          const movement = formatMovement(row.movement);
+                          const history = project.games[row.id]?.history ?? [];
+                          return (
+                            <tr
+                              data-ranking-row
+                              data-search-value={title.toLocaleLowerCase('es')}
+                              data-row-index={index}
+                              hidden={index >= 25}
+                            >
+                              <td class="col-rank"><span>{row.rank}</span></td>
+                              <th scope="row">
+                                <strong>{title}</strong>
+                                {view.id !== 'monthly' && index < 10 && (
+                                  <span class="table-history">
+                                    {monthsForGame(history, edition.month)
+                                      .map((month) => `${month.label} ${month.value === null ? '—' : formatIndex(month.value)}`)
+                                      .join(' · ')}
+                                  </span>
+                                )}
+                              </th>
+                              <td class="col-score"><strong>{scoreForRow(view.id, row)}</strong></td>
+                              {view.id === 'monthly' && (
+                                <td class="col-detail">{row.firstVotes}–{row.secondVotes}–{row.thirdVotes}</td>
+                              )}
+                              {view.id === 'monthly' && <td class="col-detail">{row.votes}</td>}
+                              {view.id === 'annual' && <td class="col-detail">{row.months}</td>}
+                              <td class="col-movement">
+                                <span class:list={['movement', `movement--${movement.tone}`]}>{movement.label}</span>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="table-footer">
+                    <span data-result-count>{Math.min(25, rows.length)} de {rows.length} juegos</span>
+                    {rows.length > 25 && <button type="button" data-show-more>Mostrar 25 más</button>}
+                  </div>
+                </div>
+              </section>
+
+              {view.id === 'monthly' && copy.quotes.length > 0 && (
+                <section class="community-voices">
+                  <div class="container">
+                    <div class="voices-heading">
+                      <span class="label">La grada</span>
+                      <h2>Lo mejor de las papeletas</h2>
+                      <p>Comentarios, confesiones y pequeñas historias que explican mejor el mes que cualquier decimal.</p>
+                    </div>
+                    <div class="quotes-grid">
+                      {copy.quotes.map((quote: any) => (
+                        <blockquote>
+                          <span>{quote.label}</span>
+                          <p>“{quote.text}”</p>
+                          {quote.attribution && <cite>{quote.attribution}</cite>}
+                        </blockquote>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+              )}
+            </div>
+          );
+        })}
+
+        <section class="container methodology">
+          <details>
+            <summary>Cómo se calcula</summary>
+            <div>
+              <p>{copy.methodology}</p>
+              <p><strong>POWER</strong> = 0,7 × mes actual + 0,3 × (0,5 × mes anterior + 0,3 × hace dos meses + 0,2 × hace tres meses).</p>
+              <p><strong>Palmarés</strong> = suma de los valores normalizados de todos los meses del año, sin decaimiento.</p>
+            </div>
+          </details>
+        </section>
+      </section>
+    );
+  })}
+</div>
+
+<script>
+  const apps = document.querySelectorAll<HTMLElement>('[data-ranking-app]');
+
+  apps.forEach((app) => {
+    const projectButtons = app.querySelectorAll<HTMLButtonElement>('[data-project-button]');
+    const viewButtons = app.querySelectorAll<HTMLButtonElement>('[data-view-button]');
+    const projectPanels = app.querySelectorAll<HTMLElement>('[data-project-panel]');
+    const editionSelect = app.querySelector<HTMLSelectElement>('[data-edition-select]');
+    const params = new URLSearchParams(window.location.search);
+    let activeProject = params.get('proyecto') === 'vis-belica' ? 'vis-belica' : 'vis-ludica';
+    const requestedView = params.get('vista');
+    let activeView = ['power', 'monthly', 'annual'].includes(requestedView ?? '') ? requestedView! : 'power';
+
+    function updateUrl() {
+      const next = new URL(window.location.href);
+      if (activeProject === 'vis-ludica') next.searchParams.delete('proyecto');
+      else next.searchParams.set('proyecto', activeProject);
+      if (activeView === 'power') next.searchParams.delete('vista');
+      else next.searchParams.set('vista', activeView);
+      history.replaceState({}, '', next);
+    }
+
+    function renderState() {
+      app.dataset.project = activeProject;
+      app.dataset.view = activeView;
+      projectButtons.forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.projectButton === activeProject));
+      });
+      viewButtons.forEach((button) => {
+        button.setAttribute('aria-selected', String(button.dataset.viewButton === activeView));
+      });
+      projectPanels.forEach((panel) => {
+        const isProject = panel.dataset.projectPanel === activeProject;
+        panel.hidden = !isProject;
+        panel.querySelectorAll<HTMLElement>('[data-view-panel]').forEach((view) => {
+          view.hidden = !isProject || view.dataset.viewPanel !== activeView;
+        });
+      });
+      updateUrl();
+    }
+
+    projectButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeProject = button.dataset.projectButton!;
+        renderState();
+      });
+    });
+
+    viewButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        activeView = button.dataset.viewButton!;
+        renderState();
+      });
+    });
+
+    editionSelect?.addEventListener('change', () => {
+      window.location.href = editionSelect.value;
+    });
+
+    app.querySelectorAll<HTMLElement>('[data-table-shell]').forEach((shell) => {
+      const rows = Array.from(shell.querySelectorAll<HTMLTableRowElement>('[data-ranking-row]'));
+      const search = shell.closest('.ranking-table-section')?.querySelector<HTMLInputElement>('[data-ranking-search]');
+      const showMore = shell.querySelector<HTMLButtonElement>('[data-show-more]');
+      const resultCount = shell.querySelector<HTMLElement>('[data-result-count]');
+      const pageSize = Number(shell.dataset.pageSize ?? 25);
+      let visibleLimit = pageSize;
+
+      function filterRows() {
+        const query = search?.value.trim().toLocaleLowerCase('es') ?? '';
+        const matches = rows.filter((row) => row.dataset.searchValue?.includes(query));
+        rows.forEach((row) => {
+          const matchIndex = matches.indexOf(row);
+          row.hidden = matchIndex === -1 || matchIndex >= visibleLimit;
+        });
+        if (resultCount) resultCount.textContent = `${Math.min(visibleLimit, matches.length)} de ${matches.length} juegos`;
+        if (showMore) {
+          showMore.hidden = visibleLimit >= matches.length;
+          showMore.textContent = `Mostrar ${Math.min(pageSize, Math.max(0, matches.length - visibleLimit))} más`;
+        }
+      }
+
+      search?.addEventListener('input', () => {
+        visibleLimit = pageSize;
+        filterRows();
+      });
+      showMore?.addEventListener('click', () => {
+        visibleLimit += pageSize;
+        filterRows();
+      });
+      filterRows();
+    });
+
+    renderState();
+  });
+</script>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .ranking-app {
+    --ranking-accent: var(--color-accent);
+    --ranking-accent-hover: var(--color-accent-hover);
+    --ranking-subtle: var(--color-accent-subtle);
+  }
+  .ranking-app[data-project='vis-belica'] {
+    --ranking-accent: #59653d;
+    --ranking-accent-hover: #424d2c;
+    --ranking-subtle: #f0f2e9;
+  }
+
+  .ranking-hero {
+    padding-block: var(--space-16);
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .ranking-hero__inner {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-8);
+  }
+  .ranking-hero__copy { max-width: 680px; }
+  .ranking-hero h1 { margin-top: var(--space-2); font-size: clamp(2.6rem, 6vw, 4.5rem); }
+  .ranking-hero p {
+    max-width: 640px;
+    margin-top: var(--space-4);
+    color: var(--color-text-secondary);
+    font-size: var(--text-lg);
+  }
+  .edition-picker { min-width: 190px; }
+  .edition-picker label {
+    display: block;
+    margin-bottom: var(--space-2);
+    color: var(--color-text-tertiary);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-medium);
+    text-transform: uppercase;
+  }
+  .edition-picker select,
+  .ranking-search input {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+  }
+
+  .ranking-toolbar-wrap {
+    position: sticky;
+    top: 64px;
+    z-index: 50;
+    background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+    border-bottom: 1px solid var(--color-border);
+    backdrop-filter: blur(12px);
+  }
+  .ranking-toolbar {
+    min-height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+  .project-switch,
+  .view-tabs {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+  }
+  .project-switch {
+    padding: 4px;
+    background: var(--color-surface-raised);
+    border-radius: var(--radius-md);
+  }
+  .project-switch button,
+  .view-tabs button {
+    min-height: 40px;
+    padding: var(--space-2) var(--space-4);
+    border: 0;
+    border-radius: calc(var(--radius-md) - 2px);
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-weight: var(--fw-medium);
+    cursor: pointer;
+  }
+  .project-switch button[aria-pressed='true'] {
+    background: var(--ranking-accent);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+  .view-tabs button[aria-selected='true'] { color: var(--ranking-accent); background: var(--ranking-subtle); }
+  .view-tabs__short { display: none; }
+
+  .edition-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(360px, 0.75fr);
+    gap: var(--space-12);
+    align-items: end;
+    padding-block: var(--space-16) var(--space-12);
+  }
+  .edition-intro h2 { margin-top: var(--space-2); }
+  .edition-intro > div:first-child > p {
+    max-width: 700px;
+    margin-top: var(--space-4);
+    color: var(--color-text-secondary);
+    font-size: var(--text-lg);
+  }
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    overflow: hidden;
+  }
+  .stat-card { padding: var(--space-5) var(--space-4); }
+  .stat-card + .stat-card { border-left: 1px solid var(--color-border); }
+  .stat-card strong { display: block; font-size: var(--text-2xl); line-height: 1.1; }
+  .stat-card span { display: block; margin-top: var(--space-2); color: var(--color-text-tertiary); font-size: var(--text-xs); }
+
+  .voter-growth {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: var(--space-12);
+    padding: var(--space-8);
+    margin-bottom: var(--space-12);
+    background: var(--ranking-subtle);
+    border: 1px solid color-mix(in srgb, var(--ranking-accent) 25%, var(--color-border));
+    border-radius: var(--radius-xl);
+  }
+  .voter-growth__heading h3 { margin-top: var(--space-2); }
+  .voter-growth__heading p { margin-top: var(--space-3); color: var(--color-text-secondary); }
+  .voter-bars {
+    min-height: 126px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    gap: var(--space-3);
+    list-style: none;
+    padding: 0;
+  }
+  .voter-bars li { flex: 1; display: grid; grid-template-rows: auto 80px auto; gap: 6px; text-align: center; }
+  .voter-bars__value { font-weight: var(--fw-bold); }
+  .voter-bars__track { display: flex; align-items: flex-end; justify-content: center; }
+  .voter-bars__track span { width: min(42px, 80%); height: var(--bar-size); min-height: 4px; background: var(--ranking-accent); border-radius: 4px 4px 0 0; }
+  .voter-bars__label { color: var(--color-text-tertiary); font-size: var(--text-xs); }
+
+  .story-lead { max-width: 920px; padding-top: var(--space-8); text-align: center; }
+  .story-lead h2 { margin-top: var(--space-2); font-size: clamp(2rem, 5vw, 3.5rem); }
+  .story-lead p { max-width: 760px; margin: var(--space-4) auto 0; color: var(--color-text-secondary); font-size: var(--text-lg); }
+
+  .podium {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr 1fr;
+    gap: var(--space-4);
+    padding-block: var(--space-10) var(--space-8);
+  }
+  .podium-card {
+    min-width: 0;
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+  }
+  .podium-card--1 {
+    background: var(--ranking-subtle);
+    border-color: color-mix(in srgb, var(--ranking-accent) 35%, var(--color-border));
+  }
+  .podium-card__top { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--space-4); }
+  .podium-position {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--ranking-accent);
+    color: #fff;
+    font-size: var(--text-xl);
+    font-weight: var(--fw-bold);
+  }
+  .podium-card--2 .podium-position,
+  .podium-card--3 .podium-position { background: var(--color-text); }
+  .podium-score { text-align: right; }
+  .podium-score strong { display: block; font-size: var(--text-2xl); line-height: 1; }
+  .podium-score small { color: var(--color-text-tertiary); font-size: var(--text-xs); text-transform: uppercase; }
+  .podium-card h3 { min-height: 3.2em; margin-top: var(--space-6); font-size: clamp(1.15rem, 2vw, 1.55rem); }
+  .podium-card__note { margin-top: var(--space-5); color: var(--color-text-secondary); font-size: var(--text-sm); line-height: 1.65; }
+  .vote-breakdown { margin-top: var(--space-3); color: var(--ranking-accent); font-size: var(--text-sm); font-weight: var(--fw-medium); }
+  .month-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    list-style: none;
+    padding: 0;
+    margin-top: var(--space-4);
+  }
+  .month-strip li { padding: 7px 4px; background: color-mix(in srgb, var(--color-bg) 75%, transparent); border-radius: var(--radius-sm); text-align: center; }
+  .month-strip span,
+  .month-strip strong { display: block; }
+  .month-strip span { color: var(--color-text-tertiary); font-size: 0.65rem; text-transform: uppercase; }
+  .month-strip strong { margin-top: 2px; font-size: var(--text-xs); }
+  .month-strip--empty { opacity: 0.5; }
+
+  .field-note {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: var(--space-5);
+    padding-block: var(--space-6);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .field-note span { color: var(--ranking-accent); font-size: var(--text-sm); font-weight: var(--fw-bold); text-transform: uppercase; }
+  .field-note p { color: var(--color-text-secondary); }
+
+  .ranking-table-section { padding-block: var(--space-16); }
+  .ranking-table-heading { display: flex; align-items: end; justify-content: space-between; gap: var(--space-6); margin-bottom: var(--space-6); }
+  .ranking-table-heading h2 { margin-top: var(--space-1); }
+  .ranking-search { width: min(320px, 100%); }
+  .ranking-search input:focus { border-color: var(--ranking-accent); outline: 2px solid color-mix(in srgb, var(--ranking-accent) 20%, transparent); }
+  .ranking-table-shell { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow: hidden; }
+  .ranking-table-scroll { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { padding: var(--space-4); border-bottom: 1px solid var(--color-border); text-align: left; vertical-align: middle; }
+  thead th { background: var(--color-surface-raised); color: var(--color-text-tertiary); font-size: var(--text-xs); font-weight: var(--fw-medium); text-transform: uppercase; }
+  tbody th { font-size: var(--text-sm); font-weight: var(--fw-medium); }
+  tbody tr:hover { background: color-mix(in srgb, var(--ranking-subtle) 55%, transparent); }
+  .col-rank { width: 72px; text-align: center; }
+  tbody .col-rank span { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--color-surface-raised); font-weight: var(--fw-bold); }
+  tbody tr:nth-child(-n+3) .col-rank span { background: var(--ranking-accent); color: #fff; }
+  .col-score, .col-detail, .col-movement { width: 110px; text-align: right; white-space: nowrap; }
+  .table-history { display: block; margin-top: 3px; color: var(--color-text-tertiary); font-size: 0.72rem; font-weight: var(--fw-regular); }
+  .movement { display: inline-flex; min-width: 42px; justify-content: center; padding: 4px 8px; border-radius: 999px; font-size: var(--text-xs); font-weight: var(--fw-bold); }
+  .movement--up { background: #eaf6ef; color: #177342; }
+  .movement--down { background: #fff0ed; color: #b53b25; }
+  .movement--new { background: var(--ranking-subtle); color: var(--ranking-accent); }
+  .movement--same { background: var(--color-surface-raised); color: var(--color-text-tertiary); }
+  .table-footer { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) var(--space-4); color: var(--color-text-tertiary); font-size: var(--text-sm); }
+  .table-footer button { padding: var(--space-2) var(--space-4); border: 1px solid var(--color-border-strong); border-radius: var(--radius-md); background: var(--color-surface); color: var(--ranking-accent); font-weight: var(--fw-medium); cursor: pointer; }
+
+  .community-voices { padding-block: var(--space-16); background: var(--color-surface-raised); border-block: 1px solid var(--color-border); }
+  .voices-heading { max-width: 680px; }
+  .voices-heading h2 { margin-top: var(--space-2); }
+  .voices-heading p { margin-top: var(--space-3); color: var(--color-text-secondary); }
+  .quotes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); margin-top: var(--space-8); }
+  .quotes-grid blockquote { padding: var(--space-6); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+  .quotes-grid blockquote:first-child { grid-column: 1 / -1; padding: var(--space-8); background: var(--ranking-subtle); border-color: color-mix(in srgb, var(--ranking-accent) 30%, var(--color-border)); }
+  .quotes-grid span { color: var(--ranking-accent); font-size: var(--text-xs); font-weight: var(--fw-bold); text-transform: uppercase; }
+  .quotes-grid p { margin-top: var(--space-3); font-size: var(--text-lg); line-height: 1.55; }
+  .quotes-grid cite { display: block; margin-top: var(--space-4); color: var(--color-text-tertiary); font-size: var(--text-sm); font-style: normal; }
+
+  .methodology { padding-block: var(--space-12) var(--space-16); }
+  .methodology details { border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); }
+  .methodology summary { padding: var(--space-5) var(--space-6); font-weight: var(--fw-bold); cursor: pointer; }
+  .methodology details > div { padding: 0 var(--space-6) var(--space-6); color: var(--color-text-secondary); }
+  .methodology details > div p + p { margin-top: var(--space-3); }
+
+  [hidden] { display: none !important; }
+
+  @media (max-width: 900px) {
+    .edition-intro { grid-template-columns: 1fr; gap: var(--space-8); }
+    .podium { grid-template-columns: 1fr 1fr; }
+    .podium-card--1 { grid-column: 1 / -1; }
+    .voter-growth { grid-template-columns: 1fr; gap: var(--space-8); }
+  }
+
+  @media (max-width: 720px) {
+    .ranking-hero { padding-block: var(--space-12); }
+    .ranking-hero__inner { align-items: stretch; flex-direction: column; }
+    .edition-picker { min-width: 0; }
+    .ranking-toolbar { min-height: 112px; align-items: stretch; flex-direction: column; justify-content: center; gap: var(--space-2); padding-block: var(--space-2); }
+    .project-switch, .view-tabs { width: 100%; }
+    .project-switch button, .view-tabs button { flex: 1; padding-inline: var(--space-2); }
+    .view-tabs__full { display: none; }
+    .view-tabs__short { display: inline; }
+    .edition-intro { padding-block: var(--space-12) var(--space-8); }
+    .stat-grid { grid-template-columns: 1fr; }
+    .stat-card { display: flex; align-items: baseline; justify-content: space-between; gap: var(--space-4); padding: var(--space-3) var(--space-4); }
+    .stat-card + .stat-card { border-left: 0; border-top: 1px solid var(--color-border); }
+    .stat-card span { margin-top: 0; }
+    .podium { grid-template-columns: 1fr; }
+    .podium-card--1 { grid-column: auto; }
+    .podium-card h3 { min-height: 0; }
+    .field-note { grid-template-columns: 1fr; gap: var(--space-2); }
+    .ranking-table-heading { align-items: stretch; flex-direction: column; }
+    .ranking-search { width: 100%; }
+    th, td { padding: var(--space-3); }
+    .col-detail { display: none; }
+    .col-rank { width: 52px; }
+    .col-score, .col-movement { width: 76px; }
+    .table-history { display: none; }
+    .quotes-grid { grid-template-columns: 1fr; }
+    .quotes-grid blockquote:first-child { grid-column: auto; padding: var(--space-6); }
+  }
+
+  @media (max-width: 430px) {
+    .ranking-toolbar-wrap { top: 64px; }
+    .ranking-hero p, .edition-intro > div:first-child > p, .story-lead p { font-size: var(--text-base); }
+    .voter-growth { padding: var(--space-5); }
+    .voter-bars { gap: var(--space-2); }
+    .podium-card { padding: var(--space-5); }
+    .col-movement { display: none; }
+    .table-footer { align-items: stretch; flex-direction: column; }
+    .table-footer button { width: 100%; }
+  }
+</style>

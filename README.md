@@ -1,5 +1,30 @@
 # Astro Starter Kit: Minimal
 
+## Power Ranking
+
+La edición mensual vive en `src/data/power-ranking/YYYY-MM/`:
+
+- `data.json`: generado desde los Excel; no se edita a mano.
+- `editorial.ts`: crónica, notas de podio y citas seleccionadas.
+
+Para importar una nueva edición:
+
+```sh
+npm run ranking:import -- \
+  --main /ruta/power_ranking_mes.xlsx \
+  --belica /ruta/power_ranking_vis_belica_mes.xlsx \
+  --year 2026 \
+  --month 7
+```
+
+El importador usa Node.js y las dependencias ya incluidas en el proyecto. La
+clasificación POWER publicada se toma de su hoja final; el Palmarés se deriva de
+los valores normalizados del histórico. Los juegos repetidos por diferencias de
+mayúsculas o puntuación se agrupan para construir su evolución.
+
+Después de importar, añade la edición a `src/lib/power-ranking.ts`, crea su
+archivo editorial y ejecuta `npm run build`.
+
 ```sh
 npm create astro@latest -- --template minimal
 ```

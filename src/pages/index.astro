@@ -4,10 +4,13 @@ import EpisodeCard from '../components/EpisodeCard.astro';
 import CommunityCard from '../components/CommunityCard.astro';
 import { getEpisodes, getFeedMeta } from '../lib/rss';
 import { SITE } from '../config';
+import { latestEdition, formatIndex, gameTitle } from '../lib/power-ranking';
 
 const [episodes, meta] = await Promise.all([getEpisodes(), getFeedMeta()]);
 const latestEpisode = episodes[0];
 const recentEpisodes = episodes.slice(1, 4);
+const rankingProject = latestEdition.projects['vis-ludica'];
+const rankingTop = rankingProject.rankings.power.slice(0, 3);
 ---
 
 <BaseLayout
@@ -64,6 +67,31 @@ const recentEpisodes = episodes.slice(1, 4);
       </div>
     </section>
   )}
+
+  <!-- Power Ranking -->
+  <section class="section ranking-feature-section">
+    <div class="container">
+      <a href="/power-ranking" class="ranking-feature">
+        <div class="ranking-feature__copy">
+          <span class="label">Power Ranking · {latestEdition.monthName} {latestEdition.year}</span>
+          <h2>Los juegos que están sobre la mesa</h2>
+          <p>{rankingProject.stats.voters} votantes deciden la clasificación viva de la comunidad. Consulta el Power, el ranking del mes y la carrera anual.</p>
+          <span class="ranking-feature__link">Ver la clasificación completa →</span>
+        </div>
+        <ol class="ranking-feature__podium">
+          {rankingTop.map((row, index) => (
+            <li>
+              <span>{index + 1}</span>
+              <div>
+                <strong>{gameTitle(rankingProject, row.id)}</strong>
+                <small>Índice {formatIndex(row.score)}</small>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </a>
+    </div>
+  </section>
 
   <!-- Comunidad -->
   <section class="section community-section" id="comunidad">
@@ -231,6 +259,39 @@ const recentEpisodes = episodes.slice(1, 4);
 .community-more {
   margin-top: var(--space-6);
   text-align: right;
+}
+
+/* Power Ranking */
+.ranking-feature-section { background: var(--color-surface); }
+.ranking-feature {
+  display: grid;
+  grid-template-columns: 1fr minmax(360px, .8fr);
+  gap: var(--space-12);
+  align-items: center;
+  padding: var(--space-10);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  background: var(--color-accent-subtle);
+  transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.ranking-feature:hover {
+  color: inherit;
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.ranking-feature__copy h2 { margin-top: var(--space-2); }
+.ranking-feature__copy p { max-width: 600px; margin-top: var(--space-4); color: var(--color-text-secondary); }
+.ranking-feature__link { display: inline-block; margin-top: var(--space-6); color: var(--color-accent); font-size: var(--text-sm); font-weight: var(--fw-medium); }
+.ranking-feature__podium { display: flex; flex-direction: column; gap: var(--space-2); list-style: none; padding: 0; }
+.ranking-feature__podium li { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4); border: 1px solid color-mix(in srgb, var(--color-accent) 20%, var(--color-border)); border-radius: var(--radius-lg); background: var(--color-surface); }
+.ranking-feature__podium li > span { display: grid; place-items: center; width: 34px; height: 34px; flex: 0 0 auto; border-radius: 50%; background: var(--color-text); color: #fff; font-weight: var(--fw-bold); }
+.ranking-feature__podium li:first-child > span { background: var(--color-accent); }
+.ranking-feature__podium strong, .ranking-feature__podium small { display: block; }
+.ranking-feature__podium strong { line-height: 1.35; }
+.ranking-feature__podium small { margin-top: 2px; color: var(--color-text-tertiary); }
+@media (max-width: 800px) {
+  .ranking-feature { grid-template-columns: 1fr; gap: var(--space-8); padding: var(--space-6); }
 }
 
 /* Barton */

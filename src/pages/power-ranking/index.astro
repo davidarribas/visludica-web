@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PowerRankingExperience from '../../components/PowerRankingExperience.astro';
+import { latestEdition } from '../../lib/power-ranking';
+---
+
+<BaseLayout
+  title={`Power Ranking — ${latestEdition.monthName} ${latestEdition.year}`}
+  description="El Power Ranking mensual de la comunidad de Vis Lúdica: clasificación, histórico, palmarés y crónica de los juegos que llegan a mesa."
+>
+  <PowerRankingExperience edition={latestEdition} />
+</BaseLayout>

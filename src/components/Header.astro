@@ -2,6 +2,7 @@
 const navLinks = [
   { href: '/',          label: 'Inicio' },
   { href: '/podcast',   label: 'Podcast' },
+  { href: '/power-ranking', label: 'Power Ranking' },
   { href: '/comunidad', label: 'Comunidad' },
   { href: '/sobre',     label: 'Sobre' },
 ];
@@ -207,7 +208,7 @@ function isActive(href: string) {
   transform: translateY(-7px) rotate(-45deg);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .menu-toggle { display: flex; }
 
   .main-nav {
