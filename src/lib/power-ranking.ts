@@ -4,7 +4,7 @@ import june2026 from '../data/power-ranking/2026-06/data.json';
 import { editorial as juneEditorial } from '../data/power-ranking/2026-06/editorial';
 
 export type ProjectId = 'vis-ludica' | 'vis-belica';
-export type RankingView = 'power' | 'monthly' | 'annual';
+export type RankingView = 'power' | 'monthly' | 'analysis' | 'annual';
 
 export const editions = [
   {

@@ -18,8 +18,10 @@ const projectIds: ProjectId[] = ['vis-ludica', 'vis-belica'];
 const views: Array<{ id: RankingView; label: string; short: string }> = [
   { id: 'power', label: 'Power Ranking', short: 'Power' },
   { id: 'monthly', label: 'Ranking mensual', short: 'Este mes' },
+  { id: 'analysis', label: 'Análisis', short: 'Análisis' },
   { id: 'annual', label: `Palmarés ${edition.year}`, short: 'Palmarés' },
 ];
+const rankingViews = views.filter((view) => view.id !== 'analysis');
 
 function scoreForRow(view: RankingView, row: any) {
   return view === 'monthly' ? String(row.points) : formatIndex(row.score);
@@ -131,7 +133,7 @@ function scoreLabel(view: RankingView) {
           </div>
         )}
 
-        {views.map((view) => {
+        {rankingViews.map((view) => {
           const rows = project.rankings[view.id];
           const podium = rows.slice(0, 3);
           const viewCopy = copy[view.id];
@@ -281,6 +283,78 @@ function scoreLabel(view: RankingView) {
           );
         })}
 
+        <div class="ranking-view analysis-view" data-view-panel="analysis" hidden>
+          {copy.chronicle ? (
+            <section class="monthly-chronicle" aria-labelledby={`chronicle-${projectId}-${edition.id}`}>
+              <div class="container chronicle-layout">
+                <article class="chronicle-article">
+                  <header class="chronicle-header">
+                    <span class="label">{copy.chronicle.eyebrow}</span>
+                    <h2 id={`chronicle-${projectId}-${edition.id}`}>{copy.chronicle.headline}</h2>
+                    <p class="chronicle-deck">{copy.chronicle.deck}</p>
+                    <div class="chronicle-intro">
+                      {copy.chronicle.intro.map((paragraph: string) => <p>{paragraph}</p>)}
+                    </div>
+                  </header>
+
+                  <div class="chronicle-body">
+                    {copy.chronicle.sections.map((section: any) => (
+                      <section>
+                        <h3>{section.title}</h3>
+                        {section.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}
+                      </section>
+                    ))}
+                  </div>
+                </article>
+
+                <aside class="chronicle-aside" aria-label="Datos y voces del mes">
+                  {copy.chronicle.sidebar.map((item: any) => (
+                    <div class="chronicle-note">
+                      <span>{item.title}</span>
+                      <p>{item.text}</p>
+                    </div>
+                  ))}
+
+                  <div class="chronicle-voices">
+                    <span class="label">La grada</span>
+                    <h3>Las frases de julio</h3>
+                    {copy.chronicle.voices.map((voice: any) => (
+                      <blockquote>
+                        <p>“{voice.text}”</p>
+                        <cite>{voice.attribution}</cite>
+                      </blockquote>
+                    ))}
+                  </div>
+                </aside>
+              </div>
+
+              <div class="container">
+                <aside class="chronicle-discussion">
+                  <div>
+                    <span class="label">Sigue la conversación</span>
+                    <h3>{copy.chronicle.discussion.headline}</h3>
+                    <p>{copy.chronicle.discussion.text}</p>
+                  </div>
+                  <a
+                    href={copy.chronicle.discussion.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {copy.chronicle.discussion.label}
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </aside>
+              </div>
+            </section>
+          ) : (
+            <section class="container analysis-empty">
+              <span class="label">Análisis mensual</span>
+              <h2>La crónica de esta edición está en preparación</h2>
+              <p>Los datos ya están publicados. Añadiremos aquí la lectura editorial, las historias y las voces de la comunidad.</p>
+            </section>
+          )}
+        </div>
+
         <section class="container methodology">
           <details>
             <summary>Cómo se calcula</summary>
@@ -307,7 +381,7 @@ function scoreLabel(view: RankingView) {
     const params = new URLSearchParams(window.location.search);
     let activeProject = params.get('proyecto') === 'vis-belica' ? 'vis-belica' : 'vis-ludica';
     const requestedView = params.get('vista');
-    let activeView = ['power', 'monthly', 'annual'].includes(requestedView ?? '') ? requestedView! : 'power';
+    let activeView = ['power', 'monthly', 'analysis', 'annual'].includes(requestedView ?? '') ? requestedView! : 'power';
 
     function updateUrl() {
       const next = new URL(window.location.href);
@@ -622,6 +696,124 @@ function scoreLabel(view: RankingView) {
   .field-note span { color: var(--ranking-accent); font-size: var(--text-sm); font-weight: var(--fw-bold); text-transform: uppercase; }
   .field-note p { color: var(--color-text-secondary); }
 
+  .monthly-chronicle {
+    margin-top: var(--space-16);
+    padding-block: var(--space-16);
+    background: var(--color-surface-raised);
+    border-block: 1px solid var(--color-border);
+  }
+  .analysis-view .monthly-chronicle { margin-top: 0; }
+  .analysis-empty {
+    max-width: 760px;
+    padding-block: var(--space-16);
+    text-align: center;
+  }
+  .analysis-empty h2 { margin-top: var(--space-2); }
+  .analysis-empty p {
+    max-width: 620px;
+    margin: var(--space-4) auto 0;
+    color: var(--color-text-secondary);
+    font-size: var(--text-lg);
+  }
+  .chronicle-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.75fr);
+    gap: clamp(var(--space-10), 7vw, var(--space-16));
+    align-items: start;
+  }
+  .chronicle-article { max-width: 780px; }
+  .chronicle-header {
+    padding-bottom: var(--space-10);
+    border-bottom: 1px solid var(--color-border);
+  }
+  .chronicle-header h2 {
+    max-width: 700px;
+    margin-top: var(--space-2);
+    font-size: clamp(2.15rem, 5vw, 3.75rem);
+  }
+  .chronicle-deck {
+    max-width: 720px;
+    margin-top: var(--space-5);
+    color: var(--color-text-secondary);
+    font-size: var(--text-xl);
+    line-height: 1.5;
+  }
+  .chronicle-intro { margin-top: var(--space-8); }
+  .chronicle-intro p,
+  .chronicle-body p {
+    color: var(--color-text-secondary);
+    font-size: var(--text-lg);
+    line-height: 1.75;
+  }
+  .chronicle-intro p + p,
+  .chronicle-body p + p { margin-top: var(--space-4); }
+  .chronicle-body > section { padding-top: var(--space-10); }
+  .chronicle-body h3 { margin-bottom: var(--space-4); font-size: clamp(1.45rem, 3vw, 2rem); }
+  .chronicle-aside {
+    position: sticky;
+    top: 156px;
+    display: grid;
+    gap: var(--space-5);
+  }
+  .chronicle-note,
+  .chronicle-voices {
+    padding: var(--space-6);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+  }
+  .chronicle-note:first-child {
+    background: var(--ranking-subtle);
+    border-color: color-mix(in srgb, var(--ranking-accent) 30%, var(--color-border));
+  }
+  .chronicle-note > span {
+    color: var(--ranking-accent);
+    font-size: var(--text-xs);
+    font-weight: var(--fw-bold);
+    text-transform: uppercase;
+  }
+  .chronicle-note p { margin-top: var(--space-3); color: var(--color-text-secondary); line-height: 1.65; }
+  .chronicle-voices h3 { margin-top: var(--space-2); }
+  .chronicle-voices blockquote { padding-block: var(--space-5); }
+  .chronicle-voices blockquote + blockquote { border-top: 1px solid var(--color-border); }
+  .chronicle-voices blockquote p { font-size: var(--text-base); line-height: 1.55; }
+  .chronicle-voices cite {
+    display: block;
+    margin-top: var(--space-3);
+    color: var(--color-text-tertiary);
+    font-size: var(--text-xs);
+    font-style: normal;
+  }
+  .chronicle-discussion {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-8);
+    align-items: center;
+    margin-top: var(--space-12);
+    padding: var(--space-8);
+    background: var(--color-text);
+    border-radius: var(--radius-xl);
+    color: var(--color-bg);
+  }
+  .chronicle-discussion .label { color: color-mix(in srgb, var(--ranking-accent) 80%, white); }
+  .chronicle-discussion h3 { margin-top: var(--space-2); color: inherit; }
+  .chronicle-discussion p { max-width: 680px; margin-top: var(--space-3); color: color-mix(in srgb, var(--color-bg) 76%, transparent); }
+  .chronicle-discussion a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: 48px;
+    padding: var(--space-3) var(--space-5);
+    background: var(--ranking-accent);
+    border-radius: var(--radius-md);
+    color: #fff;
+    font-weight: var(--fw-bold);
+    text-align: center;
+    text-decoration: none;
+  }
+  .chronicle-discussion a:hover { background: var(--ranking-accent-hover); }
+
   .ranking-table-section { padding-block: var(--space-16); }
   .ranking-table-heading { display: flex; align-items: end; justify-content: space-between; gap: var(--space-6); margin-bottom: var(--space-6); }
   .ranking-table-heading h2 { margin-top: var(--space-1); }
@@ -671,6 +863,10 @@ function scoreLabel(view: RankingView) {
     .podium { grid-template-columns: 1fr 1fr; }
     .podium-card--1 { grid-column: 1 / -1; }
     .voter-growth { grid-template-columns: 1fr; gap: var(--space-8); }
+    .chronicle-layout { grid-template-columns: 1fr; }
+    .chronicle-article { max-width: none; }
+    .chronicle-aside { position: static; grid-template-columns: repeat(2, 1fr); }
+    .chronicle-voices { grid-column: 1 / -1; }
   }
 
   @media (max-width: 720px) {
@@ -691,6 +887,14 @@ function scoreLabel(view: RankingView) {
     .podium-card--1 { grid-column: auto; }
     .podium-card h3 { min-height: 0; }
     .field-note { grid-template-columns: 1fr; gap: var(--space-2); }
+    .monthly-chronicle { margin-top: var(--space-12); padding-block: var(--space-12); }
+    .chronicle-deck,
+    .chronicle-intro p,
+    .chronicle-body p { font-size: var(--text-base); }
+    .chronicle-aside { grid-template-columns: 1fr; }
+    .chronicle-voices { grid-column: auto; }
+    .chronicle-discussion { grid-template-columns: 1fr; padding: var(--space-6); }
+    .chronicle-discussion a { width: 100%; }
     .ranking-table-heading { align-items: stretch; flex-direction: column; }
     .ranking-search { width: 100%; }
     th, td { padding: var(--space-3); }
