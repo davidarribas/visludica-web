@@ -2,9 +2,9 @@
 import {
   editions,
   formatIndex,
-  formatMovement,
   gameTitle,
   monthsForGame,
+  presentRow,
   type ProjectId,
   type RankingView,
 } from '../lib/power-ranking';
@@ -41,9 +41,70 @@ function normalizeSearch(value: string) {
 
 // Separador de millares consistente (toLocaleString no agrupa números de 4 cifras en algunos runtimes).
 const numberFormatter = new Intl.NumberFormat('es-ES', { useGrouping: 'always' });
+
+// Texto accesible de la tira de historial (el mismo formato que se usaba
+// antes de sustituir el texto por la sparkline): últimos cuatro meses.
+function sparklineLabel(history: Array<number | null>, editionMonth: number) {
+  return monthsForGame(history, editionMonth)
+    .map((month) => `${month.label} ${month.value === null ? '—' : formatIndex(month.value)}`)
+    .join(' · ');
+}
+
+// Sparkline SVG de los meses 0..editionMonth-1 del juego, normalizada entre
+// el mínimo y el máximo de sus propios valores. Los meses sin datos cortan
+// la línea en varios <polyline>; no se interpolan huecos.
+function sparklineSvg(history: Array<number | null>, editionMonth: number) {
+  const width = 120;
+  const height = 28;
+  const pad = 3;
+  const months = history.slice(0, editionMonth);
+  const values = months.filter((value): value is number => value !== null);
+  const min = values.length ? Math.min(...values) : 0;
+  const max = values.length ? Math.max(...values) : 0;
+  const span = max - min;
+  const xStep = months.length > 1 ? (width - pad * 2) / (months.length - 1) : 0;
+
+  const points = months.map((value, index) => ({
+    x: pad + index * xStep,
+    y: value === null ? null : span === 0 ? height / 2 : pad + (height - pad * 2) * (1 - (value - min) / span),
+  }));
+
+  const segments: Array<Array<{ x: number; y: number }>> = [];
+  let current: Array<{ x: number; y: number }> = [];
+  for (const point of points) {
+    if (point.y === null) {
+      if (current.length) segments.push(current);
+      current = [];
+    } else {
+      current.push({ x: point.x, y: point.y });
+    }
+  }
+  if (current.length) segments.push(current);
+
+  const polylines = segments
+    .map((segment) => {
+      const coords = segment.map((point) => `${point.x.toFixed(1)},${point.y.toFixed(1)}`).join(' ');
+      return `<polyline fill="none" stroke="var(--ranking-accent)" stroke-width="1.5" stroke-linecap="round" points="${coords}" />`;
+    })
+    .join('');
+
+  const lastSegment = segments.at(-1);
+  const lastPoint = lastSegment?.at(-1);
+  const circle = lastPoint
+    ? `<circle cx="${lastPoint.x.toFixed(1)}" cy="${lastPoint.y.toFixed(1)}" r="2.5" fill="var(--ranking-accent)" />`
+    : '';
+
+  return `<svg viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" aria-hidden="true">${polylines}${circle}</svg>`;
+}
 ---
 
-<div class="ranking-app" data-ranking-app data-project="vis-ludica" data-view="power">
+<div
+  class="ranking-app"
+  data-ranking-app
+  data-project="vis-ludica"
+  data-view="power"
+  data-edition-url={`/power-ranking/${edition.year}/${String(edition.month).padStart(2, '0')}`}
+>
   <section class="ranking-hero">
     <div class="container ranking-hero__inner">
       <div class="ranking-hero__copy">
@@ -147,6 +208,9 @@ const numberFormatter = new Intl.NumberFormat('es-ES', { useGrouping: 'always' }
         {rankingViews.map((view) => {
           const rows = project.rankings[view.id];
           const podium = rows.slice(0, 3);
+          // Solo se renderizan estáticamente las primeras 100 filas; el resto
+          // llega bajo demanda vía datos.json (ver ensureFullData en el script).
+          const staticRows = rows.slice(0, 100);
           const viewCopy = copy[view.id];
           return (
             <div class="ranking-view" data-view-panel={view.id} hidden={view.id !== 'power'}>
@@ -211,7 +275,7 @@ const numberFormatter = new Intl.NumberFormat('es-ES', { useGrouping: 'always' }
                   </label>
                 </div>
 
-                <div class="ranking-table-shell" data-table-shell data-page-size="25">
+                <div class="ranking-table-shell" data-table-shell data-page-size="25" data-total-count={rows.length}>
                   <div class="ranking-table-scroll">
                     <table>
                       <thead>
@@ -226,36 +290,36 @@ const numberFormatter = new Intl.NumberFormat('es-ES', { useGrouping: 'always' }
                         </tr>
                       </thead>
                       <tbody>
-                        {rows.map((row: any, index: number) => {
-                          const title = row.title ?? gameTitle(project, row.id);
-                          const movement = formatMovement(row.movement);
+                        {staticRows.map((row: any, index: number) => {
+                          const presented = presentRow(project, view.id, row, edition.month);
                           const history = project.games[row.id]?.history ?? [];
                           return (
                             <tr
                               data-ranking-row
-                              data-search-value={normalizeSearch(title)}
+                              data-search-value={normalizeSearch(presented.title)}
                               data-row-index={index}
                               hidden={index >= 25}
                             >
-                              <td class="col-rank"><span>{row.rank}</span></td>
+                              <td class="col-rank"><span>{presented.rank}</span></td>
                               <th scope="row">
-                                <strong>{title}</strong>
+                                <strong>{presented.title}</strong>
                                 {view.id !== 'monthly' && index < 10 && (
-                                  <span class="table-history">
-                                    {monthsForGame(history, edition.month)
-                                      .map((month) => `${month.label} ${month.value === null ? '—' : formatIndex(month.value)}`)
-                                      .join(' · ')}
-                                  </span>
+                                  <span
+                                    class="table-history"
+                                    role="img"
+                                    aria-label={sparklineLabel(history, edition.month)}
+                                    set:html={sparklineSvg(history, edition.month)}
+                                  />
                                 )}
                               </th>
-                              <td class="col-score"><strong>{scoreForRow(view.id, row)}</strong></td>
+                              <td class="col-score"><strong>{view.id === 'monthly' ? presented.points : presented.score}</strong></td>
                               {view.id === 'monthly' && (
-                                <td class="col-detail">{row.firstVotes}–{row.secondVotes}–{row.thirdVotes}</td>
+                                <td class="col-detail">{presented.detail}</td>
                               )}
-                              {view.id === 'monthly' && <td class="col-detail">{row.votes}</td>}
-                              {view.id === 'annual' && <td class="col-detail">{row.months}</td>}
+                              {view.id === 'monthly' && <td class="col-detail">{presented.votes}</td>}
+                              {view.id === 'annual' && <td class="col-detail">{presented.months}</td>}
                               <td class="col-movement">
-                                <span class:list={['movement', `movement--${movement.tone}`]}>{movement.label}</span>
+                                <span class:list={['movement', `movement--${presented.movement.tone}`]}>{presented.movement.label}</span>
                               </td>
                             </tr>
                           );
@@ -449,6 +513,9 @@ const numberFormatter = new Intl.NumberFormat('es-ES', { useGrouping: 'always' }
       const showMore = shell.querySelector<HTMLButtonElement>('[data-show-more]');
       const resultCount = shell.querySelector<HTMLElement>('[data-result-count]');
       const pageSize = Number(shell.dataset.pageSize ?? 25);
+      const totalCount = Number(shell.dataset.totalCount ?? rows.length);
+      const projectId = shell.closest<HTMLElement>('[data-project-panel]')?.dataset.projectPanel;
+      const viewId = shell.closest<HTMLElement>('[data-view-panel]')?.dataset.viewPanel;
       let visibleLimit = pageSize;
 
       function normalizeSearch(value: string) {
@@ -458,29 +525,123 @@ const numberFormatter = new Intl.NumberFormat('es-ES', { useGrouping: 'always' }
           .replace(/[̀-ͯ]/g, '');
       }
 
+      // Sólo las 100 primeras filas de cada vista llegan pintadas en el HTML
+      // estático; el resto (rank > 100) se pide una vez a datos.json y se
+      // inserta como texto (nada de innerHTML con datos externos).
+      function buildRow(rowData: any): HTMLTableRowElement {
+        const tr = document.createElement('tr');
+        tr.hidden = true;
+        tr.dataset.rankingRow = '';
+        tr.dataset.searchValue = normalizeSearch(String(rowData.title ?? ''));
+
+        const tdRank = document.createElement('td');
+        tdRank.className = 'col-rank';
+        const rankSpan = document.createElement('span');
+        rankSpan.textContent = String(rowData.rank);
+        tdRank.appendChild(rankSpan);
+        tr.appendChild(tdRank);
+
+        const th = document.createElement('th');
+        th.setAttribute('scope', 'row');
+        const titleStrong = document.createElement('strong');
+        titleStrong.textContent = String(rowData.title ?? '');
+        th.appendChild(titleStrong);
+        tr.appendChild(th);
+
+        const tdScore = document.createElement('td');
+        tdScore.className = 'col-score';
+        const scoreStrong = document.createElement('strong');
+        scoreStrong.textContent = String(viewId === 'monthly' ? rowData.points : rowData.score);
+        tdScore.appendChild(scoreStrong);
+        tr.appendChild(tdScore);
+
+        if (viewId === 'monthly') {
+          const tdDetail = document.createElement('td');
+          tdDetail.className = 'col-detail';
+          tdDetail.textContent = String(rowData.detail ?? '');
+          tr.appendChild(tdDetail);
+
+          const tdVotes = document.createElement('td');
+          tdVotes.className = 'col-detail';
+          tdVotes.textContent = String(rowData.votes ?? '');
+          tr.appendChild(tdVotes);
+        }
+
+        if (viewId === 'annual') {
+          const tdMonths = document.createElement('td');
+          tdMonths.className = 'col-detail';
+          tdMonths.textContent = String(rowData.months ?? '');
+          tr.appendChild(tdMonths);
+        }
+
+        const tdMovement = document.createElement('td');
+        tdMovement.className = 'col-movement';
+        const movementSpan = document.createElement('span');
+        const tone = rowData.movement?.tone ?? 'same';
+        movementSpan.className = `movement movement--${tone}`;
+        movementSpan.textContent = rowData.movement?.label ?? '—';
+        tdMovement.appendChild(movementSpan);
+        tr.appendChild(tdMovement);
+
+        return tr;
+      }
+
+      let fullDataPromise: Promise<void> | null = null;
+      function ensureFullData(): Promise<void> {
+        if (fullDataPromise) return fullDataPromise;
+        fullDataPromise = (async () => {
+          const editionUrl = app.dataset.editionUrl;
+          if (!editionUrl || !projectId || !viewId) return;
+          try {
+            const response = await fetch(`${editionUrl}/datos.json`);
+            if (!response.ok) throw new Error(`Respuesta ${response.status}`);
+            const payload = await response.json();
+            const viewRows = payload?.[projectId]?.[viewId];
+            if (!Array.isArray(viewRows)) return;
+            const tbody = shell.querySelector('tbody');
+            if (!tbody) return;
+            for (const rowData of viewRows.slice(rows.length)) {
+              const tr = buildRow(rowData);
+              tbody.appendChild(tr);
+              rows.push(tr);
+            }
+          } catch (error) {
+            console.warn('No se pudo cargar el listado completo del ranking', error);
+          }
+        })();
+        return fullDataPromise;
+      }
+
       function filterRows() {
         const query = normalizeSearch(search?.value.trim() ?? '');
         const matches = rows.filter((row) => row.dataset.searchValue?.includes(query));
+        // Antes de cargar datos.json, `rows` solo tiene las filas estáticas
+        // (hasta 100): usar el total real (data-total-count) evita que el
+        // contador mienta y que el botón desaparezca antes de tiempo.
+        const total = query === '' ? Math.max(totalCount, matches.length) : matches.length;
         rows.forEach((row) => {
           const matchIndex = matches.indexOf(row);
           row.hidden = matchIndex === -1 || matchIndex >= visibleLimit;
         });
-        if (resultCount) resultCount.textContent = `${Math.min(visibleLimit, matches.length)} de ${matches.length} juegos`;
+        if (resultCount) resultCount.textContent = `${Math.min(visibleLimit, total)} de ${total} juegos`;
         if (showMore) {
-          showMore.hidden = visibleLimit >= matches.length;
-          showMore.textContent = `Mostrar ${Math.min(pageSize, Math.max(0, matches.length - visibleLimit))} más`;
+          showMore.hidden = visibleLimit >= total;
+          showMore.textContent = `Mostrar ${Math.min(pageSize, Math.max(0, total - visibleLimit))} más`;
         }
       }
 
       search?.addEventListener('input', () => {
         visibleLimit = pageSize;
+        ensureFullData().then(filterRows);
+      });
+      showMore?.addEventListener('click', async () => {
+        const nextLimit = visibleLimit + pageSize;
+        if (nextLimit > rows.length) {
+          await ensureFullData();
+        }
+        visibleLimit = nextLimit;
         filterRows();
       });
-      showMore?.addEventListener('click', () => {
-        visibleLimit += pageSize;
-        filterRows();
-      });
-      filterRows();
     });
 
     renderState();

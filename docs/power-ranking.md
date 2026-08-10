@@ -243,10 +243,21 @@ meses en los que el juego ha puntuado.
 
 - `movement` puede ser un número (positivo = sube, negativo = baja), `0` (se mantiene) o la
   cadena `"NEW"` (no estaba el mes anterior). **`NEW` no significa novedad editorial**:
-  significa que no puntuó el mes pasado.
+  significa que no puntuó el mes pasado. Esto es así en `data.json`; en la web, `presentRow`
+  reinterpreta la presentación (ver más abajo) sin tocar el dato original.
 - Los ids son *slugs*: minúsculas sin acentos, con guiones. `games` está indexado por slug.
 - Las listas de `power` y `annual` incluyen todos los juegos con puntuación acumulada (en
   julio 2026, 863 y 860 entradas), no solo los del mes.
+- **La web distingue `NEW` de `Vuelve` y silencia el ruido de la cola** — solo en
+  presentación, `data.json` no cambia. Lo resuelve `presentRow`/`resolveMovement` en
+  [`power-ranking.ts`](../src/lib/power-ranking.ts):
+  - Un `movement` `"NEW"` se muestra como **`Vuelve`** (mismo pill, tono `new`) si el juego
+    tiene algún valor no nulo en `history` en algún mes anterior al de la edición; si no hay
+    historia previa, se queda como `NEW`.
+  - En las vistas `power` y `annual` (no en `monthly`), las filas con `rank > 50` y
+    movimiento **numérico** se muestran como `—` (tono `same`): con decenas de empates a
+    pocos puntos, un solo voto mueve un juego cien posiciones y el número es ruido. `NEW` y
+    `Vuelve` se siguen mostrando a cualquier profundidad.
 
 ---
 
@@ -378,10 +389,23 @@ Ejemplo: `/power-ranking/2026/07/?proyecto=vis-belica&vista=analysis`.
 ### Comportamiento de las tablas
 
 - Se muestran **25 filas** y el botón «Mostrar 25 más» va ampliando de 25 en 25.
+- El HTML estático solo pinta las **primeras 100 filas** de cada vista (`power`, `monthly`,
+  `annual` pueden tener hasta ~860 juegos). El resto se pide bajo demanda a
+  `/power-ranking/<año>/<mes>/datos.json` la primera vez que hace falta: cuando el usuario
+  escribe en el buscador, o cuando «Mostrar más» va a revelar una fila más allá de las
+  presentes en el DOM. La petición es única por tabla (promesa memorizada en
+  `ensureFullData`) y, si falla, la tabla sigue funcionando solo con las 100 primeras filas
+  (aviso en consola, sin romper la interfaz).
+- `datos.json` devuelve, por proyecto y vista, todas las filas **ya formateadas para
+  pintar** (índice ×100, movimiento con su `label`/`tone`) usando
+  [`presentRow`](../src/lib/power-ranking.ts) — la misma función que usa el componente
+  Astro para las filas estáticas, así que ambas rutas aplican exactamente las mismas reglas
+  de presentación. El cliente solo inserta el texto recibido (`createElement` +
+  `textContent`, nunca `innerHTML` con datos externos).
 - El buscador filtra en cliente sobre el título del juego, y al escribir reinicia el límite
-  a 25. El contador («X de Y juegos») se actualiza con el filtro aplicado.
-- Todas las filas se generan en el HTML estático: el filtrado es solo ocultar y mostrar, no
-  hay peticiones.
+  a 25. El contador («X de Y juegos») usa siempre el total real de la vista
+  (`data-total-count` en `[data-table-shell]`), no el número de filas presentes en el DOM en
+  ese momento — así no miente mientras `datos.json` todavía no se ha cargado.
 
 ### Podio y tiras de meses
 
@@ -389,7 +413,14 @@ Ejemplo: `/power-ranking/2026/07/?proyecto=vis-belica&vista=analysis`.
 - En Power y Palmarés, cada tarjeta lleva una tira con los **cuatro últimos meses**
   incluido el actual ([`monthsForGame`](../src/lib/power-ranking.ts)); en la vista mensual
   se sustituye por el desglose `1º–2º–3º · votantes`.
-- En la tabla, esa misma tira se imprime **solo para el top 10** de las vistas no mensuales.
+- En la tabla, el **top 10** de las vistas no mensuales lleva una sparkline SVG generada en
+  build (`sparklineSvg` en el frontmatter de `PowerRankingExperience.astro`), con los meses
+  `0..editionMonth-1` del juego normalizados a su propio mínimo/máximo; los meses sin datos
+  cortan la línea en varios `<polyline>` en vez de interpolar el hueco. El contenedor
+  conserva la clase `table-history` (la regla que lo oculta en móvil sigue aplicando) y
+  lleva `role="img"` con el mismo texto accesible que antes se imprimía como texto plano
+  («Abr 34,6 · May 27,2 · …», los cuatro últimos meses). Solo existe para las 100 filas
+  estáticas — nunca se genera para filas cargadas desde `datos.json`.
 - Los movimientos se colorean por tono: `up`, `down`, `same` (`—`) y `new`.
 
 ---
@@ -412,7 +443,13 @@ Ejemplo: `/power-ranking/2026/07/?proyecto=vis-belica&vista=analysis`.
   mientras la tabla de al lado muestra `18,6`: son el mismo número en escalas distintas.
   Conviene elegir una y mantenerla.
 - **`NEW` no quiere decir novedad.** Quiere decir «no puntuó el mes pasado». En un mes con
-  mucha rotación puede haber cientos de `NEW` que llevan años publicados.
+  mucha rotación puede haber cientos de `NEW` que llevan años publicados. En `data.json` no
+  hay distinción, pero la web sí: si el juego tiene historia en algún mes anterior al de la
+  edición, se presenta como `Vuelve` en vez de `NEW`. Para el texto editorial, sigue sin
+  haber garantía de que un `NEW`/`Vuelve` sea relevante; conviene mirar el histórico del
+  juego antes de llamarlo novedad.
 - **Los movimientos de la cola no significan nada.** Con decenas de empates a uno o dos
   puntos, un solo voto mueve un juego cien posiciones. Para el texto editorial solo son
-  relevantes los movimientos cerca de la cabeza.
+  relevantes los movimientos cerca de la cabeza. La web ya lo refleja: en las vistas `power`
+  y `annual`, un movimiento numérico en `rank > 50` se pinta como `—` (no en `monthly`); el
+  dato crudo de `data.json` no cambia, solo la presentación.
