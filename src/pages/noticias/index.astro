@@ -2,16 +2,14 @@
 import { getCollection } from 'astro:content';
 import NewsCard from '../../components/NewsCard.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { resolveNews, toNewsCardViewModel } from '../../lib/news';
+import { toNewsCardViewModel } from '../../lib/news';
 
 const newsEntries = (await getCollection('news')).sort(
   (first, second) =>
-    (second.data.published_at?.getTime() ?? 0) - (first.data.published_at?.getTime() ?? 0),
+    (second.data.date?.getTime() ?? 0) - (first.data.date?.getTime() ?? 0),
 );
 
-const news = await Promise.all(
-  newsEntries.map(async (entry) => toNewsCardViewModel(await resolveNews(entry))),
-);
+const news = newsEntries.map(toNewsCardViewModel);
 ---
 
 <BaseLayout

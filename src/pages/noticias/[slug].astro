@@ -2,171 +2,78 @@
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import {
-  creditRoleLabels,
-  formatDuration,
-  formatNewsDate,
-  formatPartialDate,
-  formatPlayers,
-  formatPriceSnapshot,
-  formatProductContext,
-  gameTypeLabels,
-  newsEventLabels,
-  organizationRoleLabels,
-  resolveNews,
-  type ResolvedNewsProduct,
+  formatDuration, formatNewsDate, formatPlayers, formatPrice, formatProductContext,
+  gameTypeLabels, newsEventLabels, type NewsProduct,
 } from "../../lib/news";
 
-interface Props {
-  news: CollectionEntry<"news">;
-}
+interface Props { news: CollectionEntry<"news">; }
+interface FactRow { label: string; value: string; }
 
-interface FactRow {
-  label: string;
-  value: string;
-}
-
-const languageNames = new Intl.DisplayNames(["es"], { type: "language" });
-
-function productFactRows(product: ResolvedNewsProduct): FactRow[] {
+function productFactRows(product: NewsProduct): FactRow[] {
   const rows: FactRow[] = [];
-  const players = formatPlayers(product.facts.players);
-  const duration = formatDuration(product.facts.durationMinutes);
-  const price = formatPriceSnapshot(product.facts.priceSnapshot);
-  const releaseDate = formatPartialDate(product.facts.releaseDate);
+  const players = formatPlayers(product);
+  const duration = formatDuration(product);
+  const price = formatPrice(product.price_eur);
 
   if (players) rows.push({ label: "Jugadores", value: players });
   if (duration) rows.push({ label: "Duración", value: duration });
-  if (product.facts.recommendedAgeMin) {
-    rows.push({ label: "Edad", value: `${product.facts.recommendedAgeMin}+` });
-  }
-  if (price && product.facts.priceSnapshot) {
-    rows.push({
-      label: product.facts.priceSnapshot.kind === "pvpr" ? "PVPR" : "Depósito de reserva",
-      value: price,
-    });
-  }
-
-  for (const role of Object.keys(creditRoleLabels) as Array<keyof typeof creditRoleLabels>) {
-    const names = product.facts.credits
-      ?.filter((credit) => credit.role === role)
-      .map((credit) => credit.name);
-    if (names?.length) rows.push({ label: creditRoleLabels[role], value: names.join(", ") });
-  }
-
-  for (const { entry, role } of product.organizations) {
-    rows.push({ label: organizationRoleLabels[role], value: entry.data.name });
-  }
-  if (releaseDate) rows.push({ label: "Lanzamiento", value: releaseDate });
-  if (product.version.data.languages.length > 0) {
-    rows.push({
-      label: product.version.data.languages.length === 1 ? "Idioma" : "Idiomas",
-      value: product.version.data.languages
-        .map((language) => languageNames.of(language) ?? language)
-        .join(", "),
-    });
-  }
-  if (product.version.data.name !== product.game.data.title) {
-    rows.push({ label: "Edición", value: product.version.data.name });
-  }
-  rows.push({ label: "Tipo", value: gameTypeLabels[product.game.data.type] });
-
+  if (product.age_min) rows.push({ label: "Edad", value: `${product.age_min}+` });
+  if (price) rows.push({ label: "PVPR", value: price });
+  if (product.designers) rows.push({ label: "Diseño", value: product.designers.join(", ") });
+  if (product.publisher_es) rows.push({ label: "Editorial", value: product.publisher_es });
+  if (product.distributor_es) rows.push({ label: "Distribución", value: product.distributor_es });
+  if (product.release_date) rows.push({ label: "Lanzamiento", value: product.release_date });
+  if (product.language) rows.push({ label: "Idioma", value: product.language });
+  if (product.parent) rows.push({ label: "Juego base", value: product.parent });
+  if (product.bgg_id) rows.push({ label: "BGG", value: String(product.bgg_id) });
+  rows.push({ label: "Tipo", value: gameTypeLabels[product.type] });
   return rows;
 }
 
 export async function getStaticPaths() {
-  const news = await getCollection("news");
-
-  return news.map((entry) => ({
-    params: { slug: entry.data.slug },
-    props: { news: entry },
+  return (await getCollection("news")).map((news) => ({
+    params: { slug: news.data.slug }, props: { news },
   }));
 }
 
 const { news } = Astro.props;
-const resolved = await resolveNews(news);
 const { Content } = await render(news);
-const formattedDate = resolved.publishedAt && formatNewsDate(resolved.publishedAt);
-const formattedEffectiveDate = formatPartialDate(resolved.effectiveDate);
-const productContext = formatProductContext(resolved.contextGameTitles, resolved.productCount);
-const groupPrice = formatPriceSnapshot(resolved.groupPriceSnapshot);
-const products = resolved.products.map((product) => ({
-  ...product,
-  rows: productFactRows(product),
-}));
+const productContext = formatProductContext(news.data.products);
+const products = news.data.products.map((product, position) => ({ product, position, rows: productFactRows(product) }));
 ---
 
 <BaseLayout
-  title={resolved.title}
-  description={resolved.summary}
-  image={resolved.image}
+  title={news.data.title}
+  description={news.data.summary}
+  image={news.data.image?.src}
   type="article"
 >
   <article class="section">
     <div class="container news-detail">
       <a href="/noticias" class="back-link">← Volver a Noticias</a>
-
       <header class="news-detail__header">
         <div class="news-detail__meta">
-          {resolved.publishedAt ? (
-            <time datetime={resolved.publishedAt.toISOString()}>{formattedDate}</time>
-          ) : (
-            <span>Fecha editorial sin confirmar</span>
-          )}
+          {news.data.date ? (
+            <time datetime={news.data.date.toISOString()}>{formatNewsDate(news.data.date)}</time>
+          ) : <span>Fecha editorial sin confirmar</span>}
           <span aria-hidden="true">·</span>
-          <span>{newsEventLabels[resolved.eventType]}</span>
+          <span>{newsEventLabels[news.data.event]}</span>
         </div>
-        <h1>{resolved.title}</h1>
-        <p class="news-detail__summary">{resolved.summary}</p>
-        {formattedEffectiveDate && (
-          <p class="news-detail__effective-date">
-            <span>Fecha del acontecimiento</span> {formattedEffectiveDate}
-          </p>
-        )}
+        <h1>{news.data.title}</h1>
+        <p class="news-detail__summary">{news.data.summary}</p>
       </header>
 
-      {resolved.image && (
-        <img
-          src={resolved.image}
-          alt={`Imagen de ${resolved.title}`}
-          class="news-detail__image"
-          decoding="async"
-        />
+      {news.data.image && (
+        <img src={news.data.image.src} alt={news.data.image.alt} class="news-detail__image" decoding="async" />
       )}
-
-      {resolved.productCount > 1 && (
-        <p class="news-detail__product-context">{productContext}</p>
-      )}
-
+      {news.data.products.length > 1 && <p class="news-detail__product-context">{productContext}</p>}
       <div class="prose news-detail__body"><Content /></div>
 
-      {groupPrice && resolved.groupPriceSnapshot && (
-        <aside class="news-detail__group-price">
-          <span>
-            {resolved.groupPriceSnapshot.kind === "reservation_deposit"
-              ? "Depósito de reserva conjunto"
-              : "Precio conjunto"}
-          </span>
-          <strong>{groupPrice}</strong>
-        </aside>
-      )}
-
-      <div class:list={["news-products", { "news-products--multiple": resolved.productCount > 1 }]}>
-        {products.map((product) => (
-          <section
-            class="news-product"
-            aria-labelledby={`product-${product.position}`}
-            data-version-id={product.version.id}
-            data-product-position={product.position}
-          >
-            <h2 id={`product-${product.position}`}>{product.heading}</h2>
-            <dl>
-              {product.rows.map((row) => (
-                <div>
-                  <dt>{row.label}</dt>
-                  <dd>{row.value}</dd>
-                </div>
-              ))}
-            </dl>
+      <div class:list={["news-products", { "news-products--multiple": products.length > 1 }]}>
+        {products.map(({ product, position, rows }) => (
+          <section class="news-product" aria-labelledby={`product-${position}`} data-product-position={position}>
+            <h2 id={`product-${position}`}>{product.name}</h2>
+            <dl>{rows.map((row) => <div><dt>{row.label}</dt><dd>{row.value}</dd></div>)}</dl>
           </section>
         ))}
       </div>
@@ -176,115 +83,20 @@ const products = resolved.products.map((product) => ({
 
 <style>
 .news-detail { max-width: 900px; }
-.back-link {
-  display: inline-block;
-  margin-bottom: var(--space-8);
-  color: var(--color-accent);
-  font-size: var(--text-sm);
-  font-weight: var(--fw-medium);
-}
+.back-link { display: inline-block; margin-bottom: var(--space-8); color: var(--color-accent); font-size: var(--text-sm); font-weight: var(--fw-medium); }
 .back-link:hover { color: var(--color-accent-hover); }
-.news-detail__header {
-  display: flex;
-  max-width: 780px;
-  flex-direction: column;
-  gap: var(--space-4);
-}
-.news-detail__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1);
-  color: var(--color-accent);
-  font-size: var(--text-xs);
-  font-weight: var(--fw-medium);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.news-detail__summary {
-  color: var(--color-text-secondary);
-  font-size: var(--text-xl);
-  line-height: 1.5;
-}
-.news-detail__effective-date {
-  color: var(--color-text-secondary);
-  font-size: var(--text-sm);
-}
-.news-detail__effective-date span {
-  margin-right: var(--space-1);
-  color: var(--color-text-tertiary);
-  font-size: var(--text-xs);
-  font-weight: var(--fw-medium);
-  text-transform: uppercase;
-}
-.news-detail__image {
-  width: 100%;
-  max-height: 460px;
-  margin-top: var(--space-8);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  object-fit: cover;
-}
-.news-detail__product-context {
-  margin-top: var(--space-6);
-  color: var(--color-text-secondary);
-  font-size: var(--text-sm);
-  font-weight: var(--fw-medium);
-}
+.news-detail__header { display: flex; max-width: 780px; flex-direction: column; gap: var(--space-4); }
+.news-detail__meta { display: flex; flex-wrap: wrap; gap: var(--space-1); color: var(--color-accent); font-size: var(--text-xs); font-weight: var(--fw-medium); letter-spacing: 0.04em; text-transform: uppercase; }
+.news-detail__summary { color: var(--color-text-secondary); font-size: var(--text-xl); line-height: 1.5; }
+.news-detail__image { width: 100%; max-height: 460px; margin-top: var(--space-8); border: 1px solid var(--color-border); border-radius: var(--radius-lg); object-fit: cover; }
+.news-detail__product-context { margin-top: var(--space-6); color: var(--color-text-secondary); font-size: var(--text-sm); font-weight: var(--fw-medium); }
 .news-detail__body { margin-top: var(--space-8); }
-.news-detail__group-price {
-  display: flex;
-  justify-content: space-between;
-  gap: var(--space-4);
-  max-width: 780px;
-  margin-top: var(--space-8);
-  padding: var(--space-4) var(--space-5);
-  background: var(--color-surface-raised);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-size: var(--text-sm);
-}
-.news-products {
-  display: grid;
-  gap: var(--space-5);
-  max-width: 780px;
-  margin-top: var(--space-8);
-}
-.news-product {
-  padding: var(--space-5);
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-}
-.news-product h2 {
-  margin-bottom: var(--space-4);
-  font-size: var(--text-xl);
-}
-.news-product dl {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: var(--space-4);
-}
-.news-product div { min-width: 0; }
-.news-product dt {
-  color: var(--color-text-tertiary);
-  font-size: var(--text-xs);
-  font-weight: var(--fw-medium);
-  text-transform: uppercase;
-}
-.news-product dd {
-  margin: var(--space-1) 0 0;
-  font-size: var(--text-sm);
-  overflow-wrap: anywhere;
-}
-
-@media (max-width: 640px) {
-  .news-detail__summary { font-size: var(--text-lg); }
-  .news-detail__group-price { padding: var(--space-4); }
-  .news-product { padding: var(--space-4); }
-  .news-product dl { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 420px) {
-  .news-product dl { grid-template-columns: 1fr; }
-}
+.news-products { display: grid; gap: var(--space-5); max-width: 780px; margin-top: var(--space-8); }
+.news-product { padding: var(--space-5); background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); }
+.news-product h2 { margin-bottom: var(--space-4); font-size: var(--text-xl); }
+.news-product dl { display: grid; gap: var(--space-2); }
+.news-product dl div { display: grid; grid-template-columns: minmax(120px, 0.38fr) 1fr; gap: var(--space-4); padding-top: var(--space-2); border-top: 1px solid var(--color-border); }
+.news-product dt { color: var(--color-text-tertiary); font-size: var(--text-sm); font-weight: var(--fw-medium); }
+.news-product dd { color: var(--color-text-secondary); font-size: var(--text-sm); }
+@media (min-width: 760px) { .news-products--multiple { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; } }
 </style>

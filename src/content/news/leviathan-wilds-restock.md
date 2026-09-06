@@ -1,11 +1,12 @@
 ---
+schema: visludica-news-v1
 title: Reposición de Leviathan Wilds
-summary: El juego base agotado vuelve a estar disponible.
 slug: reposicion-leviathan-wilds
-version: leviathan-wilds-commercial
-event_type: restock
-sources:
-  - type: editorial_input
+summary: El juego base agotado vuelve a estar disponible.
+event: restock
+products:
+  - name: Leviathan Wilds
+    type: base_game
 ---
 
 Es una reposición de la misma versión comercial, no una nueva edición.

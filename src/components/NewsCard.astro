@@ -13,8 +13,8 @@ const href = `/noticias/${news.slug}`;
   {news.image && (
     <a href={href} class="news-card__image-link" aria-label={`Leer: ${news.title}`}>
       <img
-        src={news.image}
-        alt={`Imagen de ${news.title}`}
+        src={news.image.src}
+        alt={news.image.alt}
         class="news-card__image"
         loading="lazy"
         decoding="async"
@@ -24,8 +24,8 @@ const href = `/noticias/${news.slug}`;
 
   <div class="news-card__body">
     <div class="news-card__meta">
-      {news.publishedAt ? (
-        <time datetime={news.publishedAt.toISOString()}>{formatNewsDate(news.publishedAt)}</time>
+      {news.date ? (
+        <time datetime={news.date.toISOString()}>{formatNewsDate(news.date)}</time>
       ) : (
         <span>Fecha editorial sin confirmar</span>
       )}

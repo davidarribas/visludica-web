@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "content:validate": "astro sync && node scripts/validate-content-relations.mjs",
+    "content:validate": "astro sync && node scripts/validate-news-content.mjs",
     "build": "npm run content:validate && astro build",
     "test": "npm run build && node --test tests/*.test.mjs",
     "preview": "astro preview",

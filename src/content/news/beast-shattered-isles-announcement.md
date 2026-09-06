@@ -1,11 +1,13 @@
 ---
+schema: visludica-news-v1
 title: "Se comunica BEAST: Shattered Isles"
-summary: Shattered Isles se trata como expansión de BEAST.
 slug: anuncio-beast-shattered-isles
-version: beast-shattered-isles-commercial
-event_type: announcement
-sources:
-  - type: editorial_input
+summary: Shattered Isles se trata como expansión de BEAST.
+event: announcement
+products:
+  - name: "BEAST: Shattered Isles"
+    type: expansion
+    parent: BEAST
 ---
 
 La fuente editorial conjunta también comunica otros productos de BEAST, que se conservan como noticias independientes.
