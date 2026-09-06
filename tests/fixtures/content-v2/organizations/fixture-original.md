@@ -1,0 +1,3 @@
+---
+name: Editorial Original Fixture
+---

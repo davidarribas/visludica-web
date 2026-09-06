@@ -7,7 +7,9 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "content:validate": "astro sync && node scripts/validate-content-relations.mjs",
+    "build": "npm run content:validate && astro build",
+    "test": "npm run build && node --test tests/*.test.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "ranking:import": "node scripts/import-power-ranking.mjs"

@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import NewsCard from '../../components/NewsCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { resolveNews, toNewsCardViewModel } from '../../lib/news';
+
+const newsEntries = (await getCollection('news')).sort(
+  (first, second) =>
+    (second.data.published_at?.getTime() ?? 0) - (first.data.published_at?.getTime() ?? 0),
+);
+
+const news = await Promise.all(
+  newsEntries.map(async (entry) => toNewsCardViewModel(await resolveNews(entry))),
+);
+---
+
+<BaseLayout
+  title="Noticias"
+  description="Novedades sobre publicaciones de juegos de mesa en español."
+>
+  <section class="section">
+    <div class="container">
+      <header class="news-header">
+        <span class="label">Actualidad</span>
+        <h1>Noticias</h1>
+        <p>Una selección de novedades sobre publicaciones de juegos de mesa en español.</p>
+      </header>
+
+      <div class="news-list">
+        {news.map((item) => <NewsCard news={item} />)}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.news-header {
+  display: flex;
+  max-width: 680px;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-10);
+}
+.news-header p {
+  color: var(--color-text-secondary);
+  font-size: var(--text-lg);
+}
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 860px;
+}
+</style>
