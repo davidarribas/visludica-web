@@ -1,0 +1,121 @@
+---
+import { getCollection } from 'astro:content';
+import NewsCard from '../../../components/NewsCard.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import {
+  NEWS_PAGE_SIZE,
+  paginateNews,
+  sortNewsByPublishedAt,
+  toNewsCardViewModel,
+  type NewsCardViewModel,
+} from '../../../lib/news';
+
+export async function getStaticPaths() {
+  const newsEntries = sortNewsByPublishedAt(await getCollection('news'));
+  const totalPages = Math.ceil(newsEntries.length / NEWS_PAGE_SIZE);
+
+  return Array.from({ length: Math.max(totalPages - 1, 0) }, (_, index) => {
+    const pageNum = index + 2;
+    const { items } = paginateNews(newsEntries, pageNum, NEWS_PAGE_SIZE);
+
+    return {
+      params: { page: String(pageNum) },
+      props: {
+        pageNum,
+        totalPages,
+        news: items.map(toNewsCardViewModel),
+      },
+    };
+  });
+}
+
+interface Props {
+  pageNum: number;
+  totalPages: number;
+  news: NewsCardViewModel[];
+}
+
+const { pageNum, totalPages, news } = Astro.props;
+const previousHref = pageNum === 2 ? '/noticias' : `/noticias/pagina/${pageNum - 1}`;
+---
+
+<BaseLayout
+  title={`Noticias — Página ${pageNum}`}
+  description={`Novedades sobre publicaciones de juegos de mesa en español, página ${pageNum} de ${totalPages}.`}
+>
+  <section class="section">
+    <div class="container">
+      <header class="news-header">
+        <a href="/noticias" class="back-link">← Volver a Noticias</a>
+        <h1>Noticias <span class="page-num">· {pageNum} / {totalPages}</span></h1>
+      </header>
+
+      <div class="news-list">
+        {news.map((item) => <NewsCard news={item} />)}
+      </div>
+
+      <nav class="pagination" aria-label="Paginación de noticias">
+        <a href={previousHref} class="btn btn-outline" rel="prev">← Anteriores</a>
+        <span class="pagination__current">Página {pageNum} de {totalPages}</span>
+        <div class="pagination__next">
+          {pageNum < totalPages && (
+            <a href={`/noticias/pagina/${pageNum + 1}`} class="btn btn-outline" rel="next">
+              Siguientes →
+            </a>
+          )}
+        </div>
+      </nav>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+.news-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-bottom: var(--space-10);
+}
+.back-link {
+  color: var(--color-accent);
+  font-size: var(--text-sm);
+  text-decoration: none;
+}
+.back-link:hover { color: var(--color-accent-hover); }
+.page-num {
+  color: var(--color-text-tertiary);
+  font-weight: var(--fw-regular);
+}
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 860px;
+}
+.pagination {
+  display: grid;
+  max-width: 860px;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: var(--space-4);
+  padding-top: var(--space-8);
+  margin-top: var(--space-10);
+  border-top: 1px solid var(--color-border);
+}
+.pagination__current {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+}
+.pagination__next { justify-self: end; }
+
+@media (max-width: 560px) {
+  .pagination {
+    grid-template-columns: 1fr 1fr;
+  }
+  .pagination__current {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+  }
+}
+</style>

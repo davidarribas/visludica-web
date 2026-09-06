@@ -2,7 +2,7 @@
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import {
-  formatDuration, formatPlayers, formatPrice, formatProductContext,
+  formatDuration, formatPlayers, formatPrice, formatProductContext, formatPublishedDate,
   gameTypeLabels, type NewsProduct,
 } from "../../lib/news";
 
@@ -39,6 +39,8 @@ const { news } = Astro.props;
 const { Content } = await render(news);
 const productContext = formatProductContext(news.data.products);
 const products = news.data.products.map((product, position) => ({ product, position, rows: productFactRows(product) }));
+const publishedAt = news.data.published_at.toISOString();
+const publishedDate = formatPublishedDate(news.data.published_at);
 ---
 
 <BaseLayout
@@ -53,6 +55,9 @@ const products = news.data.products.map((product, position) => ({ product, posit
       <header class="news-detail__header">
         <h1>{news.data.title}</h1>
         <p class="news-detail__summary">{news.data.summary}</p>
+        <p class="news-detail__publication">
+          Publicado el <time datetime={publishedAt}>{publishedDate}</time>
+        </p>
       </header>
 
       {news.data.image && (
@@ -79,6 +84,7 @@ const products = news.data.products.map((product, position) => ({ product, posit
 .back-link:hover { color: var(--color-accent-hover); }
 .news-detail__header { display: flex; max-width: 780px; flex-direction: column; gap: var(--space-4); }
 .news-detail__summary { color: var(--color-text-secondary); font-size: var(--text-xl); line-height: 1.5; }
+.news-detail__publication { color: var(--color-text-tertiary); font-size: var(--text-sm); font-weight: var(--fw-medium); }
 .news-detail__image { display: block; width: 100%; height: clamp(320px, 60vw, 560px); padding: var(--space-4); margin-top: var(--space-8); background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-lg); object-fit: contain; }
 .news-detail__product-context { margin-top: var(--space-6); color: var(--color-text-secondary); font-size: var(--text-sm); font-weight: var(--fw-medium); }
 .news-detail__body { margin-top: var(--space-8); }

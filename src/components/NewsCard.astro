@@ -24,6 +24,8 @@ const href = `/noticias/${news.slug}`;
 
   <div class="news-card__body">
     <div class="news-card__meta">
+      <time datetime={news.publishedAt}>{news.publishedDate}</time>
+      <span aria-hidden="true">·</span>
       <span>{news.productContext}</span>
     </div>
     <h2 class="news-card__title"><a href={href}>{news.title}</a></h2>

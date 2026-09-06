@@ -2,14 +2,16 @@
 import { getCollection } from 'astro:content';
 import NewsCard from '../../components/NewsCard.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { toNewsCardViewModel } from '../../lib/news';
+import {
+  NEWS_PAGE_SIZE,
+  paginateNews,
+  sortNewsByPublishedAt,
+  toNewsCardViewModel,
+} from '../../lib/news';
 
-const newsEntries = (await getCollection('news')).sort(
-  (first, second) =>
-    second.data.published_at.getTime() - first.data.published_at.getTime(),
-);
-
-const news = newsEntries.map(toNewsCardViewModel);
+const newsEntries = sortNewsByPublishedAt(await getCollection('news'));
+const { items, totalPages } = paginateNews(newsEntries, 1, NEWS_PAGE_SIZE);
+const news = items.map(toNewsCardViewModel);
 ---
 
 <BaseLayout
@@ -27,6 +29,15 @@ const news = newsEntries.map(toNewsCardViewModel);
       <div class="news-list">
         {news.map((item) => <NewsCard news={item} />)}
       </div>
+
+      {totalPages > 1 && (
+        <nav class="pagination" aria-label="Paginación de noticias">
+          <span class="pagination__current">Página 1 de {totalPages}</span>
+          <a href="/noticias/pagina/2" class="btn btn-outline" rel="next">
+            Siguientes noticias →
+          </a>
+        </nav>
+      )}
     </div>
   </section>
 </BaseLayout>
@@ -48,5 +59,18 @@ const news = newsEntries.map(toNewsCardViewModel);
   flex-direction: column;
   gap: var(--space-4);
   max-width: 860px;
+}
+.pagination {
+  display: flex;
+  max-width: 860px;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-8);
+  margin-top: var(--space-10);
+  border-top: 1px solid var(--color-border);
+}
+.pagination__current {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
 }
 </style>
