@@ -24,14 +24,8 @@ const href = `/noticias/${news.slug}`;
 
   <div class="news-card__body">
     <div class="news-card__meta">
-      {news.date ? (
-        <time datetime={news.date.toISOString()}>{formatNewsDate(news.date)}</time>
-      ) : (
-        <span>Fecha editorial sin confirmar</span>
-      )}
-      <span aria-hidden="true">·</span>
-      <span>{news.eventLabel}</span>
-      <span aria-hidden="true">·</span>
+      {news.date && <time datetime={news.date.toISOString()}>{formatNewsDate(news.date)}</time>}
+      {news.date && <span aria-hidden="true">·</span>}
       <span>{news.productContext}</span>
     </div>
     <h2 class="news-card__title"><a href={href}>{news.title}</a></h2>

@@ -4,21 +4,6 @@ export const gameTypeLabels = {
   accessory: "Accesorio",
 };
 
-export const newsEventLabels = {
-  announcement: "Anuncio",
-  preorder: "Preventa",
-  release: "Lanzamiento",
-  restock: "Reposición",
-  reprint: "Reimpresión",
-  new_edition: "Nueva edición",
-  crowdfunding: "Financiación colectiva",
-  delay: "Retraso",
-  cancellation: "Cancelación",
-  date_change: "Cambio de fecha",
-  price_change: "Cambio de precio",
-  content_change: "Cambio de contenido",
-};
-
 export function formatNewsDate(date) {
   return new Intl.DateTimeFormat("es-ES", {
     day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Madrid",

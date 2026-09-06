@@ -3,6 +3,7 @@ import { resolve } from "node:path";
 import { unflatten } from "devalue";
 
 const STORE_URL = new URL("../node_modules/.astro/data-store.json", import.meta.url);
+const EXTERNAL_MARKDOWN_LINK = /\]\(\s*<?https?:\/\/|\]:\s*<?https?:\/\//im;
 
 export function validateNewsEntries(entries) {
   const errors = [];
@@ -12,6 +13,10 @@ export function validateNewsEntries(entries) {
     const { data } = entry;
     if (slugs.has(data.slug)) errors.push(`news/${id}.slug: duplicado con news/${slugs.get(data.slug)}`);
     slugs.set(data.slug, id);
+
+    if (EXTERNAL_MARKDOWN_LINK.test(entry.body ?? "")) {
+      errors.push(`news/${id}: contiene un enlace Markdown externo (http:// o https://)`);
+    }
 
     for (const [index, product] of data.products.entries()) {
       if (product.players_max !== undefined && product.players_max < product.players_min) {

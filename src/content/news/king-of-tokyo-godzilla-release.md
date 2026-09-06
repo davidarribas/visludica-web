@@ -24,7 +24,7 @@ tags:
   - Devir
 ---
 
-[Devir](https://devir.es/king-of-tokyo-godzilla) tiene ya disponible *King of Tokyo GODZILLA*, una edición independiente del juego de Richard Garfield para entre 2 y 6 participantes. La ficha marca un precio de 50 €.
+Devir tiene ya disponible *King of Tokyo GODZILLA*, una edición independiente del juego de Richard Garfield para entre 2 y 6 participantes. La ficha marca un precio de 50 €.
 
 La partida propone escoger un kaiju, lanzar dados para atacar, curarse o conseguir nuevos poderes y sumar puntos de victoria. Esta caja incorpora 50 cartas de poder, componentes de madera y la expansión *Power Up* para diferenciar a los seis kaiju clásicos.
 

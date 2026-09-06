@@ -3,7 +3,7 @@ import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import {
   formatDuration, formatNewsDate, formatPlayers, formatPrice, formatProductContext,
-  gameTypeLabels, newsEventLabels, type NewsProduct,
+  gameTypeLabels, type NewsProduct,
 } from "../../lib/news";
 
 interface Props { news: CollectionEntry<"news">; }
@@ -52,13 +52,11 @@ const products = news.data.products.map((product, position) => ({ product, posit
     <div class="container news-detail">
       <a href="/noticias" class="back-link">← Volver a Noticias</a>
       <header class="news-detail__header">
-        <div class="news-detail__meta">
-          {news.data.date ? (
+        {news.data.date && (
+          <div class="news-detail__meta">
             <time datetime={news.data.date.toISOString()}>{formatNewsDate(news.data.date)}</time>
-          ) : <span>Fecha editorial sin confirmar</span>}
-          <span aria-hidden="true">·</span>
-          <span>{newsEventLabels[news.data.event]}</span>
-        </div>
+          </div>
+        )}
         <h1>{news.data.title}</h1>
         <p class="news-detail__summary">{news.data.summary}</p>
       </header>
