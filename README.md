@@ -10,14 +10,14 @@ Astro es el único sistema operativo de noticias:
 ChatGPT Work → Markdown con YAML → Astro → validación/build → Git → Cloudflare
 ```
 
-Cada noticia vive en `src/content/news/<id>.md`. Su narración editorial está en el cuerpo Markdown y su ficha práctica se genera exclusivamente desde este frontmatter:
+Cada noticia vive en `src/content/news/YYYY-MM-DD-<slug-descriptivo>.md`. La URL pública usa el nombre del fichero sin el prefijo de fecha. Su narración editorial está en el cuerpo Markdown y su ficha práctica se genera exclusivamente desde este frontmatter:
 
 ```yaml
 schema: visludica-news-v1
 title: Título de la noticia
-slug: url-publica-estable
 summary: Resumen editorial
 date: 2026-09-06 # opcional
+published_at: 2026-09-06T23:42:00+02:00
 event: announcement
 image: # opcional; siempre bajo public/images/news/
   src: /images/news/url-publica-estable.webp
@@ -44,6 +44,8 @@ tags: # opcional
 ```
 
 Los datos desconocidos se omiten: no se guardan `N/D`, `Desconocido`, `Por determinar` ni valores nulos editoriales. Una noticia multiproducto añade elementos a `products`; una expansión relaciona el juego base por su nombre en `parent`. Las fuentes de investigación no forman parte del Markdown público.
+
+`published_at` es un metadato técnico invisible que determina el orden de publicación. Los valores de `publisher_es` usan el nombre canónico definido en `src/data/publishers.yaml`.
 
 Las imágenes de noticias usan una sola convención: `public/images/news/<slug>.<ext>`, referenciada como `/images/news/<slug>.<ext>`.
 

@@ -1,8 +1,8 @@
 ---
 schema: visludica-news-v1
 title: King of Tokyo GODZILLA ya está disponible en Devir
-slug: king-of-tokyo-godzilla-disponible-devir
 summary: La edición independiente de King of Tokyo con Godzilla llega al catálogo de Devir por 50 €.
+published_at: 2026-09-06T21:06:21+02:00
 event: release
 image:
   src: /images/news/king-of-tokyo-godzilla.jpg

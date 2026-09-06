@@ -1,9 +1,9 @@
 ---
 schema: visludica-news-v1
 title: El almacén de Wilmot llegará en castellano a finales de 2026
-slug: el-almacen-de-wilmot-castellano-finales-2026
 summary: El almacén de Wilmot tendrá edición en castellano de la mano de Salt & Pepper Games, con su publicación prevista para finales de 2026. El cooperativo de memoria adapta a la mesa el videojuego Wilmot's Warehouse.
 date: 2026-09-06
+published_at: 2026-09-06T22:45:41+02:00
 event: announcement
 image:
   src: /images/news/el-almacen-de-wilmot-castellano-finales-2026.webp

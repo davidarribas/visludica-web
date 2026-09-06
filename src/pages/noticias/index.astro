@@ -6,7 +6,7 @@ import { toNewsCardViewModel } from '../../lib/news';
 
 const newsEntries = (await getCollection('news')).sort(
   (first, second) =>
-    (second.data.date?.getTime() ?? 0) - (first.data.date?.getTime() ?? 0),
+    second.data.published_at.getTime() - first.data.published_at.getTime(),
 );
 
 const news = newsEntries.map(toNewsCardViewModel);

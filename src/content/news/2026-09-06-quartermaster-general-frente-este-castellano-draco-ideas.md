@@ -1,9 +1,9 @@
 ---
 schema: visludica-news-v1
 title: "Quartermaster General: Frente Este, Draco Ideas prepara su edición en castellano"
-slug: quartermaster-general-frente-este-castellano-draco-ideas
 summary: "Draco Ideas publicará en castellano Quartermaster General: Frente Este, un juego para dos participantes centrado en el frente oriental de la Segunda Guerra Mundial."
 date: 2026-09-06
+published_at: 2026-09-06T23:45:46+02:00
 event: announcement
 image:
   src: /images/news/quartermaster-general-frente-este-castellano-draco-ideas.jpg

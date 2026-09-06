@@ -40,6 +40,7 @@ test("Markdown + YAML Work-first genera listado, detalle, imagen y ficha multipr
     assert.match(detail, />39,95(?:&nbsp;|\s)€</);
     assert.match(detail, />Diseño</);
     assert.match(detail, />Juego base</);
+    assert.doesNotMatch(detail, /published_at|2026-09-06T12:00:00|>Lanzamiento<|>2026-09-06</);
     assert.doesNotMatch(detail, /Fuentes|Evidence|Intake|N\/D|Desconocido|Por determinar/);
   } finally {
     await rm(output, { recursive: true, force: true });

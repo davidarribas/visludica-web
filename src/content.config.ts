@@ -7,6 +7,10 @@ const isoDate = z.preprocess(
   (value) => value instanceof Date ? value.toISOString().slice(0, 10) : value,
   z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "debe usar YYYY-MM-DD"),
 );
+const isoTimestamp = z.preprocess(
+  (value) => value instanceof Date ? value.toISOString() : value,
+  z.string().datetime({ offset: true, message: "debe ser un timestamp ISO 8601 con zona horaria" }),
+).transform((value) => new Date(value));
 
 const image = z.object({
   src: z.string().regex(/^\/images\/news\/[a-z0-9][a-z0-9._/-]*$/),
@@ -48,14 +52,16 @@ const news = defineCollection({
   loader: glob({
     pattern: "**/*.md",
     base: `${contentRoot}/news`,
-    generateId: ({ entry }) => entry.replace(/\.md$/, ""),
+    generateId: ({ entry }) => entry
+      .replace(/\.md$/, "")
+      .replace(/^\d{4}-\d{2}-\d{2}-/, ""),
   }),
   schema: z.object({
     schema: z.literal("visludica-news-v1"),
     title: z.string().trim().min(1),
-    slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
     summary: z.string().trim().min(1),
     date: z.coerce.date().optional(),
+    published_at: isoTimestamp,
     event: z.enum([
       "announcement", "preorder", "release", "restock", "reprint", "new_edition",
       "crowdfunding", "delay", "cancellation", "date_change", "price_change", "content_change",

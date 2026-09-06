@@ -2,7 +2,7 @@
 import { getCollection, render, type CollectionEntry } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import {
-  formatDuration, formatNewsDate, formatPlayers, formatPrice, formatProductContext,
+  formatDuration, formatPlayers, formatPrice, formatProductContext,
   gameTypeLabels, type NewsProduct,
 } from "../../lib/news";
 
@@ -22,7 +22,6 @@ function productFactRows(product: NewsProduct): FactRow[] {
   if (product.designers) rows.push({ label: "Diseño", value: product.designers.join(", ") });
   if (product.publisher_es) rows.push({ label: "Editorial", value: product.publisher_es });
   if (product.distributor_es) rows.push({ label: "Distribución", value: product.distributor_es });
-  if (product.release_date) rows.push({ label: "Lanzamiento", value: product.release_date });
   if (product.language) rows.push({ label: "Idioma", value: product.language });
   if (product.parent) rows.push({ label: "Juego base", value: product.parent });
   if (product.bgg_id) rows.push({ label: "BGG", value: String(product.bgg_id) });
@@ -32,7 +31,7 @@ function productFactRows(product: NewsProduct): FactRow[] {
 
 export async function getStaticPaths() {
   return (await getCollection("news")).map((news) => ({
-    params: { slug: news.data.slug }, props: { news },
+    params: { slug: news.id }, props: { news },
   }));
 }
 
@@ -52,11 +51,6 @@ const products = news.data.products.map((product, position) => ({ product, posit
     <div class="container news-detail">
       <a href="/noticias" class="back-link">← Volver a Noticias</a>
       <header class="news-detail__header">
-        {news.data.date && (
-          <div class="news-detail__meta">
-            <time datetime={news.data.date.toISOString()}>{formatNewsDate(news.data.date)}</time>
-          </div>
-        )}
         <h1>{news.data.title}</h1>
         <p class="news-detail__summary">{news.data.summary}</p>
       </header>
@@ -84,9 +78,8 @@ const products = news.data.products.map((product, position) => ({ product, posit
 .back-link { display: inline-block; margin-bottom: var(--space-8); color: var(--color-accent); font-size: var(--text-sm); font-weight: var(--fw-medium); }
 .back-link:hover { color: var(--color-accent-hover); }
 .news-detail__header { display: flex; max-width: 780px; flex-direction: column; gap: var(--space-4); }
-.news-detail__meta { display: flex; flex-wrap: wrap; gap: var(--space-1); color: var(--color-accent); font-size: var(--text-xs); font-weight: var(--fw-medium); letter-spacing: 0.04em; text-transform: uppercase; }
 .news-detail__summary { color: var(--color-text-secondary); font-size: var(--text-xl); line-height: 1.5; }
-.news-detail__image { width: 100%; max-height: 460px; margin-top: var(--space-8); border: 1px solid var(--color-border); border-radius: var(--radius-lg); object-fit: cover; }
+.news-detail__image { display: block; width: 100%; height: clamp(320px, 60vw, 560px); padding: var(--space-4); margin-top: var(--space-8); background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-lg); object-fit: contain; }
 .news-detail__product-context { margin-top: var(--space-6); color: var(--color-text-secondary); font-size: var(--text-sm); font-weight: var(--fw-medium); }
 .news-detail__body { margin-top: var(--space-8); }
 .news-products { display: grid; gap: var(--space-5); max-width: 780px; margin-top: var(--space-8); }

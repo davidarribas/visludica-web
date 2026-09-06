@@ -4,12 +4,6 @@ export const gameTypeLabels = {
   accessory: "Accesorio",
 };
 
-export function formatNewsDate(date) {
-  return new Intl.DateTimeFormat("es-ES", {
-    day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Madrid",
-  }).format(date);
-}
-
 export function formatPlayers(product) {
   if (product.players_min === undefined) return undefined;
   const max = product.players_max;

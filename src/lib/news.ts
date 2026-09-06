@@ -1,11 +1,11 @@
 import type { CollectionEntry } from "astro:content";
 import {
-  formatDuration, formatNewsDate, formatPlayers, formatPrice, formatProductContext,
+  formatDuration, formatPlayers, formatPrice, formatProductContext,
   gameTypeLabels,
 } from "./news-model.mjs";
 
 export {
-  formatDuration, formatNewsDate, formatPlayers, formatPrice, formatProductContext,
+  formatDuration, formatPlayers, formatPrice, formatProductContext,
   gameTypeLabels,
 };
 
@@ -16,17 +16,15 @@ export interface NewsCardViewModel {
   slug: string;
   title: string;
   summary: string;
-  date?: Date;
   productContext: string;
   image?: { src: string; alt: string };
 }
 
 export function toNewsCardViewModel(news: NewsEntry): NewsCardViewModel {
   return {
-    slug: news.data.slug,
+    slug: news.id,
     title: news.data.title,
     summary: news.data.summary,
-    date: news.data.date,
     productContext: formatProductContext(news.data.products),
     image: news.data.image,
   };

@@ -1,9 +1,9 @@
 ---
 schema: visludica-news-v1
 title: Dos expansiones de prueba llegan juntas
-slug: work-first-multiproducto
 summary: Una fixture verifica el contrato directo de Markdown y YAML sin News Core.
 date: 2026-09-06
+published_at: 2026-09-06T12:00:00+02:00
 event: release
 image:
   src: /images/news/work-first-multiproducto.svg
