@@ -161,7 +161,7 @@ test("the relational validator rejects V2 duplicates, broken relations, facts, a
   }
 });
 
-test("the built V1 list and detail preserve all eleven slugs and omit source markup", async () => {
+test("the built list preserves the eleven V1 slugs and permits later News", async () => {
   const newsDirectory = new URL("../dist/noticias/", import.meta.url);
   const entries = await readdir(newsDirectory, { withFileTypes: true });
   const detailDirectories = entries.filter((entry) => entry.isDirectory());
@@ -170,7 +170,21 @@ test("the built V1 list and detail preserve all eleven slugs and omit source mar
     readFile(new URL("anuncio-tokens-acrilicos-beast/index.html", newsDirectory), "utf8"),
   ]);
 
-  assert.equal(detailDirectories.length, 11);
+  const expectedV1Slugs = [
+    "anuncio-tokens-acrilicos-beast",
+    "anuncio-monedas-metalicas-beast",
+    "anuncio-miniaturas-beast",
+    "anuncio-beast-shattered-isles",
+    "anuncio-beast-the-great-hunt",
+    "reposicion-leviathan-wilds",
+    "preventa-quartermaster-general-1914",
+    "anuncio-revenge-of-the-seven-dwarfs",
+    "anuncio-primera-edicion-espanola-terrorscape",
+    "reposicion-thunder-road-vendetta-extra-ammo",
+    "preventa-zombie-princess",
+  ];
+  const builtSlugs = new Set(detailDirectories.map((entry) => entry.name));
+  for (const slug of expectedV1Slugs) assert.ok(builtSlugs.has(slug), `missing V1 slug ${slug}`);
   assert.match(indexHtml, /href="\/noticias\/anuncio-tokens-acrilicos-beast"/);
   assert.match(indexHtml, />Anuncio</);
   assert.match(detailHtml, />Tokens acrílicos de BEAST</);
