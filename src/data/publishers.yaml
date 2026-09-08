@@ -26,3 +26,7 @@
 - name: Juegorama
   slug: juegorama
   aliases: []
+
+- name: Asmodee
+  slug: asmodee
+  aliases: []
