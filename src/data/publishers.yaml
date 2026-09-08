@@ -22,3 +22,7 @@
 - name: Zygomatic
   slug: zygomatic
   aliases: []
+
+- name: Juegorama
+  slug: juegorama
+  aliases: []
