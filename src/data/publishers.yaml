@@ -10,3 +10,15 @@
 - name: Salt & Pepper Games
   slug: salt-and-pepper-games
   aliases: []
+
+- name: Space Cow
+  slug: space-cow
+  aliases: []
+
+- name: SD Games
+  slug: sd-games
+  aliases: []
+
+- name: Zygomatic
+  slug: zygomatic
+  aliases: []
