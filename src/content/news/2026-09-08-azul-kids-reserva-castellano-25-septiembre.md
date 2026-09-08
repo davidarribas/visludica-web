@@ -19,6 +19,7 @@ products:
     players_max: 4
     duration_min: 20
     age_min: 5
+    price_eur: 24.99
     release_date: 2026-09-25
     language: Castellano
 tags:
