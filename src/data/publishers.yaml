@@ -30,3 +30,19 @@
 - name: Asmodee
   slug: asmodee
   aliases: []
+
+- name: Maldito Games
+  slug: maldito-games
+  aliases: []
+
+- name: Mercurio
+  slug: mercurio
+  aliases: []
+
+- name: PIF Games
+  slug: pif-games
+  aliases: []
+
+- name: 2Tomatoes Games
+  slug: 2tomatoes-games
+  aliases: []
