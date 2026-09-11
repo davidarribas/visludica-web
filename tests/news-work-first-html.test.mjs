@@ -42,6 +42,10 @@ test("Markdown + YAML Work-first genera listado, detalle, imagen y ficha multipr
     assert.match(detail, />Juego base</);
     assert.match(
       detail,
+      /href="https:\/\/boardgamegeek\.com\/boardgame\/123456" target="_blank" rel="noopener noreferrer"[^>]*>123456<\/a>/,
+    );
+    assert.match(
+      detail,
       /Publicado el <time datetime="2026-09-06T10:00:00\.000Z"[^>]*>6 de septiembre de 2026<\/time>/,
     );
     assert.doesNotMatch(detail, /published_at|>Lanzamiento</);
