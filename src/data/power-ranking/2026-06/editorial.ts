@@ -1,6 +1,6 @@
 export const editorial = {
   'vis-ludica': {
-    name: 'Vis Lúdica',
+    name: 'Vis Ludica',
     eyebrow: 'La mesa de la comunidad',
     intro:
       '187 votantes, tres más que en mayo, 335 juegos distintos desplegados en la mesa y 1.100 puntos repartidos. El Power Ranking se afianza en unos 180 votantes.',

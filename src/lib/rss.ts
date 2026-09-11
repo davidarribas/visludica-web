@@ -81,7 +81,7 @@ async function fetchFeed() {
   const items: any[] = channel.item ?? [];
 
   const meta: FeedMeta = {
-    title: channel.title ?? 'Vis Lúdica',
+    title: channel.title ?? 'Vis Ludica',
     description: channel.description ?? '',
     imageUrl:
       channel['itunes:image']?.['@_href'] ??

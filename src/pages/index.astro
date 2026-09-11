@@ -15,7 +15,7 @@ const communityLink = (label: string) => COMMUNITY_LINKS.find((l) => l.label ===
 ---
 
 <BaseLayout
-  title="Vis Lúdica"
+  title={SITE.name}
   description={SITE.description}
 >
 
@@ -24,7 +24,7 @@ const communityLink = (label: string) => COMMUNITY_LINKS.find((l) => l.label ===
     <div class="container hero-inner">
       <div class="hero-text">
         <span class="label">Podcast de juegos de mesa</span>
-        <h1>Vis Lúdica</h1>
+        <h1>Vis Ludica</h1>
         <p class="hero-tagline">{SITE.tagline}</p>
         <p class="hero-note">Conversaciones sobre juegos modernos, estrategia y cultura de mesa.</p>
         <div class="hero-ctas">
@@ -34,7 +34,7 @@ const communityLink = (label: string) => COMMUNITY_LINKS.find((l) => l.label ===
       </div>
       {meta.imageUrl && (
         <div class="hero-image">
-          <img src={meta.imageUrl} alt="Vis Lúdica podcast" width="400" height="400" />
+          <img src={meta.imageUrl} alt="Vis Ludica podcast" width="400" height="400" />
         </div>
       )}
     </div>

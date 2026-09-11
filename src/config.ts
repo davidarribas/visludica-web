@@ -1,7 +1,7 @@
 // Configuración global del sitio.
 // Cambia aquí sin tocar componentes.
 export const SITE = {
-  name: 'Vis Lúdica',
+  name: 'Vis Ludica',
 
   // Propuesta de valor que aparece en el hero de la home.
   tagline: 'Un podcast dedicado a los juegos de mesa modernos',
@@ -77,7 +77,7 @@ export const COMMUNITY_LINKS = [
   },
 ] as const;
 
-// Sitios hermanos del proyecto Vis Lúdica.
+// Sitios hermanos del proyecto Vis Ludica.
 // Usado en: Footer, Header (menú "Más").
 export const SISTER_SITES = [
   { href: 'https://visbelica.com', label: 'Vis Bélica' },

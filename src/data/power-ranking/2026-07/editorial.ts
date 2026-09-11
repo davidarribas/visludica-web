@@ -1,6 +1,6 @@
 export const editorial = {
   'vis-ludica': {
-    name: 'Vis Lúdica',
+    name: 'Vis Ludica',
     eyebrow: 'La mesa de la comunidad',
     intro:
       '170 votantes, 330 juegos distintos y 1.014 puntos repartidos. Julio se deja 17 participantes respecto a junio, pero apenas cinco títulos: llega el verano y la mesa sigue teniendo fondo de armario.',
