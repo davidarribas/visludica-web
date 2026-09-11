@@ -46,3 +46,31 @@
 - name: 2Tomatoes Games
   slug: 2tomatoes-games
   aliases: []
+
+- name: Bumble3ee Interactive
+  slug: bumble3ee-interactive
+  aliases: []
+
+- name: DV Games
+  slug: dv-games
+  aliases: []
+
+- name: CMYK
+  slug: cmyk
+  aliases: []
+
+- name: Z-Man Games
+  slug: z-man-games
+  aliases: []
+
+- name: 3D Wiggles
+  slug: 3d-wiggles
+  aliases: []
+
+- name: Lookout Games
+  slug: lookout-games
+  aliases: []
+
+- name: Cephalofair Games
+  slug: cephalofair-games
+  aliases: []
