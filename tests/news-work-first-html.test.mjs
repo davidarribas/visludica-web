@@ -86,15 +86,21 @@ test("el archivo genera una página nueva por cada 20 noticias", async () => {
       maxBuffer: 20 * 1024 * 1024,
     });
 
-    const [firstPage, secondPage] = await Promise.all([
+    const [firstPage, secondPage, searchIndexRaw] = await Promise.all([
       readFile(join(output, "noticias/index.html"), "utf8"),
       readFile(join(output, "noticias/pagina/2/index.html"), "utf8"),
+      readFile(join(output, "noticias/indice.json"), "utf8"),
     ]);
+    const searchIndex = JSON.parse(searchIndexRaw);
 
     assert.equal((firstPage.match(/<article class="news-card/g) ?? []).length, 20);
     assert.match(firstPage, /href="\/noticias\/pagina\/2"/);
     assert.equal((secondPage.match(/<article class="news-card/g) ?? []).length, 1);
     assert.match(secondPage, /href="\/noticias"[^>]*rel="prev"/);
+    assert.equal(searchIndex.length, 21);
+    assert.ok(searchIndex.every((item) => item.href.startsWith("/noticias/")));
+    assert.ok(searchIndex.every((item) => item.searchText.includes("ada ejemplo")));
+    assert.ok(searchIndex.every((item) => item.searchText.includes("narracion editorial")));
   } finally {
     await rm(temporaryRoot, { recursive: true, force: true });
   }

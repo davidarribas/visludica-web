@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import ArchiveSearch from '../../components/ArchiveSearch.astro';
 import NewsCard from '../../components/NewsCard.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import {
@@ -19,19 +20,28 @@ const news = items.map(toNewsCardViewModel);
   description="Novedades sobre publicaciones de juegos de mesa en español."
 >
   <section class="section">
-    <div class="container">
+    <div class="container" data-archive-search-scope>
       <header class="news-header">
         <span class="label">Actualidad</span>
         <h1>Noticias</h1>
         <p>Una selección de novedades sobre publicaciones de juegos de mesa en español.</p>
       </header>
 
-      <div class="news-list">
+      <ArchiveSearch
+        id="news-search-input"
+        endpoint="/noticias/indice.json"
+        label="Buscar noticia"
+        placeholder="Buscar noticia…"
+        emptyResultName="noticias"
+        errorMessage="No se ha podido cargar el buscador de noticias."
+      />
+
+      <div class="news-list" data-archive-search-static>
         {news.map((item) => <NewsCard news={item} />)}
       </div>
 
       {totalPages > 1 && (
-        <nav class="pagination" aria-label="Paginación de noticias">
+        <nav class="pagination" data-archive-search-static aria-label="Paginación de noticias">
           <span class="pagination__current">Página 1 de {totalPages}</span>
           <a href="/noticias/pagina/2" class="btn btn-outline" rel="next">
             Siguientes noticias →

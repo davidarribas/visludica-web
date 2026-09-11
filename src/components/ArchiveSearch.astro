@@ -1,0 +1,303 @@
+---
+interface Props {
+  id: string;
+  endpoint: string;
+  label: string;
+  placeholder: string;
+  emptyResultName: string;
+  errorMessage: string;
+}
+
+const {
+  id,
+  endpoint,
+  label,
+  placeholder,
+  emptyResultName,
+  errorMessage,
+} = Astro.props;
+---
+
+<div
+  class="archive-search"
+  data-archive-search
+  data-index-url={endpoint}
+  data-empty-result-name={emptyResultName}
+  data-error-message={errorMessage}
+>
+  <label for={id} class="sr-only">{label}</label>
+  <input
+    type="search"
+    id={id}
+    placeholder={placeholder}
+    autocomplete="off"
+    data-archive-search-input
+  />
+  <p
+    class="archive-search__status"
+    data-archive-search-status
+    aria-live="polite"
+    hidden
+  ></p>
+  <div class="archive-search__results" data-archive-search-results hidden></div>
+</div>
+
+<script>
+  import { matchesSearch } from '../lib/archive-search.mjs';
+
+  interface ArchiveSearchItem {
+    title: string;
+    href: string;
+    date: string;
+    description: string;
+    meta?: string;
+    searchText: string;
+  }
+
+  const dateFormatter = new Intl.DateTimeFormat('es-ES', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'Europe/Madrid',
+  });
+
+  document.querySelectorAll<HTMLElement>('[data-archive-search]').forEach((root) => {
+    if (root.dataset.archiveSearchReady === 'true') return;
+    root.dataset.archiveSearchReady = 'true';
+
+    const input = root.querySelector<HTMLInputElement>('[data-archive-search-input]');
+    const status = root.querySelector<HTMLElement>('[data-archive-search-status]');
+    const results = root.querySelector<HTMLElement>('[data-archive-search-results]');
+    const scope = root.closest<HTMLElement>('[data-archive-search-scope]');
+    const staticElements = scope?.querySelectorAll<HTMLElement>('[data-archive-search-static]') ?? [];
+    const endpoint = root.dataset.indexUrl;
+    const emptyResultName = root.dataset.emptyResultName ?? 'resultados';
+    const errorMessage = root.dataset.errorMessage ?? 'No se ha podido cargar el buscador.';
+
+    if (!input || !status || !results || !endpoint) return;
+
+    let items: ArchiveSearchItem[] | null = null;
+    let loading: Promise<void> | null = null;
+    let loadFailed = false;
+
+    function showStaticContent() {
+      staticElements.forEach((element) => { element.hidden = false; });
+    }
+
+    function hideStaticContent() {
+      staticElements.forEach((element) => { element.hidden = true; });
+    }
+
+    function restoreArchive() {
+      results.hidden = true;
+      results.replaceChildren();
+      status.hidden = true;
+      status.textContent = '';
+      showStaticContent();
+    }
+
+    function createMeta(item: ArchiveSearchItem) {
+      const meta = document.createElement('div');
+      meta.className = 'archive-result__meta';
+
+      const date = new Date(item.date);
+      if (!Number.isNaN(date.getTime())) {
+        const time = document.createElement('time');
+        time.dateTime = item.date;
+        time.textContent = dateFormatter.format(date);
+        meta.append(time);
+      }
+
+      if (item.meta) {
+        if (meta.childElementCount > 0) {
+          const separator = document.createElement('span');
+          separator.setAttribute('aria-hidden', 'true');
+          separator.textContent = '·';
+          meta.append(separator);
+        }
+
+        const context = document.createElement('span');
+        context.textContent = item.meta;
+        meta.append(context);
+      }
+
+      return meta;
+    }
+
+    function renderResults(matches: ArchiveSearchItem[]) {
+      const fragment = document.createDocumentFragment();
+
+      matches.slice(0, 50).forEach((item) => {
+        const link = document.createElement('a');
+        link.href = item.href;
+        link.className = 'archive-result';
+
+        const meta = createMeta(item);
+        if (meta.childElementCount > 0) link.append(meta);
+
+        const title = document.createElement('h3');
+        title.className = 'archive-result__title';
+        title.textContent = item.title;
+        link.append(title);
+
+        if (item.description) {
+          const description = document.createElement('p');
+          description.className = 'archive-result__description';
+          description.textContent = item.description;
+          link.append(description);
+        }
+
+        fragment.append(link);
+      });
+
+      results.replaceChildren(fragment);
+    }
+
+    function runSearch() {
+      const rawQuery = input.value.trim();
+
+      if (rawQuery.length < 2) {
+        restoreArchive();
+        return;
+      }
+
+      if (loadFailed) {
+        results.hidden = true;
+        status.hidden = false;
+        status.textContent = errorMessage;
+        showStaticContent();
+        return;
+      }
+
+      if (!items) {
+        status.hidden = false;
+        status.textContent = 'Cargando búsqueda…';
+        return;
+      }
+
+      const matches = items.filter((item) => matchesSearch(item.searchText, rawQuery));
+      hideStaticContent();
+      results.hidden = false;
+      status.hidden = false;
+      renderResults(matches);
+
+      if (matches.length === 0) {
+        status.textContent = `No hay ${emptyResultName} que coincidan con «${rawQuery}».`;
+      } else if (matches.length > 50) {
+        status.textContent = `${matches.length} resultados. Se muestran los primeros 50.`;
+      } else {
+        status.textContent = `${matches.length} resultado${matches.length === 1 ? '' : 's'}`;
+      }
+    }
+
+    function ensureLoaded() {
+      if (items || loading || loadFailed) return loading;
+
+      loading = fetch(endpoint)
+        .then((response) => {
+          if (!response.ok) throw new Error(`Search index failed: ${response.status}`);
+          return response.json();
+        })
+        .then((data: unknown) => {
+          if (!Array.isArray(data)) throw new Error('Search index is not an array');
+          items = data as ArchiveSearchItem[];
+        })
+        .catch(() => {
+          loadFailed = true;
+        })
+        .finally(() => {
+          loading = null;
+          runSearch();
+        });
+
+      return loading;
+    }
+
+    input.addEventListener('focus', ensureLoaded, { once: true });
+    input.addEventListener('input', () => {
+      ensureLoaded();
+      runSearch();
+    });
+  });
+</script>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .archive-search {
+    margin-bottom: var(--space-6);
+  }
+  .archive-search input {
+    width: min(420px, 100%);
+    min-height: 44px;
+    padding: 0 var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-strong);
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+  }
+  .archive-search input:focus {
+    border-color: var(--color-accent);
+    outline: 2px solid color-mix(in srgb, var(--color-accent) 20%, transparent);
+  }
+  .archive-search__status {
+    margin-top: var(--space-3);
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+  }
+  .archive-search__results {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    margin-bottom: var(--space-10);
+  }
+  .archive-search__results[hidden],
+  :global([data-archive-search-static][hidden]) {
+    display: none !important;
+  }
+
+  :global(.archive-result) {
+    display: block;
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    transition: box-shadow var(--transition), border-color var(--transition);
+  }
+  :global(.archive-result:hover) {
+    color: inherit;
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-border-strong);
+  }
+  :global(.archive-result__meta) {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+    color: var(--color-text-secondary);
+    font-size: var(--text-xs);
+  }
+  :global(.archive-result__title) {
+    margin-top: var(--space-1);
+    color: var(--color-text);
+    font-size: var(--text-base);
+    font-weight: var(--fw-bold);
+    line-height: 1.3;
+  }
+  :global(.archive-result__description) {
+    margin-top: var(--space-2);
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    line-height: 1.5;
+  }
+</style>
