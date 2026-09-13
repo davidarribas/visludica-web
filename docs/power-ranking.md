@@ -111,6 +111,7 @@ El script valida los datos antes de escribir nada
 |---|---|---|
 | `No se encontró una hoja que coincida con /…/` | El nombre de una hoja del Excel no casa con el patrón esperado | Renombrar la hoja siguiendo [Qué exigen los Excel](#qué-exigen-los-excel) |
 | `No se encontró la cabecera Pos, Juego, … en <hoja>` | Falta una columna obligatoria, o la fila de cabecera está por debajo de la fila 15 | Revisar los títulos de columna y subir la cabecera |
+| `No se encontró la cabecera Palmarés o Acumulado en <hoja>` | El histórico no contiene la columna anual | Añadir `Acumulado <año>`; los libros antiguos con `PALMARÉS` siguen siendo compatibles |
 | `Posiciones no consecutivas en <proyecto> / <vista>` | La columna `Pos` tiene huecos, repeticiones o filas intercaladas | Recalcular las posiciones en el Excel (1, 2, 3… sin saltos) |
 | `No hay resultados para <proyecto>` | La hoja existe pero no ha salido ninguna fila válida | Comprobar que hay datos bajo la cabecera y que `Pos` es numérico |
 | `Los puntos de <proyecto> no cuadran: X frente a Y` | La suma de la columna `Pts` no coincide con el «Puntos totales» de la cabecera de la hoja mensual | Corregir el bloque de estadísticas o revisar filas perdidas |
@@ -149,18 +150,17 @@ del propio texto de la celda.
 |---|---|---|
 | Mensual | `Pos`, `Juego` | `Pts`, `Norm.` (o `Norm`), `Nº1`, `Nº2`, `Nº3`, `Votos`, `Var.` |
 | Power | `Pos`, `Juego`, `Score` | — |
-| Histórico | `Juego`, `POWER`, `PALMARÉS` | `Ene`, `Feb`, `Mar`, `Abr`, `May`, `Jun`, `Jul`, `Ago`, `Sep`, `Oct`, `Nov`, `Dic` |
+| Histórico | `Juego`, `POWER`, `Acumulado <año>` (o `PALMARÉS` en libros antiguos) | `Ene`, `Feb`, `Mar`, `Abr`, `May`, `Jun`, `Jul`, `Ago`, `Sep`, `Oct`, `Nov`, `Dic`, `Meses` |
 
 La columna `Var.` admite `NEW`, `=`, `+3`, `-7` y similares. Un `=` o un `0` se guardan
 como `0`; `NEW` se guarda como la cadena `"NEW"`.
 
 ### Filas especiales
 
-- **Histórico** — las filas cuyo nombre de juego sea `Votantes` o `Votos de guerra` no se
+- **Histórico** — las filas cuyo nombre de juego sea `Votantes`, `Votos de guerra` o `Votantes con wargame` no se
   tratan como juegos: alimentan `voterHistory`, la evolución de participación mes a mes (y
-  las barras que se ven en Vis Bélica). Cualquiera de las dos etiquetas vale en cualquiera
-  de los dos libros; por convención se usa `Votantes` en Vis Lúdica y `Votos de guerra` en
-  Vis Bélica.
+  las barras que se ven en Vis Bélica). Las tres etiquetas son compatibles; por convención
+  se usa `Votantes` en Vis Lúdica y `Votantes con wargame` en Vis Bélica.
 - **Hoja mensual de Vis Lúdica** — en las **5 primeras filas** debe haber un bloque de
   pares etiqueta/valor con `Votantes`, `Juegos distintos` y `Puntos totales`. De ahí salen
   las tres tarjetas de estadísticas de la web. En Vis Bélica no hace falta: se calculan
@@ -230,7 +230,7 @@ lo recalcula. `movement` se deriva comparando con la hoja Power del mes anterior
 Es el único ranking que conserva su propio `title`; los otros dos resuelven el nombre contra
 `games[id].title`.
 
-### `rankings.annual` (Palmarés)
+### `rankings.annual` (Acumulado anual)
 
 ```jsonc
 { "id": "the-elder-scrolls-…", "rank": 1, "score": 1.053, "movement": 0, "months": 5 }
@@ -274,12 +274,12 @@ En el repo esta fórmula solo se usa como *fallback* (cuando falta la hoja Power
 anterior): el valor publicado viene de la columna `Score` del Excel, que la calcula el
 skill. La página la muestra en el desplegable «Cómo se calcula».
 
-**Palmarés** — suma de los valores normalizados de todos los meses del año, sin
-decaimiento. Este sí se calcula aquí, a partir del histórico.
+**Acumulado anual** — usa el valor publicado en la columna `Acumulado <año>` del histórico
+(o `PALMARÉS` en libros antiguos), sin decaimiento. En 2026 empieza en febrero.
 
-**Presentación** — la web multiplica el índice por 100 y lo muestra con un decimal
+**Presentación** — la web multiplica solo el índice POWER por 100 y lo muestra con un decimal
 ([`formatIndex`](../src/lib/power-ranking.ts)). Un `score` de `0,1855` en los datos se lee
-`18,6` en la tabla.
+`18,6` en esa tabla. El Acumulado conserva su escala y muestra tres o cuatro decimales.
 
 ---
 
@@ -298,7 +298,7 @@ El archivo exporta `editorial` con una clave por proyecto (`'vis-ludica'` y
 | `methodology` | sí | Texto del desplegable «Cómo se calcula» |
 | `power` | sí | Vista Power Ranking |
 | `monthly` | sí | Vista Ranking mensual |
-| `annual` | sí | Vista Palmarés |
+| `annual` | sí | Vista Acumulado anual |
 | `quotes` | sí (puede ir `[]`) | Bloque «La grada», **solo en la vista mensual** |
 | `chronicle` | no | Pestaña Análisis |
 | `voterGrowth` | no | Barras de evolución, **solo se renderiza en Vis Bélica** |
@@ -410,7 +410,7 @@ Ejemplo: `/power-ranking/2026/07/?proyecto=vis-belica&vista=analysis`.
 ### Podio y tiras de meses
 
 - El podio son las tres primeras filas de la vista activa.
-- En Power y Palmarés, cada tarjeta lleva una tira con los **cuatro últimos meses**
+- En Power y Acumulado, cada tarjeta lleva una tira con los **cuatro últimos meses**
   incluido el actual ([`monthsForGame`](../src/lib/power-ranking.ts)); en la vista mensual
   se sustituye por el desglose `1º–2º–3º · votantes`.
 - En la tabla, el **top 10** de las vistas no mensuales lleva una sparkline SVG generada en

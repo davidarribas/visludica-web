@@ -1,3 +1,5 @@
+import august2026 from '../data/power-ranking/2026-08/data.json';
+import { editorial as augustEditorial } from '../data/power-ranking/2026-08/editorial';
 import july2026 from '../data/power-ranking/2026-07/data.json';
 import { editorial as julyEditorial } from '../data/power-ranking/2026-07/editorial';
 import june2026 from '../data/power-ranking/2026-06/data.json';
@@ -7,6 +9,14 @@ export type ProjectId = 'vis-ludica' | 'vis-belica';
 export type RankingView = 'power' | 'monthly' | 'analysis' | 'annual';
 
 export const editions = [
+  {
+    ...august2026,
+    editorial: augustEditorial,
+    downloads: {
+      'vis-ludica': '/downloads/power-ranking/power_ranking_agosto_2026_revisado.xlsx',
+      'vis-belica': '/downloads/power-ranking/power_ranking_vis_belica_agosto_2026_revisado.xlsx',
+    },
+  },
   {
     ...july2026,
     editorial: julyEditorial,
@@ -32,6 +42,13 @@ export function formatIndex(value: number) {
     minimumFractionDigits: 1,
     maximumFractionDigits: 1,
   }).format(value * 100);
+}
+
+export function formatAnnual(value: number) {
+  return new Intl.NumberFormat('es-ES', {
+    minimumFractionDigits: 3,
+    maximumFractionDigits: 4,
+  }).format(value);
 }
 
 export function formatMovement(value: number | string | null) {
@@ -96,7 +113,7 @@ export function presentRow(
     return {
       rank: row.rank,
       title,
-      score: formatIndex(row.score),
+      score: formatAnnual(row.score),
       months: String(row.months),
       movement,
     };

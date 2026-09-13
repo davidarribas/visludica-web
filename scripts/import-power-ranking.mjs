@@ -16,10 +16,16 @@ function asArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 
+function decodeCharacterReferences(value) {
+  return value
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
+    .replace(/&#x([\da-f]+);/gi, (_, code) => String.fromCodePoint(Number.parseInt(code, 16)));
+}
+
 function textValue(node) {
   if (node == null) return '';
-  if (typeof node === 'string' || typeof node === 'number') return String(node);
-  if (node['#text'] != null) return String(node['#text']);
+  if (typeof node === 'string' || typeof node === 'number') return decodeCharacterReferences(String(node));
+  if (node['#text'] != null) return decodeCharacterReferences(String(node['#text']));
   if (node.t != null) return textValue(node.t);
   if (node.r != null) return asArray(node.r).map((part) => textValue(part.t)).join('');
   return '';
@@ -194,7 +200,14 @@ function parsePower(sheet) {
 }
 
 function parseHistory(sheet) {
-  const { rowIndex, headers } = findHeader(sheet, ['Juego', 'POWER', 'PALMARÉS']);
+  const { rowIndex, headers } = findHeader(sheet, ['Juego', 'POWER']);
+  const annualColumn = [...headers.entries()].find(([header]) =>
+    header === 'palmarés' || /^acumulado(?:\s+\d{4})?$/.test(header)
+  )?.[1];
+  if (annualColumn == null) {
+    throw new Error(`No se encontró la cabecera Palmarés o Acumulado en ${sheet.name}`);
+  }
+  const monthsColumn = headers.get('meses');
   const monthColumns = monthLabels.map((label) => headers.get(label.toLocaleLowerCase('es')));
   const games = {};
   let voterHistory = [];
@@ -204,7 +217,7 @@ function parseHistory(sheet) {
     if (!rawTitle) continue;
     const title = String(rawTitle).trim();
     const history = monthColumns.map((column) => compact(number(column == null ? null : row[column])));
-    if (['votantes', 'votos de guerra'].includes(normalizeTitle(title))) {
+    if (['votantes', 'votos de guerra', 'votantes con wargame'].includes(normalizeTitle(title))) {
       voterHistory = history
         .map((value, index) => ({ month: index + 1, label: monthLabels[index], value: integer(value) }))
         .filter((item) => item.value != null);
@@ -217,7 +230,13 @@ function parseHistory(sheet) {
         return value == null && next == null ? null : compact(Math.max(value ?? 0, next ?? 0));
       });
     } else {
-      games[id] = { id, title, history };
+      games[id] = {
+        id,
+        title,
+        history,
+        annualScore: compact(number(row[annualColumn])),
+        months: integer(monthsColumn == null ? null : row[monthsColumn]),
+      };
     }
   }
   return { games, voterHistory };
@@ -236,7 +255,7 @@ function rankedScores(games, month, mode) {
   for (const [id, game] of Object.entries(games)) {
     const score = mode === 'power'
       ? powerScore(game.history, month)
-      : game.history.slice(0, month).reduce((sum, value) => sum + (value ?? 0), 0);
+      : game.annualScore ?? game.history.slice(0, month).reduce((sum, value) => sum + (value ?? 0), 0);
     const previousScore = mode === 'power'
       ? (month > 1 ? powerScore(game.history, month - 1) : 0)
       : game.history.slice(0, Math.max(0, month - 1)).reduce((sum, value) => sum + (value ?? 0), 0);
@@ -251,7 +270,9 @@ function rankedScores(games, month, mode) {
     const rank = index + 1;
     const previousRank = previousRanks.get(id);
     const item = { id, rank, score: compact(score), movement: previousRank == null ? 'NEW' : previousRank - rank };
-    if (mode === 'annual') item.months = games[id].history.slice(0, month).filter((value) => value != null).length;
+    if (mode === 'annual') {
+      item.months = games[id].months ?? games[id].history.slice(0, month).filter((value) => value != null).length;
+    }
     return item;
   });
 }
@@ -319,12 +340,18 @@ function projectPayload(workbook, projectId, month) {
         totalPoints: monthly.reduce((sum, item) => sum + item.points, 0),
       };
 
+  const annual = rankedScores(games, month, 'annual');
+  for (const game of Object.values(games)) {
+    delete game.annualScore;
+    delete game.months;
+  }
+
   return {
     id: projectId,
     stats,
     voterHistory,
     games,
-    rankings: { power, monthly, annual: rankedScores(games, month, 'annual') },
+    rankings: { power, monthly, annual },
   };
 }
 
