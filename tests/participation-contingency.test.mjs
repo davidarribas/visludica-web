@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 import { test } from 'node:test';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -71,6 +71,41 @@ test('la presentación separa formulario nativo, CTA Forms, cierre y contador we
   assert.match(card, /papeletas recibidas en la web/);
   assert.match(builtVote, /data-ballot-form/);
   assert.match(builtVote, /Privacidad de esta participación/);
+});
+
+test('el formulario nativo mantiene visibles y ordenados sus campos, y deja los avisos tras el CTA', async () => {
+  const page = await readFile(join(root, 'src/pages/power-ranking/votar.astro'), 'utf8');
+  const formStart = page.indexOf('<form data-ballot-form');
+  const formEnd = page.indexOf('</form>', formStart);
+  assert.ok(formStart >= 0 && formEnd > formStart, 'el formulario nativo debe existir completo');
+
+  const form = page.slice(formStart, formEnd);
+  const orderedFields = ['data-nickname', 'data-positions', 'data-comment', 'data-save'];
+  let previousIndex = -1;
+  for (const field of orderedFields) {
+    const index = form.indexOf(field);
+    assert.ok(index > previousIndex, `${field} debe aparecer después del campo anterior`);
+    previousIndex = index;
+  }
+  assert.doesNotMatch(form, /<\/?(?:details|summary)\b/);
+
+  const statusIndex = page.indexOf('data-status', formEnd);
+  assert.ok(statusIndex > formEnd, 'los avisos deben permanecer fuera y después del formulario/CTA');
+});
+
+test('el CSS compilado aplica layout y separación a los nodos creados dinámicamente', async () => {
+  const assets = await readdir(join(root, 'dist/_astro'));
+  const voteStylesheet = assets.find((asset) => /^votar\.[\w-]+\.css$/.test(asset));
+  assert.ok(voteStylesheet, 'el build debe incluir la hoja de estilos de votar');
+  const css = await readFile(join(root, 'dist/_astro', voteStylesheet), 'utf8');
+
+  assert.match(css, /\.ballot-position\{display:grid/);
+  assert.match(css, /\.position-heading\{display:flex;gap:/);
+  assert.match(css, /\.position-actions\{grid-column:2;display:flex;flex-wrap:wrap;gap:/);
+  assert.match(css, /\.position-edit-actions\{display:flex;flex-wrap:wrap;gap:/);
+  for (const dynamicClass of ['ballot-position', 'position-heading', 'position-actions', 'position-edit-actions', 'game-search']) {
+    assert.doesNotMatch(css, new RegExp(`\\.${dynamicClass}\\[data-astro-cid-`));
+  }
 });
 
 test('el runbook documenta Static Assets, ausencia de Route de producción y retención pendiente', async () => {
