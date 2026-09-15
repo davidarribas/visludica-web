@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { participationConfig } from '../../data/power-ranking/participation.mjs';
 ---
 
 <BaseLayout
   title="Participa en el Power Ranking"
   description="Elige los juegos que más han llegado a tu mesa para el próximo Power Ranking de Vis Ludica."
 >
+  {participationConfig.mode === 'native' && (
   <div class="participation" data-participation-app>
     <section class="participation-hero">
       <div class="container">
@@ -78,6 +80,33 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       </form>
     </section>
   </div>
+  )}
+
+  {participationConfig.mode === 'forms' && (
+    <section class="container participation-main participation-alternative" aria-labelledby="participation-forms-title">
+      <span class="label">Power Ranking · participación</span>
+      <h1 id="participation-forms-title">La participación continúa mediante formulario</h1>
+      <p>La participación directa en la web está temporalmente desactivada. Puedes participar mediante el formulario de respaldo.</p>
+      <a class="btn btn-primary" href={participationConfig.formsUrl} target="_blank" rel="noreferrer">Participar con Google Forms</a>
+      <p class="participation-alternative__note">El contador de papeletas de la web no se muestra mientras esta contingencia esté activa.</p>
+    </section>
+  )}
+
+  {participationConfig.mode === 'closed' && (
+    <section class="container participation-main participation-alternative" aria-labelledby="participation-closed-title">
+      <span class="label">Power Ranking · participación</span>
+      <h1 id="participation-closed-title">La votación no está abierta en este momento</h1>
+      <p>Los resultados de las últimas ediciones siguen disponibles en el Power Ranking.</p>
+      <a class="btn btn-outline" href="/power-ranking/">Ver últimos resultados</a>
+    </section>
+  )}
+
+  <section class="container participation-privacy" aria-labelledby="participation-privacy-title">
+    <h2 id="participation-privacy-title">Privacidad de esta participación</h2>
+    <p>No necesitas crear una cuenta. La participación nativa usa una sesión técnica del navegador para recuperar o modificar tu papeleta mientras siga siendo válida.</p>
+    <p>El nombre o apodo y el comentario son opcionales. La papeleta se conserva para calcular y auditar el Power Ranking; los comentarios pueden usarse internamente en el flujo editorial y no se publican automáticamente.</p>
+    <p>Si borras las cookies o cambias de navegador quizá no puedas recuperar la misma sesión. Una sesión técnica no identifica de forma garantizada a una persona única. Cloudflare soporta la infraestructura de recepción.</p>
+  </section>
 </BaseLayout>
 
 <script>
@@ -107,7 +136,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 
     const state = {
       phase: 'LOADING_CAMPAIGN', campaign: null, selections: {}, ballot: null,
-      hasSession: false, csrfToken: null, sessionLost: false, submission: null, retryAt: null,
+      hasSession: false, csrfToken: null, sessionLost: false, writesPaused: false, submission: null, retryAt: null,
       search: { position: null, results: [], activeIndex: -1, timer: null }, referral: new URLSearchParams(location.search).get('src'),
     };
 
@@ -115,7 +144,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
     const showPanel = (name) => Object.entries(statePanels).forEach(([key, panel]) => { panel.hidden = key !== name; });
     const setStatus = (message = '', kind = '') => { status.className = `participation-status ${kind}`; setText(status, message); };
     const isOpen = () => state.campaign?.status === 'open' && !state.sessionLost;
-    const isWritable = () => isOpen() && (!state.retryAt || Date.now() >= state.retryAt);
+    const isWritable = () => isOpen() && !state.writesPaused && (!state.retryAt || Date.now() >= state.retryAt);
     const clearSearch = () => { clearTimeout(state.search.timer); state.search = { position: null, results: [], activeIndex: -1, timer: null }; };
 
     function formatDate(value) {
@@ -301,6 +330,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         else if (error.code === 'VERSION_CONFLICT') { setStatus('Esta papeleta ha cambiado desde que abriste la página.', 'is-error'); const reload = document.createElement('button'); reload.type = 'button'; reload.className = 'btn btn-outline'; reload.textContent = 'Recargar mi papeleta'; reload.addEventListener('click', loadInitialBallot); status.append(' ', reload); }
         else if (error.code === 'CATALOG_CHANGED') { setStatus('El catálogo ha cambiado. Hemos conservado tu selección y la revisaremos antes de enviarla.', 'is-warning'); await refreshCampaignAndValidate(); }
         else if (error.code === 'CAMPAIGN_CLOSED' || error.code === 'NO_ACTIVE_CAMPAIGN') { state.campaign.status = 'closed'; setStatus('La campaña ya está cerrada. Conservamos visualmente tu papeleta, pero ya no se puede enviar.', 'is-error'); renderOpenState(); }
+        else if (error.code === 'WRITES_DISABLED') { state.writesPaused = true; setStatus('La participación nativa está temporalmente pausada. Conservamos los datos que has escrito, pero no se han enviado.', 'is-warning'); renderOpenState(); }
         else if (error.code === 'SESSION_REQUIRED') { state.csrfToken = null; state.sessionLost = true; setStatus('La sesión de este navegador ya no está disponible.', 'is-error'); renderNewParticipationAction(); renderOpenState(); }
         else if (error.code === 'CSRF_FAILED') { state.csrfToken = null; setStatus('No hemos podido verificar esta sesión. Conservamos tus datos; vuelve a guardar para crear un token nuevo.', 'is-error'); }
         else if (error.code === 'RATE_LIMITED') {
@@ -409,5 +439,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   .participation-actions { display: flex; gap: var(--space-5); align-items: center; margin-top: var(--space-8); }
   .participation-actions .btn:disabled { cursor: not-allowed; opacity: .6; transform: none; }
   .participation-actions p { max-width: 460px; color: var(--color-text-secondary); font-size: var(--text-sm); }
+  .participation-alternative { max-width: 720px; padding-bottom: var(--space-16); }
+  .participation-alternative h1, .participation-privacy h2 { margin-top: var(--space-2); }
+  .participation-alternative p, .participation-privacy p { max-width: 680px; margin-top: var(--space-4); color: var(--color-text-secondary); }
+  .participation-alternative .btn { display: inline-flex; margin-top: var(--space-6); }
+  .participation-alternative__note { font-size: var(--text-sm); }
+  .participation-privacy { max-width: 920px; margin-top: var(--space-12); padding: var(--space-6); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface-raised); }
   @media (max-width: 640px) { .participation-hero { padding-block: var(--space-12); } .participation-heading, .participation-actions { align-items: stretch; flex-direction: column; gap: var(--space-4); } .participation-deck { max-width: none; } .participation-actions .btn { justify-content: center; width: 100%; } .participation-status .btn { display: block; width: 100%; margin: var(--space-3) 0 0; } }
 </style>

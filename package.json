@@ -9,6 +9,7 @@
     "dev": "astro dev",
     "content:validate": "astro sync && node scripts/validate-news-content.mjs",
     "build": "npm run content:validate && astro build",
+    "build:staging": "npm run build && node scripts/prepare-staging-dist.mjs",
     "test": "npm run build && node --test tests/*.test.mjs",
     "preview": "astro preview",
     "astro": "astro",

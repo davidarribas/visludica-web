@@ -1,7 +1,26 @@
 ---
 // El componente se hidrata en el navegador: el sitio conserva output: static.
+import { participationConfig } from '../data/power-ranking/participation.mjs';
 ---
 
+{participationConfig.mode === 'forms' ? (
+<section class="participation-card" aria-labelledby="participation-card-title">
+  <div class="participation-card__copy">
+    <span class="label">Participación actual</span>
+    <h2 id="participation-card-title">Power Ranking</h2>
+    <p>La participación directa en la web está temporalmente desactivada. Puedes participar mediante el formulario de respaldo.</p>
+  </div>
+  <a class="btn btn-primary participation-card__cta" href={participationConfig.formsUrl} target="_blank" rel="noreferrer">Participar con Google Forms</a>
+</section>
+) : participationConfig.mode === 'closed' ? (
+<section class="participation-card" aria-labelledby="participation-card-title">
+  <div class="participation-card__copy">
+    <span class="label">Participación actual</span>
+    <h2 id="participation-card-title">Power Ranking</h2>
+    <p>La votación no está abierta en este momento.</p>
+  </div>
+</section>
+) : participationConfig.mode === 'native' ? (
 <section class="participation-card" data-power-ranking-participation aria-labelledby="participation-card-title">
   <div class="participation-card__copy">
     <span class="label">Participación actual</span>
@@ -11,6 +30,7 @@
   </div>
   <a class="btn btn-primary participation-card__cta" data-participation-cta href="/power-ranking/votar/">Consulta la votación</a>
 </section>
+) : null}
 
 <script>
   import { ParticipationApiError, ParticipationClient, participationUrl } from '../lib/power-ranking/participation-client.mjs';

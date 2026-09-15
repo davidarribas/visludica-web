@@ -21,8 +21,8 @@ sesión futura sin releer aquella conversación.
 2. El agente **no commitea**: verifica con `npm run build` e informa. La revisión del diff,
    la prueba en navegador (localhost:4321, `npm run dev`) y el commit los hace la sesión
    principal.
-3. **Publicación caso a caso.** Hasta ahora, siempre commit directo a `main` (Cloudflare
-   Pages despliega solo). Los commits van en español, estilo imperativo, con cuerpo
+3. **Publicación caso a caso.** El sitio se sirve con Workers Static Assets y su despliegue
+   es manual; un commit a `main` no publica por sí mismo. Los commits van en español, estilo imperativo, con cuerpo
    explicativo.
 4. `docs/power-ranking.md` es la **fuente de verdad** del pipeline del ranking: cualquier
    cambio de comportamiento debe reflejarse ahí en el mismo commit.

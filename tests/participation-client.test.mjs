@@ -120,8 +120,8 @@ test("una operación conserva su clave en retry y las claves nuevas son distinta
   assert.match(first, /^[A-Za-z0-9._~-]{1,128}$/);
 });
 
-test("los errores semánticos conservan su código, incluido conflicto, catálogo, cierre y límite", async () => {
-  for (const [code, status] of [["NO_ACTIVE_CAMPAIGN", 404], ["VERSION_CONFLICT", 409], ["CATALOG_CHANGED", 409], ["CAMPAIGN_CLOSED", 409], ["SESSION_REQUIRED", 401], ["RATE_LIMITED", 429], ["SERVICE_UNAVAILABLE", 503]]) {
+test("los errores semánticos conservan su código, incluido conflicto, catálogo, cierre, pausa y límite", async () => {
+  for (const [code, status] of [["NO_ACTIVE_CAMPAIGN", 404], ["VERSION_CONFLICT", 409], ["CATALOG_CHANGED", 409], ["CAMPAIGN_CLOSED", 409], ["SESSION_REQUIRED", 401], ["RATE_LIMITED", 429], ["WRITES_DISABLED", 503], ["SERVICE_UNAVAILABLE", 503]]) {
     const client = new ParticipationClient({ fetchImpl: async () => response({ error: { code, message: code } }, status, code === "RATE_LIMITED" ? { "Retry-After": "12" } : {}) });
     await assert.rejects(client.getCampaign(), (error) => error.code === code && (code !== "RATE_LIMITED" || error.retryAfter === 12));
   }

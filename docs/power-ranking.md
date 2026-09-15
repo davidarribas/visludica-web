@@ -11,6 +11,7 @@ tener que releer el código.
 - [Campos de `editorial.ts`](#campos-de-editorialts)
 - [La web publicada](#la-web-publicada)
 - [Participación actual](#participación-actual)
+- [Hosting y despliegue web](#hosting-y-despliegue-web)
 - [Trampas conocidas](#trampas-conocidas)
 
 ---
@@ -98,7 +99,8 @@ npm run build
 ```
 
 Debe aparecer la ruta nueva (`/power-ranking/2026/08/`) y `/power-ranking/` debe mostrar ya
-la edición nueva. Después, commit y push: Cloudflare Pages despliega solo.
+la edición nueva. El despliegue de la web es manual; véase
+[Hosting y despliegue web](#hosting-y-despliegue-web).
 
 ## Ruta legacy de Excel
 
@@ -434,6 +436,97 @@ papeletas, y no muestra clasificaciones provisionales.
 La página de voto vuelve a consultar `summary` después de una confirmación real de creación
 o edición. No calcula incrementos en el navegador. La ruta remota de esta API todavía no
 está desplegada; hasta entonces los fallbacks no alteran los resultados estáticos.
+
+### Modos editoriales y pausas técnicas
+
+[`participation.mjs`](../src/data/power-ranking/participation.mjs) es el único ajuste
+editorial de presentación para la votación. Sólo admite estos modos concretos:
+
+| Modo | Presentación |
+| --- | --- |
+| `native` | Formulario nativo y lecturas de la API. |
+| `forms` | Sólo el CTA del Google Forms revisado; no se muestra formulario nativo ni contador de papeletas web. |
+| `closed` | La ruta estable `/power-ranking/votar/` informa de que la votación no está abierta. |
+
+El repositorio se entrega en `native`. Para PART-075C `forms` sólo admite la URL HTTPS
+expresamente aprobada por David: `https://forms.gle/GXDBxCsLsVKDTqas9`. No se puede activar
+con una URL vacía, una variante o un enlace distinto. La activación sigue siendo un corte
+editorial manual; no se distribuye públicamente ni se usan respuestas reales durante la
+validación técnica. El formulario está vacío: su estructura definitiva debe decidirse antes
+de PART-080 si Forms se mantiene como contingencia operativa.
+
+Esta configuración no controla el backend. Si `POST /session` o `PUT /ballot` devuelve
+`WRITES_DISABLED`, la interfaz anuncia que «La participación nativa está temporalmente
+pausada», conserva las selecciones, apodo y comentario visibles, y desactiva guardar. Un
+`GET /ballot` existente sigue siendo legible. No reintenta automáticamente ni cambia a
+Forms por `WRITES_DISABLED`, timeout, red o `SERVICE_UNAVAILABLE`: evitar doble recogida es
+una decisión editorial explícita, no una reacción del navegador.
+
+### Privacidad y retención de participación nativa
+
+La página `/power-ranking/votar/` muestra un resumen factual. No requiere cuenta, pero usa
+una sesión técnica del navegador para recuperar/modificar la papeleta. La política general
+en `/privacidad/` sigue siendo un placeholder y no es una política suficiente: **decisión
+pendiente de David** antes del piloto.
+
+| Grupo | Datos conservados |
+| --- | --- |
+| Cálculo y snapshot | Papeletas y revisiones, posiciones y `game_id`, propuestas en texto, timestamps, catálogo y campaña. El `snapshot-package` de cálculo no incluye comentarios, apodos, sesiones, hashes, receipts ni rate limits. `public-results-v1` tampoco contiene comentarios. |
+| Operación D1 | `participant_id` técnico, hash de credencial y CSRF de sesión, apodo/comentario opcionales, origen permitido, receipts de idempotencia y contadores de rate limit. No se persiste IP como identidad ni se inventan cookies adicionales. |
+
+Cloudflare soporta la recepción. Borrar cookies o cambiar de navegador puede impedir recuperar
+la misma sesión; no convierte la sesión en una identidad personal única ni permite afirmar
+anonimato absoluto. Los comentarios son opcionales, pueden servir al flujo editorial interno
+y no se publican automáticamente.
+
+La duración configurada de una sesión es `2592000` segundos (30 días). La retención física
+no está automatizada por el código actual. Propuesta operativa, toda ella **PENDIENTE DE
+RATIFICACIÓN de David**: purgar sesiones expiradas; purgar rate limits y receipts 90 días
+después del cierre de campaña; conservar papeletas/revisiones y snapshot packages durante
+el periodo de auditoría que se apruebe; y tratar los exports D1/Time Travel sólo como
+backups controlados, con su ventana efectiva confirmada en el plan Cloudflare antes del
+piloto. Ningún rollback de Worker revierte datos D1.
+
+## Hosting y despliegue web
+
+La producción no usa Cloudflare Pages. El recorrido real es:
+
+```text
+visludica.com → Worker visludica-web → Static Assets (dist/) → custom domain
+```
+
+`wrangler.jsonc` declara `name: visludica-web` y `assets.directory: ./dist/`; no hay CI/CD
+de despliegue configurado. La API de participación de producción y su Route
+`visludica.com/api/power-ranking/*` todavía no existen y no deben describirse como activas.
+
+Staging es independiente: `staging.visludica.com` apunta al Worker web
+`visludica-staging`, y su Route `staging.visludica.com/api/power-ranking/*` corresponde
+al Worker API staging. No implica que la Route de producción exista.
+
+El procedimiento manual para una publicación web autorizada es:
+
+```sh
+cd /Volumes/Dyson/Vibe/visludica
+npm test
+npx wrangler deployments list --name visludica-web
+npx wrangler deploy --config wrangler.jsonc --name visludica-web --message "Web: SHA_GIT"
+npx wrangler deployments status --name visludica-web
+curl -fsSIL https://visludica.com/
+```
+
+Registrar la versión estable antes de desplegar. Para rollback de **web/static assets**,
+sin tocar DNS, API ni D1:
+
+```sh
+npx wrangler versions view VERSION_ESTABLE --name visludica-web --json
+npx wrangler rollback VERSION_ESTABLE --name visludica-web --message "Rollback web: INCIDENCIA"
+npx wrangler deployments status --name visludica-web
+curl -fsSIL https://visludica.com/
+```
+
+El rollback del participation Worker es una operación distinta; el rollback o restore de D1
+es otra decisión distinta y puede perder datos posteriores. Ninguna se ejecuta como parte
+del rollback web.
 
 ### Podio y tiras de meses
 
