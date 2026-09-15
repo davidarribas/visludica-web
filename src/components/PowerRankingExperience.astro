@@ -47,7 +47,7 @@ const numberFormatter = new Intl.NumberFormat('es-ES', { useGrouping: 'always' }
 
 // Texto accesible de la tira de historial (el mismo formato que se usaba
 // antes de sustituir el texto por la sparkline): últimos cuatro meses.
-function sparklineLabel(history: Array<number | null>, editionMonth: number) {
+function sparklineLabel(history: Array<number | string | null>, editionMonth: number) {
   return monthsForGame(history, editionMonth)
     .map((month) => `${month.label} ${month.value === null ? '—' : formatIndex(month.value)}`)
     .join(' · ');
@@ -56,12 +56,14 @@ function sparklineLabel(history: Array<number | null>, editionMonth: number) {
 // Sparkline SVG de los meses 0..editionMonth-1 del juego, normalizada entre
 // el mínimo y el máximo de sus propios valores. Los meses sin datos cortan
 // la línea en varios <polyline>; no se interpolan huecos.
-function sparklineSvg(history: Array<number | null>, editionMonth: number) {
+function sparklineSvg(history: Array<number | string | null>, editionMonth: number) {
   const width = 120;
   const height = 28;
   const pad = 3;
   const months = history.slice(0, editionMonth);
-  const values = months.filter((value): value is number => value !== null);
+  // Convertir los decimales contractuales sólo para las coordenadas SVG es
+  // presentación; nunca se emplean para ordenar ni para recalcular rankings.
+  const values = months.filter((value): value is number | string => value !== null).map(Number);
   const min = values.length ? Math.min(...values) : 0;
   const max = values.length ? Math.max(...values) : 0;
   const span = max - min;
@@ -69,7 +71,7 @@ function sparklineSvg(history: Array<number | null>, editionMonth: number) {
 
   const points = months.map((value, index) => ({
     x: pad + index * xStep,
-    y: value === null ? null : span === 0 ? height / 2 : pad + (height - pad * 2) * (1 - (value - min) / span),
+    y: value === null ? null : span === 0 ? height / 2 : pad + (height - pad * 2) * (1 - (Number(value) - min) / span),
   }));
 
   const segments: Array<Array<{ x: number; y: number }>> = [];
@@ -231,7 +233,7 @@ function sparklineSvg(history: Array<number | null>, editionMonth: number) {
                   return (
                     <article class:list={['podium-card', `podium-card--${index + 1}`]}>
                       <div class="podium-card__top">
-                        <span class="podium-position">{index + 1}</span>
+                        <span class="podium-position">{row.rank}</span>
                         <span class="podium-score">
                           <strong>{scoreForRow(view.id, row)}</strong>
                           <small>{scoreLabel(view.id)}</small>

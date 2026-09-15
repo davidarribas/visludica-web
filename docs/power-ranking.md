@@ -4,10 +4,10 @@ Todo lo necesario para publicar una edición mensual del Power Ranking en vislud
 tener que releer el código.
 
 - [Dónde encaja este repo](#dónde-encaja-este-repo)
-- [Runbook mensual](#runbook-mensual)
-- [Qué exigen los Excel](#qué-exigen-los-excel)
-- [Esquema de `data.json`](#esquema-de-datajson)
-- [Fórmulas](#fórmulas)
+- [Runbook mensual (`public-results-v1`)](#runbook-mensual-public-results-v1)
+- [Ruta legacy de Excel](#ruta-legacy-de-excel)
+- [Esquema legacy de `data.json`](#esquema-legacy-de-datajson)
+- [Fórmulas y presentación](#fórmulas-y-presentación)
 - [Campos de `editorial.ts`](#campos-de-editorialts)
 - [La web publicada](#la-web-publicada)
 - [Participación actual](#participación-actual)
@@ -18,50 +18,40 @@ tener que releer el código.
 ## Dónde encaja este repo
 
 ```
-CSV del formulario → [skill power-ranking-mensual] → Excel → npm run ranking:import
-                                                              ↓
-                                         data.json + editorial.ts → npm run build
+motor Python → public-results.json → repositorio web → validación → Astro
+                                                     ↓
+                                              editorial.ts → npm run build
 ```
 
-El skill `power-ranking-mensual` (vive fuera de este repo, en la configuración de Claude)
-procesa el CSV del formulario de Google, resuelve alias con la tabla maestra y produce los
-dos libros de Excel:
+Para las nuevas ediciones, el motor Python es la autoridad de cálculo. Su
+`public-results.json` con `schema_version: "public-results-v1"` ya contiene posiciones,
+desempates, Power, Acumulado, movimientos, histórico y estadísticas. Astro valida el
+contrato y sólo adapta nombres, formatos y coordenadas visuales: no recalcula ni reordena.
 
-- `power_ranking_<mes>_<año>.xlsx` — Vis Lúdica
-- `power_ranking_vis_belica_<mes>_<año>.xlsx` — Vis Bélica
+`src/data/power-ranking/2026-08/public-results.json` es el primer artefacto incorporado de
+esta forma y se conserva prácticamente intacto. No se copian `publication.json`, paquetes
+de revisión, snapshots, respuestas ni XLSX como fuente de datos para Astro.
 
-**Este repo empieza ahí.** No toca votos ni CSV: importa los Excel, genera los datos de la
-web y renderiza la página. Lo único que se escribe a mano aquí es el texto editorial.
+El texto editorial sí se mantiene en este repositorio, separado del contrato matemático.
 
 ---
 
-## Runbook mensual
+## Runbook mensual (`public-results-v1`)
 
-### 1. Importar los Excel
+### 1. Obtener el artefacto del motor
 
-```sh
-npm run ranking:import -- \
-  --main /ruta/power_ranking_julio_2026.xlsx \
-  --belica /ruta/power_ranking_vis_belica_julio_2026.xlsx \
-  --year 2026 \
-  --month 7
+Obtener el `public-results.json` validado que genera el motor Python para el periodo. No
+reconstruirlo desde los Excel ni editar sus números en el repo web. Guardarlo como:
+
+```text
+src/data/power-ranking/YYYY-MM/public-results.json
 ```
 
-Genera `src/data/power-ranking/2026-07/data.json`. Ese archivo **no se edita a mano**: se
-regenera entero en cada importación.
-
-Argumentos:
-
-| Argumento | Obligatorio | Qué hace |
-|---|---|---|
-| `--main` | sí | Ruta al Excel de Vis Lúdica |
-| `--belica` | sí | Ruta al Excel de Vis Bélica |
-| `--year` | sí | Año de la edición (entero) |
-| `--month` | sí | Mes de la edición, 1–12 |
-| `--output` | no | Ruta alternativa de salida. Por defecto `src/data/power-ranking/<año>-<mes>/data.json` |
-
-Al terminar imprime un resumen por proyecto (líder del Power, líder del mes y número de
-votantes). Conviene mirarlo: si no coincide con lo que dicen los Excel, algo no ha casado.
+La validación de importación está en
+[`public-results-v1.mjs`](../src/lib/public-results-v1.mjs). Rechaza una versión
+desconocida, campos/tipos contractuales incorrectos, posiciones ausentes, IDs no `vlg_*` y
+decimales que no lleguen como strings. Si falla, el build falla: nunca se deriva un fallback
+desde XLSX.
 
 ### 2. Escribir el editorial
 
@@ -75,23 +65,31 @@ Dos ejemplares de referencia en el repo:
 
 Los campos están detallados en [Campos de `editorial.ts`](#campos-de-editorialts).
 
-### 3. Registrar la edición
+### 3. Registrar la edición y activar el loader autoritativo
 
 En [`src/lib/power-ranking.ts`](../src/lib/power-ranking.ts), importar los dos archivos y
 **añadir la entrada al principio** del array `editions`:
 
 ```ts
-import august2026 from '../data/power-ranking/2026-08/data.json';
-import { editorial as augustEditorial } from '../data/power-ranking/2026-08/editorial';
+import september2026Contract from '../data/power-ranking/2026-09/public-results.json';
+import { editorial as septemberEditorial } from '../data/power-ranking/2026-09/editorial';
+import { loadPublicResultsV1 } from './public-results-v1.mjs';
 
 export const editions = [
-  { ...august2026, editorial: augustEditorial },   // ← la nueva, arriba
+  { ...loadPublicResultsV1(september2026Contract), editorial: septemberEditorial }, // ← la nueva, arriba
   { ...july2026, editorial: julyEditorial },
   { ...june2026, editorial: juneEditorial },
 ];
 ```
 
 El orden importa: `latestEdition = editions[0]` es lo que sirve `/power-ranking/`.
+
+El adaptador conserva los IDs estables `vlg_*`, orden y posiciones del contrato. Puede
+convertir un decimal a `Number` sólo para texto o un gráfico SVG; no suma histórico, decide
+empates, calcula movimientos ni deduce `NEW`/`RETURNS`.
+
+Las ediciones anteriores que importan `data.json` permanecen en la vía legacy. La selección
+es explícita por edición, no automática.
 
 ### 4. Construir y comprobar
 
@@ -102,7 +100,14 @@ npm run build
 Debe aparecer la ruta nueva (`/power-ranking/2026/08/`) y `/power-ranking/` debe mostrar ya
 la edición nueva. Después, commit y push: Cloudflare Pages despliega solo.
 
-### Errores del importador
+## Ruta legacy de Excel
+
+`npm run ranking:import` y [`scripts/import-power-ranking.mjs`](../scripts/import-power-ranking.mjs)
+se conservan exclusivamente para las ediciones históricas que ya dependen de
+`data.json`. No son el procedimiento de publicación de una nueva edición con
+`public-results-v1`.
+
+### Errores del importador legacy
 
 El script valida los datos antes de escribir nada
 ([`validateProject`](../scripts/import-power-ranking.mjs)). Si falla, no se genera el
@@ -121,7 +126,7 @@ El script valida los datos antes de escribir nada
 
 ---
 
-## Qué exigen los Excel
+## Qué exigen los Excel (legacy)
 
 Es la parte más frágil del pipeline: el importador localiza las hojas por su **nombre**,
 usando expresiones regulares con el mes en español y sin distinguir mayúsculas.
@@ -169,7 +174,7 @@ como `0`; `NEW` se guarda como la cadena `"NEW"`.
 
 ---
 
-## Esquema de `data.json`
+## Esquema legacy de `data.json`
 
 ```jsonc
 {
@@ -240,7 +245,7 @@ Es el único ranking que conserva su propio `title`; los otros dos resuelven el 
 `score` es la suma de los normalizados del año, sin decaimiento. `months` es el número de
 meses en los que el juego ha puntuado.
 
-### Notas transversales
+### Notas transversales (legacy)
 
 - `movement` puede ser un número (positivo = sube, negativo = baja), `0` (se mantiene) o la
   cadena `"NEW"` (no estaba el mes anterior). **`NEW` no significa novedad editorial**:
@@ -262,7 +267,7 @@ meses en los que el juego ha puntuado.
 
 ---
 
-## Fórmulas
+## Fórmulas y presentación
 
 **POWER** — combina el mes actual con los tres anteriores, para premiar la forma reciente
 sin borrar la inercia:
@@ -271,12 +276,14 @@ sin borrar la inercia:
 POWER = 0,7 × mes actual + 0,3 × (0,5 × mes−1 + 0,3 × mes−2 + 0,2 × mes−3)
 ```
 
-En el repo esta fórmula solo se usa como *fallback* (cuando falta la hoja Power del mes
-anterior): el valor publicado viene de la columna `Score` del Excel, que la calcula el
-skill. La página la muestra en el desplegable «Cómo se calcula».
+En una edición `public-results-v1`, este cálculo ya lo hace el motor Python: la web recibe
+el decimal autoritativo y no vuelve a aplicar la fórmula. En la vía legacy, el valor
+publicado viene de la columna `Score` del Excel. La página muestra la fórmula en el
+desplegable «Cómo se calcula».
 
-**Acumulado anual** — usa el valor publicado en la columna `Acumulado <año>` del histórico
-(o `PALMARÉS` en libros antiguos), sin decaimiento. En 2026 empieza en febrero.
+**Acumulado anual** — en `public-results-v1` llega ya calculado por el motor. La vía legacy
+usa el valor publicado en la columna `Acumulado <año>` del histórico (o `PALMARÉS` en libros
+antiguos), sin decaimiento. En 2026 empieza en febrero.
 
 **Presentación** — la web multiplica solo el índice POWER por 100 y lo muestra con un decimal
 ([`formatIndex`](../src/lib/power-ranking.ts)). Un `score` de `0,1855` en los datos se lee

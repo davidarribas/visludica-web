@@ -21,29 +21,32 @@ test("agosto es la edición por defecto y julio sigue en el histórico", async (
   assert.match(july, /<title>Power Ranking — Julio 2026/);
 });
 
-test("los datos principales de agosto coinciden con las fuentes revisadas", async () => {
-  const data = JSON.parse(await readFile(join(root, "src/data/power-ranking/2026-08/data.json"), "utf8"));
+test("los datos principales de agosto coinciden con public-results-v1", async () => {
+  const data = JSON.parse(await readFile(join(root, "src/data/power-ranking/2026-08/public-results.json"), "utf8"));
   const ludica = data.projects["vis-ludica"];
   const belica = data.projects["vis-belica"];
 
-  assert.deepEqual(ludica.stats, { voters: 181, distinctGames: 322, totalPoints: 1082 });
+  assert.equal(data.schema_version, "public-results-v1");
   assert.deepEqual(
-    ludica.rankings.monthly.slice(0, 3).map(({ title, points, votes }) => ({ title, points, votes })),
+    { voters: ludica.stats.valid_voters, distinctGames: ludica.stats.distinct_games, totalPoints: ludica.stats.total_points },
+    { voters: 181, distinctGames: 322, totalPoints: 1082 },
+  );
+  assert.deepEqual(
+    ludica.monthly_ranking.slice(0, 3).map(({ game_id, points, voters }) => ({ game_id, points, voters })),
     [
-      { title: "The Elder Scrolls: La Traición de la Segunda Era", points: 41, votes: 17 },
-      { title: "Arkham Horror LCG", points: 26, votes: 12 },
-      { title: "D-Day at Omaha Beach", points: 23, votes: 10 },
+      { game_id: "vlg_000830", points: 41, voters: 17 },
+      { game_id: "vlg_000070", points: 26, voters: 12 },
+      { game_id: "vlg_000240", points: 23, voters: 10 },
     ],
   );
+  assert.equal(ludica.power_ranking[0].power, "0.216800");
+  assert.equal(ludica.annual_ranking[0].annual, "1.282");
   assert.deepEqual(
-    ludica.rankings.annual.slice(0, 3).map(({ rank, score }) => ({ rank, score })),
-    [{ rank: 1, score: 1.28 }, { rank: 2, score: 1.102 }, { rank: 3, score: 1.001 }],
+    { voters: belica.stats.valid_voters, distinctGames: belica.stats.distinct_games, totalPoints: belica.stats.total_points },
+    { voters: 63, distinctGames: 73, totalPoints: 235 },
   );
-  assert.deepEqual(belica.stats, { voters: 64, distinctGames: 74, totalPoints: 237 });
-  assert.deepEqual(
-    belica.rankings.annual.slice(0, 3).map(({ rank, score }) => ({ rank, score })),
-    [{ rank: 1, score: 2.641 }, { rank: 2, score: 1.0816 }, { rank: 3, score: 0.9998 }],
-  );
+  assert.equal(belica.power_ranking[0].power, "0.386810");
+  assert.equal(belica.annual_ranking[0].annual, "3.681");
 });
 
 test("las dos descargas revisadas se publican por separado", async () => {

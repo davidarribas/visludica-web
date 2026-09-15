@@ -8,7 +8,7 @@ export const editorial = {
       'Cada votante reparte 3, 2 y 1 puntos. El índice POWER combina agosto con julio, junio y mayo. El Acumulado 2026 suma los normalizados mensuales disponibles desde febrero, sin ponderaciones ni decaimiento.',
     power: {
       headline: 'The Elder Scrolls rebota y conserva el trono',
-      deck: 'Rompe tres meses de caída sostenida y alcanza un índice de 0,2164. Arkham Horror LCG sube al segundo puesto y D-Day at Omaha Beach completa el podio.',
+      deck: 'Rompe tres meses de caída sostenida y alcanza un índice de 0,216800. Arkham Horror LCG sube al segundo puesto y D-Day at Omaha Beach completa el podio.',
       notes: {
         'the-elder-scrolls-la-traicion-de-la-segunda-era':
           'Repite en lo más alto tras ganar agosto con 41 puntos, once votos de nº1 y diecisiete votantes. Es su mejor resultado mensual desde mayo y el tercero mejor de todo 2026.',
@@ -34,7 +34,7 @@ export const editorial = {
     },
     annual: {
       headline: 'The Elder Scrolls lidera el Acumulado 2026',
-      deck: 'Suma 1,280 desde febrero. D-Day at Omaha Beach ocupa el segundo puesto con 1,102 y Arkham Horror LCG el tercero con 1,001.',
+      deck: 'Suma 1,282 desde febrero. D-Day at Omaha Beach ocupa el segundo puesto con 1,104 y Arkham Horror LCG el tercero con 1,006.',
       afterword:
         'Quedan cuatro meses y el podio ha abierto hueco, pero todavía no está cerrado. Detrás la pelea es mucho más estrecha: entre SETI, cuarto, y Voidfall, décimo, solo hay 0,185 puntos. Con septiembre, octubre, noviembre y diciembre por delante, ahí puede pasar casi cualquier cosa.',
     },
@@ -99,7 +99,7 @@ export const editorial = {
         },
         {
           title: 'La carrera anual',
-          text: 'The Elder Scrolls suma 1,280; D-Day at Omaha Beach, 1,102; y Arkham Horror LCG, 1,001.',
+          text: 'The Elder Scrolls suma 1,282; D-Day at Omaha Beach, 1,104; y Arkham Horror LCG, 1,006.',
         },
       ],
       voices: [],
@@ -116,13 +116,13 @@ export const editorial = {
     name: 'Vis Bélica',
     eyebrow: 'El frente de los rancios',
     intro:
-      '64 de los 181 votantes incluyeron al menos un wargame en su papeleta: récord del año, muy por encima de los 39 de julio. En total aparecieron 74 wargames distintos, con el criterio estricto de siempre: hex & counter, CDG y bloques.',
+      '63 de los 181 votantes incluyeron al menos un wargame en su papeleta: récord del año, muy por encima de los 39 de julio. En total aparecieron 73 wargames distintos, con el criterio estricto de siempre: hex & counter, CDG y bloques.',
     methodology:
       'Se filtran únicamente los votos considerados wargame y el índice se normaliza sobre quienes votaron al menos un juego de guerra ese mes. El Power Ranking y el Acumulado 2026 de agosto incorporan retrospectivamente los votos de meses anteriores de los títulos que ahora cumplen el criterio, sin reescribir las clasificaciones mensuales publicadas.',
     voterGrowth: {
       label: 'Récord del año',
-      headline: '64 votantes con wargames',
-      deck: 'Muy por encima de los 39 de julio. En agosto aparecen 74 wargames distintos.',
+      headline: '63 votantes con wargames',
+      deck: 'Muy por encima de los 39 de julio. En agosto aparecen 73 wargames distintos.',
     },
     power: {
       headline: 'D-Day conserva el mando',
@@ -152,16 +152,16 @@ export const editorial = {
     },
     annual: {
       headline: 'D-Day lidera el Acumulado 2026',
-      deck: 'Suma 2,641. Guerra del Anillo ocupa el segundo puesto con 1,0816 y Burning Banners el tercero con 0,9998.',
+      deck: 'Suma 3,681. Burning Banners ocupa el segundo puesto con 1,109 y Guerra del Anillo el tercero con 1,105.',
       afterword:
         'El Acumulado 2026 de agosto incorpora retrospectivamente votos de wargames de meses anteriores que no estaban clasificados correctamente cuando se publicaron aquellos rankings mensuales.',
     },
     chronicle: {
       eyebrow: 'La crónica de Vis Bélica',
       headline: 'Agosto abre el frente',
-      deck: '64 votantes con wargames y 74 títulos distintos marcan el máximo de participación del año.',
+      deck: '63 votantes con wargames y 73 títulos distintos marcan el máximo de participación del año.',
       intro: [
-        '64 de los 181 votantes incluyeron al menos un wargame en su papeleta: récord del año, muy por encima de los 39 de julio. En total aparecieron 74 wargames distintos, con el criterio estricto de siempre: hex & counter, CDG y bloques.',
+        '63 de los 181 votantes incluyeron al menos un wargame en su papeleta: récord del año, muy por encima de los 39 de julio. En total aparecieron 73 wargames distintos, con el criterio estricto de siempre: hex & counter, CDG y bloques.',
       ],
       sections: [
         {
