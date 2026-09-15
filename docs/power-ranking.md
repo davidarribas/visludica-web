@@ -10,6 +10,7 @@ tener que releer el código.
 - [Fórmulas](#fórmulas)
 - [Campos de `editorial.ts`](#campos-de-editorialts)
 - [La web publicada](#la-web-publicada)
+- [Participación actual](#participación-actual)
 - [Trampas conocidas](#trampas-conocidas)
 
 ---
@@ -406,6 +407,26 @@ Ejemplo: `/power-ranking/2026/07/?proyecto=vis-belica&vista=analysis`.
   a 25. El contador («X de Y juegos») usa siempre el total real de la vista
   (`data-total-count` en `[data-table-shell]`), no el número de filas presentes en el DOM en
   ese momento — así no miente mientras `datos.json` todavía no se ha cargado.
+
+## Participación actual
+
+El componente reutilizable `PowerRankingParticipation.astro` aparece en la portada y en
+`/power-ranking/`, separado visualmente de los resultados ya publicados. Como la web usa
+`output: static`, consulta en el navegador la API pública de participación:
+
+- `GET /api/power-ranking/v1/campaign` para conocer la campaña abierta;
+- `GET /api/power-ranking/v1/campaigns/{id}/summary` para el agregado público.
+
+Si la campaña está abierta, ofrece el enlace a `/power-ranking/votar/` y, cuando está
+disponible, muestra `X papeletas recibidas en la web`. `received_ballots` cuenta solo
+papeletas nativas activas con al menos una selección: no son personas, votos únicos ni el
+denominador de los resultados publicados. Un fallo del resumen oculta solo la cifra; un
+fallo de campaña conserva un enlace neutro. El componente no crea sesiones ni consulta
+papeletas, y no muestra clasificaciones provisionales.
+
+La página de voto vuelve a consultar `summary` después de una confirmación real de creación
+o edición. No calcula incrementos en el navegador. La ruta remota de esta API todavía no
+está desplegada; hasta entonces los fallbacks no alteran los resultados estáticos.
 
 ### Podio y tiras de meses
 

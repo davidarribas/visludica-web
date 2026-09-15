@@ -1,0 +1,413 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Participa en el Power Ranking"
+  description="Elige los juegos que más han llegado a tu mesa para el próximo Power Ranking de Vis Ludica."
+>
+  <div class="participation" data-participation-app>
+    <section class="participation-hero">
+      <div class="container">
+        <span class="label">Power Ranking · participación</span>
+        <h1>¿Qué juegos han llegado a tu mesa?</h1>
+        <p>Elige hasta tres juegos, en las posiciones que prefieras. El cálculo final lo hace el Power Ranking.</p>
+      </div>
+    </section>
+
+    <section class="container participation-main" aria-labelledby="participation-title">
+      <div class="participation-heading">
+        <div>
+          <span class="label" data-campaign-label>Cargando campaña</span>
+          <h2 id="participation-title" data-campaign-name>Estamos preparando la votación…</h2>
+        </div>
+        <div>
+          <p class="participation-deck" data-campaign-dates aria-live="polite">Consultando la campaña activa.</p>
+          <p class="participation-summary" data-summary hidden></p>
+        </div>
+      </div>
+
+      <div class="participation-status" data-status role="status" aria-live="polite"></div>
+
+      <div data-page-state="loading" class="participation-loading" aria-live="polite">
+        <span class="loading-dot" aria-hidden="true"></span> Cargando la papeleta…
+      </div>
+
+      <section data-page-state="no-campaign" hidden class="participation-empty">
+        <span class="label">Sin votación activa</span>
+        <h2>Ahora no hay una campaña abierta</h2>
+        <p>Los resultados de las últimas ediciones siguen disponibles en el Power Ranking.</p>
+        <a class="btn btn-outline" href="/power-ranking/">Ver últimos resultados</a>
+      </section>
+
+      <section data-page-state="unavailable" hidden class="participation-empty">
+        <span class="label">Servicio temporalmente no disponible</span>
+        <h2>Ahora mismo no podemos registrar la papeleta</h2>
+        <p>Vuelve a intentarlo en unos minutos. Los datos que escribas se conservarán mientras mantengas esta página abierta.</p>
+        <button type="button" class="btn btn-outline" data-reload-campaign>Reintentar</button>
+      </section>
+
+      <form data-ballot-form hidden novalidate>
+        <section class="participation-rules" aria-label="Puntuación por posición">
+          <strong>Tu selección</strong>
+          <span>1º = 3 puntos</span><span>2º = 2 puntos</span><span>3º = 1 punto</span>
+          <p>Puedes dejar huecos: no reordenamos tus posiciones automáticamente.</p>
+        </section>
+
+        <div class="ballot-positions" data-positions></div>
+
+        <section class="participation-fields" aria-labelledby="optional-data-title">
+          <div>
+            <h3 id="optional-data-title">Un poco más de contexto</h3>
+            <p>Ambos campos son opcionales.</p>
+          </div>
+          <label>
+            <span>Nombre o apodo (opcional)</span>
+            <input data-nickname type="text" maxlength="100" autocomplete="nickname" />
+          </label>
+          <label>
+            <span>Comentario (opcional)</span>
+            <textarea data-comment rows="4" maxlength="4000"></textarea>
+          </label>
+        </section>
+
+        <div class="participation-actions">
+          <button type="submit" class="btn btn-primary" data-save>Enviar papeleta</button>
+          <p data-form-help>Podrás modificarla desde este navegador mientras conserve la sesión y la votación siga abierta.</p>
+        </div>
+      </form>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  import {
+    ParticipationApiError,
+    ParticipationClient,
+    ballotMatchesPayload,
+    buildWritePayload,
+    createOperationKey,
+  } from '../../lib/power-ranking/participation-client.mjs';
+
+  const root = document.querySelector('[data-participation-app]');
+  if (root) {
+    const client = new ParticipationClient();
+    const form = root.querySelector('[data-ballot-form]');
+    const positionsHost = root.querySelector('[data-positions]');
+    const status = root.querySelector('[data-status]');
+    const nicknameInput = root.querySelector('[data-nickname]');
+    const commentInput = root.querySelector('[data-comment]');
+    const saveButton = root.querySelector('[data-save]');
+    const formHelp = root.querySelector('[data-form-help]');
+    const campaignLabel = root.querySelector('[data-campaign-label]');
+    const campaignName = root.querySelector('[data-campaign-name]');
+    const campaignDates = root.querySelector('[data-campaign-dates]');
+    const summary = root.querySelector('[data-summary]');
+    const statePanels = Object.fromEntries([...root.querySelectorAll('[data-page-state]')].map((node) => [node.dataset.pageState, node]));
+
+    const state = {
+      phase: 'LOADING_CAMPAIGN', campaign: null, selections: {}, ballot: null,
+      hasSession: false, csrfToken: null, sessionLost: false, submission: null, retryAt: null,
+      search: { position: null, results: [], activeIndex: -1, timer: null }, referral: new URLSearchParams(location.search).get('src'),
+    };
+
+    const setText = (node, value) => { node.textContent = value; };
+    const showPanel = (name) => Object.entries(statePanels).forEach(([key, panel]) => { panel.hidden = key !== name; });
+    const setStatus = (message = '', kind = '') => { status.className = `participation-status ${kind}`; setText(status, message); };
+    const isOpen = () => state.campaign?.status === 'open' && !state.sessionLost;
+    const isWritable = () => isOpen() && (!state.retryAt || Date.now() >= state.retryAt);
+    const clearSearch = () => { clearTimeout(state.search.timer); state.search = { position: null, results: [], activeIndex: -1, timer: null }; };
+
+    function formatDate(value) {
+      try { return new Intl.DateTimeFormat('es-ES', { dateStyle: 'long', timeStyle: 'short' }).format(new Date(value)); }
+      catch { return ''; }
+    }
+
+    function selectionText(selection) {
+      return selection.kind === 'game' ? selection.display_name : `Propuesta: ${selection.raw_name}`;
+    }
+
+    function setSelection(position, selection) {
+      if (selection?.kind === 'game') {
+        const duplicate = Object.entries(state.selections).find(([otherPosition, other]) => Number(otherPosition) !== position && other?.kind === 'game' && other.game_id === selection.game_id);
+        if (duplicate) { setStatus('Ese juego ya está elegido en otra posición. Elige uno diferente.', 'is-error'); return; }
+      }
+      if (selection) state.selections[position] = selection;
+      else delete state.selections[position];
+      clearSearch(); renderPositions();
+    }
+
+    function makeButton(label, action, secondary = false) {
+      const button = document.createElement('button');
+      button.type = 'button'; button.className = secondary ? 'position-action is-secondary' : 'position-action';
+      button.dataset.action = action; button.textContent = label;
+      return button;
+    }
+
+    function renderPositions() {
+      positionsHost.replaceChildren();
+      for (const position of [1, 2, 3]) {
+        const selection = state.selections[position];
+        const card = document.createElement('section'); card.className = 'ballot-position'; card.dataset.position = String(position);
+        const heading = document.createElement('div'); heading.className = 'position-heading';
+        const ordinal = document.createElement('strong'); ordinal.textContent = `${position}º`;
+        const points = document.createElement('span'); points.textContent = `${4 - position} ${position === 1 ? 'puntos' : 'puntos'}`;
+        heading.append(ordinal, points); card.appendChild(heading);
+
+        const chosen = document.createElement('div'); chosen.className = 'position-choice';
+        if (selection) {
+          const name = document.createElement('strong'); name.textContent = selectionText(selection);
+          if (selection.kind === 'proposal') { const hint = document.createElement('small'); hint.textContent = 'Propuesta pendiente de revisión'; chosen.append(name, hint); }
+          else {
+            chosen.appendChild(name);
+            if (selection.unavailable) { const hint = document.createElement('small'); hint.textContent = 'Este juego ya no aparece en el catálogo actual: revísalo antes de enviar.'; chosen.appendChild(hint); }
+          }
+          const actions = document.createElement('div'); actions.className = 'position-actions';
+          actions.append(makeButton('Cambiar juego', 'search', true), makeButton('Proponer otro', 'proposal', true), makeButton('Quitar', 'remove', true));
+          card.append(chosen, actions);
+        } else {
+          const empty = document.createElement('p'); empty.className = 'position-empty'; empty.textContent = 'Sin selección';
+          const actions = document.createElement('div'); actions.className = 'position-actions'; actions.append(makeButton('Buscar juego', 'search'), makeButton('No encuentro mi juego', 'proposal', true));
+          card.append(chosen, empty, actions);
+        }
+        if (state.search.position === position) card.appendChild(buildSearch(position));
+        card.addEventListener('click', (event) => {
+          const button = event.target.closest('button[data-action]'); if (!button) return;
+          const action = button.dataset.action;
+          if (action === 'remove') setSelection(position, null);
+          if (action === 'search' || action === 'proposal') {
+            state.search.position = position; state.search.results = []; state.search.activeIndex = -1; state.search.proposalOpen = action === 'proposal'; renderPositions();
+            positionsHost.querySelector(action === 'proposal' ? `[data-position="${position}"] .proposal-input input` : `[data-position="${position}"] .game-search > label input`)?.focus();
+          }
+        });
+        positionsHost.appendChild(card);
+      }
+    }
+
+    function buildSearch(position) {
+      const shell = document.createElement('div'); shell.className = 'game-search';
+      const label = document.createElement('label'); label.textContent = 'Buscar en el catálogo';
+      const input = document.createElement('input'); input.type = 'search'; input.autocomplete = 'off'; input.placeholder = 'Escribe al menos 2 letras';
+      input.setAttribute('role', 'combobox'); input.setAttribute('aria-expanded', String(state.search.results.length > 0)); input.setAttribute('aria-controls', `game-results-${position}`);
+      const list = document.createElement('ul'); list.id = `game-results-${position}`; list.setAttribute('role', 'listbox'); list.className = 'game-results';
+      const proposalToggle = makeButton('No encuentro mi juego', 'proposal-toggle', true);
+      const proposal = document.createElement('div'); proposal.className = 'proposal-input'; proposal.hidden = !state.search.proposalOpen;
+      const proposalLabel = document.createElement('label'); proposalLabel.textContent = 'Nombre del juego propuesto';
+      const proposalInput = document.createElement('input'); proposalInput.type = 'text'; proposalInput.maxLength = 500;
+      const proposalSave = makeButton('Usar esta propuesta', 'proposal-save'); proposal.append(proposalLabel, proposalInput, proposalSave);
+      const renderResults = () => {
+        list.replaceChildren();
+        state.search.results.forEach((game, index) => {
+          const item = document.createElement('li'); item.id = `game-result-${position}-${index}`; item.setAttribute('role', 'option'); item.setAttribute('aria-selected', String(index === state.search.activeIndex));
+          const button = document.createElement('button'); button.type = 'button'; button.textContent = game.display_name;
+          button.addEventListener('click', () => setSelection(position, { kind: 'game', game_id: game.game_id, display_name: game.display_name })); item.appendChild(button); list.appendChild(item);
+        });
+        input.setAttribute('aria-expanded', String(state.search.results.length > 0));
+        if (state.search.activeIndex >= 0) input.setAttribute('aria-activedescendant', `game-result-${position}-${state.search.activeIndex}`); else input.removeAttribute('aria-activedescendant');
+      };
+      input.addEventListener('input', () => {
+        const query = input.value.trim(); clearTimeout(state.search.timer); state.search.results = []; state.search.activeIndex = -1; renderResults();
+        if (query.length < 2) return;
+        state.search.timer = setTimeout(async () => {
+          try { const result = await client.searchGames(query); if (state.search.position !== position) return; state.search.results = Array.isArray(result.games) ? result.games : []; renderResults(); }
+          catch (error) { if (state.search.position === position) setStatus('No se ha podido consultar el catálogo. Puedes intentar de nuevo o proponer el juego.', 'is-error'); }
+        }, 300);
+      });
+      input.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') { clearSearch(); renderPositions(); return; }
+        if (!state.search.results.length) return;
+        if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); const delta = event.key === 'ArrowDown' ? 1 : -1; state.search.activeIndex = (state.search.activeIndex + delta + state.search.results.length) % state.search.results.length; renderResults(); }
+        if (event.key === 'Enter' && state.search.activeIndex >= 0) { event.preventDefault(); const game = state.search.results[state.search.activeIndex]; setSelection(position, { kind: 'game', game_id: game.game_id, display_name: game.display_name }); }
+      });
+      proposalToggle.addEventListener('click', () => { proposal.hidden = !proposal.hidden; state.search.proposalOpen = !proposal.hidden; if (!proposal.hidden) proposalInput.focus(); });
+      proposalSave.addEventListener('click', () => setSelection(position, { kind: 'proposal', raw_name: proposalInput.value }));
+      label.appendChild(input); shell.append(label, list, proposalToggle, proposal); return shell;
+    }
+
+    function loadBallot(ballot) {
+      state.ballot = ballot ?? null; state.selections = {};
+      if (ballot) {
+        for (const vote of ballot.votes ?? []) state.selections[vote.position] = vote.selection;
+        nicknameInput.value = ballot.nickname ?? ''; commentInput.value = ballot.comment ?? '';
+      }
+      saveButton.textContent = ballot ? 'Guardar cambios' : 'Enviar papeleta';
+      formHelp.textContent = ballot ? 'Puedes modificar tu papeleta desde este navegador mientras conserve la sesión y la votación siga abierta.' : 'Podrás modificarla desde este navegador mientras conserve la sesión y la votación siga abierta.';
+      renderPositions();
+    }
+
+    async function refreshSummary() {
+      if (!state.campaign) return;
+      try {
+        const result = await client.getSummary(state.campaign.campaign_id);
+        if (!Number.isInteger(result.received_ballots) || result.received_ballots < 0) throw new Error('Invalid public summary');
+        setText(summary, `${result.received_ballots} papeletas recibidas en la web`);
+        summary.hidden = false;
+      } catch {
+        // Una confirmación de papeleta no depende de que el agregado público responda.
+        summary.hidden = true;
+      }
+    }
+
+    function applyWriteBallot(ballot, confirmedMessage = 'Tu papeleta está registrada. Puedes modificarla desde este navegador mientras conserve la sesión y la votación siga abierta.') {
+      state.submission = null; state.sessionLost = false; loadBallot(ballot); setStatus(confirmedMessage, 'is-confirmed');
+      void refreshSummary();
+    }
+
+    async function recoverUncertainSubmission() {
+      const pending = state.submission; if (!pending) return;
+      try {
+        const response = await client.getBallot(state.campaign.campaign_id);
+        state.hasSession = true;
+        if (ballotMatchesPayload(response.ballot, pending.payload)) { applyWriteBallot(response.ballot); return; }
+        setStatus('No hemos podido confirmar si se registró la operación. Conservamos tus datos: puedes reintentar de forma segura.', 'is-warning');
+      } catch (error) {
+        setStatus('No hemos podido confirmar el estado de la operación. Conservamos tus datos y la misma operación para un reintento seguro.', 'is-warning');
+      }
+      renderRetry();
+    }
+
+    function renderRetry() {
+      if (!state.submission || root.querySelector('[data-retry-save]')) return;
+      const retry = document.createElement('button'); retry.type = 'button'; retry.className = 'btn btn-outline'; retry.dataset.retrySave = ''; retry.textContent = 'Reintentar esta operación';
+      retry.addEventListener('click', () => submit(state.submission)); status.appendChild(document.createTextNode(' ')); status.appendChild(retry);
+    }
+
+    async function refreshCampaignAndValidate() {
+      try {
+        const campaign = await client.getCampaign(); state.campaign = campaign; campaignLabel.textContent = campaign.status === 'open' ? 'Campaña abierta' : 'Campaña cerrada'; campaignName.textContent = campaign.name; campaignDates.textContent = `Cierra el ${formatDate(campaign.closes_at)}.`;
+        for (const [position, selection] of Object.entries(state.selections)) {
+          if (selection.kind !== 'game') continue;
+          const search = await client.searchGames(selection.display_name);
+          if (!search.games?.some((game) => game.game_id === selection.game_id)) state.selections[position] = { ...selection, unavailable: true };
+        }
+        renderPositions();
+      } catch { /* El aviso de cambio de catálogo sigue siendo útil aunque no se pueda recargar todavía. */ }
+    }
+
+    async function submit(existing = null) {
+      if (!state.campaign || !isOpen()) return;
+      let pending = existing;
+      try {
+        if (!pending) {
+          const payload = buildWritePayload({ campaign: state.campaign, version: state.ballot?.version ?? 0, selections: state.selections, nickname: nicknameInput.value, comment: commentInput.value, referralSource: state.referral, includeReferral: !state.ballot });
+          pending = { payload, operationKey: createOperationKey() }; state.submission = pending;
+        }
+        saveButton.disabled = true; saveButton.textContent = 'Guardando…'; setStatus('Registrando la papeleta…');
+        if (!state.csrfToken) { const session = await client.createSession(); state.csrfToken = session.csrf_token; state.hasSession = true; }
+        const response = await client.saveBallot(state.campaign.campaign_id, pending.payload, { csrfToken: state.csrfToken, operationKey: pending.operationKey });
+        applyWriteBallot(response.ballot);
+      } catch (error) {
+        if (error.code === 'NETWORK_UNCERTAIN') { await recoverUncertainSubmission(); }
+        else if (error.code === 'VERSION_CONFLICT') { setStatus('Esta papeleta ha cambiado desde que abriste la página.', 'is-error'); const reload = document.createElement('button'); reload.type = 'button'; reload.className = 'btn btn-outline'; reload.textContent = 'Recargar mi papeleta'; reload.addEventListener('click', loadInitialBallot); status.append(' ', reload); }
+        else if (error.code === 'CATALOG_CHANGED') { setStatus('El catálogo ha cambiado. Hemos conservado tu selección y la revisaremos antes de enviarla.', 'is-warning'); await refreshCampaignAndValidate(); }
+        else if (error.code === 'CAMPAIGN_CLOSED' || error.code === 'NO_ACTIVE_CAMPAIGN') { state.campaign.status = 'closed'; setStatus('La campaña ya está cerrada. Conservamos visualmente tu papeleta, pero ya no se puede enviar.', 'is-error'); renderOpenState(); }
+        else if (error.code === 'SESSION_REQUIRED') { state.csrfToken = null; state.sessionLost = true; setStatus('La sesión de este navegador ya no está disponible.', 'is-error'); renderNewParticipationAction(); renderOpenState(); }
+        else if (error.code === 'CSRF_FAILED') { state.csrfToken = null; setStatus('No hemos podido verificar esta sesión. Conservamos tus datos; vuelve a guardar para crear un token nuevo.', 'is-error'); }
+        else if (error.code === 'RATE_LIMITED') {
+          setStatus(`Has hecho varios intentos seguidos. Espera un poco antes de volver a guardar${error.retryAfter ? ` (al menos ${error.retryAfter} segundos)` : ''}.`, 'is-warning');
+          if (error.retryAfter) {
+            state.retryAt = Date.now() + error.retryAfter * 1000;
+            setTimeout(() => {
+              if (state.retryAt && Date.now() >= state.retryAt) {
+                state.retryAt = null;
+                saveButton.disabled = !isWritable();
+                setStatus('Puedes volver a intentar guardar la papeleta.', 'is-warning');
+              }
+            }, error.retryAfter * 1000);
+          }
+        }
+        else { setStatus('Ahora mismo no podemos registrar la papeleta. Conservamos los datos que has escrito.', 'is-error'); }
+      } finally { saveButton.disabled = !isWritable(); saveButton.textContent = state.ballot ? 'Guardar cambios' : 'Enviar papeleta'; }
+    }
+
+    function renderNewParticipationAction() {
+      if (root.querySelector('[data-new-participation]')) return;
+      const button = document.createElement('button'); button.type = 'button'; button.className = 'btn btn-outline'; button.dataset.newParticipation = ''; button.textContent = 'Iniciar una nueva participación';
+      button.addEventListener('click', () => { state.sessionLost = false; state.ballot = null; state.csrfToken = null; state.hasSession = false; saveButton.textContent = 'Enviar papeleta'; formHelp.textContent = 'Esta nueva participación usará una sesión distinta en este navegador.'; setStatus('Puedes enviar los datos visibles como una nueva participación.', 'is-warning'); renderOpenState(); }); status.append(' ', button);
+    }
+
+    function renderOpenState() { form.hidden = false; showPanel('none'); saveButton.disabled = !isWritable(); }
+
+    async function loadInitialBallot() {
+      if (!state.campaign) return;
+      try {
+        const response = await client.getBallot(state.campaign.campaign_id); state.hasSession = true; loadBallot(response.ballot); renderOpenState();
+        if (response.ballot) setStatus('Hemos recuperado la papeleta de esta sesión. Puedes modificarla.', 'is-confirmed');
+        else setStatus();
+      } catch (error) {
+        if (error.code === 'SESSION_REQUIRED') { state.hasSession = false; loadBallot(null); renderOpenState(); setStatus(); }
+        else { form.hidden = true; showPanel('unavailable'); setStatus('No hemos podido recuperar la papeleta ahora mismo.', 'is-error'); }
+      }
+    }
+
+    async function loadCampaign() {
+      state.phase = 'LOADING_CAMPAIGN'; form.hidden = true; showPanel('loading'); setStatus();
+      try {
+        const campaign = await client.getCampaign(); state.campaign = campaign;
+        campaignLabel.textContent = campaign.status === 'open' ? 'Campaña abierta' : 'Campaña cerrada'; campaignName.textContent = campaign.name; campaignDates.textContent = `Cierra el ${formatDate(campaign.closes_at)}.`;
+        if (campaign.status !== 'open') { showPanel('no-campaign'); return; }
+        await loadInitialBallot();
+      } catch (error) {
+        if (error.code === 'NO_ACTIVE_CAMPAIGN') { campaignLabel.textContent = 'Sin campaña activa'; campaignName.textContent = 'No hay una votación en curso'; campaignDates.textContent = ''; showPanel('no-campaign'); }
+        else { campaignLabel.textContent = 'Servicio no disponible'; campaignName.textContent = 'No podemos consultar la campaña'; campaignDates.textContent = ''; showPanel('unavailable'); }
+      }
+    }
+
+    form.addEventListener('submit', (event) => { event.preventDefault(); submit(); });
+    root.querySelector('[data-reload-campaign]').addEventListener('click', loadCampaign);
+    loadCampaign();
+  }
+</script>
+
+<style>
+  .participation { --participation-accent: var(--color-accent); padding-bottom: var(--space-20); }
+  .participation-hero { padding-block: var(--space-16); background: var(--color-surface); border-bottom: 1px solid var(--color-border); }
+  .participation-hero h1 { max-width: 760px; margin-top: var(--space-2); font-size: clamp(2.5rem, 6vw, 4.5rem); }
+  .participation-hero p { max-width: 660px; margin-top: var(--space-4); color: var(--color-text-secondary); font-size: var(--text-lg); }
+  .participation-main { max-width: 920px; padding-top: var(--space-12); }
+  .participation-heading { display: flex; justify-content: space-between; gap: var(--space-8); align-items: end; padding-bottom: var(--space-8); border-bottom: 1px solid var(--color-border); }
+  .participation-heading h2 { margin-top: var(--space-2); }
+  .participation-deck { max-width: 280px; color: var(--color-text-secondary); font-size: var(--text-sm); }
+  .participation-summary { margin-top: var(--space-2); color: var(--color-text-secondary); font-size: var(--text-sm); font-weight: var(--fw-medium); }
+  .participation-status:empty { display: none; }
+  .participation-status { margin-top: var(--space-6); padding: var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface-raised); color: var(--color-text-secondary); }
+  .participation-status.is-error { border-color: #d96c5b; color: #9f3020; }
+  .participation-status.is-warning { border-color: #d39a3c; color: #76500f; }
+  .participation-status.is-confirmed { border-color: #4d956a; color: #176137; }
+  .participation-status .btn { margin-left: var(--space-2); padding: var(--space-2) var(--space-3); vertical-align: middle; }
+  .participation-loading, .participation-empty { padding: var(--space-16) 0; color: var(--color-text-secondary); }
+  .participation-empty h2 { margin-top: var(--space-2); color: var(--color-text); }
+  .participation-empty p { max-width: 560px; margin-top: var(--space-3); }
+  .participation-empty .btn { margin-top: var(--space-6); }
+  .loading-dot { display: inline-block; width: .75rem; height: .75rem; margin-right: var(--space-2); border: 2px solid var(--color-border-strong); border-top-color: var(--participation-accent); border-radius: 50%; animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(1turn); } }
+  [data-ballot-form] { padding-top: var(--space-8); }
+  .participation-rules { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); align-items: center; padding: var(--space-5); background: var(--color-accent-subtle); border: 1px solid color-mix(in srgb, var(--participation-accent) 30%, var(--color-border)); border-radius: var(--radius-lg); }
+  .participation-rules strong { color: var(--color-text); }
+  .participation-rules span { color: var(--color-text-secondary); font-size: var(--text-sm); }
+  .participation-rules p { flex-basis: 100%; color: var(--color-text-secondary); font-size: var(--text-sm); }
+  .ballot-positions { display: grid; gap: var(--space-4); margin-top: var(--space-8); }
+  .ballot-position { padding: var(--space-5); border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); }
+  .position-heading { display: flex; justify-content: space-between; align-items: baseline; }
+  .position-heading strong { font-size: var(--text-xl); }
+  .position-heading span, .position-empty, .position-choice small { color: var(--color-text-tertiary); font-size: var(--text-sm); }
+  .position-choice { margin-top: var(--space-4); min-height: 1.6em; }
+  .position-choice strong, .position-choice small { display: block; }
+  .position-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-4); }
+  .position-action { min-height: 38px; padding: var(--space-2) var(--space-3); border: 0; border-radius: var(--radius-md); background: var(--participation-accent); color: white; font-weight: var(--fw-medium); cursor: pointer; }
+  .position-action.is-secondary { border: 1px solid var(--color-border-strong); background: transparent; color: var(--color-text); }
+  .game-search { display: grid; gap: var(--space-3); margin-top: var(--space-5); padding-top: var(--space-5); border-top: 1px solid var(--color-border); }
+  .game-search label, .proposal-input label, .participation-fields label { display: grid; gap: var(--space-2); color: var(--color-text); font-size: var(--text-sm); font-weight: var(--fw-medium); }
+  .game-search input, .proposal-input input, .participation-fields input, .participation-fields textarea { width: 100%; padding: var(--space-3); border: 1px solid var(--color-border-strong); border-radius: var(--radius-md); background: var(--color-bg); color: var(--color-text); }
+  .game-results { display: grid; gap: var(--space-1); list-style: none; padding: 0; }
+  .game-results button { width: 100%; padding: var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-surface-raised); color: var(--color-text); text-align: left; cursor: pointer; }
+  .game-results [aria-selected='true'] button, .game-results button:hover { border-color: var(--participation-accent); background: var(--color-accent-subtle); }
+  .proposal-input { display: grid; gap: var(--space-3); }
+  .participation-fields { display: grid; gap: var(--space-5); margin-top: var(--space-8); padding: var(--space-6); background: var(--color-surface-raised); border-radius: var(--radius-lg); }
+  .participation-fields h3 { font-size: var(--text-xl); }
+  .participation-fields p { color: var(--color-text-secondary); font-size: var(--text-sm); }
+  .participation-actions { display: flex; gap: var(--space-5); align-items: center; margin-top: var(--space-8); }
+  .participation-actions .btn:disabled { cursor: not-allowed; opacity: .6; transform: none; }
+  .participation-actions p { max-width: 460px; color: var(--color-text-secondary); font-size: var(--text-sm); }
+  @media (max-width: 640px) { .participation-hero { padding-block: var(--space-12); } .participation-heading, .participation-actions { align-items: stretch; flex-direction: column; gap: var(--space-4); } .participation-deck { max-width: none; } .participation-actions .btn { justify-content: center; width: 100%; } .participation-status .btn { display: block; width: 100%; margin: var(--space-3) 0 0; } }
+</style>

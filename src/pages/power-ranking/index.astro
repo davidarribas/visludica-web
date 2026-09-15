@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PowerRankingExperience from '../../components/PowerRankingExperience.astro';
+import PowerRankingParticipation from '../../components/PowerRankingParticipation.astro';
 import { latestEdition } from '../../lib/power-ranking';
 ---
 
@@ -8,5 +9,12 @@ import { latestEdition } from '../../lib/power-ranking';
   title={`Power Ranking — ${latestEdition.monthName} ${latestEdition.year}`}
   description="El Power Ranking mensual de la comunidad de Vis Ludica: clasificación, histórico, acumulado anual y crónica de los juegos que llegan a mesa."
 >
+  <section class="container participation-section">
+    <PowerRankingParticipation />
+  </section>
   <PowerRankingExperience edition={latestEdition} />
 </BaseLayout>
+
+<style>
+  .participation-section { padding-top: var(--space-8); }
+</style>

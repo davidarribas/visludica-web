@@ -5,6 +5,7 @@ import CommunityCard from '../components/CommunityCard.astro';
 import { getEpisodes, getFeedMeta } from '../lib/rss';
 import { SITE, COMMUNITY_LINKS } from '../config';
 import { latestEdition, formatIndex, gameTitle } from '../lib/power-ranking';
+import PowerRankingParticipation from '../components/PowerRankingParticipation.astro';
 
 const [episodes, meta] = await Promise.all([getEpisodes(), getFeedMeta()]);
 const latestEpisode = episodes[0];
@@ -74,7 +75,7 @@ const communityLink = (label: string) => COMMUNITY_LINKS.find((l) => l.label ===
     <div class="container">
       <a href="/power-ranking" class="ranking-feature">
         <div class="ranking-feature__copy">
-          <span class="label">Power Ranking · {latestEdition.monthName} {latestEdition.year}</span>
+          <span class="label">Resultados publicados · Power Ranking · {latestEdition.monthName} {latestEdition.year}</span>
           <h2>Los juegos que están sobre la mesa</h2>
           <p>{rankingProject.stats.voters} votantes deciden la clasificación viva de la comunidad. Consulta el Power, el ranking del mes y la carrera anual.</p>
           <span class="ranking-feature__link">Ver la clasificación completa →</span>
@@ -91,6 +92,7 @@ const communityLink = (label: string) => COMMUNITY_LINKS.find((l) => l.label ===
           ))}
         </ol>
       </a>
+      <PowerRankingParticipation />
     </div>
   </section>
 
@@ -281,6 +283,7 @@ const communityLink = (label: string) => COMMUNITY_LINKS.find((l) => l.label ===
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
+.ranking-feature + .participation-card { margin-top: var(--space-4); }
 .ranking-feature__copy h2 { margin-top: var(--space-2); }
 .ranking-feature__copy p { max-width: 600px; margin-top: var(--space-4); color: var(--color-text-secondary); }
 .ranking-feature__link { display: inline-block; margin-top: var(--space-6); color: var(--color-accent); font-size: var(--text-sm); font-weight: var(--fw-medium); }
