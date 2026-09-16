@@ -78,3 +78,15 @@
 - name: Undigital
   slug: undigital
   aliases: []
+
+- name: Zacatrus
+  slug: zacatrus
+  aliases: []
+
+- name: Bandai
+  slug: bandai
+  aliases: []
+
+- name: Gen X Games
+  slug: gen-x-games
+  aliases: []
