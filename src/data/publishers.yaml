@@ -90,3 +90,11 @@
 - name: Gen X Games
   slug: gen-x-games
   aliases: []
+
+- name: Grumlin Games
+  slug: grumlin-games
+  aliases: []
+
+- name: Kaldo Games
+  slug: kaldo-games
+  aliases: []
