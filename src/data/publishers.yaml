@@ -98,3 +98,15 @@
 - name: Kaldo Games
   slug: kaldo-games
   aliases: []
+
+- name: Doit Games
+  slug: doit-games
+  aliases: []
+
+- name: HABA
+  slug: haba
+  aliases: []
+
+- name: Delirium Games
+  slug: delirium-games
+  aliases: []
