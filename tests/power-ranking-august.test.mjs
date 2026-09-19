@@ -1,10 +1,35 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { execFile } from "node:child_process";
+import { readdir, readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { promisify } from "node:util";
 import { test } from "node:test";
 
+const execFileAsync = promisify(execFile);
 const root = dirname(fileURLToPath(new URL("../package.json", import.meta.url)));
+
+async function publicSpreadsheets(dir) {
+  const found = [];
+  for (const entry of await readdir(dir, { withFileTypes: true })) {
+    const path = join(dir, entry.name);
+    if (entry.isDirectory()) found.push(...(await publicSpreadsheets(path)));
+    else if (entry.name.endsWith(".xlsx")) found.push(path);
+  }
+  return found;
+}
+
+async function zipEntryText(file, entry) {
+  try {
+    const { stdout } = await execFileAsync("unzip", ["-p", file, entry], {
+      encoding: "utf8",
+      maxBuffer: 20 * 1024 * 1024,
+    });
+    return stdout;
+  } catch {
+    return "";
+  }
+}
 
 test("agosto es la edición por defecto y julio sigue en el histórico", async () => {
   const [current, august, july] = await Promise.all([
@@ -49,13 +74,25 @@ test("los datos principales de agosto coinciden con public-results-v1", async ()
   assert.equal(belica.annual_ranking[0].annual, "3.681");
 });
 
-test("las dos descargas revisadas se publican por separado", async () => {
-  const [main, belica] = await Promise.all([
-    readFile(join(root, "public/downloads/power-ranking/power_ranking_agosto_2026_revisado.xlsx")),
-    readFile(join(root, "public/downloads/power-ranking/power_ranking_vis_belica_agosto_2026_revisado.xlsx")),
-  ]);
+test("ningún Excel público del ranking expone papeletas individuales", async () => {
+  // dist/ es el resultado público real tras el build: cualquier xlsx publicado
+  // acabaría aquí, esté o no enlazado desde la interfaz. Se valida su contenido
+  // (nombres de hoja y cadenas compartidas), no su tamaño ni su firma ZIP.
+  for (const file of await publicSpreadsheets(join(root, "dist"))) {
+    const [workbook, sharedStrings] = await Promise.all([
+      zipEntryText(file, "xl/workbook.xml"),
+      zipEntryText(file, "xl/sharedStrings.xml"),
+    ]);
+    assert.doesNotMatch(workbook, /name="[^"]*Votos[^"]*"/, `${file} publica una hoja de votos individuales`);
+    assert.doesNotMatch(
+      sharedStrings,
+      />Votante<|>Comentario<|>1º \(3 pts\)</,
+      `${file} publica alias, comentarios o papeletas individuales`,
+    );
+  }
+});
 
-  assert.equal(main.subarray(0, 2).toString(), "PK");
-  assert.equal(belica.subarray(0, 2).toString(), "PK");
-  assert.notEqual(main.length, belica.length);
+test("la página del ranking ya no enlaza descargas de Excel", async () => {
+  const ranking = await readFile(join(root, "dist/power-ranking/index.html"), "utf8");
+  assert.doesNotMatch(ranking, /href="[^"]*\.xlsx"/);
 });

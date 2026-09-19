@@ -88,7 +88,7 @@ export const editorial = {
             'El Acumulado 2026 se construye sumando los normalizados mensuales: cada mes vale lo mismo, sin ponderaciones ni decaimiento. Como este es el primer año del sistema y el histórico comenzó en febrero, el Acumulado 2026 abarca excepcionalmente de febrero a diciembre. A partir de 2027 el ciclo será enero–diciembre.',
             'Quedan cuatro meses y el podio ha abierto hueco, pero todavía no está cerrado. Detrás la pelea es mucho más estrecha: entre SETI, cuarto, y Voidfall, décimo, solo hay 0,185 puntos. Con septiembre, octubre, noviembre y diciembre por delante, ahí puede pasar casi cualquier cosa.',
             'Las reglas completas del Acumulado 2026, incluidos los desempates, están en la página de metodología.',
-            'El Excel completo con todas las hojas del año está disponible para descarga. El formulario de septiembre ya está abierto: una semana para votar. Se anuncia en los grupos de Telegram de Vis Lúdica y Vis Bélica.',
+            'El formulario de septiembre ya está abierto: una semana para votar. Se anuncia en los grupos de Telegram de Vis Lúdica y Vis Bélica.',
           ],
         },
       ],

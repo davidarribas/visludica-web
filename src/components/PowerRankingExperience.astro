@@ -451,19 +451,6 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
     );
   })}
 
-  {edition.downloads && (
-    <section class="container ranking-downloads" aria-labelledby={`downloads-${edition.id}`}>
-      <div>
-        <span class="label">Datos completos</span>
-        <h2 id={`downloads-${edition.id}`}>Descargar los Excel revisados</h2>
-        <p>Los dos libros se ofrecen por separado y corresponden a la edición de {edition.monthName.toLowerCase()} de {edition.year}.</p>
-      </div>
-      <div class="ranking-downloads__actions">
-        <a href={edition.downloads['vis-ludica']} download>Power Ranking Vis Lúdica</a>
-        <a href={edition.downloads['vis-belica']} download>Power Ranking Vis Bélica</a>
-      </div>
-    </section>
-  )}
 </div>
 
 <script>
@@ -1080,31 +1067,6 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
   .methodology details > div { padding: 0 var(--space-6) var(--space-6); color: var(--color-text-secondary); }
   .methodology details > div p + p { margin-top: var(--space-3); }
 
-  .ranking-downloads {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--space-8);
-    padding-block: var(--space-12) var(--space-16);
-    border-top: 1px solid var(--color-border);
-  }
-  .ranking-downloads h2 { margin-top: var(--space-2); }
-  .ranking-downloads p { max-width: 680px; margin-top: var(--space-3); color: var(--color-text-secondary); }
-  .ranking-downloads__actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: var(--space-3); }
-  .ranking-downloads__actions a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 46px;
-    padding: var(--space-3) var(--space-5);
-    border: 1px solid var(--ranking-accent);
-    border-radius: var(--radius-md);
-    color: var(--ranking-accent);
-    font-weight: var(--fw-bold);
-    text-decoration: none;
-  }
-  .ranking-downloads__actions a:hover { background: var(--ranking-subtle); }
-
   [hidden] { display: none !important; }
 
   @media (max-width: 900px) {
@@ -1153,9 +1115,6 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
     .table-history { display: none; }
     .quotes-grid { grid-template-columns: 1fr; }
     .quotes-grid blockquote:first-child { grid-column: auto; padding: var(--space-6); }
-    .ranking-downloads { align-items: stretch; flex-direction: column; }
-    .ranking-downloads__actions { justify-content: stretch; }
-    .ranking-downloads__actions a { width: 100%; }
   }
 
   @media (max-width: 430px) {

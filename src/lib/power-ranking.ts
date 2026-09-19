@@ -20,10 +20,6 @@ export const editions = [
   {
     ...august2026,
     editorial: augustEditorial,
-    downloads: {
-      'vis-ludica': '/downloads/power-ranking/power_ranking_agosto_2026_revisado.xlsx',
-      'vis-belica': '/downloads/power-ranking/power_ranking_vis_belica_agosto_2026_revisado.xlsx',
-    },
   },
   {
     ...july2026,

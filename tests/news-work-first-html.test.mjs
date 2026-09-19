@@ -55,6 +55,55 @@ test("Markdown + YAML Work-first genera listado, detalle, imagen y ficha multipr
   }
 });
 
+test("el listado usa el orden real y muestra las fechas de publicación", async () => {
+  // El contrato se verifica con una fixture controlada: el listado ordena por
+  // published_at descendente, pinta <time> formateado y no filtra el campo
+  // crudo. No depende de qué noticias concretas ocupen la página 1 real.
+  const temporaryRoot = await mkdtemp(join(root, ".tmp-news-order-"));
+  const contentRoot = join(temporaryRoot, "content");
+  const newsRoot = join(contentRoot, "news");
+  const output = join(temporaryRoot, "dist");
+
+  try {
+    await mkdir(newsRoot, { recursive: true });
+    const template = await readFile(
+      join(root, "tests/fixtures/work-first/news/2026-09-06-work-first-multiproducto.md"),
+      "utf8",
+    );
+    const entries = [
+      { slug: "orden-listado-reciente", publishedAt: "2026-09-06T12:05:00+02:00" },
+      { slug: "orden-listado-anterior", publishedAt: "2026-09-06T12:00:00+02:00" },
+    ];
+    await Promise.all(entries.map(({ slug, publishedAt }) => writeFile(
+      join(newsRoot, `2026-09-06-${slug}.md`),
+      template.replace("published_at: 2026-09-06T12:00:00+02:00", `published_at: ${publishedAt}`),
+    )));
+
+    await execFileAsync(join(root, "node_modules/.bin/astro"), ["build", "--outDir", output], {
+      cwd: root,
+      env: {
+        ...process.env,
+        ASTRO_NEWS_CONTENT_ROOT: contentRoot,
+        ASTRO_NEWS_PUBLIC_DIR: "./tests/fixtures/work-first/public",
+      },
+      maxBuffer: 20 * 1024 * 1024,
+    });
+
+    const index = await readFile(join(output, "noticias/index.html"), "utf8");
+    const recentPosition = index.indexOf('href="/noticias/orden-listado-reciente"');
+    const olderPosition = index.indexOf('href="/noticias/orden-listado-anterior"');
+
+    assert.notEqual(recentPosition, -1);
+    assert.notEqual(olderPosition, -1);
+    assert.ok(recentPosition < olderPosition, "la noticia más reciente debe aparecer antes en el listado");
+    assert.match(index, /<time datetime="2026-09-06T10:05:00\.000Z"[^>]*>6 de septiembre de 2026<\/time>/);
+    assert.match(index, /<time datetime="2026-09-06T10:00:00\.000Z"[^>]*>6 de septiembre de 2026<\/time>/);
+    assert.doesNotMatch(index, /published_at/);
+  } finally {
+    await rm(temporaryRoot, { recursive: true, force: true });
+  }
+});
+
 test("el archivo genera una página nueva por cada 20 noticias", async () => {
   const temporaryRoot = await mkdtemp(join(root, ".tmp-news-pagination-"));
   const contentRoot = join(temporaryRoot, "content");
