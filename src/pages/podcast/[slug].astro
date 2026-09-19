@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getEpisodes } from '../../lib/rss';
-import { sanitizeRssHtml } from '../../lib/html';
+import { sanitizeRssHtml, formatEpisodeHtml } from '../../lib/rss-html.mjs';
 import { LISTEN_PLATFORMS } from '../../config';
 
 export async function getStaticPaths() {
@@ -91,7 +91,7 @@ const platformLinks = [
 
         <!-- Descripción / shownotes -->
         {episode.content && (
-          <div class="prose episode-content" set:html={sanitizeRssHtml(episode.content)} />
+          <div class="prose episode-content" set:html={formatEpisodeHtml(sanitizeRssHtml(episode.content))} />
         )}
       </div>
 

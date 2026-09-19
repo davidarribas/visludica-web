@@ -13,13 +13,18 @@
     "test": "npm run build && node --test tests/*.test.mjs",
     "preview": "astro preview",
     "astro": "astro",
-    "ranking:import": "node scripts/import-power-ranking.mjs"
+    "ranking:import": "node scripts/import-power-ranking.mjs",
+    "podcast:refresh": "node scripts/podcast-refresh.mjs"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
     "@fontsource-variable/inter": "^5.2.8",
     "astro": "^6.3.3",
     "fast-xml-parser": "^5.8.0",
-    "js-yaml": "4.3.2"
+    "js-yaml": "4.3.2",
+    "sanitize-html": "^2.17.7"
+  },
+  "devDependencies": {
+    "@types/sanitize-html": "^2.16.1"
   }
 }

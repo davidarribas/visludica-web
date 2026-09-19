@@ -1,4 +1,9 @@
-import { XMLParser } from 'fast-xml-parser';
+import {
+  DEFAULT_FEED_URL,
+  DEFAULT_SNAPSHOT_PATH,
+  FEED_TIMEOUT_MS,
+  loadFeed,
+} from './podcast-feed.mjs';
 
 export interface Episode {
   title: string;
@@ -19,120 +24,33 @@ export interface FeedMeta {
   imageUrl: string;
 }
 
-const RSS_URL = 'https://feeds.captivate.fm/visludica/';
+export type FeedSource = 'remote' | 'snapshot';
 
-// Normaliza duración a "Xh Ym" o "Ym Zs"
-function formatDuration(raw: string | number | undefined): string {
-  if (!raw) return '';
-  const str = String(raw);
-  // Ya está en formato HH:MM:SS o MM:SS
-  if (str.includes(':')) {
-    const parts = str.split(':').map(Number);
-    if (parts.length === 3) {
-      const [h, m] = parts;
-      return h > 0 ? `${h}h ${m}m` : `${m}m`;
-    }
-    if (parts.length === 2) return `${parts[0]}m`;
-    return str;
+// La URL y el snapshot se pueden redirigir por entorno para construir sin
+// acceso a Captivate (p. ej. PODCAST_FEED_URL=https://feeds.captivate.invalid/
+// fuerza el camino de fallback con el snapshot last-known-good).
+const feedUrl = process.env.PODCAST_FEED_URL ?? DEFAULT_FEED_URL;
+const snapshotPath = process.env.PODCAST_SNAPSHOT_PATH ?? DEFAULT_SNAPSHOT_PATH;
+
+// Una sola obtención por proceso: todas las páginas del build comparten este
+// resultado, así el feed remoto se descarga como máximo una vez.
+let _cache: Promise<{ episodes: Episode[]; meta: FeedMeta; source: FeedSource; fetchedAt?: Date }> | null = null;
+
+async function getFeed() {
+  if (!_cache) {
+    _cache = loadFeed({ feedUrl, snapshotPath, timeoutMs: FEED_TIMEOUT_MS });
   }
-  // Segundos como número
-  const total = parseInt(str);
-  if (isNaN(total)) return str;
-  const h = Math.floor(total / 3600);
-  const m = Math.floor((total % 3600) / 60);
-  return h > 0 ? `${h}h ${m}m` : `${m}m`;
-}
-
-function slugify(text: string): string {
-  return text
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-|-$/g, '');
-}
-
-// Extrae el ID UUID del GUID de Captivate
-function extractCaptivateId(guid: string): string {
-  // Formato típico: UUID o URL terminando en UUID
-  const uuidMatch = guid.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i);
-  return uuidMatch ? uuidMatch[0] : guid;
-}
-
-let _cache: { episodes: Episode[]; meta: FeedMeta } | null = null;
-
-async function fetchFeed() {
-  if (_cache) return _cache;
-
-  const res = await fetch(RSS_URL);
-  if (!res.ok) throw new Error(`RSS fetch failed: ${res.status}`);
-  const xml = await res.text();
-
-  const parser = new XMLParser({
-    ignoreAttributes: false,
-    attributeNamePrefix: '@_',
-    isArray: (name) => name === 'item',
-    parseAttributeValue: false,
-  });
-
-  const feed = parser.parse(xml);
-  const channel = feed?.rss?.channel ?? {};
-  const items: any[] = channel.item ?? [];
-
-  const meta: FeedMeta = {
-    title: channel.title ?? 'Vis Ludica',
-    description: channel.description ?? '',
-    imageUrl:
-      channel['itunes:image']?.['@_href'] ??
-      channel.image?.url ??
-      '',
-  };
-
-  const slugCount: Record<string, number> = {};
-
-  const episodes: Episode[] = items.map((item: any): Episode => {
-    const rawGuid = String(item.guid?.['#text'] ?? item.guid ?? '');
-    const captivateId = extractCaptivateId(rawGuid);
-
-    const rawSlug = slugify(item.title ?? captivateId);
-    slugCount[rawSlug] = (slugCount[rawSlug] ?? 0) + 1;
-    const slug =
-      slugCount[rawSlug] > 1 ? `${rawSlug}-${slugCount[rawSlug]}` : rawSlug;
-
-    const description = String(
-      item['itunes:summary'] ?? item.description ?? ''
-    ).replace(/<[^>]+>/g, '').trim();
-
-    return {
-      title: String(item.title ?? ''),
-      slug,
-      captivateId,
-      guid: rawGuid,
-      pubDate: new Date(item.pubDate ?? ''),
-      duration: formatDuration(item['itunes:duration']),
-      description,
-      content: String(item['content:encoded'] ?? item.description ?? ''),
-      imageUrl:
-        item['itunes:image']?.['@_href'] ??
-        meta.imageUrl ??
-        '',
-      audioUrl: item.enclosure?.['@_url'] ?? '',
-    };
-  });
-
-  _cache = { episodes, meta };
   return _cache;
 }
 
 export async function getEpisodes(): Promise<Episode[]> {
-  const { episodes } = await fetchFeed();
-  return episodes;
+  const { episodes } = await getFeed();
+  return episodes as Episode[];
 }
 
 export async function getFeedMeta(): Promise<FeedMeta> {
-  const { meta } = await fetchFeed();
-  return meta;
+  const { meta } = await getFeed();
+  return meta as FeedMeta;
 }
 
 export async function getEpisodeBySlug(slug: string): Promise<Episode | undefined> {
