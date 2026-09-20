@@ -1,4 +1,4 @@
-import { access, readFile, readdir } from "node:fs/promises";
+import { access, readFile, readdir, stat } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 import { unflatten } from "devalue";
@@ -9,6 +9,21 @@ const ROOT = fileURLToPath(new URL("..", import.meta.url));
 const PUBLISHERS_PATH = resolve(ROOT, "src/data/publishers.yaml");
 const EXTERNAL_MARKDOWN_LINK = /\]\(\s*<?https?:\/\/|\]:\s*<?https?:\/\//im;
 const NEWS_FILENAME = /^\d{4}-\d{2}-\d{2}-[a-z0-9]+(?:-[a-z0-9]+)*\.md$/;
+
+// Las imágenes de noticias se sirven estáticas desde public/ y el corpus
+// optimizado no pasa de ~430 KB por imagen. Este límite (500 KB) deja margen
+// sobre el máximo actual y rechaza cualquier imagen claramente excesiva antes
+// de publicar. Si una imagen futura legítimamente lo supera, se optimiza: no
+// se crean excepciones permanentes.
+export const MAX_NEWS_IMAGE_BYTES = 500 * 1024;
+
+export function newsImageWeightErrors(images) {
+  return images
+    .filter(({ bytes }) => bytes > MAX_NEWS_IMAGE_BYTES)
+    .map(({ id, src, bytes }) =>
+      `news/${id}.image.src: ${src} pesa ${(bytes / 1024 / 1024).toFixed(2)} MB; el máximo permitido es ${Math.round(MAX_NEWS_IMAGE_BYTES / 1024)} KB. Optimízala (reduce dimensiones/recomprime) antes de publicar.`
+    );
+}
 
 export function validatePublisherRegistry(publishers) {
   if (!Array.isArray(publishers)) return ["publishers.yaml: debe contener una lista"];
@@ -94,8 +109,10 @@ async function validateImageFiles(entries) {
   for (const [id, entry] of entries ?? []) {
     if (!entry.data.image) continue;
     const path = resolve(new URL("../public", import.meta.url).pathname, entry.data.image.src.slice(1));
-    try { await access(path); }
-    catch { errors.push(`news/${id}.image.src: no existe ${entry.data.image.src}`); }
+    let stats;
+    try { stats = await stat(path); }
+    catch { errors.push(`news/${id}.image.src: no existe ${entry.data.image.src}`); continue; }
+    errors.push(...newsImageWeightErrors([{ id, src: entry.data.image.src, bytes: stats.size }]));
   }
   return errors;
 }

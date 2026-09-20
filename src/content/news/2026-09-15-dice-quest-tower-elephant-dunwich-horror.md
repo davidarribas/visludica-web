@@ -5,7 +5,7 @@ summary: "Juegorama Editorial publicará en español los dos primeros juegos de 
 published_at: 2026-09-15T12:15:00+02:00
 event: announcement
 image:
-  src: /images/news/dice-quest-tower-elephant-dunwich-horror.png
+  src: /images/news/dice-quest-tower-elephant-dunwich-horror.jpg
   alt: "Cajas de The Tower of the Elephant y The Dunwich Horror de Dice Quest"
 products:
   - name: "Dice Quest: The Tower of the Elephant"

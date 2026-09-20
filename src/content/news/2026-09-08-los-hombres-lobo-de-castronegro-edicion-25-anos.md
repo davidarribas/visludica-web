@@ -5,7 +5,7 @@ summary: Los Hombres Lobo de Castronegro tendrá una edición especial por su 25
 published_at: 2026-09-08T18:38:55+02:00
 event: new_edition
 image:
-  src: /images/news/los-hombres-lobo-de-castronegro-edicion-25-anos.png
+  src: /images/news/los-hombres-lobo-de-castronegro-edicion-25-anos.jpg
   alt: Caja de Los Hombres Lobo de Castronegro Edición 25 años
 products:
   - name: Los Hombres Lobo de Castronegro Edición 25 años
