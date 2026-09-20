@@ -39,8 +39,8 @@ test("agosto es la edición por defecto y julio sigue en el histórico", async (
   ]);
 
   assert.match(current, /<title>Power Ranking — Agosto 2026/);
-  assert.match(current, /<option value="\/power-ranking\/2026\/08" selected/);
-  assert.match(current, /<option value="\/power-ranking\/2026\/07"/);
+  assert.match(current, /<option value="\/power-ranking\/2026\/08\/" selected/);
+  assert.match(current, /<option value="\/power-ranking\/2026\/07\/"/);
   assert.match(august, />Acumulado 2026</);
   assert.doesNotMatch(august, /Palmarés/i);
   assert.match(july, /<title>Power Ranking — Julio 2026/);

@@ -7,3 +7,7 @@ if (!existsSync(outputDirectory)) throw new Error("No existe dist; ejecuta el bu
 // This artifact is deployed only by the isolated staging workflow. Keeping it
 // out of public/ avoids changing headers when the production site is built.
 writeFileSync(resolve(outputDirectory, "_headers"), "/*\n  X-Robots-Tag: noindex, nofollow, noarchive\n");
+
+// Refuerzo anti-indexación: en staging el robots.txt prohíbe el rastreo
+// completo. El robots.txt de producción (public/robots.txt) no se toca.
+writeFileSync(resolve(outputDirectory, "robots.txt"), "User-agent: *\nDisallow: /\n");

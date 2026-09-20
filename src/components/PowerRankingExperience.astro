@@ -108,7 +108,7 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
   data-ranking-app
   data-project="vis-ludica"
   data-view="power"
-  data-edition-url={`/power-ranking/${edition.year}/${String(edition.month).padStart(2, '0')}`}
+  data-edition-url={`/power-ranking/${edition.year}/${String(edition.month).padStart(2, '0')}/`}
 >
   <section class="ranking-hero">
     <div class="container ranking-hero__inner">
@@ -123,7 +123,7 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
         <select id="ranking-edition" data-edition-select>
           {editions.map((candidate) => (
             <option
-              value={`/power-ranking/${candidate.year}/${String(candidate.month).padStart(2, '0')}`}
+              value={`/power-ranking/${candidate.year}/${String(candidate.month).padStart(2, '0')}/`}
               selected={candidate.id === edition.id}
             >
               {candidate.monthName} {candidate.year}
@@ -605,7 +605,7 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
           const editionUrl = app.dataset.editionUrl;
           if (!editionUrl || !projectId || !viewId) return;
           try {
-            const response = await fetch(`${editionUrl}/datos.json`);
+            const response = await fetch(`${editionUrl}datos.json`);
             if (!response.ok) throw new Error(`Respuesta ${response.status}`);
             const payload = await response.json();
             const viewRows = payload?.[projectId]?.[viewId];

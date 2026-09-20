@@ -5,7 +5,7 @@ const year = new Date().getFullYear();
 
 // El footer no incluye YouTube entre las plataformas de escucha (ya aparece en Comunidad).
 const platformLinks = [
-  { href: '/escuchar', label: 'Todas las plataformas', external: false },
+  { href: '/escuchar/', label: 'Todas las plataformas', external: false },
   ...LISTEN_PLATFORMS.filter((p) => p.icon !== 'youtube').map((p) => ({ href: p.href, label: p.label, external: true })),
 ];
 
@@ -59,8 +59,8 @@ const socialLinks = ['YouTube', 'Telegram', 'Twitch'].map((label) => {
 
     <div class="footer-bottom">
       <div class="footer-legal">
-        <a href="/aviso-legal">Aviso legal</a>
-        <a href="/privacidad">Política de privacidad</a>
+        <a href="/aviso-legal/">Aviso legal</a>
+        <a href="/privacidad/">Política de privacidad</a>
         <a href="mailto:hola@visludica.com">Contacto</a>
       </div>
       <p class="footer-credit">

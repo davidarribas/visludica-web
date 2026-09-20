@@ -36,7 +36,7 @@ interface Props {
 }
 
 const { pageNum, totalPages, news } = Astro.props;
-const previousHref = pageNum === 2 ? '/noticias' : `/noticias/pagina/${pageNum - 1}`;
+const previousHref = pageNum === 2 ? '/noticias/' : `/noticias/pagina/${pageNum - 1}/`;
 ---
 
 <BaseLayout
@@ -46,7 +46,7 @@ const previousHref = pageNum === 2 ? '/noticias' : `/noticias/pagina/${pageNum -
   <section class="section">
     <div class="container">
       <header class="news-header">
-        <a href="/noticias" class="back-link">← Volver a Noticias</a>
+        <a href="/noticias/" class="back-link">← Volver a Noticias</a>
         <h1>Noticias <span class="page-num">· {pageNum} / {totalPages}</span></h1>
       </header>
 
@@ -59,7 +59,7 @@ const previousHref = pageNum === 2 ? '/noticias' : `/noticias/pagina/${pageNum -
         <span class="pagination__current">Página {pageNum} de {totalPages}</span>
         <div class="pagination__next">
           {pageNum < totalPages && (
-            <a href={`/noticias/pagina/${pageNum + 1}`} class="btn btn-outline" rel="next">
+            <a href={`/noticias/pagina/${pageNum + 1}/`} class="btn btn-outline" rel="next">
               Siguientes →
             </a>
           )}

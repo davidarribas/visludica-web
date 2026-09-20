@@ -6,7 +6,7 @@ interface Props {
 }
 
 const { news } = Astro.props;
-const href = `/noticias/${news.slug}`;
+const href = `/noticias/${news.slug}/`;
 ---
 
 <article class:list={['news-card', { 'news-card--without-image': !news.image }]}>

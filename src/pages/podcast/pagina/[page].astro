@@ -33,7 +33,7 @@ const { items } = paginateEpisodes(episodes, pageNum, PAGE_SIZE);
   <section class="section">
     <div class="container">
       <header class="page-header">
-        <a href="/podcast" class="back-link">← Volver al archivo</a>
+        <a href="/podcast/" class="back-link">← Volver al archivo</a>
         <h1>Episodios <span class="page-num">· {pageNum} / {totalPages}</span></h1>
       </header>
 
@@ -44,14 +44,14 @@ const { items } = paginateEpisodes(episodes, pageNum, PAGE_SIZE);
       <nav class="pagination" aria-label="Paginación">
         <div class="pagination__prev">
           {pageNum > 2
-            ? <a href={`/podcast/pagina/${pageNum - 1}`} class="btn btn-outline">← Anteriores</a>
-            : <a href="/podcast" class="btn btn-outline">← Anteriores</a>
+            ? <a href={`/podcast/pagina/${pageNum - 1}/`} class="btn btn-outline">← Anteriores</a>
+            : <a href="/podcast/" class="btn btn-outline">← Anteriores</a>
           }
         </div>
         <span class="pagination__current">Página {pageNum} de {totalPages}</span>
         <div class="pagination__next">
           {pageNum < totalPages && (
-            <a href={`/podcast/pagina/${pageNum + 1}`} class="btn btn-outline">Siguientes →</a>
+            <a href={`/podcast/pagina/${pageNum + 1}/`} class="btn btn-outline">Siguientes →</a>
           )}
         </div>
       </nav>

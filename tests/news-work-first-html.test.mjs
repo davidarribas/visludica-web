@@ -25,7 +25,7 @@ test("Markdown + YAML Work-first genera listado, detalle, imagen y ficha multipr
       readFile(join(output, "noticias/index.html"), "utf8"),
       readFile(join(output, "noticias/work-first-multiproducto/index.html"), "utf8"),
     ]);
-    assert.match(index, /href="\/noticias\/work-first-multiproducto"/);
+    assert.match(index, /href="\/noticias\/work-first-multiproducto\/"/);
     assert.match(index, /Atlas Lúdico · 2 productos/);
     assert.match(detail, /src="\/images\/news\/work-first-multiproducto.svg"/);
     assert.match(detail, /alt="Dos cajas de juego abstractas sobre una mesa"/);
@@ -90,8 +90,8 @@ test("el listado usa el orden real y muestra las fechas de publicación", async 
     });
 
     const index = await readFile(join(output, "noticias/index.html"), "utf8");
-    const recentPosition = index.indexOf('href="/noticias/orden-listado-reciente"');
-    const olderPosition = index.indexOf('href="/noticias/orden-listado-anterior"');
+    const recentPosition = index.indexOf('href="/noticias/orden-listado-reciente/"');
+    const olderPosition = index.indexOf('href="/noticias/orden-listado-anterior/"');
 
     assert.notEqual(recentPosition, -1);
     assert.notEqual(olderPosition, -1);
@@ -147,9 +147,9 @@ test("el archivo genera una página nueva por cada 20 noticias", async () => {
     const searchIndex = JSON.parse(searchIndexRaw);
 
     assert.equal((firstPage.match(/<article class="news-card/g) ?? []).length, 20);
-    assert.match(firstPage, /href="\/noticias\/pagina\/2"/);
+    assert.match(firstPage, /href="\/noticias\/pagina\/2\/"/);
     assert.equal((secondPage.match(/<article class="news-card/g) ?? []).length, 1);
-    assert.match(secondPage, /href="\/noticias"[^>]*rel="prev"/);
+    assert.match(secondPage, /href="\/noticias\/"[^>]*rel="prev"/);
     assert.equal(searchIndex.length, 21);
     assert.ok(searchIndex.every((item) => item.href.startsWith("/noticias/")));
     assert.ok(searchIndex.every((item) => item.searchText.includes("ada ejemplo")));

@@ -9,6 +9,8 @@ interface Props {
   description?: string;
   image?: string;
   type?: 'website' | 'article';
+  /** Páginas sin URL propia (404): no emiten canonical ni og:url. */
+  noCanonical?: boolean;
 }
 
 const {
@@ -16,6 +18,7 @@ const {
   description = 'Podcast sobre juegos de mesa. Eurogames, análisis, estrategia y mucho más con David Arribas.',
   image = '/logo.png',
   type = 'website',
+  noCanonical = false,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
@@ -41,13 +44,13 @@ const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
-  <link rel="canonical" href={canonicalURL} />
+  {!noCanonical && <link rel="canonical" href={canonicalURL} />}
 
   <meta property="og:title" content={fullTitle} />
   <meta property="og:description" content={description} />
   <meta property="og:image" content={new URL(image, Astro.site)} />
   <meta property="og:type" content={type} />
-  <meta property="og:url" content={canonicalURL} />
+  {!noCanonical && <meta property="og:url" content={canonicalURL} />}
   <meta property="og:locale" content="es_ES" />
 
   <meta name="twitter:card" content="summary_large_image" />

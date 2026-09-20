@@ -20,7 +20,7 @@ const shortDescription = episode.description.length > 160
 ---
 
 <article class:list={['episode-card', { 'episode-card--featured': featured }]}>
-  <a href={`/podcast/${episode.slug}`} class="episode-card__link" tabindex="-1" aria-hidden="true">
+  <a href={`/podcast/${episode.slug}/`} class="episode-card__link" tabindex="-1" aria-hidden="true">
     <div class="episode-card__image-wrap">
       {episode.imageUrl
         ? <img src={episode.imageUrl} alt="" width="200" height="200" loading="lazy" decoding="async" />
@@ -39,12 +39,12 @@ const shortDescription = episode.description.length > 160
       )}
     </div>
     <h3 class="episode-card__title">
-      <a href={`/podcast/${episode.slug}`}>{episode.title}</a>
+      <a href={`/podcast/${episode.slug}/`}>{episode.title}</a>
     </h3>
     {shortDescription && (
       <p class="episode-card__desc text-secondary">{shortDescription}</p>
     )}
-    <a href={`/podcast/${episode.slug}`} class="episode-card__cta">
+    <a href={`/podcast/${episode.slug}/`} class="episode-card__cta">
       Escuchar episodio →
     </a>
   </div>
