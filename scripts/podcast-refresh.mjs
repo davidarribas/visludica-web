@@ -1,40 +1,41 @@
 #!/usr/bin/env node
-// Actualiza el snapshot last-known-good del feed de Captivate
-// (src/data/podcast/feed-snapshot.json).
+// Actualiza el contenido del podcast (snapshot last-known-good) y su
+// identidad pública (registro GUID→slug).
 //
-// Es la única forma en que el snapshot cambia: `npm run podcast:refresh`.
-// El build normal nunca escribe en el repositorio. Si el remoto falla o no es
-// válido, el script falla con exit 1 SIN tocar el snapshot existente.
+// Es la única forma en que cambian: `npm run podcast:refresh`.
+// El build normal nunca escribe en el repositorio.
 //
-// Después de actualizar, revisa el diff y haz commit si los cambios son correctos.
+// Flujo: fetch → parse → validación → resolución de identidades →
+// escritura atómica (primero el registro, después el snapshot), solo cuando
+// todo ha validado. Los GUID ya conocidos conservan su slug aunque cambie el
+// título o el orden; los GUID nuevos reciben un slug derivado del título y
+// quedan reservados; los GUID ausentes del feed NO se eliminan del registro.
+//
+// Si el remoto falla o es inválido, el script falla con exit 1 SIN tocar el
+// snapshot ni el registro existentes. Tras actualizar, revisa el diff y haz
+// commit si los cambios son correctos.
 
-import { mkdir, writeFile } from 'node:fs/promises';
-import { dirname } from 'node:path';
 import {
   DEFAULT_FEED_URL,
+  DEFAULT_REGISTRY_PATH,
   DEFAULT_SNAPSHOT_PATH,
   FEED_TIMEOUT_MS,
-  fetchRemoteFeed,
+  refreshFeed,
 } from '../src/lib/podcast-feed.mjs';
 
 try {
-  const { feed, fetchedAt } = await fetchRemoteFeed({
+  const result = await refreshFeed({
     feedUrl: DEFAULT_FEED_URL,
+    snapshotPath: DEFAULT_SNAPSHOT_PATH,
+    registryPath: DEFAULT_REGISTRY_PATH,
     timeoutMs: FEED_TIMEOUT_MS,
   });
-
-  const snapshot = {
-    captured_at: fetchedAt.toISOString(),
-    feed_url: DEFAULT_FEED_URL,
-    episodes: feed.episodes,
-    meta: feed.meta,
-  };
-
-  await mkdir(dirname(DEFAULT_SNAPSHOT_PATH), { recursive: true });
-  await writeFile(DEFAULT_SNAPSHOT_PATH, `${JSON.stringify(snapshot, null, 2)}\n`, 'utf8');
-  console.log(`Snapshot actualizado (${feed.episodes.length} episodios): ${DEFAULT_SNAPSHOT_PATH}`);
+  console.log(`Episodios en el feed: ${result.total}`);
+  if (result.assigned.length) {
+    console.log('Recuerda hacer commit del registro y del snapshot actualizados.');
+  }
 } catch (error) {
-  console.error(`No se pudo actualizar el snapshot: ${error.message}`);
-  console.error('El snapshot existente no se ha modificado.');
+  console.error(`No se pudo actualizar el podcast: ${error.message}`);
+  console.error('El snapshot y el registro existentes no se han modificado.');
   process.exit(1);
 }

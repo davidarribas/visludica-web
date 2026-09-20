@@ -56,6 +56,17 @@ async function writeSnapshot(tempDir, content = snapshotWithOneEpisode()) {
   return path;
 }
 
+// Registro de identidad con los GUID de la fixture XML (o uno explícito).
+async function writeRegistry(tempDir, mapping) {
+  const path = join(tempDir, "slug-registry.json");
+  await writeFile(path, JSON.stringify({ version: 1, slugs: mapping }, null, 2), "utf8");
+  return path;
+}
+
+function registryFromXml(xml = VALID_XML) {
+  return Object.fromEntries(parseFeedXml(xml).episodes.map((ep) => [ep.guid, ep.slug]));
+}
+
 function remoteFetch(xml = VALID_XML) {
   return async () => new Response(xml, { status: 200 });
 }
@@ -129,6 +140,7 @@ test("remoto válido → se usa el remoto", async () => {
     const feed = await loadFeed({
       feedUrl: "https://example.invalid/rss",
       snapshotPath: join(tempDir, "inexistente.json"),
+      registryPath: await writeRegistry(tempDir, registryFromXml()),
       fetchImpl: remoteFetch(),
       log: quietLog(),
     });
@@ -144,10 +156,12 @@ test("error de red + snapshot válido → snapshot con aviso explícito", async 
   const tempDir = await mkdtemp(join(root, ".tmp-podcast-feed-"));
   try {
     const snapshotPath = await writeSnapshot(tempDir);
+    const registryPath = await writeRegistry(tempDir, registryFromXml());
     const log = quietLog();
     const feed = await loadFeed({
       feedUrl: "https://example.invalid/rss",
       snapshotPath,
+      registryPath,
       fetchImpl: failingFetch(),
       log,
     });
@@ -167,9 +181,11 @@ test("timeout del fetch → camino de snapshot", async () => {
   const tempDir = await mkdtemp(join(root, ".tmp-podcast-feed-"));
   try {
     const snapshotPath = await writeSnapshot(tempDir);
+    const registryPath = await writeRegistry(tempDir, registryFromXml());
     const feed = await loadFeed({
       feedUrl: "https://example.invalid/rss",
       snapshotPath,
+      registryPath,
       timeoutMs: 20,
       fetchImpl: hangingFetch(),
       log: quietLog(),
@@ -184,9 +200,11 @@ test("respuesta HTTP no válida → camino de snapshot", async () => {
   const tempDir = await mkdtemp(join(root, ".tmp-podcast-feed-"));
   try {
     const snapshotPath = await writeSnapshot(tempDir);
+    const registryPath = await writeRegistry(tempDir, registryFromXml());
     const feed = await loadFeed({
       feedUrl: "https://example.invalid/rss",
       snapshotPath,
+      registryPath,
       fetchImpl: httpFetch(503),
       log: quietLog(),
     });
@@ -200,9 +218,11 @@ test("XML inválido y feed sin episodios → camino de snapshot", async () => {
   const tempDir = await mkdtemp(join(root, ".tmp-podcast-feed-"));
   try {
     const snapshotPath = await writeSnapshot(tempDir);
+    const registryPath = await writeRegistry(tempDir, registryFromXml());
     const brokenXml = await loadFeed({
       feedUrl: "https://example.invalid/rss",
       snapshotPath,
+      registryPath,
       fetchImpl: remoteFetch("<rss><channel><item><title>solo"),
       log: quietLog(),
     });
@@ -211,6 +231,7 @@ test("XML inválido y feed sin episodios → camino de snapshot", async () => {
     const emptyFeed = await loadFeed({
       feedUrl: "https://example.invalid/rss",
       snapshotPath,
+      registryPath,
       fetchImpl: remoteFetch("<rss><channel><title>vacío</title></channel></rss>"),
       log: quietLog(),
     });
@@ -227,6 +248,7 @@ test("remoto falla y no hay snapshot → fallo claro, nunca un podcast vacío", 
       loadFeed({
         feedUrl: "https://example.invalid/rss",
         snapshotPath: join(tempDir, "inexistente.json"),
+        registryPath: join(tempDir, "inexistente-registry.json"),
         fetchImpl: failingFetch(),
         log: quietLog(),
       }),
@@ -246,6 +268,7 @@ test("remoto falla y snapshot inválido → fallo claro", async () => {
         loadFeed({
           feedUrl: "https://example.invalid/rss",
           snapshotPath,
+          registryPath: join(tempDir, "inexistente-registry.json"),
           fetchImpl: failingFetch(),
           log: quietLog(),
         }),
@@ -261,16 +284,19 @@ test("loadFeed nunca modifica el snapshot", async () => {
   const tempDir = await mkdtemp(join(root, ".tmp-podcast-feed-"));
   try {
     const snapshotPath = await writeSnapshot(tempDir);
+    const registryPath = await writeRegistry(tempDir, registryFromXml());
     const before = await readFile(snapshotPath, "utf8");
     await loadFeed({
       feedUrl: "https://example.invalid/rss",
       snapshotPath,
+      registryPath,
       fetchImpl: remoteFetch(),
       log: quietLog(),
     });
     await loadFeed({
       feedUrl: "https://example.invalid/rss",
       snapshotPath,
+      registryPath,
       fetchImpl: failingFetch(),
       log: quietLog(),
     });
