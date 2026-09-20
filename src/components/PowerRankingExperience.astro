@@ -141,12 +141,11 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
         <button type="button" data-project-button="vis-belica" aria-pressed="false">Vis Bélica</button>
       </div>
 
-      <div class="view-tabs" role="tablist" aria-label="Tipo de clasificación">
+      <div class="view-tabs" role="group" aria-label="Tipo de clasificación">
         {views.map((view) => (
           <button
             type="button"
-            role="tab"
-            aria-selected={view.id === 'power' ? 'true' : 'false'}
+            aria-pressed={view.id === 'power' ? 'true' : 'false'}
             data-view-button={view.id}
           >
             <span class="view-tabs__full">{view.label}</span>
@@ -485,7 +484,7 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
         button.setAttribute('aria-pressed', String(button.dataset.projectButton === activeProject));
       });
       viewButtons.forEach((button) => {
-        button.setAttribute('aria-selected', String(button.dataset.viewButton === activeView));
+        button.setAttribute('aria-pressed', String(button.dataset.viewButton === activeView));
       });
       projectPanels.forEach((panel) => {
         const isProject = panel.dataset.projectPanel === activeProject;
@@ -797,7 +796,7 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
     color: var(--ranking-on-accent);
     box-shadow: var(--shadow-sm);
   }
-  .view-tabs button[aria-selected='true'] { color: var(--ranking-accent); background: var(--ranking-subtle); }
+  .view-tabs button[aria-pressed='true'] { color: var(--ranking-accent); background: var(--ranking-subtle); }
   .view-tabs__short { display: none; }
 
   .edition-intro {

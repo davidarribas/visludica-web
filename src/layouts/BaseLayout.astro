@@ -67,10 +67,36 @@ const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
   <meta name="theme-color" content="#141412" media="(prefers-color-scheme: dark)" />
 </head>
 <body>
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido</a>
   <Header />
-  <main>
+  <main id="contenido-principal" tabindex="-1">
     <slot />
   </main>
   <Footer />
 </body>
 </html>
+
+<style>
+  /* Enlace para saltar al contenido: oculto hasta recibir foco (primer Tab).
+     El supresión de outline solo aplica a <main> como objetivo programático
+     del salto: el feedback es el propio salto de scroll, no un control. */
+  .skip-link {
+    position: fixed;
+    top: var(--space-2);
+    left: var(--space-2);
+    z-index: 1000;
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-accent);
+    color: #fff;
+    border-radius: var(--radius-md);
+    font-weight: var(--fw-bold);
+    text-decoration: none;
+    transform: translateY(calc(-100% - var(--space-4)));
+  }
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+  main:focus {
+    outline: none;
+  }
+</style>

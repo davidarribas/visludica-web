@@ -39,16 +39,15 @@ function isActive(href: string) {
           </li>
         ))}
         <li class="dropdown">
-          <button class="nav-link dropdown-btn" aria-haspopup="true" aria-expanded="false">
+          <button type="button" class="nav-link dropdown-btn" aria-expanded="false" aria-controls="mas-menu">
             Más <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <ul class="dropdown-menu" role="menu">
+          <ul id="mas-menu" class="dropdown-menu">
             {masLinks.map(link => (
-              <li role="none">
+              <li>
                 <a
                   href={link.href}
                   class="dropdown-item"
-                  role="menuitem"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -294,16 +293,35 @@ const dropdownMenu = document.querySelector('.dropdown-menu');
 const menuToggle = document.querySelector('.menu-toggle') as HTMLButtonElement | null;
 const mainNav = document.getElementById('main-nav');
 
+// El desplegable es un disclosure nativo (botón + enlaces), no un widget ARIA
+// Menu: se abre/cierra con click o Enter/Space, se recorre con Tab y Escape
+// lo cierra devolviendo el foco al control.
+function closeDropdown() {
+  dropdownMenu?.classList.remove('open');
+  dropdownBtn?.setAttribute('aria-expanded', 'false');
+}
+
+function closeDropdownAndFocus() {
+  if (!dropdownMenu?.classList.contains('open')) return;
+  closeDropdown();
+  dropdownBtn?.focus();
+}
+
 dropdownBtn?.addEventListener('click', (e) => {
   e.stopPropagation();
   const open = dropdownMenu?.classList.toggle('open');
   dropdownBtn.setAttribute('aria-expanded', String(open));
 });
 
-document.addEventListener('click', () => {
-  dropdownMenu?.classList.remove('open');
-  dropdownBtn?.setAttribute('aria-expanded', 'false');
+dropdownBtn?.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeDropdownAndFocus();
 });
+
+dropdownMenu?.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeDropdownAndFocus();
+});
+
+document.addEventListener('click', () => closeDropdown());
 
 menuToggle?.addEventListener('click', () => {
   const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
