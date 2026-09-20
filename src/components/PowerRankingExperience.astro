@@ -334,6 +334,7 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
                   </div>
                   <div class="table-footer">
                     <span data-result-count>{Math.min(25, rows.length)} de {rows.length} juegos</span>
+                    <p class="table-data-status" data-data-status role="status" hidden>No se han podido cargar todos los datos del ranking: la búsqueda y el listado se limitan a los juegos ya disponibles en la página.</p>
                     {rows.length > 25 && <button type="button" data-show-more>Mostrar 25 más</button>}
                   </div>
                 </div>
@@ -454,6 +455,8 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
 </div>
 
 <script>
+  import { tableStatus } from '../lib/power-ranking/ranking-table.mjs';
+
   const apps = document.querySelectorAll<HTMLElement>('[data-ranking-app]');
 
   apps.forEach((app) => {
@@ -525,6 +528,8 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
       const projectId = shell.closest<HTMLElement>('[data-project-panel]')?.dataset.projectPanel;
       const viewId = shell.closest<HTMLElement>('[data-view-panel]')?.dataset.viewPanel;
       let visibleLimit = pageSize;
+      let fullDataLoaded = false;
+      const dataStatus = shell.querySelector<HTMLElement>('[data-data-status]');
 
       function normalizeSearch(value: string) {
         return value
@@ -605,7 +610,7 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
             if (!response.ok) throw new Error(`Respuesta ${response.status}`);
             const payload = await response.json();
             const viewRows = payload?.[projectId]?.[viewId];
-            if (!Array.isArray(viewRows)) return;
+            if (!Array.isArray(viewRows)) throw new Error('Formato inesperado de datos.json');
             const tbody = shell.querySelector('tbody');
             if (!tbody) return;
             for (const rowData of viewRows.slice(rows.length)) {
@@ -613,7 +618,12 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
               tbody.appendChild(tr);
               rows.push(tr);
             }
+            fullDataLoaded = true;
           } catch (error) {
+            // Degradación: el listado y la búsqueda se limitan a las filas ya
+            // disponibles y el pie lo comunica (una sola vez: la promesa se
+            // cachea, no hay reintento ni spam).
+            if (dataStatus) dataStatus.hidden = false;
             console.warn('No se pudo cargar el listado completo del ranking', error);
           }
         })();
@@ -623,18 +633,25 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
       function filterRows() {
         const query = normalizeSearch(search?.value.trim() ?? '');
         const matches = rows.filter((row) => row.dataset.searchValue?.includes(query));
-        // Antes de cargar datos.json, `rows` solo tiene las filas estáticas
-        // (hasta 100): usar el total real (data-total-count) evita que el
-        // contador mienta y que el botón desaparezca antes de tiempo.
-        const total = query === '' ? Math.max(totalCount, matches.length) : matches.length;
+        // Sin datos completos, el total anunciado es el dataset realmente
+        // disponible: los contadores nunca anuncian filas inaccesibles.
+        const status = tableStatus({
+          query,
+          visibleLimit,
+          matchesCount: matches.length,
+          availableRows: rows.length,
+          totalCount,
+          pageSize,
+          fullDataLoaded,
+        });
         rows.forEach((row) => {
           const matchIndex = matches.indexOf(row);
           row.hidden = matchIndex === -1 || matchIndex >= visibleLimit;
         });
-        if (resultCount) resultCount.textContent = `${Math.min(visibleLimit, total)} de ${total} juegos`;
+        if (resultCount) resultCount.textContent = `${status.shown} de ${status.total} juegos`;
         if (showMore) {
-          showMore.hidden = visibleLimit >= total;
-          showMore.textContent = `Mostrar ${Math.min(pageSize, Math.max(0, total - visibleLimit))} más`;
+          showMore.hidden = status.showMoreHidden;
+          showMore.textContent = status.showMoreLabel;
         }
       }
 

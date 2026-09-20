@@ -148,7 +148,7 @@ export class ParticipationClient {
   getCampaign() { return this.request("/campaign"); }
   getSummary(campaignId) { return this.request(`/campaigns/${encodeURIComponent(campaignId)}/summary`); }
   getBallot(campaignId) { return this.request(`/campaigns/${encodeURIComponent(campaignId)}/ballot`); }
-  searchGames(query) { return this.request(`/games?q=${encodeURIComponent(query)}`); }
+  searchGames(query, init = {}) { return this.request(`/games?q=${encodeURIComponent(query)}`, init); }
   createSession() { return this.request("/session", { method: "POST" }); }
 
   saveBallot(campaignId, payload, { csrfToken, operationKey }) {

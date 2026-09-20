@@ -107,6 +107,7 @@ import { participationConfig } from '../../data/power-ranking/participation.mjs'
     buildWritePayload,
     createOperationKey,
   } from '../../lib/power-ranking/participation-client.mjs';
+  import { createGameSearch } from '../../lib/power-ranking/game-search.mjs';
 
   const root = document.querySelector('[data-participation-app]');
   if (root) {
@@ -127,7 +128,7 @@ import { participationConfig } from '../../data/power-ranking/participation.mjs'
     const state = {
       phase: 'LOADING_CAMPAIGN', campaign: null, selections: {}, ballot: null,
       hasSession: false, csrfToken: null, sessionLost: false, writesPaused: false, submission: null, retryAt: null,
-      search: { position: null, results: [], activeIndex: -1, timer: null }, referral: new URLSearchParams(location.search).get('src'),
+      search: { position: null, results: [], activeIndex: -1 }, referral: new URLSearchParams(location.search).get('src'),
     };
 
     const setText = (node, value) => { node.textContent = value; };
@@ -135,7 +136,7 @@ import { participationConfig } from '../../data/power-ranking/participation.mjs'
     const setStatus = (message = '', kind = '') => { status.className = `participation-status ${kind}`; setText(status, message); };
     const isOpen = () => state.campaign?.status === 'open' && !state.sessionLost;
     const isWritable = () => isOpen() && !state.writesPaused && (!state.retryAt || Date.now() >= state.retryAt);
-    const clearSearch = () => { clearTimeout(state.search.timer); state.search = { position: null, results: [], activeIndex: -1, timer: null }; };
+    const clearSearch = () => { state.search = { position: null, results: [], activeIndex: -1 }; };
 
     function formatDate(value) {
       try { return new Intl.DateTimeFormat('es-ES', { dateStyle: 'long', timeStyle: 'short' }).format(new Date(value)); }
@@ -208,6 +209,11 @@ import { participationConfig } from '../../data/power-ranking/participation.mjs'
       const label = document.createElement('label'); label.textContent = 'Busca un juego';
       const input = document.createElement('input'); input.type = 'search'; input.autocomplete = 'off'; input.placeholder = 'Escribe al menos 2 letras';
       input.setAttribute('role', 'combobox'); input.setAttribute('aria-expanded', String(state.search.results.length > 0)); input.setAttribute('aria-controls', `game-results-${position}`);
+      const gameSearch = createGameSearch({
+        searchGames: (query, init) => client.searchGames(query, init),
+        onResults: (games) => { if (state.search.position !== position) return; state.search.results = games; renderResults(); },
+        onError: () => { if (state.search.position === position) setStatus('No se ha podido consultar el catálogo. Puedes intentar de nuevo o proponer el juego.', 'is-error'); },
+      });
       const list = document.createElement('ul'); list.id = `game-results-${position}`; list.setAttribute('role', 'listbox'); list.className = 'game-results';
       const proposalToggle = makeButton('No encuentro mi juego', 'proposal-toggle', true);
       const proposal = document.createElement('div'); proposal.className = 'proposal-input'; proposal.hidden = !state.search.proposalOpen;
@@ -225,7 +231,7 @@ import { participationConfig } from '../../data/power-ranking/participation.mjs'
         if (state.search.activeIndex >= 0) input.setAttribute('aria-activedescendant', `game-result-${position}-${state.search.activeIndex}`); else input.removeAttribute('aria-activedescendant');
       };
       input.addEventListener('input', () => {
-        const query = input.value.trim(); clearTimeout(state.search.timer);
+        const query = input.value.trim();
         if (state.search.position !== position) {
           positionsHost.querySelectorAll('.game-results').forEach((otherList) => {
             if (otherList !== list) {
@@ -237,14 +243,10 @@ import { participationConfig } from '../../data/power-ranking/participation.mjs'
           });
         }
         state.search.position = position; state.search.results = []; state.search.activeIndex = -1; renderResults();
-        if (query.length < 2) return;
-        state.search.timer = setTimeout(async () => {
-          try { const result = await client.searchGames(query); if (state.search.position !== position) return; state.search.results = Array.isArray(result.games) ? result.games : []; renderResults(); }
-          catch (error) { if (state.search.position === position) setStatus('No se ha podido consultar el catálogo. Puedes intentar de nuevo o proponer el juego.', 'is-error'); }
-        }, 300);
+        gameSearch.query(query);
       });
       input.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') { clearSearch(); renderPositions(); return; }
+        if (event.key === 'Escape') { gameSearch.invalidate(); clearSearch(); renderPositions(); return; }
         if (!state.search.results.length) return;
         if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); const delta = event.key === 'ArrowDown' ? 1 : -1; state.search.activeIndex = (state.search.activeIndex + delta + state.search.results.length) % state.search.results.length; renderResults(); }
         if (event.key === 'Enter' && state.search.activeIndex >= 0) { event.preventDefault(); const game = state.search.results[state.search.activeIndex]; setSelection(position, { kind: 'game', game_id: game.game_id, display_name: game.display_name }); }
