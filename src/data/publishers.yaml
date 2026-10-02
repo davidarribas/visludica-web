@@ -110,3 +110,7 @@
 - name: Delirium Games
   slug: delirium-games
   aliases: []
+
+- name: Ediciones MasQueOca
+  slug: ediciones-masqueoca
+  aliases: []
