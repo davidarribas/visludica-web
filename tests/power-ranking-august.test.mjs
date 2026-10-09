@@ -72,8 +72,8 @@ test("los datos principales de agosto coinciden con public-results-v1", async ()
     { voters: belica.stats.valid_voters, distinctGames: belica.stats.distinct_games, totalPoints: belica.stats.total_points },
     { voters: 63, distinctGames: 73, totalPoints: 235 },
   );
-  assert.equal(belica.power_ranking[0].power, "0.386810");
-  assert.equal(belica.annual_ranking[0].annual, "3.681");
+  assert.equal(belica.power_ranking[0].power, "0.387590");
+  assert.equal(belica.annual_ranking[0].annual, "3.797");
 });
 
 test("ningún Excel público del ranking expone papeletas individuales", async () => {

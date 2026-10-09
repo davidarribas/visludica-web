@@ -22676,42 +22676,47 @@
     "vis-belica": {
       "id": "vis-belica",
       "stats": {
-        "voters": 47,
-        "distinctGames": 39,
-        "totalPoints": 147
+        "voters": 52,
+        "distinctGames": 44,
+        "totalPoints": 171
       },
       "voterHistory": [
         {
+          "month": 2,
+          "label": "Feb",
+          "value": 17
+        },
+        {
           "month": 3,
           "label": "Mar",
-          "value": 15
+          "value": 18
         },
         {
           "month": 4,
           "label": "Abr",
-          "value": 29
+          "value": 33
         },
         {
           "month": 5,
           "label": "May",
-          "value": 35
+          "value": 40
         },
         {
           "month": 6,
           "label": "Jun",
-          "value": 47
+          "value": 52
         }
       ],
       "games": {
-        "2-minutos-para-la-medianoche": {
-          "id": "2-minutos-para-la-medianoche",
+        "vlg_000016": {
+          "id": "vlg_000016",
           "title": "2 Minutos para la Medianoche",
           "history": [
             null,
             null,
             null,
-            0.0345,
-            0.0571,
+            "0.030",
+            "0.050",
             null,
             null,
             null,
@@ -22721,32 +22726,14 @@
             null
           ]
         },
-        "asl-starter-kit-1": {
-          "id": "asl-starter-kit-1",
-          "title": "ASL Starter kit 1",
-          "history": [
-            null,
-            null,
-            null,
-            null,
-            0.0571,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        "almoravid": {
-          "id": "almoravid",
+        "vlg_000053": {
+          "id": "vlg_000053",
           "title": "Almoravid",
           "history": [
             null,
             null,
             null,
-            0.1034,
+            "0.091",
             null,
             null,
             null,
@@ -22757,8 +22744,8 @@
             null
           ]
         },
-        "army-of-the-potomac": {
-          "id": "army-of-the-potomac",
+        "vlg_000073": {
+          "id": "vlg_000073",
           "title": "Army of the Potomac",
           "history": [
             null,
@@ -22766,7 +22753,7 @@
             null,
             null,
             null,
-            0.0213,
+            "0.019",
             null,
             null,
             null,
@@ -22775,8 +22762,8 @@
             null
           ]
         },
-        "asalto-a-madrid": {
-          "id": "asalto-a-madrid",
+        "vlg_000078": {
+          "id": "vlg_000078",
           "title": "Asalto a Madrid",
           "history": [
             null,
@@ -22784,7 +22771,7 @@
             null,
             null,
             null,
-            0.0426,
+            "0.038",
             null,
             null,
             null,
@@ -22793,8 +22780,26 @@
             null
           ]
         },
-        "asturias-1936-1937": {
-          "id": "asturias-1936-1937",
+        "vlg_000081": {
+          "id": "vlg_000081",
+          "title": "ASL Starter kit 1",
+          "history": [
+            null,
+            null,
+            null,
+            null,
+            "0.050",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000083": {
+          "id": "vlg_000083",
           "title": "Asturias 1936-1937",
           "history": [
             null,
@@ -22802,7 +22807,7 @@
             null,
             null,
             null,
-            0.1702,
+            "0.154",
             null,
             null,
             null,
@@ -22811,14 +22816,14 @@
             null
           ]
         },
-        "axis-empires-ultimate-edition": {
-          "id": "axis-empires-ultimate-edition",
+        "vlg_000094": {
+          "id": "vlg_000094",
           "title": "Axis Empires: Ultimate Edition",
           "history": [
             null,
             null,
             null,
-            0.069,
+            "0.061",
             null,
             null,
             null,
@@ -22829,33 +22834,15 @@
             null
           ]
         },
-        "bcs-brazen-chariots": {
-          "id": "bcs-brazen-chariots",
-          "title": "BCS Brazen Chariots",
-          "history": [
-            null,
-            null,
-            null,
-            null,
-            null,
-            0.0213,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        "band-of-brothers-screaming-eagles": {
-          "id": "band-of-brothers-screaming-eagles",
+        "vlg_000100": {
+          "id": "vlg_000100",
           "title": "Band of Brothers Screaming Eagles",
           "history": [
             null,
             null,
             null,
             null,
-            0.0286,
+            "0.025",
             null,
             null,
             null,
@@ -22865,15 +22852,15 @@
             null
           ]
         },
-        "battalion-s3-issue-1-revista-de-mmp": {
-          "id": "battalion-s3-issue-1-revista-de-mmp",
+        "vlg_000107": {
+          "id": "vlg_000107",
           "title": "Battalion S3 Issue 1 (Revista de MMP)",
           "history": [
             null,
             null,
             null,
             null,
-            0.0857,
+            "0.075",
             null,
             null,
             null,
@@ -22883,15 +22870,15 @@
             null
           ]
         },
-        "battle-commander-volume-i": {
-          "id": "battle-commander-volume-i",
+        "vlg_000108": {
+          "id": "vlg_000108",
           "title": "Battle Commander: Volume I",
           "history": [
             null,
             null,
             null,
             null,
-            0.0286,
+            "0.025",
             null,
             null,
             null,
@@ -22901,8 +22888,8 @@
             null
           ]
         },
-        "battlefields-of-the-napoleonic-wars": {
-          "id": "battlefields-of-the-napoleonic-wars",
+        "vlg_000109": {
+          "id": "vlg_000109",
           "title": "Battlefields of the Napoleonic Wars",
           "history": [
             null,
@@ -22910,7 +22897,7 @@
             null,
             null,
             null,
-            0.0426,
+            "0.038",
             null,
             null,
             null,
@@ -22919,15 +22906,15 @@
             null
           ]
         },
-        "battles-of-the-american-revolution-tri-pack": {
-          "id": "battles-of-the-american-revolution-tri-pack",
+        "vlg_000110": {
+          "id": "vlg_000110",
           "title": "Battles of the American Revolution Tri-Pack",
           "history": [
             null,
             null,
             null,
-            0.1034,
-            null,
+            "0.091",
+            "0.100",
             null,
             null,
             null,
@@ -22937,15 +22924,51 @@
             null
           ]
         },
-        "by-iron-and-blood": {
-          "id": "by-iron-and-blood",
+        "vlg_000113": {
+          "id": "vlg_000113",
+          "title": "BCS Brazen Chariots",
+          "history": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            "0.019",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000140": {
+          "id": "vlg_000140",
+          "title": "Burning Banners",
+          "history": [
+            null,
+            "0.118",
+            "0.389",
+            "0.152",
+            "0.200",
+            "0.077",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000142": {
+          "id": "vlg_000142",
           "title": "By Iron and Blood",
           "history": [
             null,
             null,
             null,
             null,
-            0.0286,
+            "0.025",
             null,
             null,
             null,
@@ -22955,15 +22978,15 @@
             null
           ]
         },
-        "carrier-battle-philippine-sea": {
-          "id": "carrier-battle-philippine-sea",
+        "vlg_000154": {
+          "id": "vlg_000154",
           "title": "Carrier Battle: Philippine Sea",
           "history": [
             null,
             null,
             null,
             null,
-            0.0571,
+            "0.050",
             null,
             null,
             null,
@@ -22973,15 +22996,15 @@
             null
           ]
         },
-        "close-quarters-battles-waterloo": {
-          "id": "close-quarters-battles-waterloo",
+        "vlg_000190": {
+          "id": "vlg_000190",
           "title": "Close Quarters Battles: Waterloo",
           "history": [
             null,
             null,
             null,
             null,
-            0.0857,
+            "0.075",
             null,
             null,
             null,
@@ -22991,8 +23014,26 @@
             null
           ]
         },
-        "combat-1-compass-games": {
-          "id": "combat-1-compass-games",
+        "vlg_000192": {
+          "id": "vlg_000192",
+          "title": "Coalitions",
+          "history": [
+            null,
+            null,
+            null,
+            null,
+            "0.075",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000198": {
+          "id": "vlg_000198",
           "title": "Combat 1 compáss games",
           "history": [
             null,
@@ -23000,7 +23041,7 @@
             null,
             null,
             null,
-            0.0426,
+            "0.038",
             null,
             null,
             null,
@@ -23009,16 +23050,16 @@
             null
           ]
         },
-        "combat-commander": {
-          "id": "combat-commander",
+        "vlg_000199": {
+          "id": "vlg_000199",
           "title": "Combat Commander",
           "history": [
             null,
+            "0.059",
+            "0.056",
             null,
-            0.0667,
-            null,
-            0.0286,
-            0.1277,
+            "0.075",
+            "0.115",
             null,
             null,
             null,
@@ -23027,14 +23068,14 @@
             null
           ]
         },
-        "combat-eastern-front": {
-          "id": "combat-eastern-front",
+        "vlg_000201": {
+          "id": "vlg_000201",
           "title": "Combat! Eastern Front",
           "history": [
             null,
             null,
             null,
-            0.069,
+            "0.061",
             null,
             null,
             null,
@@ -23045,15 +23086,15 @@
             null
           ]
         },
-        "combat-volumen-1": {
-          "id": "combat-volumen-1",
+        "vlg_000202": {
+          "id": "vlg_000202",
           "title": "Combat! Volumen 1",
           "history": [
             null,
             null,
             null,
             null,
-            0.0286,
+            "0.025",
             null,
             null,
             null,
@@ -23063,16 +23104,16 @@
             null
           ]
         },
-        "command-colors-napoleon": {
-          "id": "command-colors-napoleon",
-          "title": "Command & colors Napoleón",
+        "vlg_000204": {
+          "id": "vlg_000204",
+          "title": "Commands & Colors: Napoleonics",
           "history": [
             null,
+            "0.176",
             null,
             null,
             null,
-            null,
-            0.0426,
+            "0.038",
             null,
             null,
             null,
@@ -23081,8 +23122,8 @@
             null
           ]
         },
-        "congress-of-vienna": {
-          "id": "congress-of-vienna",
+        "vlg_000208": {
+          "id": "vlg_000208",
           "title": "Congress of Vienna",
           "history": [
             null,
@@ -23090,7 +23131,7 @@
             null,
             null,
             null,
-            0.0638,
+            "0.058",
             null,
             null,
             null,
@@ -23099,15 +23140,15 @@
             null
           ]
         },
-        "crisis-1914": {
-          "id": "crisis-1914",
+        "vlg_000219": {
+          "id": "vlg_000219",
           "title": "Crisis 1914",
           "history": [
             null,
             null,
             null,
             null,
-            0.0571,
+            "0.050",
             null,
             null,
             null,
@@ -23117,16 +23158,16 @@
             null
           ]
         },
-        "cruzada-y-revolucion": {
-          "id": "cruzada-y-revolucion",
+        "vlg_000224": {
+          "id": "vlg_000224",
           "title": "Cruzada y Revolución",
           "history": [
             null,
             null,
             null,
-            0.069,
+            "0.061",
             null,
-            0.0426,
+            "0.038",
             null,
             null,
             null,
@@ -23135,16 +23176,16 @@
             null
           ]
         },
-        "d-day-at-omaha-beach": {
-          "id": "d-day-at-omaha-beach",
-          "title": "D-Day at Omaha Beach",
+        "vlg_000228": {
+          "id": "vlg_000228",
+          "title": "Cuius Regio",
           "history": [
             null,
             null,
-            0.8,
-            0.3448,
-            0.6571,
-            0.4894,
+            null,
+            "0.030",
+            null,
+            null,
             null,
             null,
             null,
@@ -23153,15 +23194,33 @@
             null
           ]
         },
-        "divine-right": {
-          "id": "divine-right",
+        "vlg_000240": {
+          "id": "vlg_000240",
+          "title": "D-Day at Omaha Beach",
+          "history": [
+            null,
+            "1.059",
+            "0.667",
+            "0.303",
+            "0.550",
+            "0.481",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000258": {
+          "id": "vlg_000258",
           "title": "Divine Right",
           "history": [
             null,
             null,
             null,
             null,
-            0.0857,
+            "0.075",
             null,
             null,
             null,
@@ -23171,34 +23230,16 @@
             null
           ]
         },
-        "dune-war-for-arrakis": {
-          "id": "dune-war-for-arrakis",
+        "vlg_000274": {
+          "id": "vlg_000274",
           "title": "Dune: War for Arrakis",
           "history": [
             null,
             null,
-            0.2667,
-            0.1379,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        "el-otro-lado-de-la-colina": {
-          "id": "el-otro-lado-de-la-colina",
-          "title": "El Otro Lado de la Colina",
-          "history": [
-            null,
-            null,
-            null,
-            0.0345,
-            null,
-            null,
+            "0.222",
+            "0.121",
+            "0.025",
+            "0.058",
             null,
             null,
             null,
@@ -23207,15 +23248,15 @@
             null
           ]
         },
-        "el-imperio-del-sol": {
-          "id": "el-imperio-del-sol",
+        "vlg_000292": {
+          "id": "vlg_000292",
           "title": "El imperio del sol",
           "history": [
             null,
             null,
             null,
             null,
-            0.0857,
+            "0.075",
             null,
             null,
             null,
@@ -23225,15 +23266,33 @@
             null
           ]
         },
-        "enemy-action-kharkov": {
-          "id": "enemy-action-kharkov",
+        "vlg_000296": {
+          "id": "vlg_000296",
+          "title": "El Otro Lado de la Colina",
+          "history": [
+            null,
+            null,
+            null,
+            "0.030",
+            "0.025",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000312": {
+          "id": "vlg_000312",
           "title": "Enemy Action: Kharkov",
           "history": [
             null,
             null,
             null,
             null,
-            0.0286,
+            "0.025",
             null,
             null,
             null,
@@ -23243,15 +23302,15 @@
             null
           ]
         },
-        "far-east-war-1592": {
-          "id": "far-east-war-1592",
+        "vlg_000326": {
+          "id": "vlg_000326",
           "title": "Far East war 1592",
           "history": [
             null,
             null,
             null,
             null,
-            0.0857,
+            "0.075",
             null,
             null,
             null,
@@ -23261,16 +23320,16 @@
             null
           ]
         },
-        "fields-of-fire": {
-          "id": "fields-of-fire",
+        "vlg_000331": {
+          "id": "vlg_000331",
           "title": "Fields of Fire",
           "history": [
             null,
             null,
             null,
             null,
-            0.0571,
-            0.1277,
+            "0.050",
+            "0.154",
             null,
             null,
             null,
@@ -23279,14 +23338,14 @@
             null
           ]
         },
-        "founding-fathers": {
-          "id": "founding-fathers",
-          "title": "Founding Fathers",
+        "vlg_000345": {
+          "id": "vlg_000345",
+          "title": "For the People",
           "history": [
             null,
             null,
             null,
-            0.1034,
+            "0.030",
             null,
             null,
             null,
@@ -23297,8 +23356,8 @@
             null
           ]
         },
-        "gbacw-gettysburg": {
-          "id": "gbacw-gettysburg",
+        "vlg_000365": {
+          "id": "vlg_000365",
           "title": "GBACW Gettysburg",
           "history": [
             null,
@@ -23306,7 +23365,7 @@
             null,
             null,
             null,
-            0.0638,
+            "0.058",
             null,
             null,
             null,
@@ -23315,14 +23374,32 @@
             null
           ]
         },
-        "gunslinger": {
-          "id": "gunslinger",
+        "vlg_000379": {
+          "id": "vlg_000379",
+          "title": "Guerra del Anillo",
+          "history": [
+            null,
+            null,
+            "0.111",
+            "0.273",
+            "0.225",
+            "0.077",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000385": {
+          "id": "vlg_000385",
           "title": "Gunslinger",
           "history": [
             null,
             null,
             null,
-            0.0345,
+            "0.030",
             null,
             null,
             null,
@@ -23333,16 +23410,16 @@
             null
           ]
         },
-        "hannibal": {
-          "id": "hannibal",
+        "vlg_000392": {
+          "id": "vlg_000392",
           "title": "Hannibal",
           "history": [
             null,
             null,
             null,
             null,
-            null,
-            0.0213,
+            "0.075",
+            "0.019",
             null,
             null,
             null,
@@ -23351,15 +23428,15 @@
             null
           ]
         },
-        "here-i-stand": {
-          "id": "here-i-stand",
+        "vlg_000403": {
+          "id": "vlg_000403",
           "title": "Here I Stand",
           "history": [
             null,
             null,
             null,
-            0.1034,
-            0.0857,
+            "0.091",
+            "0.075",
             null,
             null,
             null,
@@ -23369,15 +23446,15 @@
             null
           ]
         },
-        "heroes-of-normandie": {
-          "id": "heroes-of-normandie",
+        "vlg_000408": {
+          "id": "vlg_000408",
           "title": "Héroes Of Normandie",
           "history": [
             null,
             null,
             null,
             null,
-            0.0286,
+            "0.025",
             null,
             null,
             null,
@@ -23387,16 +23464,52 @@
             null
           ]
         },
-        "imperial-struggle": {
-          "id": "imperial-struggle",
+        "vlg_000418": {
+          "id": "vlg_000418",
+          "title": "Holanda 44",
+          "history": [
+            null,
+            null,
+            "0.167",
+            "0.061",
+            null,
+            "0.058",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000422": {
+          "id": "vlg_000422",
+          "title": "Hoplite",
+          "history": [
+            null,
+            null,
+            null,
+            "0.061",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000428": {
+          "id": "vlg_000428",
           "title": "Imperial Struggle",
           "history": [
             null,
             null,
             null,
-            0.1724,
+            "0.152",
             null,
-            0.0426,
+            "0.038",
             null,
             null,
             null,
@@ -23405,8 +23518,8 @@
             null
           ]
         },
-        "iwo-jima-el-infierno-en-la-tierra": {
-          "id": "iwo-jima-el-infierno-en-la-tierra",
+        "vlg_000450": {
+          "id": "vlg_000450",
           "title": "Iwo jima el infierno en la tierra",
           "history": [
             null,
@@ -23414,7 +23527,7 @@
             null,
             null,
             null,
-            0.0638,
+            "0.058",
             null,
             null,
             null,
@@ -23423,34 +23536,16 @@
             null
           ]
         },
-        "julius-caesar": {
-          "id": "julius-caesar",
+        "vlg_000454": {
+          "id": "vlg_000454",
           "title": "Julius Caesar",
           "history": [
             null,
+            "0.118",
             null,
             null,
-            null,
-            0.0286,
-            0.1064,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        "kanal": {
-          "id": "kanal",
-          "title": "Kanal",
-          "history": [
-            null,
-            null,
-            0.0667,
-            0.069,
-            0.0286,
-            null,
+            "0.025",
+            "0.058",
             null,
             null,
             null,
@@ -23459,15 +23554,15 @@
             null
           ]
         },
-        "little-round-top": {
-          "id": "little-round-top",
+        "vlg_000517": {
+          "id": "vlg_000517",
           "title": "Little Round Top",
           "history": [
             null,
             null,
             null,
             null,
-            0.0571,
+            "0.050",
             null,
             null,
             null,
@@ -23477,15 +23572,15 @@
             null
           ]
         },
-        "maneuver-warfare": {
-          "id": "maneuver-warfare",
+        "vlg_000535": {
+          "id": "vlg_000535",
           "title": "Maneuver Warfare",
           "history": [
             null,
             null,
             null,
             null,
-            0.0286,
+            "0.025",
             null,
             null,
             null,
@@ -23495,15 +23590,33 @@
             null
           ]
         },
-        "men-of-iron-tri-pack": {
-          "id": "men-of-iron-tri-pack",
+        "vlg_000542": {
+          "id": "vlg_000542",
+          "title": "María",
+          "history": [
+            null,
+            "0.706",
+            "0.111",
+            "0.152",
+            "0.075",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000559": {
+          "id": "vlg_000559",
           "title": "Men of Iron Tri-Pack",
           "history": [
             null,
             null,
             null,
             null,
-            0.0857,
+            "0.075",
             null,
             null,
             null,
@@ -23513,14 +23626,14 @@
             null
           ]
         },
-        "monty-s-gamble-market-garden": {
-          "id": "monty-s-gamble-market-garden",
+        "vlg_000574": {
+          "id": "vlg_000574",
           "title": "Monty's Gamble: Market Garden",
           "history": [
             null,
             null,
             null,
-            0.1034,
+            "0.091",
             null,
             null,
             null,
@@ -23531,8 +23644,8 @@
             null
           ]
         },
-        "mud-blood": {
-          "id": "mud-blood",
+        "vlg_000579": {
+          "id": "vlg_000579",
           "title": "Mud & Blood",
           "history": [
             null,
@@ -23540,7 +23653,7 @@
             null,
             null,
             null,
-            0.0426,
+            "0.038",
             null,
             null,
             null,
@@ -23549,8 +23662,8 @@
             null
           ]
         },
-        "normandy-44": {
-          "id": "normandy-44",
+        "vlg_000597": {
+          "id": "vlg_000597",
           "title": "Normandy 44",
           "history": [
             null,
@@ -23558,7 +23671,7 @@
             null,
             null,
             null,
-            0.0213,
+            "0.019",
             null,
             null,
             null,
@@ -23567,8 +23680,8 @@
             null
           ]
         },
-        "ocs-korea": {
-          "id": "ocs-korea",
+        "vlg_000606": {
+          "id": "vlg_000606",
           "title": "OCS Korea",
           "history": [
             null,
@@ -23576,7 +23689,7 @@
             null,
             null,
             null,
-            0.0426,
+            "0.038",
             null,
             null,
             null,
@@ -23585,8 +23698,8 @@
             null
           ]
         },
-        "onus": {
-          "id": "onus",
+        "vlg_000613": {
+          "id": "vlg_000613",
           "title": "Onus!",
           "history": [
             null,
@@ -23594,7 +23707,7 @@
             null,
             null,
             null,
-            0.0426,
+            "0.038",
             null,
             null,
             null,
@@ -23603,15 +23716,15 @@
             null
           ]
         },
-        "operacion-bollebank": {
-          "id": "operacion-bollebank",
+        "vlg_000614": {
+          "id": "vlg_000614",
           "title": "Operación Bollebank",
           "history": [
             null,
             null,
             null,
             null,
-            0.0286,
+            "0.025",
             null,
             null,
             null,
@@ -23621,16 +23734,16 @@
             null
           ]
         },
-        "operation-overlord": {
-          "id": "operation-overlord",
+        "vlg_000615": {
+          "id": "vlg_000615",
           "title": "Operation Overlord",
           "history": [
             null,
             null,
             null,
             null,
-            0.0286,
-            0.1915,
+            "0.025",
+            "0.173",
             null,
             null,
             null,
@@ -23639,8 +23752,8 @@
             null
           ]
         },
-        "panzer-north-africa": {
-          "id": "panzer-north-africa",
+        "vlg_000634": {
+          "id": "vlg_000634",
           "title": "Panzer North Africa",
           "history": [
             null,
@@ -23648,7 +23761,7 @@
             null,
             null,
             null,
-            0.0213,
+            "0.019",
             null,
             null,
             null,
@@ -23657,16 +23770,16 @@
             null
           ]
         },
-        "paths-of-glory": {
-          "id": "paths-of-glory",
+        "vlg_000639": {
+          "id": "vlg_000639",
           "title": "Paths of Glory",
           "history": [
             null,
             null,
             null,
-            0.0345,
+            "0.030",
             null,
-            0.0213,
+            "0.019",
             null,
             null,
             null,
@@ -23675,15 +23788,33 @@
             null
           ]
         },
-        "poland-defiant-the-german-invasion-september-1939": {
-          "id": "poland-defiant-the-german-invasion-september-1939",
+        "vlg_000650": {
+          "id": "vlg_000650",
+          "title": "Phantom Fury",
+          "history": [
+            null,
+            null,
+            null,
+            "0.061",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000660": {
+          "id": "vlg_000660",
           "title": "Poland Defiant: The German Invasion, September 1939",
           "history": [
             null,
             null,
             null,
             null,
-            0.0286,
+            "0.025",
             null,
             null,
             null,
@@ -23693,16 +23824,16 @@
             null
           ]
         },
-        "pursuit-of-glory": {
-          "id": "pursuit-of-glory",
+        "vlg_000675": {
+          "id": "vlg_000675",
           "title": "Pursuit of Glory",
           "history": [
             null,
             null,
             null,
             null,
-            0.0857,
-            0.0638,
+            "0.075",
+            "0.058",
             null,
             null,
             null,
@@ -23711,16 +23842,16 @@
             null
           ]
         },
-        "quartermaster-general-south-front": {
-          "id": "quartermaster-general-south-front",
+        "vlg_000679": {
+          "id": "vlg_000679",
           "title": "Quartermaster General: South Front",
           "history": [
             null,
+            "0.176",
+            "0.167",
             null,
-            0.2,
             null,
-            null,
-            0.0426,
+            "0.038",
             null,
             null,
             null,
@@ -23729,15 +23860,15 @@
             null
           ]
         },
-        "raf": {
-          "id": "raf",
+        "vlg_000687": {
+          "id": "vlg_000687",
           "title": "RAF",
           "history": [
             null,
             null,
             null,
             null,
-            0.0286,
+            "0.025",
             null,
             null,
             null,
@@ -23747,15 +23878,15 @@
             null
           ]
         },
-        "red-dust-rebellion": {
-          "id": "red-dust-rebellion",
+        "vlg_000695": {
+          "id": "vlg_000695",
           "title": "Red Dust Rebellion",
           "history": [
             null,
             null,
             null,
             null,
-            0.0571,
+            "0.050",
             null,
             null,
             null,
@@ -23765,15 +23896,15 @@
             null
           ]
         },
-        "resistencia-holandesa": {
-          "id": "resistencia-holandesa",
-          "title": "Resistencia Holandesa",
+        "vlg_000702": {
+          "id": "vlg_000702",
+          "title": "Resistencia Holandesa: La casa Orange vencerá",
           "history": [
             null,
             null,
-            0.2,
-            0.069,
-            0.0571,
+            "0.167",
+            "0.091",
+            "0.050",
             null,
             null,
             null,
@@ -23783,15 +23914,15 @@
             null
           ]
         },
-        "rostov-serie-scs": {
-          "id": "rostov-serie-scs",
+        "vlg_000714": {
+          "id": "vlg_000714",
           "title": "Rostov (Serie SCS)",
           "history": [
             null,
             null,
             null,
             null,
-            0.0571,
+            "0.050",
             null,
             null,
             null,
@@ -23801,15 +23932,15 @@
             null
           ]
         },
-        "senderos-de-gloria": {
-          "id": "senderos-de-gloria",
+        "vlg_000735": {
+          "id": "vlg_000735",
           "title": "Senderos de Gloria",
           "history": [
             null,
-            null,
-            0.2,
-            0.1034,
-            0.0857,
+            "0.118",
+            "0.167",
+            "0.091",
+            "0.075",
             null,
             null,
             null,
@@ -23819,8 +23950,8 @@
             null
           ]
         },
-        "serie-bcs": {
-          "id": "serie-bcs",
+        "vlg_000736": {
+          "id": "vlg_000736",
           "title": "Serie BCS",
           "history": [
             null,
@@ -23828,7 +23959,7 @@
             null,
             null,
             null,
-            0.0426,
+            "0.038",
             null,
             null,
             null,
@@ -23837,8 +23968,8 @@
             null
           ]
         },
-        "serie-gcacw": {
-          "id": "serie-gcacw",
+        "vlg_000737": {
+          "id": "vlg_000737",
           "title": "Serie GCACW",
           "history": [
             null,
@@ -23846,7 +23977,7 @@
             null,
             null,
             null,
-            0.0638,
+            "0.058",
             null,
             null,
             null,
@@ -23855,13 +23986,13 @@
             null
           ]
         },
-        "skies-above-britain": {
-          "id": "skies-above-britain",
+        "vlg_000746": {
+          "id": "vlg_000746",
           "title": "Skies Above Britain",
           "history": [
             null,
             null,
-            0.2,
+            "0.167",
             null,
             null,
             null,
@@ -23873,14 +24004,14 @@
             null
           ]
         },
-        "star-wars-la-batalla-de-hoth": {
-          "id": "star-wars-la-batalla-de-hoth",
+        "vlg_000786": {
+          "id": "vlg_000786",
           "title": "Star Wars: La Batalla de Hoth",
           "history": [
             null,
             null,
             null,
-            0.2759,
+            "0.242",
             null,
             null,
             null,
@@ -23891,15 +24022,33 @@
             null
           ]
         },
-        "stonewall-jackson-way-ii": {
-          "id": "stonewall-jackson-way-ii",
+        "vlg_000798": {
+          "id": "vlg_000798",
+          "title": "Stonewall in the Valley",
+          "history": [
+            null,
+            null,
+            "0.167",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000799": {
+          "id": "vlg_000799",
           "title": "Stonewall Jackson Way II",
           "history": [
             null,
             null,
             null,
             null,
-            0.0857,
+            "0.075",
             null,
             null,
             null,
@@ -23909,34 +24058,16 @@
             null
           ]
         },
-        "stonewall-in-the-valley": {
-          "id": "stonewall-in-the-valley",
-          "title": "Stonewall in the Valley",
-          "history": [
-            null,
-            null,
-            0.2,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        "struggle-of-empires": {
-          "id": "struggle-of-empires",
+        "vlg_000802": {
+          "id": "vlg_000802",
           "title": "Struggle of Empires",
           "history": [
             null,
             null,
             null,
-            0.1034,
+            "0.091",
             null,
-            0.1702,
+            "0.154",
             null,
             null,
             null,
@@ -23945,8 +24076,26 @@
             null
           ]
         },
-        "the-battle-of-normandy": {
-          "id": "the-battle-of-normandy",
+        "vlg_000814": {
+          "id": "vlg_000814",
+          "title": "Tanto Monta",
+          "history": [
+            null,
+            null,
+            null,
+            "0.030",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000825": {
+          "id": "vlg_000825",
           "title": "The Battle of Normandy",
           "history": [
             null,
@@ -23954,7 +24103,7 @@
             null,
             null,
             null,
-            0.0638,
+            "0.058",
             null,
             null,
             null,
@@ -23963,13 +24112,13 @@
             null
           ]
         },
-        "the-rock-of-chickamauga": {
-          "id": "the-rock-of-chickamauga",
+        "vlg_000846": {
+          "id": "vlg_000846",
           "title": "The Rock of Chickamauga",
           "history": [
             null,
             null,
-            0.0667,
+            "0.056",
             null,
             null,
             null,
@@ -23981,14 +24130,32 @@
             null
           ]
         },
-        "the-shores-of-tripoli": {
-          "id": "the-shores-of-tripoli",
+        "vlg_000847": {
+          "id": "vlg_000847",
+          "title": "The Russian Campaign",
+          "history": [
+            null,
+            null,
+            null,
+            null,
+            "0.050",
+            "0.135",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000848": {
+          "id": "vlg_000848",
           "title": "The Shores of Tripoli",
           "history": [
             null,
             null,
             null,
-            0.069,
+            "0.061",
             null,
             null,
             null,
@@ -23999,16 +24166,16 @@
             null
           ]
         },
-        "the-russian-campaign": {
-          "id": "the-russian-campaign",
-          "title": "The russian campaign",
+        "vlg_000856": {
+          "id": "vlg_000856",
+          "title": "Thunderbolt: Deluxe Edition",
           "history": [
             null,
             null,
             null,
             null,
-            0.0571,
-            0.1489,
+            "0.050",
+            "0.154",
             null,
             null,
             null,
@@ -24017,15 +24184,15 @@
             null
           ]
         },
-        "traces-of-war": {
-          "id": "traces-of-war",
+        "vlg_000873": {
+          "id": "vlg_000873",
           "title": "Traces of War",
           "history": [
             null,
             null,
             null,
             null,
-            0.0857,
+            "0.075",
             null,
             null,
             null,
@@ -24035,15 +24202,15 @@
             null
           ]
         },
-        "triumph-and-tragedy": {
-          "id": "triumph-and-tragedy",
+        "vlg_000879": {
+          "id": "vlg_000879",
           "title": "Triumph and Tragedy",
           "history": [
             null,
             null,
             null,
-            0.1724,
-            0.0571,
+            "0.152",
+            "0.050",
             null,
             null,
             null,
@@ -24053,16 +24220,16 @@
             null
           ]
         },
-        "twilight-struggle": {
-          "id": "twilight-struggle",
+        "vlg_000886": {
+          "id": "vlg_000886",
           "title": "Twilight Struggle",
           "history": [
             null,
-            null,
-            0.0667,
-            0.1034,
-            0.1714,
-            0.1277,
+            "0.529",
+            "0.056",
+            "0.091",
+            "0.150",
+            "0.115",
             null,
             null,
             null,
@@ -24071,13 +24238,13 @@
             null
           ]
         },
-        "una-guerra-imposible": {
-          "id": "una-guerra-imposible",
+        "vlg_000891": {
+          "id": "vlg_000891",
           "title": "Una Guerra Imposible",
           "history": [
             null,
             null,
-            0.1333,
+            "0.111",
             null,
             null,
             null,
@@ -24089,8 +24256,8 @@
             null
           ]
         },
-        "undaunted-2200-callisto": {
-          "id": "undaunted-2200-callisto",
+        "vlg_000893": {
+          "id": "vlg_000893",
           "title": "Undaunted 2200 Callisto",
           "history": [
             null,
@@ -24098,7 +24265,7 @@
             null,
             null,
             null,
-            0.0426,
+            "0.038",
             null,
             null,
             null,
@@ -24107,8 +24274,8 @@
             null
           ]
         },
-        "undaunted-battle-of-britain": {
-          "id": "undaunted-battle-of-britain",
+        "vlg_000894": {
+          "id": "vlg_000894",
           "title": "Undaunted Battle of britain",
           "history": [
             null,
@@ -24116,7 +24283,7 @@
             null,
             null,
             null,
-            0.0638,
+            "0.058",
             null,
             null,
             null,
@@ -24125,8 +24292,26 @@
             null
           ]
         },
-        "undaunted-stalingrad": {
-          "id": "undaunted-stalingrad",
+        "vlg_000895": {
+          "id": "vlg_000895",
+          "title": "Undaunted: Callisto",
+          "history": [
+            null,
+            null,
+            null,
+            "0.061",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        },
+        "vlg_000897": {
+          "id": "vlg_000897",
           "title": "Undaunted Stalingrad",
           "history": [
             null,
@@ -24134,7 +24319,7 @@
             null,
             null,
             null,
-            0.1064,
+            "0.096",
             null,
             null,
             null,
@@ -24143,26 +24328,8 @@
             null
           ]
         },
-        "undaunted-callisto": {
-          "id": "undaunted-callisto",
-          "title": "Undaunted: Callisto",
-          "history": [
-            null,
-            null,
-            null,
-            0.069,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null,
-            null
-          ]
-        },
-        "urban-operations": {
-          "id": "urban-operations",
+        "vlg_000904": {
+          "id": "vlg_000904",
           "title": "Urban Operations",
           "history": [
             null,
@@ -24170,7 +24337,7 @@
             null,
             null,
             null,
-            0.1064,
+            "0.096",
             null,
             null,
             null,
@@ -24179,15 +24346,15 @@
             null
           ]
         },
-        "valley-of-tears": {
-          "id": "valley-of-tears",
+        "vlg_000908": {
+          "id": "vlg_000908",
           "title": "Valley of Tears",
           "history": [
             null,
             null,
             null,
             null,
-            0.0571,
+            "0.050",
             null,
             null,
             null,
@@ -24197,15 +24364,15 @@
             null
           ]
         },
-        "virgin-queen": {
-          "id": "virgin-queen",
+        "vlg_000924": {
+          "id": "vlg_000924",
           "title": "Virgin Queen",
           "history": [
             null,
             null,
             null,
-            0.1034,
-            0.0286,
+            "0.091",
+            "0.025",
             null,
             null,
             null,
@@ -24215,13 +24382,13 @@
             null
           ]
         },
-        "warfighter-wwii": {
-          "id": "warfighter-wwii",
+        "vlg_000932": {
+          "id": "vlg_000932",
           "title": "Warfighter WWII",
           "history": [
             null,
             null,
-            0.1333,
+            "0.111",
             null,
             null,
             null,
@@ -24233,16 +24400,16 @@
             null
           ]
         },
-        "washington-s-war": {
-          "id": "washington-s-war",
+        "vlg_000939": {
+          "id": "vlg_000939",
           "title": "Washington's War",
           "history": [
             null,
             null,
             null,
             null,
-            0.0857,
-            0.0638,
+            "0.075",
+            "0.058",
             null,
             null,
             null,
@@ -24251,8 +24418,8 @@
             null
           ]
         },
-        "wing-leader": {
-          "id": "wing-leader",
+        "vlg_000950": {
+          "id": "vlg_000950",
           "title": "Wing Leader",
           "history": [
             null,
@@ -24260,7 +24427,7 @@
             null,
             null,
             null,
-            0.0638,
+            "0.058",
             null,
             null,
             null,
@@ -24269,16 +24436,16 @@
             null
           ]
         },
-        "wir-sind-das-volk": {
-          "id": "wir-sind-das-volk",
+        "vlg_000952": {
+          "id": "vlg_000952",
           "title": "Wir sind das Volk!",
           "history": [
             null,
+            "0.176",
+            "0.056",
+            "0.030",
             null,
-            0.0667,
-            0.0345,
-            null,
-            0.0426,
+            "0.038",
             null,
             null,
             null,
@@ -24289,1625 +24456,3902 @@
         }
       },
       "rankings": {
-        "power": [
-          {
-            "id": "d-day-at-omaha-beach",
-            "rank": 1,
-            "score": 0.52018,
-            "movement": 0
-          },
-          {
-            "id": "operation-overlord",
-            "rank": 2,
-            "score": 0.13834,
-            "movement": 40
-          },
-          {
-            "id": "struggle-of-empires",
-            "rank": 3,
-            "score": 0.12845,
-            "movement": 49
-          },
-          {
-            "id": "twilight-struggle",
-            "rank": 4,
-            "score": 0.12841,
-            "movement": -2
-          },
-          {
-            "id": "asturias-1936-1937",
-            "rank": 5,
-            "score": 0.11914,
-            "movement": "NEW"
-          },
-          {
-            "id": "the-russian-campaign",
-            "rank": 6,
-            "score": 0.1128,
-            "movement": 21
-          },
-          {
-            "id": "fields-of-fire",
-            "rank": 7,
-            "score": 0.09796,
-            "movement": 16
-          },
-          {
-            "id": "combat-commander",
-            "rank": 8,
-            "score": 0.09768,
-            "movement": 23
-          },
-          {
-            "id": "julius-caesar",
-            "rank": 9,
-            "score": 0.07877,
-            "movement": 30
-          },
-          {
-            "id": "undaunted-stalingrad",
-            "rank": 10,
-            "score": 0.07448,
-            "movement": "NEW"
-          },
-          {
-            "id": "urban-operations",
-            "rank": 11,
-            "score": 0.07448,
-            "movement": "NEW"
-          },
-          {
-            "id": "washington-s-war",
-            "rank": 12,
-            "score": 0.05751,
-            "movement": 4
-          },
-          {
-            "id": "pursuit-of-glory",
-            "rank": 13,
-            "score": 0.05751,
-            "movement": 0
-          },
-          {
-            "id": "imperial-struggle",
-            "rank": 14,
-            "score": 0.04534,
-            "movement": 18
-          },
-          {
-            "id": "congress-of-vienna",
-            "rank": 15,
-            "score": 0.04466,
-            "movement": "NEW"
-          },
-          {
-            "id": "serie-gcacw",
-            "rank": 16,
-            "score": 0.04466,
-            "movement": "NEW"
-          },
-          {
-            "id": "wing-leader",
-            "rank": 17,
-            "score": 0.04466,
-            "movement": "NEW"
-          },
-          {
-            "id": "the-battle-of-normandy",
-            "rank": 18,
-            "score": 0.04466,
-            "movement": "NEW"
-          },
-          {
-            "id": "gbacw-gettysburg",
-            "rank": 19,
-            "score": 0.04466,
-            "movement": "NEW"
-          },
-          {
-            "id": "undaunted-battle-of-britain",
-            "rank": 20,
-            "score": 0.04466,
-            "movement": "NEW"
-          },
-          {
-            "id": "iwo-jima-el-infierno-en-la-tierra",
-            "rank": 21,
-            "score": 0.04466,
-            "movement": "NEW"
-          },
-          {
-            "id": "quartermaster-general-south-front",
-            "rank": 22,
-            "score": 0.04182,
-            "movement": 23
-          },
-          {
-            "id": "wir-sind-das-volk",
-            "rank": 23,
-            "score": 0.03693,
-            "movement": 32
-          },
-          {
-            "id": "cruzada-y-revolucion",
-            "rank": 24,
-            "score": 0.03603,
-            "movement": 34
-          },
-          {
-            "id": "senderos-de-gloria",
-            "rank": 25,
-            "score": 0.03416,
-            "movement": -22
-          },
-          {
-            "id": "command-colors-napoleon",
-            "rank": 26,
-            "score": 0.02982,
-            "movement": "NEW"
-          },
-          {
-            "id": "onus",
-            "rank": 27,
-            "score": 0.02982,
-            "movement": "NEW"
-          },
-          {
-            "id": "ocs-korea",
-            "rank": 28,
-            "score": 0.02982,
-            "movement": "NEW"
-          },
-          {
-            "id": "undaunted-2200-callisto",
-            "rank": 29,
-            "score": 0.02982,
-            "movement": "NEW"
-          },
-          {
-            "id": "serie-bcs",
-            "rank": 30,
-            "score": 0.02982,
-            "movement": "NEW"
-          },
-          {
-            "id": "battlefields-of-the-napoleonic-wars",
-            "rank": 31,
-            "score": 0.02982,
-            "movement": "NEW"
-          },
-          {
-            "id": "mud-blood",
-            "rank": 32,
-            "score": 0.02982,
-            "movement": "NEW"
-          },
-          {
-            "id": "asalto-a-madrid",
-            "rank": 33,
-            "score": 0.02982,
-            "movement": "NEW"
-          },
-          {
-            "id": "combat-1-compass-games",
-            "rank": 34,
-            "score": 0.02982,
-            "movement": "NEW"
-          },
-          {
-            "id": "dune-war-for-arrakis",
-            "rank": 35,
-            "score": 0.02841,
-            "movement": -17
-          },
-          {
-            "id": "resistencia-holandesa",
-            "rank": 36,
-            "score": 0.02678,
-            "movement": -31
-          },
-          {
-            "id": "star-wars-la-batalla-de-hoth",
-            "rank": 37,
-            "score": 0.02483,
-            "movement": -18
-          },
-          {
-            "id": "triumph-and-tragedy",
-            "rank": 38,
-            "score": 0.02408,
-            "movement": -32
-          },
-          {
-            "id": "here-i-stand",
-            "rank": 39,
-            "score": 0.02216,
-            "movement": -35
-          },
-          {
-            "id": "paths-of-glory",
-            "rank": 40,
-            "score": 0.01801,
-            "movement": 24
-          },
-          {
-            "id": "army-of-the-potomac",
-            "rank": 41,
-            "score": 0.01491,
-            "movement": "NEW"
-          },
-          {
-            "id": "panzer-north-africa",
-            "rank": 42,
-            "score": 0.01491,
-            "movement": "NEW"
-          },
-          {
-            "id": "hannibal",
-            "rank": 43,
-            "score": 0.01491,
-            "movement": "NEW"
-          },
-          {
-            "id": "bcs-brazen-chariots",
-            "rank": 44,
-            "score": 0.01491,
-            "movement": "NEW"
-          },
-          {
-            "id": "normandy-44",
-            "rank": 45,
-            "score": 0.01491,
-            "movement": "NEW"
-          },
-          {
-            "id": "kanal",
-            "rank": 46,
-            "score": 0.0145,
-            "movement": -17
-          },
-          {
-            "id": "virgin-queen",
-            "rank": 47,
-            "score": 0.0136,
-            "movement": -17
-          },
-          {
-            "id": "battalion-s3-issue-1-revista-de-mmp",
-            "rank": 48,
-            "score": 0.01286,
-            "movement": -41
-          },
-          {
-            "id": "traces-of-war",
-            "rank": 49,
-            "score": 0.01286,
-            "movement": -34
-          },
-          {
-            "id": "el-imperio-del-sol",
-            "rank": 50,
-            "score": 0.01286,
-            "movement": -40
-          },
-          {
-            "id": "men-of-iron-tri-pack",
-            "rank": 51,
-            "score": 0.01286,
-            "movement": -39
-          },
-          {
-            "id": "divine-right",
-            "rank": 52,
-            "score": 0.01286,
-            "movement": -43
-          },
-          {
-            "id": "far-east-war-1592",
-            "rank": 53,
-            "score": 0.01286,
-            "movement": -42
-          },
-          {
-            "id": "stonewall-jackson-way-ii",
-            "rank": 54,
-            "score": 0.01286,
-            "movement": -40
-          },
-          {
-            "id": "close-quarters-battles-waterloo",
-            "rank": 55,
-            "score": 0.01286,
-            "movement": -47
-          },
-          {
-            "id": "stonewall-in-the-valley",
-            "rank": 56,
-            "score": 0.012,
-            "movement": -9
-          },
-          {
-            "id": "skies-above-britain",
-            "rank": 57,
-            "score": 0.012,
-            "movement": -11
-          },
-          {
-            "id": "2-minutos-para-la-medianoche",
-            "rank": 58,
-            "score": 0.01167,
-            "movement": -41
-          },
-          {
-            "id": "battles-of-the-american-revolution-tri-pack",
-            "rank": 59,
-            "score": 0.00931,
-            "movement": -10
-          },
-          {
-            "id": "almoravid",
-            "rank": 60,
-            "score": 0.00931,
-            "movement": -12
-          },
-          {
-            "id": "monty-s-gamble-market-garden",
-            "rank": 61,
-            "score": 0.00931,
-            "movement": -10
-          },
-          {
-            "id": "founding-fathers",
-            "rank": 62,
-            "score": 0.00931,
-            "movement": -12
-          },
-          {
-            "id": "crisis-1914",
-            "rank": 63,
-            "score": 0.00856,
-            "movement": -41
-          },
-          {
-            "id": "rostov-serie-scs",
-            "rank": 64,
-            "score": 0.00856,
-            "movement": -38
-          },
-          {
-            "id": "valley-of-tears",
-            "rank": 65,
-            "score": 0.00856,
-            "movement": -37
-          },
-          {
-            "id": "little-round-top",
-            "rank": 66,
-            "score": 0.00856,
-            "movement": -42
-          },
-          {
-            "id": "red-dust-rebellion",
-            "rank": 67,
-            "score": 0.00856,
-            "movement": -42
-          },
-          {
-            "id": "carrier-battle-philippine-sea",
-            "rank": 68,
-            "score": 0.00856,
-            "movement": -47
-          },
-          {
-            "id": "asl-starter-kit-1",
-            "rank": 69,
-            "score": 0.00856,
-            "movement": -49
-          },
-          {
-            "id": "warfighter-wwii",
-            "rank": 70,
-            "score": 0.008,
-            "movement": -16
-          },
-          {
-            "id": "una-guerra-imposible",
-            "rank": 71,
-            "score": 0.008,
-            "movement": -18
-          },
-          {
-            "id": "combat-eastern-front",
-            "rank": 72,
-            "score": 0.00621,
-            "movement": -15
-          },
-          {
-            "id": "the-shores-of-tripoli",
-            "rank": 73,
-            "score": 0.00621,
-            "movement": -14
-          },
-          {
-            "id": "axis-empires-ultimate-edition",
-            "rank": 74,
-            "score": 0.00621,
-            "movement": -18
-          },
-          {
-            "id": "undaunted-callisto",
-            "rank": 75,
-            "score": 0.00621,
-            "movement": -15
-          },
-          {
-            "id": "operacion-bollebank",
-            "rank": 76,
-            "score": 0.00429,
-            "movement": -35
-          },
-          {
-            "id": "enemy-action-kharkov",
-            "rank": 77,
-            "score": 0.00429,
-            "movement": -40
-          },
-          {
-            "id": "combat-volumen-1",
-            "rank": 78,
-            "score": 0.00429,
-            "movement": -42
-          },
-          {
-            "id": "poland-defiant-the-german-invasion-september-1939",
-            "rank": 79,
-            "score": 0.00429,
-            "movement": -36
-          },
-          {
-            "id": "maneuver-warfare",
-            "rank": 80,
-            "score": 0.00429,
-            "movement": -40
-          },
-          {
-            "id": "by-iron-and-blood",
-            "rank": 81,
-            "score": 0.00429,
-            "movement": -46
-          },
-          {
-            "id": "raf",
-            "rank": 82,
-            "score": 0.00429,
-            "movement": -38
-          },
-          {
-            "id": "band-of-brothers-screaming-eagles",
-            "rank": 83,
-            "score": 0.00429,
-            "movement": -50
-          },
-          {
-            "id": "heroes-of-normandie",
-            "rank": 84,
-            "score": 0.00429,
-            "movement": -46
-          },
-          {
-            "id": "battle-commander-volume-i",
-            "rank": 85,
-            "score": 0.00429,
-            "movement": -51
-          },
-          {
-            "id": "the-rock-of-chickamauga",
-            "rank": 86,
-            "score": 0.004,
-            "movement": -25
-          },
-          {
-            "id": "gunslinger",
-            "rank": 87,
-            "score": 0.0031,
-            "movement": -24
-          },
-          {
-            "id": "el-otro-lado-de-la-colina",
-            "rank": 88,
-            "score": 0.0031,
-            "movement": -26
-          }
-        ],
         "monthly": [
           {
-            "id": "d-day-at-omaha-beach",
-            "title": "D-Day at Omaha Beach",
             "rank": 1,
-            "points": 23,
-            "normalized": null,
+            "id": "vlg_000240",
+            "points": 25,
+            "normalized": "0.481",
             "firstVotes": 4,
-            "secondVotes": 4,
+            "secondVotes": 5,
             "thirdVotes": 3,
-            "votes": 11,
-            "movement": null
+            "votes": 12,
+            "movement": {
+              "status": "SAME",
+              "previous_position": 1,
+              "position_delta": 0
+            }
           },
           {
-            "id": "operation-overlord",
-            "title": "Operation Overlord",
             "rank": 2,
+            "id": "vlg_000615",
             "points": 9,
-            "normalized": null,
+            "normalized": "0.173",
             "firstVotes": 2,
             "secondVotes": 1,
             "thirdVotes": 1,
             "votes": 4,
-            "movement": null
+            "movement": {
+              "status": "UP",
+              "previous_position": 46,
+              "position_delta": 44
+            }
           },
           {
-            "id": "asturias-1936-1937",
-            "title": "Asturias 1936-1937",
             "rank": 3,
+            "id": "vlg_000083",
             "points": 8,
-            "normalized": null,
+            "normalized": "0.154",
             "firstVotes": 2,
             "secondVotes": 1,
             "thirdVotes": 0,
             "votes": 3,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "struggle-of-empires",
-            "title": "Struggle of Empires",
             "rank": 4,
+            "id": "vlg_000331",
             "points": 8,
-            "normalized": null,
+            "normalized": "0.154",
+            "firstVotes": 2,
+            "secondVotes": 1,
+            "thirdVotes": 0,
+            "votes": 3,
+            "movement": {
+              "status": "UP",
+              "previous_position": 26,
+              "position_delta": 22
+            }
+          },
+          {
+            "rank": 5,
+            "id": "vlg_000802",
+            "points": 8,
+            "normalized": "0.154",
             "firstVotes": 1,
             "secondVotes": 2,
             "thirdVotes": 1,
             "votes": 4,
-            "movement": null
+            "movement": {
+              "status": "RETURNS",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "the-russian-campaign",
-            "title": "The russian campaign",
-            "rank": 5,
+            "rank": 6,
+            "id": "vlg_000856",
+            "points": 8,
+            "normalized": "0.154",
+            "firstVotes": 1,
+            "secondVotes": 2,
+            "thirdVotes": 1,
+            "votes": 4,
+            "movement": {
+              "status": "UP",
+              "previous_position": 32,
+              "position_delta": 26
+            }
+          },
+          {
+            "rank": 7,
+            "id": "vlg_000847",
             "points": 7,
-            "normalized": null,
+            "normalized": "0.135",
             "firstVotes": 1,
             "secondVotes": 1,
             "thirdVotes": 2,
             "votes": 4,
-            "movement": null
+            "movement": {
+              "status": "UP",
+              "previous_position": 31,
+              "position_delta": 24
+            }
           },
           {
-            "id": "fields-of-fire",
-            "title": "Fields of Fire",
-            "rank": 6,
+            "rank": 8,
+            "id": "vlg_000199",
             "points": 6,
-            "normalized": null,
-            "firstVotes": 2,
-            "secondVotes": 0,
-            "thirdVotes": 0,
-            "votes": 2,
-            "movement": null
-          },
-          {
-            "id": "combat-commander",
-            "title": "Combat Commander",
-            "rank": 7,
-            "points": 6,
-            "normalized": null,
+            "normalized": "0.115",
             "firstVotes": 1,
             "secondVotes": 0,
             "thirdVotes": 3,
             "votes": 4,
-            "movement": null
+            "movement": {
+              "status": "UP",
+              "previous_position": 21,
+              "position_delta": 13
+            }
           },
           {
-            "id": "twilight-struggle",
-            "title": "Twilight Struggle",
-            "rank": 8,
+            "rank": 9,
+            "id": "vlg_000886",
             "points": 6,
-            "normalized": null,
+            "normalized": "0.115",
             "firstVotes": 1,
             "secondVotes": 1,
             "thirdVotes": 1,
             "votes": 3,
-            "movement": null
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 4,
+              "position_delta": -5
+            }
           },
           {
-            "id": "julius-caesar",
-            "title": "Julius Caesar",
-            "rank": 9,
-            "points": 5,
-            "normalized": null,
-            "firstVotes": 1,
-            "secondVotes": 1,
-            "thirdVotes": 0,
-            "votes": 2,
-            "movement": null
-          },
-          {
-            "id": "undaunted-stalingrad",
-            "title": "Undaunted Stalingrad",
             "rank": 10,
+            "id": "vlg_000897",
             "points": 5,
-            "normalized": null,
+            "normalized": "0.096",
             "firstVotes": 1,
             "secondVotes": 1,
             "thirdVotes": 0,
             "votes": 2,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "urban-operations",
-            "title": "Urban Operations",
             "rank": 11,
+            "id": "vlg_000904",
             "points": 5,
-            "normalized": null,
+            "normalized": "0.096",
             "firstVotes": 1,
             "secondVotes": 1,
             "thirdVotes": 0,
             "votes": 2,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "congress-of-vienna",
-            "title": "Congress of Vienna",
             "rank": 12,
-            "points": 3,
-            "normalized": null,
-            "firstVotes": 1,
-            "secondVotes": 0,
-            "thirdVotes": 0,
-            "votes": 1,
-            "movement": null
+            "id": "vlg_000379",
+            "points": 4,
+            "normalized": "0.077",
+            "firstVotes": 0,
+            "secondVotes": 1,
+            "thirdVotes": 2,
+            "votes": 3,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 2,
+              "position_delta": -10
+            }
           },
           {
-            "id": "gbacw-gettysburg",
-            "title": "GBACW Gettysburg",
             "rank": 13,
-            "points": 3,
-            "normalized": null,
-            "firstVotes": 1,
-            "secondVotes": 0,
+            "id": "vlg_000140",
+            "points": 4,
+            "normalized": "0.077",
+            "firstVotes": 0,
+            "secondVotes": 2,
             "thirdVotes": 0,
-            "votes": 1,
-            "movement": null
+            "votes": 2,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 3,
+              "position_delta": -10
+            }
           },
           {
-            "id": "iwo-jima-el-infierno-en-la-tierra",
-            "title": "Iwo jima el infierno en la tierra",
             "rank": 14,
+            "id": "vlg_000208",
             "points": 3,
-            "normalized": null,
+            "normalized": "0.058",
             "firstVotes": 1,
             "secondVotes": 0,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "pursuit-of-glory",
-            "title": "Pursuit of Glory",
             "rank": 15,
+            "id": "vlg_000274",
             "points": 3,
-            "normalized": null,
+            "normalized": "0.058",
             "firstVotes": 1,
             "secondVotes": 0,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "UP",
+              "previous_position": 39,
+              "position_delta": 24
+            }
           },
           {
-            "id": "serie-gcacw",
-            "title": "Serie GCACW",
             "rank": 16,
+            "id": "vlg_000365",
             "points": 3,
-            "normalized": null,
+            "normalized": "0.058",
             "firstVotes": 1,
             "secondVotes": 0,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "the-battle-of-normandy",
-            "title": "The Battle of Normandy",
             "rank": 17,
+            "id": "vlg_000450",
             "points": 3,
-            "normalized": null,
+            "normalized": "0.058",
             "firstVotes": 1,
             "secondVotes": 0,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "undaunted-battle-of-britain",
-            "title": "Undaunted Battle of britain",
             "rank": 18,
+            "id": "vlg_000454",
             "points": 3,
-            "normalized": null,
+            "normalized": "0.058",
             "firstVotes": 1,
             "secondVotes": 0,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "UP",
+              "previous_position": 43,
+              "position_delta": 25
+            }
           },
           {
-            "id": "washington-s-war",
-            "title": "Washington's War",
             "rank": 19,
+            "id": "vlg_000675",
             "points": 3,
-            "normalized": null,
+            "normalized": "0.058",
             "firstVotes": 1,
             "secondVotes": 0,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 16,
+              "position_delta": -3
+            }
           },
           {
-            "id": "wing-leader",
-            "title": "Wing Leader",
             "rank": 20,
+            "id": "vlg_000737",
             "points": 3,
-            "normalized": null,
+            "normalized": "0.058",
             "firstVotes": 1,
             "secondVotes": 0,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "asalto-a-madrid",
-            "title": "Asalto a Madrid",
             "rank": 21,
-            "points": 2,
-            "normalized": null,
-            "firstVotes": 0,
-            "secondVotes": 1,
+            "id": "vlg_000825",
+            "points": 3,
+            "normalized": "0.058",
+            "firstVotes": 1,
+            "secondVotes": 0,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "battlefields-of-the-napoleonic-wars",
-            "title": "Battlefields of the Napoleonic Wars",
             "rank": 22,
-            "points": 2,
-            "normalized": null,
-            "firstVotes": 0,
-            "secondVotes": 1,
+            "id": "vlg_000894",
+            "points": 3,
+            "normalized": "0.058",
+            "firstVotes": 1,
+            "secondVotes": 0,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "combat-1-compass-games",
-            "title": "Combat 1 compáss games",
             "rank": 23,
-            "points": 2,
-            "normalized": null,
-            "firstVotes": 0,
-            "secondVotes": 1,
+            "id": "vlg_000939",
+            "points": 3,
+            "normalized": "0.058",
+            "firstVotes": 1,
+            "secondVotes": 0,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 20,
+              "position_delta": -3
+            }
           },
           {
-            "id": "command-colors-napoleon",
-            "title": "Command & colors Napoleón",
             "rank": 24,
-            "points": 2,
-            "normalized": null,
-            "firstVotes": 0,
-            "secondVotes": 1,
+            "id": "vlg_000950",
+            "points": 3,
+            "normalized": "0.058",
+            "firstVotes": 1,
+            "secondVotes": 0,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "cruzada-y-revolucion",
-            "title": "Cruzada y Revolución",
             "rank": 25,
-            "points": 2,
-            "normalized": null,
+            "id": "vlg_000418",
+            "points": 3,
+            "normalized": "0.058",
             "firstVotes": 0,
             "secondVotes": 1,
-            "thirdVotes": 0,
-            "votes": 1,
-            "movement": null
+            "thirdVotes": 1,
+            "votes": 2,
+            "movement": {
+              "status": "RETURNS",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "imperial-struggle",
-            "title": "Imperial Struggle",
             "rank": 26,
+            "id": "vlg_000078",
             "points": 2,
-            "normalized": null,
+            "normalized": "0.038",
             "firstVotes": 0,
             "secondVotes": 1,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "mud-blood",
-            "title": "Mud & Blood",
             "rank": 27,
+            "id": "vlg_000109",
             "points": 2,
-            "normalized": null,
+            "normalized": "0.038",
             "firstVotes": 0,
             "secondVotes": 1,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "ocs-korea",
-            "title": "OCS Korea",
             "rank": 28,
+            "id": "vlg_000198",
             "points": 2,
-            "normalized": null,
+            "normalized": "0.038",
             "firstVotes": 0,
             "secondVotes": 1,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "onus",
-            "title": "Onus!",
             "rank": 29,
+            "id": "vlg_000204",
             "points": 2,
-            "normalized": null,
+            "normalized": "0.038",
             "firstVotes": 0,
             "secondVotes": 1,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "RETURNS",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "quartermaster-general-south-front",
-            "title": "Quartermaster General: South Front",
             "rank": 30,
+            "id": "vlg_000224",
             "points": 2,
-            "normalized": null,
+            "normalized": "0.038",
             "firstVotes": 0,
             "secondVotes": 1,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "RETURNS",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "serie-bcs",
-            "title": "Serie BCS",
             "rank": 31,
+            "id": "vlg_000428",
             "points": 2,
-            "normalized": null,
+            "normalized": "0.038",
             "firstVotes": 0,
             "secondVotes": 1,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "RETURNS",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "undaunted-2200-callisto",
-            "title": "Undaunted 2200 Callisto",
             "rank": 32,
+            "id": "vlg_000579",
             "points": 2,
-            "normalized": null,
+            "normalized": "0.038",
             "firstVotes": 0,
             "secondVotes": 1,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "wir-sind-das-volk",
-            "title": "Wir sind das Volk!",
             "rank": 33,
+            "id": "vlg_000606",
             "points": 2,
-            "normalized": null,
+            "normalized": "0.038",
             "firstVotes": 0,
             "secondVotes": 1,
             "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "army-of-the-potomac",
-            "title": "Army of the Potomac",
             "rank": 34,
-            "points": 1,
-            "normalized": null,
+            "id": "vlg_000613",
+            "points": 2,
+            "normalized": "0.038",
             "firstVotes": 0,
-            "secondVotes": 0,
-            "thirdVotes": 1,
+            "secondVotes": 1,
+            "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "bcs-brazen-chariots",
-            "title": "BCS Brazen Chariots",
             "rank": 35,
-            "points": 1,
-            "normalized": null,
+            "id": "vlg_000679",
+            "points": 2,
+            "normalized": "0.038",
             "firstVotes": 0,
-            "secondVotes": 0,
-            "thirdVotes": 1,
+            "secondVotes": 1,
+            "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "RETURNS",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "hannibal",
-            "title": "Hannibal",
             "rank": 36,
-            "points": 1,
-            "normalized": null,
+            "id": "vlg_000736",
+            "points": 2,
+            "normalized": "0.038",
             "firstVotes": 0,
-            "secondVotes": 0,
-            "thirdVotes": 1,
+            "secondVotes": 1,
+            "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "normandy-44",
-            "title": "Normandy 44",
             "rank": 37,
-            "points": 1,
-            "normalized": null,
+            "id": "vlg_000893",
+            "points": 2,
+            "normalized": "0.038",
             "firstVotes": 0,
-            "secondVotes": 0,
-            "thirdVotes": 1,
+            "secondVotes": 1,
+            "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "panzer-north-africa",
-            "title": "Panzer North Africa",
             "rank": 38,
-            "points": 1,
-            "normalized": null,
+            "id": "vlg_000952",
+            "points": 2,
+            "normalized": "0.038",
             "firstVotes": 0,
-            "secondVotes": 0,
-            "thirdVotes": 1,
+            "secondVotes": 1,
+            "thirdVotes": 0,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "RETURNS",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "paths-of-glory",
-            "title": "Paths of Glory",
             "rank": 39,
+            "id": "vlg_000073",
             "points": 1,
-            "normalized": null,
+            "normalized": "0.019",
             "firstVotes": 0,
             "secondVotes": 0,
             "thirdVotes": 1,
             "votes": 1,
-            "movement": null
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 40,
+            "id": "vlg_000113",
+            "points": 1,
+            "normalized": "0.019",
+            "firstVotes": 0,
+            "secondVotes": 0,
+            "thirdVotes": 1,
+            "votes": 1,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 41,
+            "id": "vlg_000392",
+            "points": 1,
+            "normalized": "0.019",
+            "firstVotes": 0,
+            "secondVotes": 0,
+            "thirdVotes": 1,
+            "votes": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 12,
+              "position_delta": -29
+            }
+          },
+          {
+            "rank": 42,
+            "id": "vlg_000597",
+            "points": 1,
+            "normalized": "0.019",
+            "firstVotes": 0,
+            "secondVotes": 0,
+            "thirdVotes": 1,
+            "votes": 1,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 43,
+            "id": "vlg_000634",
+            "points": 1,
+            "normalized": "0.019",
+            "firstVotes": 0,
+            "secondVotes": 0,
+            "thirdVotes": 1,
+            "votes": 1,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 44,
+            "id": "vlg_000639",
+            "points": 1,
+            "normalized": "0.019",
+            "firstVotes": 0,
+            "secondVotes": 0,
+            "thirdVotes": 1,
+            "votes": 1,
+            "movement": {
+              "status": "RETURNS",
+              "previous_position": null,
+              "position_delta": null
+            }
+          }
+        ],
+        "power": [
+          {
+            "rank": 1,
+            "id": "vlg_000240",
+            "score": "0.486490",
+            "window": {
+              "current": "0.481",
+              "m1": "0.550",
+              "m2": "0.303",
+              "m3": "0.667"
+            },
+            "movement": {
+              "status": "SAME",
+              "previous_position": 1,
+              "position_delta": 0
+            }
+          },
+          {
+            "rank": 2,
+            "id": "vlg_000615",
+            "score": "0.124850",
+            "window": {
+              "current": "0.173",
+              "m1": "0.025",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 52,
+              "position_delta": 50
+            }
+          },
+          {
+            "rank": 3,
+            "id": "vlg_000140",
+            "score": "0.120920",
+            "window": {
+              "current": "0.077",
+              "m1": "0.200",
+              "m2": "0.152",
+              "m3": "0.389"
+            },
+            "movement": {
+              "status": "SAME",
+              "previous_position": 3,
+              "position_delta": 0
+            }
+          },
+          {
+            "rank": 4,
+            "id": "vlg_000379",
+            "score": "0.118880",
+            "window": {
+              "current": "0.077",
+              "m1": "0.225",
+              "m2": "0.273",
+              "m3": "0.111"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 2,
+              "position_delta": -2
+            }
+          },
+          {
+            "rank": 5,
+            "id": "vlg_000802",
+            "score": "0.115990",
+            "window": {
+              "current": "0.154",
+              "m1": "0.000",
+              "m2": "0.091",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 59,
+              "position_delta": 54
+            }
+          },
+          {
+            "rank": 6,
+            "id": "vlg_000331",
+            "score": "0.115300",
+            "window": {
+              "current": "0.154",
+              "m1": "0.050",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 30,
+              "position_delta": 24
+            }
+          },
+          {
+            "rank": 7,
+            "id": "vlg_000856",
+            "score": "0.115300",
+            "window": {
+              "current": "0.154",
+              "m1": "0.050",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 35,
+              "position_delta": 28
+            }
+          },
+          {
+            "rank": 8,
+            "id": "vlg_000886",
+            "score": "0.114550",
+            "window": {
+              "current": "0.115",
+              "m1": "0.150",
+              "m2": "0.091",
+              "m3": "0.056"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 4,
+              "position_delta": -4
+            }
+          },
+          {
+            "rank": 9,
+            "id": "vlg_000083",
+            "score": "0.107800",
+            "window": {
+              "current": "0.154",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 10,
+            "id": "vlg_000847",
+            "score": "0.102000",
+            "window": {
+              "current": "0.135",
+              "m1": "0.050",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 34,
+              "position_delta": 24
+            }
+          },
+          {
+            "rank": 11,
+            "id": "vlg_000199",
+            "score": "0.095110",
+            "window": {
+              "current": "0.115",
+              "m1": "0.075",
+              "m2": "0.000",
+              "m3": "0.056"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 10,
+              "position_delta": -1
+            }
+          },
+          {
+            "rank": 12,
+            "id": "vlg_000274",
+            "score": "0.068560",
+            "window": {
+              "current": "0.058",
+              "m1": "0.025",
+              "m2": "0.121",
+              "m3": "0.222"
+            },
+            "movement": {
+              "status": "SAME",
+              "previous_position": 12,
+              "position_delta": 0
+            }
+          },
+          {
+            "rank": 13,
+            "id": "vlg_000897",
+            "score": "0.067200",
+            "window": {
+              "current": "0.096",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 14,
+            "id": "vlg_000904",
+            "score": "0.067200",
+            "window": {
+              "current": "0.096",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 15,
+            "id": "vlg_000418",
+            "score": "0.056110",
+            "window": {
+              "current": "0.058",
+              "m1": "0.000",
+              "m2": "0.061",
+              "m3": "0.167"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 40,
+              "position_delta": 25
+            }
+          },
+          {
+            "rank": 16,
+            "id": "vlg_000675",
+            "score": "0.051850",
+            "window": {
+              "current": "0.058",
+              "m1": "0.075",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 21,
+              "position_delta": 5
+            }
+          },
+          {
+            "rank": 17,
+            "id": "vlg_000939",
+            "score": "0.051850",
+            "window": {
+              "current": "0.058",
+              "m1": "0.075",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 24,
+              "position_delta": 7
+            }
+          },
+          {
+            "rank": 18,
+            "id": "vlg_000454",
+            "score": "0.044350",
+            "window": {
+              "current": "0.058",
+              "m1": "0.025",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 39,
+              "position_delta": 21
+            }
+          },
+          {
+            "rank": 19,
+            "id": "vlg_000208",
+            "score": "0.040600",
+            "window": {
+              "current": "0.058",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 20,
+            "id": "vlg_000365",
+            "score": "0.040600",
+            "window": {
+              "current": "0.058",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 21,
+            "id": "vlg_000450",
+            "score": "0.040600",
+            "window": {
+              "current": "0.058",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 22,
+            "id": "vlg_000737",
+            "score": "0.040600",
+            "window": {
+              "current": "0.058",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 23,
+            "id": "vlg_000825",
+            "score": "0.040600",
+            "window": {
+              "current": "0.058",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 24,
+            "id": "vlg_000894",
+            "score": "0.040600",
+            "window": {
+              "current": "0.058",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 25,
+            "id": "vlg_000950",
+            "score": "0.040600",
+            "window": {
+              "current": "0.058",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 26,
+            "id": "vlg_000428",
+            "score": "0.040280",
+            "window": {
+              "current": "0.038",
+              "m1": "0.000",
+              "m2": "0.152",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 41,
+              "position_delta": 15
+            }
+          },
+          {
+            "rank": 27,
+            "id": "vlg_000679",
+            "score": "0.036620",
+            "window": {
+              "current": "0.038",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.167"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 38,
+              "position_delta": 11
+            }
+          },
+          {
+            "rank": 28,
+            "id": "vlg_000952",
+            "score": "0.032660",
+            "window": {
+              "current": "0.038",
+              "m1": "0.000",
+              "m2": "0.030",
+              "m3": "0.056"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 43,
+              "position_delta": 15
+            }
+          },
+          {
+            "rank": 29,
+            "id": "vlg_000224",
+            "score": "0.032090",
+            "window": {
+              "current": "0.038",
+              "m1": "0.000",
+              "m2": "0.061",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 65,
+              "position_delta": 36
+            }
+          },
+          {
+            "rank": 30,
+            "id": "vlg_000542",
+            "score": "0.031590",
+            "window": {
+              "current": "0.000",
+              "m1": "0.075",
+              "m2": "0.152",
+              "m3": "0.111"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 5,
+              "position_delta": -25
+            }
+          },
+          {
+            "rank": 31,
+            "id": "vlg_000735",
+            "score": "0.029460",
+            "window": {
+              "current": "0.000",
+              "m1": "0.075",
+              "m2": "0.091",
+              "m3": "0.167"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 6,
+              "position_delta": -25
+            }
+          },
+          {
+            "rank": 32,
+            "id": "vlg_000078",
+            "score": "0.026600",
+            "window": {
+              "current": "0.038",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 33,
+            "id": "vlg_000109",
+            "score": "0.026600",
+            "window": {
+              "current": "0.038",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 34,
+            "id": "vlg_000198",
+            "score": "0.026600",
+            "window": {
+              "current": "0.038",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 35,
+            "id": "vlg_000204",
+            "score": "0.026600",
+            "window": {
+              "current": "0.038",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 60,
+              "position_delta": 25
+            }
+          },
+          {
+            "rank": 36,
+            "id": "vlg_000579",
+            "score": "0.026600",
+            "window": {
+              "current": "0.038",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 37,
+            "id": "vlg_000606",
+            "score": "0.026600",
+            "window": {
+              "current": "0.038",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 38,
+            "id": "vlg_000613",
+            "score": "0.026600",
+            "window": {
+              "current": "0.038",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 39,
+            "id": "vlg_000736",
+            "score": "0.026600",
+            "window": {
+              "current": "0.038",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 40,
+            "id": "vlg_000893",
+            "score": "0.026600",
+            "window": {
+              "current": "0.038",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 41,
+            "id": "vlg_000702",
+            "score": "0.025710",
+            "window": {
+              "current": "0.000",
+              "m1": "0.050",
+              "m2": "0.091",
+              "m3": "0.167"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 9,
+              "position_delta": -32
+            }
+          },
+          {
+            "rank": 42,
+            "id": "vlg_000392",
+            "score": "0.024550",
+            "window": {
+              "current": "0.019",
+              "m1": "0.075",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 19,
+              "position_delta": -23
+            }
+          },
+          {
+            "rank": 43,
+            "id": "vlg_000110",
+            "score": "0.023190",
+            "window": {
+              "current": "0.000",
+              "m1": "0.100",
+              "m2": "0.091",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 7,
+              "position_delta": -36
+            }
+          },
+          {
+            "rank": 44,
+            "id": "vlg_000786",
+            "score": "0.021780",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.242",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 26,
+              "position_delta": -18
+            }
+          },
+          {
+            "rank": 45,
+            "id": "vlg_000879",
+            "score": "0.021180",
+            "window": {
+              "current": "0.000",
+              "m1": "0.050",
+              "m2": "0.152",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 11,
+              "position_delta": -34
+            }
+          },
+          {
+            "rank": 46,
+            "id": "vlg_000403",
+            "score": "0.019440",
+            "window": {
+              "current": "0.000",
+              "m1": "0.075",
+              "m2": "0.091",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 8,
+              "position_delta": -38
+            }
+          },
+          {
+            "rank": 47,
+            "id": "vlg_000639",
+            "score": "0.016000",
+            "window": {
+              "current": "0.019",
+              "m1": "0.000",
+              "m2": "0.030",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "UP",
+              "previous_position": 74,
+              "position_delta": 27
+            }
+          },
+          {
+            "rank": 48,
+            "id": "vlg_000073",
+            "score": "0.013300",
+            "window": {
+              "current": "0.019",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 49,
+            "id": "vlg_000113",
+            "score": "0.013300",
+            "window": {
+              "current": "0.019",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 50,
+            "id": "vlg_000597",
+            "score": "0.013300",
+            "window": {
+              "current": "0.019",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 51,
+            "id": "vlg_000634",
+            "score": "0.013300",
+            "window": {
+              "current": "0.019",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 52,
+            "id": "vlg_000924",
+            "score": "0.011940",
+            "window": {
+              "current": "0.000",
+              "m1": "0.025",
+              "m2": "0.091",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 37,
+              "position_delta": -15
+            }
+          },
+          {
+            "rank": 53,
+            "id": "vlg_000107",
+            "score": "0.011250",
+            "window": {
+              "current": "0.000",
+              "m1": "0.075",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 13,
+              "position_delta": -40
+            }
+          },
+          {
+            "rank": 54,
+            "id": "vlg_000190",
+            "score": "0.011250",
+            "window": {
+              "current": "0.000",
+              "m1": "0.075",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 14,
+              "position_delta": -40
+            }
+          },
+          {
+            "rank": 55,
+            "id": "vlg_000192",
+            "score": "0.011250",
+            "window": {
+              "current": "0.000",
+              "m1": "0.075",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 15,
+              "position_delta": -40
+            }
+          },
+          {
+            "rank": 56,
+            "id": "vlg_000258",
+            "score": "0.011250",
+            "window": {
+              "current": "0.000",
+              "m1": "0.075",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 16,
+              "position_delta": -40
+            }
+          },
+          {
+            "rank": 57,
+            "id": "vlg_000292",
+            "score": "0.011250",
+            "window": {
+              "current": "0.000",
+              "m1": "0.075",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 17,
+              "position_delta": -40
+            }
+          },
+          {
+            "rank": 58,
+            "id": "vlg_000326",
+            "score": "0.011250",
+            "window": {
+              "current": "0.000",
+              "m1": "0.075",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 18,
+              "position_delta": -40
+            }
+          },
+          {
+            "rank": 59,
+            "id": "vlg_000559",
+            "score": "0.011250",
+            "window": {
+              "current": "0.000",
+              "m1": "0.075",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 20,
+              "position_delta": -39
+            }
+          },
+          {
+            "rank": 60,
+            "id": "vlg_000799",
+            "score": "0.011250",
+            "window": {
+              "current": "0.000",
+              "m1": "0.075",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 22,
+              "position_delta": -38
+            }
+          },
+          {
+            "rank": 61,
+            "id": "vlg_000873",
+            "score": "0.011250",
+            "window": {
+              "current": "0.000",
+              "m1": "0.075",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 23,
+              "position_delta": -38
+            }
+          },
+          {
+            "rank": 62,
+            "id": "vlg_000016",
+            "score": "0.010200",
+            "window": {
+              "current": "0.000",
+              "m1": "0.050",
+              "m2": "0.030",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 25,
+              "position_delta": -37
+            }
+          },
+          {
+            "rank": 63,
+            "id": "vlg_000746",
+            "score": "0.010020",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.167"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 55,
+              "position_delta": -8
+            }
+          },
+          {
+            "rank": 64,
+            "id": "vlg_000798",
+            "score": "0.010020",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.167"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 56,
+              "position_delta": -8
+            }
+          },
+          {
+            "rank": 65,
+            "id": "vlg_000053",
+            "score": "0.008190",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.091",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 57,
+              "position_delta": -8
+            }
+          },
+          {
+            "rank": 66,
+            "id": "vlg_000574",
+            "score": "0.008190",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.091",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 58,
+              "position_delta": -8
+            }
+          },
+          {
+            "rank": 67,
+            "id": "vlg_000081",
+            "score": "0.007500",
+            "window": {
+              "current": "0.000",
+              "m1": "0.050",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 27,
+              "position_delta": -40
+            }
+          },
+          {
+            "rank": 68,
+            "id": "vlg_000154",
+            "score": "0.007500",
+            "window": {
+              "current": "0.000",
+              "m1": "0.050",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 28,
+              "position_delta": -40
+            }
+          },
+          {
+            "rank": 69,
+            "id": "vlg_000219",
+            "score": "0.007500",
+            "window": {
+              "current": "0.000",
+              "m1": "0.050",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 29,
+              "position_delta": -40
+            }
+          },
+          {
+            "rank": 70,
+            "id": "vlg_000517",
+            "score": "0.007500",
+            "window": {
+              "current": "0.000",
+              "m1": "0.050",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 31,
+              "position_delta": -39
+            }
+          },
+          {
+            "rank": 71,
+            "id": "vlg_000695",
+            "score": "0.007500",
+            "window": {
+              "current": "0.000",
+              "m1": "0.050",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 32,
+              "position_delta": -39
+            }
+          },
+          {
+            "rank": 72,
+            "id": "vlg_000714",
+            "score": "0.007500",
+            "window": {
+              "current": "0.000",
+              "m1": "0.050",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 33,
+              "position_delta": -39
+            }
+          },
+          {
+            "rank": 73,
+            "id": "vlg_000908",
+            "score": "0.007500",
+            "window": {
+              "current": "0.000",
+              "m1": "0.050",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 36,
+              "position_delta": -37
+            }
+          },
+          {
+            "rank": 74,
+            "id": "vlg_000891",
+            "score": "0.006660",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.111"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 61,
+              "position_delta": -13
+            }
+          },
+          {
+            "rank": 75,
+            "id": "vlg_000932",
+            "score": "0.006660",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.111"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 62,
+              "position_delta": -13
+            }
+          },
+          {
+            "rank": 76,
+            "id": "vlg_000296",
+            "score": "0.006450",
+            "window": {
+              "current": "0.000",
+              "m1": "0.025",
+              "m2": "0.030",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 42,
+              "position_delta": -34
+            }
+          },
+          {
+            "rank": 77,
+            "id": "vlg_000094",
+            "score": "0.005490",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.061",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 63,
+              "position_delta": -14
+            }
+          },
+          {
+            "rank": 78,
+            "id": "vlg_000201",
+            "score": "0.005490",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.061",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 64,
+              "position_delta": -14
+            }
+          },
+          {
+            "rank": 79,
+            "id": "vlg_000422",
+            "score": "0.005490",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.061",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 66,
+              "position_delta": -13
+            }
+          },
+          {
+            "rank": 80,
+            "id": "vlg_000650",
+            "score": "0.005490",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.061",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 67,
+              "position_delta": -13
+            }
+          },
+          {
+            "rank": 81,
+            "id": "vlg_000848",
+            "score": "0.005490",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.061",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 68,
+              "position_delta": -13
+            }
+          },
+          {
+            "rank": 82,
+            "id": "vlg_000895",
+            "score": "0.005490",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.061",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 69,
+              "position_delta": -13
+            }
+          },
+          {
+            "rank": 83,
+            "id": "vlg_000100",
+            "score": "0.003750",
+            "window": {
+              "current": "0.000",
+              "m1": "0.025",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 44,
+              "position_delta": -39
+            }
+          },
+          {
+            "rank": 84,
+            "id": "vlg_000108",
+            "score": "0.003750",
+            "window": {
+              "current": "0.000",
+              "m1": "0.025",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 45,
+              "position_delta": -39
+            }
+          },
+          {
+            "rank": 85,
+            "id": "vlg_000142",
+            "score": "0.003750",
+            "window": {
+              "current": "0.000",
+              "m1": "0.025",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 46,
+              "position_delta": -39
+            }
+          },
+          {
+            "rank": 86,
+            "id": "vlg_000202",
+            "score": "0.003750",
+            "window": {
+              "current": "0.000",
+              "m1": "0.025",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 47,
+              "position_delta": -39
+            }
+          },
+          {
+            "rank": 87,
+            "id": "vlg_000312",
+            "score": "0.003750",
+            "window": {
+              "current": "0.000",
+              "m1": "0.025",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 48,
+              "position_delta": -39
+            }
+          },
+          {
+            "rank": 88,
+            "id": "vlg_000408",
+            "score": "0.003750",
+            "window": {
+              "current": "0.000",
+              "m1": "0.025",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 49,
+              "position_delta": -39
+            }
+          },
+          {
+            "rank": 89,
+            "id": "vlg_000535",
+            "score": "0.003750",
+            "window": {
+              "current": "0.000",
+              "m1": "0.025",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 50,
+              "position_delta": -39
+            }
+          },
+          {
+            "rank": 90,
+            "id": "vlg_000614",
+            "score": "0.003750",
+            "window": {
+              "current": "0.000",
+              "m1": "0.025",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 51,
+              "position_delta": -39
+            }
+          },
+          {
+            "rank": 91,
+            "id": "vlg_000660",
+            "score": "0.003750",
+            "window": {
+              "current": "0.000",
+              "m1": "0.025",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 53,
+              "position_delta": -38
+            }
+          },
+          {
+            "rank": 92,
+            "id": "vlg_000687",
+            "score": "0.003750",
+            "window": {
+              "current": "0.000",
+              "m1": "0.025",
+              "m2": "0.000",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 54,
+              "position_delta": -38
+            }
+          },
+          {
+            "rank": 93,
+            "id": "vlg_000846",
+            "score": "0.003360",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.000",
+              "m3": "0.056"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 70,
+              "position_delta": -23
+            }
+          },
+          {
+            "rank": 94,
+            "id": "vlg_000228",
+            "score": "0.002700",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.030",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 71,
+              "position_delta": -23
+            }
+          },
+          {
+            "rank": 95,
+            "id": "vlg_000345",
+            "score": "0.002700",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.030",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 72,
+              "position_delta": -23
+            }
+          },
+          {
+            "rank": 96,
+            "id": "vlg_000385",
+            "score": "0.002700",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.030",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 73,
+              "position_delta": -23
+            }
+          },
+          {
+            "rank": 97,
+            "id": "vlg_000814",
+            "score": "0.002700",
+            "window": {
+              "current": "0.000",
+              "m1": "0.000",
+              "m2": "0.030",
+              "m3": "0.000"
+            },
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 75,
+              "position_delta": -22
+            }
           }
         ],
         "annual": [
           {
-            "id": "d-day-at-omaha-beach",
             "rank": 1,
-            "score": 2.2913,
-            "movement": 0,
-            "months": 4
+            "id": "vlg_000240",
+            "score": "3.060",
+            "months": 5,
+            "top3Months": 5,
+            "n1Total": 22,
+            "movement": {
+              "status": "SAME",
+              "previous_position": 1,
+              "position_delta": 0
+            }
           },
           {
-            "id": "twilight-struggle",
             "rank": 2,
-            "score": 0.4692,
-            "movement": 2,
-            "months": 4
+            "id": "vlg_000542",
+            "score": "1.044",
+            "months": 4,
+            "top3Months": 1,
+            "n1Total": 6,
+            "movement": {
+              "status": "SAME",
+              "previous_position": 2,
+              "position_delta": 0
+            }
           },
           {
-            "id": "dune-war-for-arrakis",
             "rank": 3,
-            "score": 0.4046,
-            "movement": -1,
-            "months": 2
+            "id": "vlg_000886",
+            "score": "0.941",
+            "months": 5,
+            "top3Months": 1,
+            "n1Total": 5,
+            "movement": {
+              "status": "UP",
+              "previous_position": 4,
+              "position_delta": 1
+            }
           },
           {
-            "id": "senderos-de-gloria",
             "rank": 4,
-            "score": 0.3891,
-            "movement": -1,
-            "months": 3
+            "id": "vlg_000140",
+            "score": "0.936",
+            "months": 5,
+            "top3Months": 2,
+            "n1Total": 3,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 3,
+              "position_delta": -1
+            }
           },
           {
-            "id": "resistencia-holandesa",
             "rank": 5,
-            "score": 0.3261,
-            "movement": 0,
-            "months": 3
+            "id": "vlg_000379",
+            "score": "0.686",
+            "months": 4,
+            "top3Months": 2,
+            "n1Total": 3,
+            "movement": {
+              "status": "SAME",
+              "previous_position": 5,
+              "position_delta": 0
+            }
           },
           {
-            "id": "star-wars-la-batalla-de-hoth",
             "rank": 6,
-            "score": 0.2759,
-            "movement": 0,
-            "months": 1
+            "id": "vlg_000735",
+            "score": "0.451",
+            "months": 4,
+            "top3Months": 0,
+            "n1Total": 3,
+            "movement": {
+              "status": "SAME",
+              "previous_position": 6,
+              "position_delta": 0
+            }
           },
           {
-            "id": "struggle-of-empires",
             "rank": 7,
-            "score": 0.2736,
-            "movement": 14,
-            "months": 2
+            "id": "vlg_000274",
+            "score": "0.426",
+            "months": 4,
+            "top3Months": 1,
+            "n1Total": 2,
+            "movement": {
+              "status": "SAME",
+              "previous_position": 7,
+              "position_delta": 0
+            }
           },
           {
-            "id": "quartermaster-general-south-front",
             "rank": 8,
-            "score": 0.2426,
-            "movement": 0,
-            "months": 2
+            "id": "vlg_000679",
+            "score": "0.381",
+            "months": 3,
+            "top3Months": 0,
+            "n1Total": 2,
+            "movement": {
+              "status": "SAME",
+              "previous_position": 8,
+              "position_delta": 0
+            }
           },
           {
-            "id": "triumph-and-tragedy",
             "rank": 9,
-            "score": 0.2295,
-            "movement": -2,
-            "months": 2
+            "id": "vlg_000702",
+            "score": "0.308",
+            "months": 3,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "SAME",
+              "previous_position": 9,
+              "position_delta": 0
+            }
           },
           {
-            "id": "combat-commander",
             "rank": 10,
-            "score": 0.223,
-            "movement": 13,
-            "months": 3
+            "id": "vlg_000199",
+            "score": "0.305",
+            "months": 4,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "UP",
+              "previous_position": 15,
+              "position_delta": 5
+            }
           },
           {
-            "id": "operation-overlord",
             "rank": 11,
-            "score": 0.2201,
-            "movement": 51,
-            "months": 2
+            "id": "vlg_000952",
+            "score": "0.300",
+            "months": 4,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 10,
+              "position_delta": -1
+            }
           },
           {
-            "id": "imperial-struggle",
             "rank": 12,
-            "score": 0.215,
-            "movement": 0,
-            "months": 2
+            "id": "vlg_000418",
+            "score": "0.286",
+            "months": 3,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "SAME",
+              "previous_position": 12,
+              "position_delta": 0
+            }
           },
           {
-            "id": "the-russian-campaign",
             "rank": 13,
-            "score": 0.206,
-            "movement": 35,
-            "months": 2
+            "id": "vlg_000802",
+            "score": "0.245",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 2,
+            "movement": {
+              "status": "UP",
+              "previous_position": 25,
+              "position_delta": 12
+            }
           },
           {
-            "id": "skies-above-britain",
             "rank": 14,
-            "score": 0.2,
-            "movement": -5,
-            "months": 1
+            "id": "vlg_000786",
+            "score": "0.242",
+            "months": 1,
+            "top3Months": 1,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 11,
+              "position_delta": -3
+            }
           },
           {
-            "id": "stonewall-in-the-valley",
             "rank": 15,
-            "score": 0.2,
-            "movement": -5,
-            "months": 1
+            "id": "vlg_000204",
+            "score": "0.214",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "UP",
+              "previous_position": 16,
+              "position_delta": 1
+            }
           },
           {
-            "id": "here-i-stand",
             "rank": 16,
-            "score": 0.1891,
-            "movement": -5,
-            "months": 2
+            "id": "vlg_000331",
+            "score": "0.204",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 2,
+            "movement": {
+              "status": "UP",
+              "previous_position": 50,
+              "position_delta": 34
+            }
           },
           {
-            "id": "fields-of-fire",
             "rank": 17,
-            "score": 0.1848,
-            "movement": 27,
-            "months": 2
+            "id": "vlg_000856",
+            "score": "0.204",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "UP",
+              "previous_position": 50,
+              "position_delta": 33
+            }
           },
           {
-            "id": "asturias-1936-1937",
             "rank": 18,
-            "score": 0.1702,
-            "movement": "NEW",
-            "months": 1
+            "id": "vlg_000879",
+            "score": "0.202",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 13,
+              "position_delta": -5
+            }
           },
           {
-            "id": "kanal",
             "rank": 19,
-            "score": 0.1643,
-            "movement": -6,
-            "months": 3
+            "id": "vlg_000454",
+            "score": "0.201",
+            "months": 3,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "UP",
+              "previous_position": 21,
+              "position_delta": 2
+            }
           },
           {
-            "id": "pursuit-of-glory",
             "rank": 20,
-            "score": 0.1495,
-            "movement": 11,
-            "months": 2
+            "id": "vlg_000615",
+            "score": "0.198",
+            "months": 2,
+            "top3Months": 1,
+            "n1Total": 2,
+            "movement": {
+              "status": "UP",
+              "previous_position": 65,
+              "position_delta": 45
+            }
           },
           {
-            "id": "washington-s-war",
             "rank": 21,
-            "score": 0.1495,
-            "movement": 13,
-            "months": 2
+            "id": "vlg_000110",
+            "score": "0.191",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 14,
+              "position_delta": -7
+            }
           },
           {
-            "id": "wir-sind-das-volk",
             "rank": 22,
-            "score": 0.1438,
-            "movement": 0,
-            "months": 3
+            "id": "vlg_000428",
+            "score": "0.190",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 20,
+              "position_delta": -2
+            }
           },
           {
-            "id": "julius-caesar",
             "rank": 23,
-            "score": 0.135,
-            "movement": 36,
-            "months": 2
+            "id": "vlg_000847",
+            "score": "0.185",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "UP",
+              "previous_position": 50,
+              "position_delta": 27
+            }
           },
           {
-            "id": "una-guerra-imposible",
             "rank": 24,
-            "score": 0.1333,
-            "movement": -10,
-            "months": 1
+            "id": "vlg_000746",
+            "score": "0.167",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 17,
+              "position_delta": -7
+            }
           },
           {
-            "id": "warfighter-wwii",
-            "rank": 25,
-            "score": 0.1333,
-            "movement": -10,
-            "months": 1
+            "rank": 24,
+            "id": "vlg_000798",
+            "score": "0.167",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 17,
+              "position_delta": -7
+            }
           },
           {
-            "id": "virgin-queen",
             "rank": 26,
-            "score": 0.132,
-            "movement": -10,
-            "months": 2
+            "id": "vlg_000403",
+            "score": "0.166",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 2,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 19,
+              "position_delta": -7
+            }
           },
           {
-            "id": "cruzada-y-revolucion",
             "rank": 27,
-            "score": 0.1116,
-            "movement": 10,
-            "months": 2
+            "id": "vlg_000083",
+            "score": "0.154",
+            "months": 1,
+            "top3Months": 1,
+            "n1Total": 2,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "undaunted-stalingrad",
             "rank": 28,
-            "score": 0.1064,
-            "movement": "NEW",
-            "months": 1
+            "id": "vlg_000675",
+            "score": "0.133",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 2,
+            "movement": {
+              "status": "UP",
+              "previous_position": 29,
+              "position_delta": 1
+            }
           },
           {
-            "id": "urban-operations",
-            "rank": 29,
-            "score": 0.1064,
-            "movement": "NEW",
-            "months": 1
+            "rank": 28,
+            "id": "vlg_000939",
+            "score": "0.133",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 2,
+            "movement": {
+              "status": "UP",
+              "previous_position": 29,
+              "position_delta": 1
+            }
           },
           {
-            "id": "almoravid",
             "rank": 30,
-            "score": 0.1034,
-            "movement": -13,
-            "months": 1
+            "id": "vlg_000924",
+            "score": "0.116",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 22,
+              "position_delta": -8
+            }
           },
           {
-            "id": "battles-of-the-american-revolution-tri-pack",
             "rank": 31,
-            "score": 0.1034,
-            "movement": -13,
-            "months": 1
+            "id": "vlg_000891",
+            "score": "0.111",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 23,
+              "position_delta": -8
+            }
           },
           {
-            "id": "founding-fathers",
-            "rank": 32,
-            "score": 0.1034,
-            "movement": -13,
-            "months": 1
+            "rank": 31,
+            "id": "vlg_000932",
+            "score": "0.111",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 23,
+              "position_delta": -8
+            }
           },
           {
-            "id": "monty-s-gamble-market-garden",
             "rank": 33,
-            "score": 0.1034,
-            "movement": -13,
-            "months": 1
+            "id": "vlg_000224",
+            "score": "0.099",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "UP",
+              "previous_position": 41,
+              "position_delta": 8
+            }
           },
           {
-            "id": "2-minutos-para-la-medianoche",
             "rank": 34,
-            "score": 0.0916,
-            "movement": -10,
-            "months": 2
+            "id": "vlg_000897",
+            "score": "0.096",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "battalion-s3-issue-1-revista-de-mmp",
-            "rank": 35,
-            "score": 0.0857,
-            "movement": -10,
-            "months": 1
+            "rank": 34,
+            "id": "vlg_000904",
+            "score": "0.096",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "close-quarters-battles-waterloo",
             "rank": 36,
-            "score": 0.0857,
-            "movement": -10,
-            "months": 1
+            "id": "vlg_000392",
+            "score": "0.094",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 29,
+              "position_delta": -7
+            }
           },
           {
-            "id": "divine-right",
             "rank": 37,
-            "score": 0.0857,
-            "movement": -10,
-            "months": 1
+            "id": "vlg_000053",
+            "score": "0.091",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 25,
+              "position_delta": -12
+            }
           },
           {
-            "id": "el-imperio-del-sol",
-            "rank": 38,
-            "score": 0.0857,
-            "movement": -10,
-            "months": 1
+            "rank": 37,
+            "id": "vlg_000574",
+            "score": "0.091",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 25,
+              "position_delta": -12
+            }
           },
           {
-            "id": "far-east-war-1592",
             "rank": 39,
-            "score": 0.0857,
-            "movement": -10,
-            "months": 1
+            "id": "vlg_000016",
+            "score": "0.080",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 28,
+              "position_delta": -11
+            }
           },
           {
-            "id": "men-of-iron-tri-pack",
             "rank": 40,
-            "score": 0.0857,
-            "movement": -10,
-            "months": 1
+            "id": "vlg_000107",
+            "score": "0.075",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 29,
+              "position_delta": -11
+            }
           },
           {
-            "id": "stonewall-jackson-way-ii",
-            "rank": 41,
-            "score": 0.0857,
-            "movement": -9,
-            "months": 1
+            "rank": 40,
+            "id": "vlg_000190",
+            "score": "0.075",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 29,
+              "position_delta": -11
+            }
           },
           {
-            "id": "traces-of-war",
-            "rank": 42,
-            "score": 0.0857,
-            "movement": -9,
-            "months": 1
+            "rank": 40,
+            "id": "vlg_000192",
+            "score": "0.075",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 29,
+              "position_delta": -11
+            }
           },
           {
-            "id": "axis-empires-ultimate-edition",
-            "rank": 43,
-            "score": 0.069,
-            "movement": -8,
-            "months": 1
+            "rank": 40,
+            "id": "vlg_000258",
+            "score": "0.075",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 29,
+              "position_delta": -11
+            }
           },
           {
-            "id": "combat-eastern-front",
-            "rank": 44,
-            "score": 0.069,
-            "movement": -8,
-            "months": 1
+            "rank": 40,
+            "id": "vlg_000292",
+            "score": "0.075",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 29,
+              "position_delta": -11
+            }
           },
           {
-            "id": "the-shores-of-tripoli",
-            "rank": 45,
-            "score": 0.069,
-            "movement": -7,
-            "months": 1
+            "rank": 40,
+            "id": "vlg_000326",
+            "score": "0.075",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 29,
+              "position_delta": -11
+            }
           },
           {
-            "id": "undaunted-callisto",
-            "rank": 46,
-            "score": 0.069,
-            "movement": -7,
-            "months": 1
+            "rank": 40,
+            "id": "vlg_000559",
+            "score": "0.075",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 29,
+              "position_delta": -11
+            }
           },
           {
-            "id": "the-rock-of-chickamauga",
-            "rank": 47,
-            "score": 0.0667,
-            "movement": -7,
-            "months": 1
+            "rank": 40,
+            "id": "vlg_000799",
+            "score": "0.075",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 29,
+              "position_delta": -11
+            }
           },
           {
-            "id": "congress-of-vienna",
-            "rank": 48,
-            "score": 0.0638,
-            "movement": "NEW",
-            "months": 1
+            "rank": 40,
+            "id": "vlg_000873",
+            "score": "0.075",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 29,
+              "position_delta": -11
+            }
           },
           {
-            "id": "gbacw-gettysburg",
             "rank": 49,
-            "score": 0.0638,
-            "movement": "NEW",
-            "months": 1
+            "id": "vlg_000094",
+            "score": "0.061",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 41,
+              "position_delta": -8
+            }
           },
           {
-            "id": "iwo-jima-el-infierno-en-la-tierra",
-            "rank": 50,
-            "score": 0.0638,
-            "movement": "NEW",
-            "months": 1
+            "rank": 49,
+            "id": "vlg_000201",
+            "score": "0.061",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 41,
+              "position_delta": -8
+            }
           },
           {
-            "id": "serie-gcacw",
-            "rank": 51,
-            "score": 0.0638,
-            "movement": "NEW",
-            "months": 1
+            "rank": 49,
+            "id": "vlg_000422",
+            "score": "0.061",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 41,
+              "position_delta": -8
+            }
           },
           {
-            "id": "the-battle-of-normandy",
-            "rank": 52,
-            "score": 0.0638,
-            "movement": "NEW",
-            "months": 1
+            "rank": 49,
+            "id": "vlg_000650",
+            "score": "0.061",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 41,
+              "position_delta": -8
+            }
           },
           {
-            "id": "undaunted-battle-of-britain",
-            "rank": 53,
-            "score": 0.0638,
-            "movement": "NEW",
-            "months": 1
+            "rank": 49,
+            "id": "vlg_000848",
+            "score": "0.061",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 41,
+              "position_delta": -8
+            }
           },
           {
-            "id": "wing-leader",
-            "rank": 54,
-            "score": 0.0638,
-            "movement": "NEW",
-            "months": 1
+            "rank": 49,
+            "id": "vlg_000895",
+            "score": "0.061",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 41,
+              "position_delta": -8
+            }
           },
           {
-            "id": "asl-starter-kit-1",
             "rank": 55,
-            "score": 0.0571,
-            "movement": -14,
-            "months": 1
+            "id": "vlg_000208",
+            "score": "0.058",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "carrier-battle-philippine-sea",
-            "rank": 56,
-            "score": 0.0571,
-            "movement": -14,
-            "months": 1
+            "rank": 55,
+            "id": "vlg_000365",
+            "score": "0.058",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "crisis-1914",
-            "rank": 57,
-            "score": 0.0571,
-            "movement": -14,
-            "months": 1
+            "rank": 55,
+            "id": "vlg_000450",
+            "score": "0.058",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "little-round-top",
-            "rank": 58,
-            "score": 0.0571,
-            "movement": -13,
-            "months": 1
+            "rank": 55,
+            "id": "vlg_000737",
+            "score": "0.058",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "red-dust-rebellion",
-            "rank": 59,
-            "score": 0.0571,
-            "movement": -13,
-            "months": 1
+            "rank": 55,
+            "id": "vlg_000825",
+            "score": "0.058",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "rostov-serie-scs",
-            "rank": 60,
-            "score": 0.0571,
-            "movement": -13,
-            "months": 1
+            "rank": 55,
+            "id": "vlg_000894",
+            "score": "0.058",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "valley-of-tears",
-            "rank": 61,
-            "score": 0.0571,
-            "movement": -12,
-            "months": 1
+            "rank": 55,
+            "id": "vlg_000950",
+            "score": "0.058",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 1,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "paths-of-glory",
             "rank": 62,
-            "score": 0.0558,
-            "movement": -10,
-            "months": 2
+            "id": "vlg_000846",
+            "score": "0.056",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 48,
+              "position_delta": -14
+            }
           },
           {
-            "id": "asalto-a-madrid",
             "rank": 63,
-            "score": 0.0426,
-            "movement": "NEW",
-            "months": 1
+            "id": "vlg_000296",
+            "score": "0.055",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 49,
+              "position_delta": -14
+            }
           },
           {
-            "id": "battlefields-of-the-napoleonic-wars",
             "rank": 64,
-            "score": 0.0426,
-            "movement": "NEW",
-            "months": 1
+            "id": "vlg_000081",
+            "score": "0.050",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 50,
+              "position_delta": -14
+            }
           },
           {
-            "id": "combat-1-compass-games",
-            "rank": 65,
-            "score": 0.0426,
-            "movement": "NEW",
-            "months": 1
+            "rank": 64,
+            "id": "vlg_000154",
+            "score": "0.050",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 50,
+              "position_delta": -14
+            }
           },
           {
-            "id": "command-colors-napoleon",
-            "rank": 66,
-            "score": 0.0426,
-            "movement": "NEW",
-            "months": 1
+            "rank": 64,
+            "id": "vlg_000219",
+            "score": "0.050",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 50,
+              "position_delta": -14
+            }
           },
           {
-            "id": "mud-blood",
-            "rank": 67,
-            "score": 0.0426,
-            "movement": "NEW",
-            "months": 1
+            "rank": 64,
+            "id": "vlg_000517",
+            "score": "0.050",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 50,
+              "position_delta": -14
+            }
           },
           {
-            "id": "ocs-korea",
-            "rank": 68,
-            "score": 0.0426,
-            "movement": "NEW",
-            "months": 1
+            "rank": 64,
+            "id": "vlg_000695",
+            "score": "0.050",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 50,
+              "position_delta": -14
+            }
           },
           {
-            "id": "onus",
-            "rank": 69,
-            "score": 0.0426,
-            "movement": "NEW",
-            "months": 1
+            "rank": 64,
+            "id": "vlg_000714",
+            "score": "0.050",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 50,
+              "position_delta": -14
+            }
           },
           {
-            "id": "serie-bcs",
-            "rank": 70,
-            "score": 0.0426,
-            "movement": "NEW",
-            "months": 1
+            "rank": 64,
+            "id": "vlg_000908",
+            "score": "0.050",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 50,
+              "position_delta": -14
+            }
           },
           {
-            "id": "undaunted-2200-callisto",
             "rank": 71,
-            "score": 0.0426,
-            "movement": "NEW",
-            "months": 1
+            "id": "vlg_000639",
+            "score": "0.049",
+            "months": 2,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 60,
+              "position_delta": -11
+            }
           },
           {
-            "id": "el-otro-lado-de-la-colina",
             "rank": 72,
-            "score": 0.0345,
-            "movement": -22,
-            "months": 1
+            "id": "vlg_000078",
+            "score": "0.038",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "gunslinger",
-            "rank": 73,
-            "score": 0.0345,
-            "movement": -22,
-            "months": 1
+            "rank": 72,
+            "id": "vlg_000109",
+            "score": "0.038",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "band-of-brothers-screaming-eagles",
-            "rank": 74,
-            "score": 0.0286,
-            "movement": -21,
-            "months": 1
+            "rank": 72,
+            "id": "vlg_000198",
+            "score": "0.038",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "battle-commander-volume-i",
-            "rank": 75,
-            "score": 0.0286,
-            "movement": -21,
-            "months": 1
+            "rank": 72,
+            "id": "vlg_000579",
+            "score": "0.038",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "by-iron-and-blood",
-            "rank": 76,
-            "score": 0.0286,
-            "movement": -21,
-            "months": 1
+            "rank": 72,
+            "id": "vlg_000606",
+            "score": "0.038",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "combat-volumen-1",
-            "rank": 77,
-            "score": 0.0286,
-            "movement": -21,
-            "months": 1
+            "rank": 72,
+            "id": "vlg_000613",
+            "score": "0.038",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "enemy-action-kharkov",
-            "rank": 78,
-            "score": 0.0286,
-            "movement": -21,
-            "months": 1
+            "rank": 72,
+            "id": "vlg_000736",
+            "score": "0.038",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "heroes-of-normandie",
-            "rank": 79,
-            "score": 0.0286,
-            "movement": -21,
-            "months": 1
+            "rank": 72,
+            "id": "vlg_000893",
+            "score": "0.038",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           },
           {
-            "id": "maneuver-warfare",
             "rank": 80,
-            "score": 0.0286,
-            "movement": -20,
-            "months": 1
+            "id": "vlg_000228",
+            "score": "0.030",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 60,
+              "position_delta": -20
+            }
           },
           {
-            "id": "operacion-bollebank",
-            "rank": 81,
-            "score": 0.0286,
-            "movement": -20,
-            "months": 1
+            "rank": 80,
+            "id": "vlg_000345",
+            "score": "0.030",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 60,
+              "position_delta": -20
+            }
           },
           {
-            "id": "poland-defiant-the-german-invasion-september-1939",
-            "rank": 82,
-            "score": 0.0286,
-            "movement": -19,
-            "months": 1
+            "rank": 80,
+            "id": "vlg_000385",
+            "score": "0.030",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 60,
+              "position_delta": -20
+            }
           },
           {
-            "id": "raf",
-            "rank": 83,
-            "score": 0.0286,
-            "movement": -19,
-            "months": 1
+            "rank": 80,
+            "id": "vlg_000814",
+            "score": "0.030",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 60,
+              "position_delta": -20
+            }
           },
           {
-            "id": "army-of-the-potomac",
             "rank": 84,
-            "score": 0.0213,
-            "movement": "NEW",
-            "months": 1
+            "id": "vlg_000100",
+            "score": "0.025",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 65,
+              "position_delta": -19
+            }
           },
           {
-            "id": "bcs-brazen-chariots",
-            "rank": 85,
-            "score": 0.0213,
-            "movement": "NEW",
-            "months": 1
+            "rank": 84,
+            "id": "vlg_000108",
+            "score": "0.025",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 65,
+              "position_delta": -19
+            }
           },
           {
-            "id": "hannibal",
-            "rank": 86,
-            "score": 0.0213,
-            "movement": "NEW",
-            "months": 1
+            "rank": 84,
+            "id": "vlg_000142",
+            "score": "0.025",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 65,
+              "position_delta": -19
+            }
           },
           {
-            "id": "normandy-44",
-            "rank": 87,
-            "score": 0.0213,
-            "movement": "NEW",
-            "months": 1
+            "rank": 84,
+            "id": "vlg_000202",
+            "score": "0.025",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 65,
+              "position_delta": -19
+            }
           },
           {
-            "id": "panzer-north-africa",
-            "rank": 88,
-            "score": 0.0213,
-            "movement": "NEW",
-            "months": 1
+            "rank": 84,
+            "id": "vlg_000312",
+            "score": "0.025",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 65,
+              "position_delta": -19
+            }
+          },
+          {
+            "rank": 84,
+            "id": "vlg_000408",
+            "score": "0.025",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 65,
+              "position_delta": -19
+            }
+          },
+          {
+            "rank": 84,
+            "id": "vlg_000535",
+            "score": "0.025",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 65,
+              "position_delta": -19
+            }
+          },
+          {
+            "rank": 84,
+            "id": "vlg_000614",
+            "score": "0.025",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 65,
+              "position_delta": -19
+            }
+          },
+          {
+            "rank": 84,
+            "id": "vlg_000660",
+            "score": "0.025",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 65,
+              "position_delta": -19
+            }
+          },
+          {
+            "rank": 84,
+            "id": "vlg_000687",
+            "score": "0.025",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "DOWN",
+              "previous_position": 65,
+              "position_delta": -19
+            }
+          },
+          {
+            "rank": 94,
+            "id": "vlg_000073",
+            "score": "0.019",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 94,
+            "id": "vlg_000113",
+            "score": "0.019",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 94,
+            "id": "vlg_000597",
+            "score": "0.019",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
+          },
+          {
+            "rank": 94,
+            "id": "vlg_000634",
+            "score": "0.019",
+            "months": 1,
+            "top3Months": 0,
+            "n1Total": 0,
+            "movement": {
+              "status": "NEW",
+              "previous_position": null,
+              "position_delta": null
+            }
           }
         ]
-      }
+      },
+      "departures": [
+        {
+          "id": "vlg_000110",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 5,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000107",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 6,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000190",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 7,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000192",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 8,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000258",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 9,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000292",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 10,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000326",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 11,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000403",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 13,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000542",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 14,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000559",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 15,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000735",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 17,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000799",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 18,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000873",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 19,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000016",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 22,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000081",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 23,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000154",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 24,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000219",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 25,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000517",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 27,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000695",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 28,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000702",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 29,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000714",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 30,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000879",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 33,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000908",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 34,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000100",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 35,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000108",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 36,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000142",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 37,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000202",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 38,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000296",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 40,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000312",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 41,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000408",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 42,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000535",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 44,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000614",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 45,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000660",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 47,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000687",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 48,
+            "position_delta": null
+          }
+        },
+        {
+          "id": "vlg_000924",
+          "movement": {
+            "status": "OUT",
+            "previous_position": 49,
+            "position_delta": null
+          }
+        }
+      ],
+      "powerDepartures": [],
+      "annualDepartures": [],
+      "tieGroups": [
+        {
+          "position": 24,
+          "gameIds": [
+            "vlg_000746",
+            "vlg_000798"
+          ]
+        },
+        {
+          "position": 28,
+          "gameIds": [
+            "vlg_000675",
+            "vlg_000939"
+          ]
+        },
+        {
+          "position": 31,
+          "gameIds": [
+            "vlg_000891",
+            "vlg_000932"
+          ]
+        },
+        {
+          "position": 34,
+          "gameIds": [
+            "vlg_000897",
+            "vlg_000904"
+          ]
+        },
+        {
+          "position": 37,
+          "gameIds": [
+            "vlg_000053",
+            "vlg_000574"
+          ]
+        },
+        {
+          "position": 40,
+          "gameIds": [
+            "vlg_000107",
+            "vlg_000190",
+            "vlg_000192",
+            "vlg_000258",
+            "vlg_000292",
+            "vlg_000326",
+            "vlg_000559",
+            "vlg_000799",
+            "vlg_000873"
+          ]
+        },
+        {
+          "position": 49,
+          "gameIds": [
+            "vlg_000094",
+            "vlg_000201",
+            "vlg_000422",
+            "vlg_000650",
+            "vlg_000848",
+            "vlg_000895"
+          ]
+        },
+        {
+          "position": 55,
+          "gameIds": [
+            "vlg_000208",
+            "vlg_000365",
+            "vlg_000450",
+            "vlg_000737",
+            "vlg_000825",
+            "vlg_000894",
+            "vlg_000950"
+          ]
+        },
+        {
+          "position": 64,
+          "gameIds": [
+            "vlg_000081",
+            "vlg_000154",
+            "vlg_000219",
+            "vlg_000517",
+            "vlg_000695",
+            "vlg_000714",
+            "vlg_000908"
+          ]
+        },
+        {
+          "position": 72,
+          "gameIds": [
+            "vlg_000078",
+            "vlg_000109",
+            "vlg_000198",
+            "vlg_000579",
+            "vlg_000606",
+            "vlg_000613",
+            "vlg_000736",
+            "vlg_000893"
+          ]
+        },
+        {
+          "position": 80,
+          "gameIds": [
+            "vlg_000228",
+            "vlg_000345",
+            "vlg_000385",
+            "vlg_000814"
+          ]
+        },
+        {
+          "position": 84,
+          "gameIds": [
+            "vlg_000100",
+            "vlg_000108",
+            "vlg_000142",
+            "vlg_000202",
+            "vlg_000312",
+            "vlg_000408",
+            "vlg_000535",
+            "vlg_000614",
+            "vlg_000660",
+            "vlg_000687"
+          ]
+        },
+        {
+          "position": 94,
+          "gameIds": [
+            "vlg_000073",
+            "vlg_000113",
+            "vlg_000597",
+            "vlg_000634"
+          ]
+        }
+      ]
     }
   }
 }

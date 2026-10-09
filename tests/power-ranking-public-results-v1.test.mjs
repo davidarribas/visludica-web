@@ -59,18 +59,18 @@ test('agosto general conserva los controles exactos del contrato', () => {
 test('agosto Vis Bélica conserva los controles exactos del contrato', () => {
   const project = august.projects['vis-belica'];
   assert.deepEqual(project.stats, { voters: 63, distinctGames: 73, totalPoints: 235 });
-  assert.equal(raw.projects['vis-belica'].power_ranking[0].power, '0.386810');
-  assert.equal(project.rankings.power[0].score, '0.386810');
-  assert.equal(raw.projects['vis-belica'].annual_ranking[0].annual, '3.681');
-  assert.equal(project.rankings.annual[0].score, '3.681');
+  assert.equal(raw.projects['vis-belica'].power_ranking[0].power, '0.387590');
+  assert.equal(project.rankings.power[0].score, '0.387590');
+  assert.equal(raw.projects['vis-belica'].annual_ranking[0].annual, '3.797');
+  assert.equal(project.rankings.annual[0].score, '3.797');
 });
 
 test('los empates y todos los movimientos proceden directamente del contrato', () => {
   const project = august.projects['vis-belica'];
-  const tie = raw.projects['vis-belica'].tie_groups.find((group) => group.position === 16);
-  assert.deepEqual(project.tieGroups.find((group) => group.position === 16), { position: 16, gameIds: tie.game_ids });
-  const annualTie = raw.projects['vis-belica'].tie_groups.find((group) => group.position === 88);
-  assert.equal(project.rankings.annual.filter((row) => row.rank === 88).length, annualTie.game_ids.length, 'el empate conserva la misma posición compartida');
+  const tie = raw.projects['vis-belica'].tie_groups.find((group) => group.game_ids.length > 1);
+  assert.deepEqual(project.tieGroups.find((group) => group.position === tie.position), { position: tie.position, gameIds: tie.game_ids });
+  const annualTie = raw.projects['vis-belica'].tie_groups.find((group) => group.game_ids.length > 1 && project.rankings.annual.some((row) => row.rank === group.position));
+  assert.equal(project.rankings.annual.filter((row) => row.rank === annualTie.position).length, annualTie.game_ids.length, 'el empate conserva la misma posición compartida');
 
   const statuses = new Set(project.rankings.monthly.map((row) => row.movement.status));
   for (const status of ['NEW', 'RETURNS', 'UP', 'DOWN', 'SAME']) assert.ok(statuses.has(status), `falta ${status}`);

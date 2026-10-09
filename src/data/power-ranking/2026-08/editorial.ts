@@ -116,13 +116,13 @@ export const editorial = {
     name: 'Vis Bélica',
     eyebrow: 'El frente de los rancios',
     intro:
-      '63 de los 181 votantes incluyeron al menos un wargame en su papeleta: récord del año, muy por encima de los 39 de julio. En total aparecieron 73 wargames distintos, con el criterio estricto de siempre: hex & counter, CDG y bloques.',
+      '63 de los 181 votantes incluyeron al menos un wargame en su papeleta: récord del año, muy por encima de los 43 de julio. En total aparecieron 73 wargames distintos, con el criterio estricto de siempre: hex & counter, CDG y bloques.',
     methodology:
-      'Se filtran únicamente los votos considerados wargame y el índice se normaliza sobre quienes votaron al menos un juego de guerra ese mes. El Power Ranking y el Acumulado 2026 de agosto incorporan retrospectivamente los votos de meses anteriores de los títulos que ahora cumplen el criterio, sin reescribir las clasificaciones mensuales publicadas.',
+      'Se filtran únicamente los votos considerados wargame y el índice se normaliza sobre quienes votaron al menos un juego de guerra ese mes. El Power Ranking y el Acumulado 2026 de agosto incorporan retrospectivamente los votos de meses anteriores de los títulos que ahora cumplen el criterio, con los normalizados históricos actualizados.',
     voterGrowth: {
       label: 'Récord del año',
       headline: '63 votantes con wargames',
-      deck: 'Muy por encima de los 39 de julio. En agosto aparecen 73 wargames distintos.',
+      deck: 'Muy por encima de los 43 de julio. En agosto aparecen 73 wargames distintos.',
     },
     power: {
       headline: 'D-Day conserva el mando',
@@ -148,11 +148,11 @@ export const editorial = {
           'Dos primeros, un segundo y dos terceros puestos: 10 puntos de cinco votantes.',
       },
       afterword:
-        'D-Day at Omaha Beach gana también aquí, con los mismos 23 puntos que le dan el tercer puesto general. Fields of Fire firma su mejor mes del año con diferencia y Thunderbolt: Deluxe Edition entra cuarto. Sexto queda Cuius Regio, el operacional de la Guerra de los Treinta Años de Paco Gradaille para GMT, y noveno Burning Banners. Los votos de meses anteriores de los títulos que ahora forman parte del criterio bélico sí cuentan para el Power Ranking y para el acumulado anual, aunque aquellas clasificaciones mensuales ya publicadas no se reescriban.',
+        'D-Day at Omaha Beach gana también aquí, con los mismos 23 puntos que le dan el tercer puesto general. Fields of Fire firma su mejor mes del año con diferencia y Thunderbolt: Deluxe Edition entra cuarto. Sexto queda Cuius Regio, el operacional de la Guerra de los Treinta Años de Paco Gradaille para GMT, y noveno Burning Banners. Los votos de meses anteriores de los títulos que ahora forman parte del criterio bélico sí cuentan para el Power Ranking y para el acumulado anual, con el catálogo y los normalizados históricos actualizados.',
     },
     annual: {
       headline: 'D-Day lidera el Acumulado 2026',
-      deck: 'Suma 3,681. Burning Banners ocupa el segundo puesto con 1,109 y Guerra del Anillo el tercero con 1,105.',
+      deck: 'Suma 3,797. María ocupa el segundo puesto con 1,153 y Burning Banners el tercero con 1,147.',
       afterword:
         'El Acumulado 2026 de agosto incorpora retrospectivamente votos de wargames de meses anteriores que no estaban clasificados correctamente cuando se publicaron aquellos rankings mensuales.',
     },
@@ -161,20 +161,20 @@ export const editorial = {
       headline: 'Agosto abre el frente',
       deck: '63 votantes con wargames y 73 títulos distintos marcan el máximo de participación del año.',
       intro: [
-        '63 de los 181 votantes incluyeron al menos un wargame en su papeleta: récord del año, muy por encima de los 39 de julio. En total aparecieron 73 wargames distintos, con el criterio estricto de siempre: hex & counter, CDG y bloques.',
+        '63 de los 181 votantes incluyeron al menos un wargame en su papeleta: récord del año, muy por encima de los 43 de julio. En total aparecieron 73 wargames distintos, con el criterio estricto de siempre: hex & counter, CDG y bloques.',
       ],
       sections: [
         {
           title: 'D-Day gana también aquí',
           paragraphs: [
-            'D-Day at Omaha Beach gana también aquí, con los mismos 23 puntos que le dan el tercer puesto general. Fields of Fire firma su mejor mes del año con diferencia y Thunderbolt: Deluxe Edition entra cuarto. Sexto queda Cuius Regio, el operacional de la Guerra de los Treinta Años de Paco Gradaille para GMT, y noveno Burning Banners. Los votos de meses anteriores de los títulos que ahora forman parte del criterio bélico sí cuentan para el Power Ranking y para el acumulado anual, aunque aquellas clasificaciones mensuales ya publicadas no se reescriban.',
+            'D-Day at Omaha Beach gana también aquí, con los mismos 23 puntos que le dan el tercer puesto general. Fields of Fire firma su mejor mes del año con diferencia y Thunderbolt: Deluxe Edition entra cuarto. Sexto queda Cuius Regio, el operacional de la Guerra de los Treinta Años de Paco Gradaille para GMT, y noveno Burning Banners. Los votos de meses anteriores de los títulos que ahora forman parte del criterio bélico sí cuentan para el Power Ranking y para el acumulado anual, con el catálogo y los normalizados históricos actualizados.',
           ],
         },
       ],
       sidebar: [
         {
           title: 'Corrección retrospectiva',
-          text: 'El Power Ranking y el Acumulado 2026 incorporan los votos históricos reclasificados. Los rankings mensuales ya publicados no cambian.',
+          text: 'El Power Ranking y el Acumulado 2026 incorporan los votos históricos reclasificados. El histórico usa la clasificación actual del catálogo.',
         },
       ],
       voices: [],

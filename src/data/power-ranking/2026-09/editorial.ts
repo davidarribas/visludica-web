@@ -128,7 +128,7 @@ export const editorial = {
     },
     "annual": {
       "headline": "D-Day encabeza la acumulada de Vis Bélica",
-      "deck": "D-Day at Omaha Beach suma 4,063. Burning Banners es segundo con 1,254 y Guerra del Anillo, tercero con 1,232."
+      "deck": "D-Day at Omaha Beach suma 4,179. Burning Banners es segundo con 1,292 y Guerra del Anillo, tercero con 1,251."
     },
     "chronicle": {
       "eyebrow": "La crónica de Vis Bélica",

@@ -74,32 +74,32 @@ export const editorial = {
       'Se filtran únicamente los votos considerados wargame y el índice se normaliza sobre quienes votaron al menos un juego de guerra ese mes.',
     voterGrowth: {
       label: 'Una comunidad en crecimiento',
-      headline: 'De 15 a 47 votantes',
+      headline: 'De 17 a 52 votantes',
       deck: 'Una papeleta pesa menos cada mes, pero el ranking todavía es deliberadamente volátil.',
     },
     power: {
       headline: 'D-Day gobierna un ranking todavía volcánico',
-      deck: 'La base de votantes casi se ha triplicado en cuatro meses. El ranking crece, pero una papeleta todavía puede mover mucho el normalizado.',
+      deck: 'La base de votantes se ha triplicado desde febrero. El ranking crece, pero una papeleta todavía puede mover mucho el normalizado.',
       notes: {
-        'd-day-at-omaha-beach':
-          'Lidera por goleada. El pico de marzo, cuando solo había quince votantes de guerra, todavía pesa; pero los 23 puntos de junio confirman que también se sigue jugando de verdad.',
-        'operation-overlord':
-          'Puro junio: entra fuerte y sin colchón histórico. Nueve puntos y cuatro votantes bastan para colocarlo directamente en el segundo puesto.',
-        'struggle-of-empires':
-          'Empate técnico con Twilight Struggle. No lidera ningún mes, pero su constancia lo convierte en el funcionario del ranking.',
+        'vlg_000240':
+          'Lidera por goleada. El pico de marzo, cuando había dieciocho votantes de guerra, todavía pesa; pero los 25 puntos de junio confirman que también se sigue jugando de verdad.',
+        'vlg_000615':
+          'Nueve puntos y cuatro votantes lo llevan al segundo puesto, después de una presencia discreta en mayo.',
+        'vlg_000802':
+          'Quinto en el Power. No lidera ningún mes, pero su constancia lo convierte en el funcionario del ranking.',
       },
       afterword:
-        'Con muestras de 15 a 47 votantes, una sola papeleta puede mover mucho el normalizado. La volatilidad no es un fallo: es la historia de un ranking que todavía está creciendo.',
+        'Con muestras de 17 a 52 votantes, una sola papeleta puede mover mucho el normalizado. La volatilidad no es un fallo: es la historia de un ranking que todavía está creciendo.',
     },
     monthly: {
       headline: 'El Día D también gana junio',
-      deck: 'D-Day at Omaha Beach domina en bruto. Operation Overlord debuta segundo y Asturias 1936-1937 completa el podio.',
+      deck: 'D-Day at Omaha Beach domina en bruto. Operation Overlord queda segundo y Asturias 1936-1937 completa el podio.',
       notes: {
-        'd-day-at-omaha-beach':
+        'vlg_000240':
           'El juego de referencia de la comunidad wargamera, esta vez con el aniversario como motivo extra para volver a desplegarlo.',
-        'operation-overlord':
-          'Debuta con fuerza, aunque no todos los votos son un piropo. Un voto por rencor competitivo también es un voto.',
-        'asturias-1936-1937':
+        'vlg_000615':
+          'Llega con fuerza, aunque no todos los votos son un piropo. Un voto por rencor competitivo también es un voto.',
+        'vlg_000083':
           'Dos primeros puestos y un segundo. Entra en el podio con la coletilla más realista del formulario: “No sé si podré jugarlo”.',
       },
     },

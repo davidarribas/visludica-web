@@ -132,43 +132,43 @@ export const editorial = {
     name: 'Vis Bélica',
     eyebrow: 'El frente de los rancios',
     intro:
-      '39 votantes de guerra, 35 juegos distintos y 99 puntos repartidos. La muestra baja desde el máximo de junio, aunque sigue siendo más del doble de los 15 wargameros con los que arrancó el ranking en marzo.',
+      '43 votantes de guerra, 42 juegos distintos y 132 puntos repartidos. La muestra baja desde el máximo de junio, aunque sigue siendo más del doble de los 18 wargameros de marzo.',
     methodology:
       'Se filtran únicamente los votos considerados wargame y el índice se normaliza sobre quienes votaron al menos un juego de guerra ese mes.',
     voterGrowth: {
       label: 'El frente toma aire',
-      headline: '39 votantes: ocho menos que en junio',
-      deck: 'El verano frena el máximo de junio, pero la base activa sigue siendo 2,6 veces mayor que al comienzo del histórico.',
+      headline: '43 votantes: nueve menos que en junio',
+      deck: 'El verano frena el máximo de junio, pero la base activa sigue siendo 2,4 veces mayor que en marzo.',
     },
     power: {
       headline: 'D-Day resiste; Guerra del Anillo irrumpe',
-      deck: 'El líder pierde algo de altura, pero conserva una ventaja enorme. Guerra del Anillo debuta segundo y Dune: War for Arrakis escala 32 puestos para cerrar el podio.',
+      deck: 'El líder pierde algo de altura, pero conserva una ventaja enorme. Guerra del Anillo sube al segundo puesto y Cuius Regio completa el podio.',
       notes: {
-        'd-day-at-omaha-beach':
-          'Continúa primero con un índice de 44,0 y vuelve a ganar el ranking mensual: 16 puntos repartidos entre siete votantes. Baja respecto a junio, pero nadie amenaza todavía su mando.',
-        'guerra-del-anillo':
-          'Entra directamente en el segundo puesto del Power con un índice de 21,6. Sus 12 puntos y cinco votantes hacen de julio una ofensiva concentrada, sin apoyo de meses anteriores.',
-        'dune-war-for-arrakis':
-          'Sube 32 posiciones y alcanza el tercer puesto. Un primero, dos segundos y un tercero le dan ocho puntos y consolidan su presencia en el Palmarés anual.',
+        'vlg_000240':
+          'Continúa primero con un índice de 40,0 y vuelve a ganar el ranking mensual: 16 puntos repartidos entre siete votantes. Baja respecto a junio, pero nadie amenaza todavía su mando.',
+        'vlg_000379':
+          'Sube al segundo puesto del Power con un índice de 24,3. Sus 12 puntos y cinco votantes refuerzan su presencia de junio.',
+        'vlg_000274':
+          'Sube ocho posiciones y alcanza el cuarto puesto. Un primero, dos segundos y un tercero le dan ocho puntos y consolidan su presencia en el Palmarés anual.',
       },
       afterword:
-        'Struggle of Empires queda cuarto. Quartermaster General: South Front sube 17 puestos; Skies Above Britain, Stonewall in the Valley y Paths of Glory también aprovechan un mes especialmente móvil.',
+        'Thunderbolt: Deluxe Edition queda quinto y Burning Banners sexto. Quartermaster General: South Front, Skies Above Britain, Stonewall in the Valley y Senderos de Gloria también participan en un mes especialmente móvil.',
     },
     monthly: {
       headline: 'D-Day repite victoria en un podio de grandes campañas',
-      deck: 'D-Day at Omaha Beach encabeza julio con 16 puntos. Guerra del Anillo suma 12 y Dune: War for Arrakis completa el podio con ocho.',
+      deck: 'D-Day at Omaha Beach encabeza julio con 16 puntos. Guerra del Anillo suma 12 y Cuius Regio completa el podio con once.',
       notes: {
-        'd-day-at-omaha-beach':
+        'vlg_000240':
           'Tres primeros, tres segundos y un tercer puesto: siete votantes y 16 puntos que vuelven a situarlo como referencia mensual de Vis Bélica.',
-        'guerra-del-anillo':
+        'vlg_000379':
           'Cinco votantes lo colocan segundo con 12 puntos. Tres de ellos lo eligieron como el mejor juego que llevaron a mesa durante julio.',
-        'dune-war-for-arrakis':
-          'Cuatro votantes y ocho puntos. No domina las primeras posiciones, pero su reparto estable le basta para asegurar el bronce.',
+        'vlg_000274':
+          'Cuatro votantes y ocho puntos lo sitúan cuarto. Su reparto estable mantiene su presencia entre las grandes campañas.',
       },
     },
     annual: {
       headline: 'D-Day continúa en otra liga',
-      deck: 'Acumula 2,7013, más de cuatro veces el valor de Dune: War for Arrakis, que sube al segundo puesto. Twilight Struggle cae al tercero tras cinco meses de presencia.',
+      deck: 'Acumula 3,432. María conserva el segundo puesto con 1,137 y Burning Banners sube al tercero con 1,052.',
     },
     quotes: [],
   },

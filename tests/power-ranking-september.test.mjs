@@ -13,7 +13,7 @@ const edition = loadPublicResultsV1(contract);
 const execFileAsync = promisify(execFile);
 
 test('septiembre importa el paquete aprobado sin modificar un byte y conserva sus controles', () => {
-  assert.equal(createHash('sha256').update(bytes).digest('hex'), '456a0f1b6d1ae00632a1d2f48352597b12138ed3b7b8996072eab22ba2d4ad05');
+  assert.equal(createHash('sha256').update(bytes).digest('hex'), '4ad907e09bba185b962815c95eed74007a7d0efbf023d909bdf0e393927cfa4f');
   validatePublicResultsV1(contract);
   assert.deepEqual(edition.projects['vis-ludica'].stats, { voters: 262, distinctGames: 353, totalPoints: 1515 });
   assert.deepEqual(edition.projects['vis-belica'].stats, { voters: 55, distinctGames: 45, totalPoints: 152 });

@@ -1,7 +1,7 @@
 {
   "schema_version": "public-results-v1",
   "period_id": "2026-08",
-  "generated_at": "2026-09-15T08:17:49.557611+00:00",
+  "generated_at": "2026-10-09T17:57:20.697055+00:00",
   "edition": {
     "year": 2026,
     "month": 8,
@@ -57947,27 +57947,27 @@
       "voter_history": [
         {
           "period_id": "2026-02",
-          "valid_voters": 18,
-          "distinct_games": 11,
-          "total_points": 58
+          "valid_voters": 17,
+          "distinct_games": 10,
+          "total_points": 55
         },
         {
           "period_id": "2026-03",
-          "valid_voters": 19,
-          "distinct_games": 18,
-          "total_points": 54
+          "valid_voters": 18,
+          "distinct_games": 17,
+          "total_points": 53
         },
         {
           "period_id": "2026-04",
-          "valid_voters": 34,
-          "distinct_games": 34,
-          "total_points": 104
+          "valid_voters": 33,
+          "distinct_games": 33,
+          "total_points": 102
         },
         {
           "period_id": "2026-05",
-          "valid_voters": 41,
-          "distinct_games": 50,
-          "total_points": 139
+          "valid_voters": 40,
+          "distinct_games": 49,
+          "total_points": 138
         },
         {
           "period_id": "2026-06",
@@ -58252,10 +58252,6 @@
         {
           "game_id": "vlg_000454",
           "display_name": "Julius Caesar"
-        },
-        {
-          "game_id": "vlg_000455",
-          "display_name": "Kanal"
         },
         {
           "game_id": "vlg_000469",
@@ -58555,7 +58551,7 @@
           "position": 1,
           "game_id": "vlg_000240",
           "points": 18,
-          "normalized": "1.000",
+          "normalized": "1.059",
           "n1": 5,
           "n2": 1,
           "n3": 1,
@@ -58566,7 +58562,7 @@
           "position": 2,
           "game_id": "vlg_000542",
           "points": 12,
-          "normalized": "0.667",
+          "normalized": "0.706",
           "n1": 4,
           "n2": 0,
           "n3": 0,
@@ -58577,7 +58573,7 @@
           "position": 3,
           "game_id": "vlg_000886",
           "points": 9,
-          "normalized": "0.500",
+          "normalized": "0.529",
           "n1": 3,
           "n2": 0,
           "n3": 0,
@@ -58588,7 +58584,7 @@
           "position": 4,
           "game_id": "vlg_000204",
           "points": 3,
-          "normalized": "0.167",
+          "normalized": "0.176",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -58597,9 +58593,9 @@
         },
         {
           "position": 5,
-          "game_id": "vlg_000455",
+          "game_id": "vlg_000679",
           "points": 3,
-          "normalized": "0.167",
+          "normalized": "0.176",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -58608,20 +58604,9 @@
         },
         {
           "position": 6,
-          "game_id": "vlg_000679",
-          "points": 3,
-          "normalized": "0.167",
-          "n1": 1,
-          "n2": 0,
-          "n3": 0,
-          "voters": 1,
-          "period_id": "2026-02"
-        },
-        {
-          "position": 7,
           "game_id": "vlg_000952",
           "points": 3,
-          "normalized": "0.167",
+          "normalized": "0.176",
           "n1": 0,
           "n2": 1,
           "n3": 1,
@@ -58629,10 +58614,21 @@
           "period_id": "2026-02"
         },
         {
-          "position": 8,
+          "position": 7,
           "game_id": "vlg_000140",
           "points": 2,
-          "normalized": "0.111",
+          "normalized": "0.118",
+          "n1": 0,
+          "n2": 1,
+          "n3": 0,
+          "voters": 1,
+          "period_id": "2026-02"
+        },
+        {
+          "position": 8,
+          "game_id": "vlg_000454",
+          "points": 2,
+          "normalized": "0.118",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -58641,9 +58637,9 @@
         },
         {
           "position": 9,
-          "game_id": "vlg_000454",
+          "game_id": "vlg_000735",
           "points": 2,
-          "normalized": "0.111",
+          "normalized": "0.118",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -58652,20 +58648,9 @@
         },
         {
           "position": 10,
-          "game_id": "vlg_000735",
-          "points": 2,
-          "normalized": "0.111",
-          "n1": 0,
-          "n2": 1,
-          "n3": 0,
-          "voters": 1,
-          "period_id": "2026-02"
-        },
-        {
-          "position": 11,
           "game_id": "vlg_000199",
           "points": 1,
-          "normalized": "0.056",
+          "normalized": "0.059",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -58676,7 +58661,7 @@
           "position": 1,
           "game_id": "vlg_000240",
           "points": 12,
-          "normalized": "0.632",
+          "normalized": "0.667",
           "n1": 4,
           "n2": 0,
           "n3": 0,
@@ -58687,7 +58672,7 @@
           "position": 2,
           "game_id": "vlg_000140",
           "points": 7,
-          "normalized": "0.368",
+          "normalized": "0.389",
           "n1": 1,
           "n2": 2,
           "n3": 0,
@@ -58698,7 +58683,7 @@
           "position": 3,
           "game_id": "vlg_000274",
           "points": 4,
-          "normalized": "0.211",
+          "normalized": "0.222",
           "n1": 1,
           "n2": 0,
           "n3": 1,
@@ -58709,7 +58694,7 @@
           "position": 4,
           "game_id": "vlg_000418",
           "points": 3,
-          "normalized": "0.158",
+          "normalized": "0.167",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -58720,7 +58705,7 @@
           "position": 5,
           "game_id": "vlg_000679",
           "points": 3,
-          "normalized": "0.158",
+          "normalized": "0.167",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -58731,7 +58716,7 @@
           "position": 6,
           "game_id": "vlg_000702",
           "points": 3,
-          "normalized": "0.158",
+          "normalized": "0.167",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -58742,7 +58727,7 @@
           "position": 7,
           "game_id": "vlg_000735",
           "points": 3,
-          "normalized": "0.158",
+          "normalized": "0.167",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -58753,7 +58738,7 @@
           "position": 8,
           "game_id": "vlg_000746",
           "points": 3,
-          "normalized": "0.158",
+          "normalized": "0.167",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -58764,7 +58749,7 @@
           "position": 9,
           "game_id": "vlg_000798",
           "points": 3,
-          "normalized": "0.158",
+          "normalized": "0.167",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -58775,7 +58760,7 @@
           "position": 10,
           "game_id": "vlg_000379",
           "points": 2,
-          "normalized": "0.105",
+          "normalized": "0.111",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -58786,7 +58771,7 @@
           "position": 11,
           "game_id": "vlg_000542",
           "points": 2,
-          "normalized": "0.105",
+          "normalized": "0.111",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -58797,7 +58782,7 @@
           "position": 12,
           "game_id": "vlg_000891",
           "points": 2,
-          "normalized": "0.105",
+          "normalized": "0.111",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -58808,7 +58793,7 @@
           "position": 13,
           "game_id": "vlg_000932",
           "points": 2,
-          "normalized": "0.105",
+          "normalized": "0.111",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -58819,7 +58804,7 @@
           "position": 14,
           "game_id": "vlg_000199",
           "points": 1,
-          "normalized": "0.053",
+          "normalized": "0.056",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -58828,9 +58813,9 @@
         },
         {
           "position": 15,
-          "game_id": "vlg_000455",
+          "game_id": "vlg_000846",
           "points": 1,
-          "normalized": "0.053",
+          "normalized": "0.056",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -58839,9 +58824,9 @@
         },
         {
           "position": 16,
-          "game_id": "vlg_000846",
+          "game_id": "vlg_000886",
           "points": 1,
-          "normalized": "0.053",
+          "normalized": "0.056",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -58850,20 +58835,9 @@
         },
         {
           "position": 17,
-          "game_id": "vlg_000886",
-          "points": 1,
-          "normalized": "0.053",
-          "n1": 0,
-          "n2": 0,
-          "n3": 1,
-          "voters": 1,
-          "period_id": "2026-03"
-        },
-        {
-          "position": 18,
           "game_id": "vlg_000952",
           "points": 1,
-          "normalized": "0.053",
+          "normalized": "0.056",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -58874,7 +58848,7 @@
           "position": 1,
           "game_id": "vlg_000240",
           "points": 10,
-          "normalized": "0.294",
+          "normalized": "0.303",
           "n1": 3,
           "n2": 0,
           "n3": 1,
@@ -58885,7 +58859,7 @@
           "position": 2,
           "game_id": "vlg_000379",
           "points": 9,
-          "normalized": "0.265",
+          "normalized": "0.273",
           "n1": 1,
           "n2": 3,
           "n3": 0,
@@ -58896,7 +58870,7 @@
           "position": 3,
           "game_id": "vlg_000786",
           "points": 8,
-          "normalized": "0.235",
+          "normalized": "0.242",
           "n1": 1,
           "n2": 2,
           "n3": 1,
@@ -58907,7 +58881,7 @@
           "position": 4,
           "game_id": "vlg_000140",
           "points": 5,
-          "normalized": "0.147",
+          "normalized": "0.152",
           "n1": 1,
           "n2": 1,
           "n3": 0,
@@ -58918,7 +58892,7 @@
           "position": 5,
           "game_id": "vlg_000428",
           "points": 5,
-          "normalized": "0.147",
+          "normalized": "0.152",
           "n1": 1,
           "n2": 1,
           "n3": 0,
@@ -58929,7 +58903,7 @@
           "position": 6,
           "game_id": "vlg_000542",
           "points": 5,
-          "normalized": "0.147",
+          "normalized": "0.152",
           "n1": 1,
           "n2": 1,
           "n3": 0,
@@ -58940,7 +58914,7 @@
           "position": 7,
           "game_id": "vlg_000879",
           "points": 5,
-          "normalized": "0.147",
+          "normalized": "0.152",
           "n1": 1,
           "n2": 1,
           "n3": 0,
@@ -58951,7 +58925,7 @@
           "position": 8,
           "game_id": "vlg_000274",
           "points": 4,
-          "normalized": "0.118",
+          "normalized": "0.121",
           "n1": 0,
           "n2": 2,
           "n3": 0,
@@ -58962,7 +58936,7 @@
           "position": 9,
           "game_id": "vlg_000053",
           "points": 3,
-          "normalized": "0.088",
+          "normalized": "0.091",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -58973,7 +58947,7 @@
           "position": 10,
           "game_id": "vlg_000110",
           "points": 3,
-          "normalized": "0.088",
+          "normalized": "0.091",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -58984,7 +58958,7 @@
           "position": 11,
           "game_id": "vlg_000403",
           "points": 3,
-          "normalized": "0.088",
+          "normalized": "0.091",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -58995,7 +58969,7 @@
           "position": 12,
           "game_id": "vlg_000574",
           "points": 3,
-          "normalized": "0.088",
+          "normalized": "0.091",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59006,7 +58980,7 @@
           "position": 13,
           "game_id": "vlg_000735",
           "points": 3,
-          "normalized": "0.088",
+          "normalized": "0.091",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59017,7 +58991,7 @@
           "position": 14,
           "game_id": "vlg_000802",
           "points": 3,
-          "normalized": "0.088",
+          "normalized": "0.091",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59028,7 +59002,7 @@
           "position": 15,
           "game_id": "vlg_000886",
           "points": 3,
-          "normalized": "0.088",
+          "normalized": "0.091",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59039,7 +59013,7 @@
           "position": 16,
           "game_id": "vlg_000924",
           "points": 3,
-          "normalized": "0.088",
+          "normalized": "0.091",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59050,7 +59024,7 @@
           "position": 17,
           "game_id": "vlg_000702",
           "points": 3,
-          "normalized": "0.088",
+          "normalized": "0.091",
           "n1": 0,
           "n2": 1,
           "n3": 1,
@@ -59061,7 +59035,7 @@
           "position": 18,
           "game_id": "vlg_000094",
           "points": 2,
-          "normalized": "0.059",
+          "normalized": "0.061",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59072,7 +59046,7 @@
           "position": 19,
           "game_id": "vlg_000201",
           "points": 2,
-          "normalized": "0.059",
+          "normalized": "0.061",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59083,7 +59057,7 @@
           "position": 20,
           "game_id": "vlg_000224",
           "points": 2,
-          "normalized": "0.059",
+          "normalized": "0.061",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59094,7 +59068,7 @@
           "position": 21,
           "game_id": "vlg_000418",
           "points": 2,
-          "normalized": "0.059",
+          "normalized": "0.061",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59105,7 +59079,7 @@
           "position": 22,
           "game_id": "vlg_000422",
           "points": 2,
-          "normalized": "0.059",
+          "normalized": "0.061",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59114,9 +59088,9 @@
         },
         {
           "position": 23,
-          "game_id": "vlg_000455",
+          "game_id": "vlg_000650",
           "points": 2,
-          "normalized": "0.059",
+          "normalized": "0.061",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59125,9 +59099,9 @@
         },
         {
           "position": 24,
-          "game_id": "vlg_000650",
+          "game_id": "vlg_000848",
           "points": 2,
-          "normalized": "0.059",
+          "normalized": "0.061",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59136,9 +59110,9 @@
         },
         {
           "position": 25,
-          "game_id": "vlg_000848",
+          "game_id": "vlg_000895",
           "points": 2,
-          "normalized": "0.059",
+          "normalized": "0.061",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59147,20 +59121,20 @@
         },
         {
           "position": 26,
-          "game_id": "vlg_000895",
-          "points": 2,
-          "normalized": "0.059",
+          "game_id": "vlg_000016",
+          "points": 1,
+          "normalized": "0.030",
           "n1": 0,
-          "n2": 1,
-          "n3": 0,
+          "n2": 0,
+          "n3": 1,
           "voters": 1,
           "period_id": "2026-04"
         },
         {
           "position": 27,
-          "game_id": "vlg_000016",
+          "game_id": "vlg_000228",
           "points": 1,
-          "normalized": "0.029",
+          "normalized": "0.030",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59169,9 +59143,9 @@
         },
         {
           "position": 28,
-          "game_id": "vlg_000228",
+          "game_id": "vlg_000296",
           "points": 1,
-          "normalized": "0.029",
+          "normalized": "0.030",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59180,9 +59154,9 @@
         },
         {
           "position": 29,
-          "game_id": "vlg_000296",
+          "game_id": "vlg_000345",
           "points": 1,
-          "normalized": "0.029",
+          "normalized": "0.030",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59191,9 +59165,9 @@
         },
         {
           "position": 30,
-          "game_id": "vlg_000345",
+          "game_id": "vlg_000385",
           "points": 1,
-          "normalized": "0.029",
+          "normalized": "0.030",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59202,9 +59176,9 @@
         },
         {
           "position": 31,
-          "game_id": "vlg_000385",
+          "game_id": "vlg_000639",
           "points": 1,
-          "normalized": "0.029",
+          "normalized": "0.030",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59213,9 +59187,9 @@
         },
         {
           "position": 32,
-          "game_id": "vlg_000639",
+          "game_id": "vlg_000814",
           "points": 1,
-          "normalized": "0.029",
+          "normalized": "0.030",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59224,20 +59198,9 @@
         },
         {
           "position": 33,
-          "game_id": "vlg_000814",
-          "points": 1,
-          "normalized": "0.029",
-          "n1": 0,
-          "n2": 0,
-          "n3": 1,
-          "voters": 1,
-          "period_id": "2026-04"
-        },
-        {
-          "position": 34,
           "game_id": "vlg_000952",
           "points": 1,
-          "normalized": "0.029",
+          "normalized": "0.030",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59248,7 +59211,7 @@
           "position": 1,
           "game_id": "vlg_000240",
           "points": 22,
-          "normalized": "0.537",
+          "normalized": "0.550",
           "n1": 6,
           "n2": 2,
           "n3": 0,
@@ -59259,7 +59222,7 @@
           "position": 2,
           "game_id": "vlg_000379",
           "points": 9,
-          "normalized": "0.220",
+          "normalized": "0.225",
           "n1": 2,
           "n2": 1,
           "n3": 1,
@@ -59270,7 +59233,7 @@
           "position": 3,
           "game_id": "vlg_000140",
           "points": 8,
-          "normalized": "0.195",
+          "normalized": "0.200",
           "n1": 1,
           "n2": 2,
           "n3": 1,
@@ -59281,7 +59244,7 @@
           "position": 4,
           "game_id": "vlg_000886",
           "points": 6,
-          "normalized": "0.146",
+          "normalized": "0.150",
           "n1": 0,
           "n2": 3,
           "n3": 0,
@@ -59292,7 +59255,7 @@
           "position": 5,
           "game_id": "vlg_000110",
           "points": 4,
-          "normalized": "0.098",
+          "normalized": "0.100",
           "n1": 0,
           "n2": 2,
           "n3": 0,
@@ -59303,7 +59266,7 @@
           "position": 6,
           "game_id": "vlg_000107",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59314,7 +59277,7 @@
           "position": 7,
           "game_id": "vlg_000190",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59325,7 +59288,7 @@
           "position": 8,
           "game_id": "vlg_000192",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59336,7 +59299,7 @@
           "position": 9,
           "game_id": "vlg_000258",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59347,7 +59310,7 @@
           "position": 10,
           "game_id": "vlg_000292",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59358,7 +59321,7 @@
           "position": 11,
           "game_id": "vlg_000326",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59369,7 +59332,7 @@
           "position": 12,
           "game_id": "vlg_000392",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59380,7 +59343,7 @@
           "position": 13,
           "game_id": "vlg_000403",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59391,7 +59354,7 @@
           "position": 14,
           "game_id": "vlg_000542",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59402,7 +59365,7 @@
           "position": 15,
           "game_id": "vlg_000559",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59413,7 +59376,7 @@
           "position": 16,
           "game_id": "vlg_000675",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59424,7 +59387,7 @@
           "position": 17,
           "game_id": "vlg_000735",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59435,7 +59398,7 @@
           "position": 18,
           "game_id": "vlg_000799",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59446,7 +59409,7 @@
           "position": 19,
           "game_id": "vlg_000873",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59457,7 +59420,7 @@
           "position": 20,
           "game_id": "vlg_000939",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 1,
           "n2": 0,
           "n3": 0,
@@ -59468,7 +59431,7 @@
           "position": 21,
           "game_id": "vlg_000199",
           "points": 3,
-          "normalized": "0.073",
+          "normalized": "0.075",
           "n1": 0,
           "n2": 1,
           "n3": 1,
@@ -59479,7 +59442,7 @@
           "position": 22,
           "game_id": "vlg_000016",
           "points": 2,
-          "normalized": "0.049",
+          "normalized": "0.050",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59490,7 +59453,7 @@
           "position": 23,
           "game_id": "vlg_000081",
           "points": 2,
-          "normalized": "0.049",
+          "normalized": "0.050",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59501,7 +59464,7 @@
           "position": 24,
           "game_id": "vlg_000154",
           "points": 2,
-          "normalized": "0.049",
+          "normalized": "0.050",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59512,7 +59475,7 @@
           "position": 25,
           "game_id": "vlg_000219",
           "points": 2,
-          "normalized": "0.049",
+          "normalized": "0.050",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59523,7 +59486,7 @@
           "position": 26,
           "game_id": "vlg_000331",
           "points": 2,
-          "normalized": "0.049",
+          "normalized": "0.050",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59534,7 +59497,7 @@
           "position": 27,
           "game_id": "vlg_000517",
           "points": 2,
-          "normalized": "0.049",
+          "normalized": "0.050",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59545,7 +59508,7 @@
           "position": 28,
           "game_id": "vlg_000695",
           "points": 2,
-          "normalized": "0.049",
+          "normalized": "0.050",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59556,7 +59519,7 @@
           "position": 29,
           "game_id": "vlg_000702",
           "points": 2,
-          "normalized": "0.049",
+          "normalized": "0.050",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59567,7 +59530,7 @@
           "position": 30,
           "game_id": "vlg_000714",
           "points": 2,
-          "normalized": "0.049",
+          "normalized": "0.050",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59578,7 +59541,7 @@
           "position": 31,
           "game_id": "vlg_000847",
           "points": 2,
-          "normalized": "0.049",
+          "normalized": "0.050",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59589,7 +59552,7 @@
           "position": 32,
           "game_id": "vlg_000856",
           "points": 2,
-          "normalized": "0.049",
+          "normalized": "0.050",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59600,7 +59563,7 @@
           "position": 33,
           "game_id": "vlg_000879",
           "points": 2,
-          "normalized": "0.049",
+          "normalized": "0.050",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59611,7 +59574,7 @@
           "position": 34,
           "game_id": "vlg_000908",
           "points": 2,
-          "normalized": "0.049",
+          "normalized": "0.050",
           "n1": 0,
           "n2": 1,
           "n3": 0,
@@ -59622,7 +59585,7 @@
           "position": 35,
           "game_id": "vlg_000100",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59633,7 +59596,7 @@
           "position": 36,
           "game_id": "vlg_000108",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59644,7 +59607,7 @@
           "position": 37,
           "game_id": "vlg_000142",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59655,7 +59618,7 @@
           "position": 38,
           "game_id": "vlg_000202",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59666,7 +59629,7 @@
           "position": 39,
           "game_id": "vlg_000274",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59677,7 +59640,7 @@
           "position": 40,
           "game_id": "vlg_000296",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59688,7 +59651,7 @@
           "position": 41,
           "game_id": "vlg_000312",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59699,7 +59662,7 @@
           "position": 42,
           "game_id": "vlg_000408",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59710,7 +59673,7 @@
           "position": 43,
           "game_id": "vlg_000454",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59719,9 +59682,9 @@
         },
         {
           "position": 44,
-          "game_id": "vlg_000455",
+          "game_id": "vlg_000535",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59730,9 +59693,9 @@
         },
         {
           "position": 45,
-          "game_id": "vlg_000535",
+          "game_id": "vlg_000614",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59741,9 +59704,9 @@
         },
         {
           "position": 46,
-          "game_id": "vlg_000614",
+          "game_id": "vlg_000615",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59752,9 +59715,9 @@
         },
         {
           "position": 47,
-          "game_id": "vlg_000615",
+          "game_id": "vlg_000660",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59763,9 +59726,9 @@
         },
         {
           "position": 48,
-          "game_id": "vlg_000660",
+          "game_id": "vlg_000687",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -59774,20 +59737,9 @@
         },
         {
           "position": 49,
-          "game_id": "vlg_000687",
-          "points": 1,
-          "normalized": "0.024",
-          "n1": 0,
-          "n2": 0,
-          "n3": 1,
-          "voters": 1,
-          "period_id": "2026-05"
-        },
-        {
-          "position": 50,
           "game_id": "vlg_000924",
           "points": 1,
-          "normalized": "0.024",
+          "normalized": "0.025",
           "n1": 0,
           "n2": 0,
           "n3": 1,
@@ -62645,12 +62597,12 @@
         {
           "position": 1,
           "game_id": "vlg_000240",
-          "power": "0.386810",
+          "power": "0.387590",
           "window": {
             "current": "0.365",
             "m1": "0.372",
             "m2": "0.481",
-            "m3": "0.537"
+            "m3": "0.550"
           },
           "movement": {
             "status": "SAME",
@@ -62661,12 +62613,12 @@
         {
           "position": 2,
           "game_id": "vlg_000331",
-          "power": "0.216300",
+          "power": "0.216360",
           "window": {
             "current": "0.270",
             "m1": "0.070",
             "m2": "0.154",
-            "m3": "0.049"
+            "m3": "0.050"
           },
           "movement": {
             "status": "UP",
@@ -62677,12 +62629,12 @@
         {
           "position": 3,
           "game_id": "vlg_000379",
-          "power": "0.173280",
+          "power": "0.173580",
           "window": {
             "current": "0.159",
             "m1": "0.279",
             "m2": "0.077",
-            "m3": "0.220"
+            "m3": "0.225"
           },
           "movement": {
             "status": "DOWN",
@@ -62693,12 +62645,12 @@
         {
           "position": 4,
           "game_id": "vlg_000856",
-          "power": "0.137900",
+          "power": "0.137960",
           "window": {
             "current": "0.143",
             "m1": "0.140",
             "m2": "0.154",
-            "m3": "0.049"
+            "m3": "0.050"
           },
           "movement": {
             "status": "UP",
@@ -62725,12 +62677,12 @@
         {
           "position": 6,
           "game_id": "vlg_000140",
-          "power": "0.102530",
+          "power": "0.102830",
           "window": {
             "current": "0.095",
             "m1": "0.116",
             "m2": "0.077",
-            "m3": "0.195"
+            "m3": "0.200"
           },
           "movement": {
             "status": "SAME",
@@ -62782,19 +62734,19 @@
           },
           "movement": {
             "status": "UP",
-            "previous_position": 46,
-            "position_delta": 37
+            "previous_position": 47,
+            "position_delta": 38
           }
         },
         {
           "position": 10,
           "game_id": "vlg_000199",
-          "power": "0.070030",
+          "power": "0.070150",
           "window": {
             "current": "0.079",
             "m1": "0.000",
             "m2": "0.115",
-            "m3": "0.073"
+            "m3": "0.075"
           },
           "movement": {
             "status": "UP",
@@ -62805,12 +62757,12 @@
         {
           "position": 11,
           "game_id": "vlg_000847",
-          "power": "0.066240",
+          "power": "0.066300",
           "window": {
             "current": "0.063",
             "m1": "0.047",
             "m2": "0.135",
-            "m3": "0.049"
+            "m3": "0.050"
           },
           "movement": {
             "status": "UP",
@@ -62837,12 +62789,12 @@
         {
           "position": 13,
           "game_id": "vlg_000274",
-          "power": "0.056960",
+          "power": "0.057020",
           "window": {
             "current": "0.032",
             "m1": "0.186",
             "m2": "0.058",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "DOWN",
@@ -62901,12 +62853,12 @@
         {
           "position": 17,
           "game_id": "vlg_000939",
-          "power": "0.046650",
+          "power": "0.046770",
           "window": {
             "current": "0.048",
             "m1": "0.023",
             "m2": "0.058",
-            "m3": "0.073"
+            "m3": "0.075"
           },
           "movement": {
             "status": "UP",
@@ -62926,19 +62878,19 @@
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 15,
-            "position_delta": -3
+            "previous_position": 16,
+            "position_delta": -2
           }
         },
         {
           "position": 19,
           "game_id": "vlg_000312",
-          "power": "0.045540",
+          "power": "0.045600",
           "window": {
             "current": "0.048",
             "m1": "0.070",
             "m2": "0.000",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "DOWN",
@@ -62965,12 +62917,12 @@
         {
           "position": 21,
           "game_id": "vlg_000615",
-          "power": "0.042860",
+          "power": "0.042920",
           "window": {
             "current": "0.032",
             "m1": "0.023",
             "m2": "0.173",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "UP",
@@ -62981,12 +62933,12 @@
         {
           "position": 22,
           "game_id": "vlg_000879",
-          "power": "0.039990",
+          "power": "0.040050",
           "window": {
             "current": "0.048",
             "m1": "0.023",
             "m2": "0.000",
-            "m3": "0.049"
+            "m3": "0.050"
           },
           "movement": {
             "status": "UP",
@@ -63013,12 +62965,12 @@
         {
           "position": 24,
           "game_id": "vlg_000675",
-          "power": "0.039050",
+          "power": "0.039170",
           "window": {
             "current": "0.032",
             "m1": "0.047",
             "m2": "0.058",
-            "m3": "0.073"
+            "m3": "0.075"
           },
           "movement": {
             "status": "DOWN",
@@ -63028,6 +62980,38 @@
         },
         {
           "position": 25,
+          "game_id": "vlg_000190",
+          "power": "0.038100",
+          "window": {
+            "current": "0.048",
+            "m1": "0.000",
+            "m2": "0.000",
+            "m3": "0.075"
+          },
+          "movement": {
+            "status": "UP",
+            "previous_position": 64,
+            "position_delta": 39
+          }
+        },
+        {
+          "position": 26,
+          "game_id": "vlg_000292",
+          "power": "0.038100",
+          "window": {
+            "current": "0.048",
+            "m1": "0.000",
+            "m2": "0.000",
+            "m3": "0.075"
+          },
+          "movement": {
+            "status": "UP",
+            "previous_position": 67,
+            "position_delta": 41
+          }
+        },
+        {
+          "position": 27,
           "game_id": "vlg_000897",
           "power": "0.038090",
           "window": {
@@ -63038,40 +63022,8 @@
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 22,
-            "position_delta": -3
-          }
-        },
-        {
-          "position": 26,
-          "game_id": "vlg_000190",
-          "power": "0.037980",
-          "window": {
-            "current": "0.048",
-            "m1": "0.000",
-            "m2": "0.000",
-            "m3": "0.073"
-          },
-          "movement": {
-            "status": "UP",
-            "previous_position": 64,
-            "position_delta": 38
-          }
-        },
-        {
-          "position": 27,
-          "game_id": "vlg_000292",
-          "power": "0.037980",
-          "window": {
-            "current": "0.048",
-            "m1": "0.000",
-            "m2": "0.000",
-            "m3": "0.073"
-          },
-          "movement": {
-            "status": "UP",
-            "previous_position": 67,
-            "position_delta": 40
+            "previous_position": 23,
+            "position_delta": -4
           }
         },
         {
@@ -63102,8 +63054,8 @@
           },
           "movement": {
             "status": "UP",
-            "previous_position": 98,
-            "position_delta": 69
+            "previous_position": 97,
+            "position_delta": 68
           }
         },
         {
@@ -63182,8 +63134,8 @@
           },
           "movement": {
             "status": "UP",
-            "previous_position": 94,
-            "position_delta": 60
+            "previous_position": 93,
+            "position_delta": 59
           }
         },
         {
@@ -63214,8 +63166,8 @@
           },
           "movement": {
             "status": "UP",
-            "previous_position": 110,
-            "position_delta": 74
+            "previous_position": 109,
+            "position_delta": 73
           }
         },
         {
@@ -63253,12 +63205,12 @@
         {
           "position": 39,
           "game_id": "vlg_000542",
-          "power": "0.029530",
+          "power": "0.029650",
           "window": {
             "current": "0.016",
             "m1": "0.093",
             "m2": "0.000",
-            "m3": "0.073"
+            "m3": "0.075"
           },
           "movement": {
             "status": "DOWN",
@@ -63278,8 +63230,8 @@
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 23,
-            "position_delta": -17
+            "previous_position": 22,
+            "position_delta": -18
           }
         },
         {
@@ -63317,12 +63269,12 @@
         {
           "position": 43,
           "game_id": "vlg_000016",
-          "power": "0.025340",
+          "power": "0.025400",
           "window": {
             "current": "0.032",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.049"
+            "m3": "0.050"
           },
           "movement": {
             "status": "UP",
@@ -63333,17 +63285,17 @@
         {
           "position": 44,
           "game_id": "vlg_000154",
-          "power": "0.025340",
+          "power": "0.025400",
           "window": {
             "current": "0.032",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.049"
+            "m3": "0.050"
           },
           "movement": {
             "status": "UP",
-            "previous_position": 84,
-            "position_delta": 40
+            "previous_position": 83,
+            "position_delta": 39
           }
         },
         {
@@ -63365,33 +63317,33 @@
         {
           "position": 46,
           "game_id": "vlg_000535",
-          "power": "0.023840",
+          "power": "0.023900",
           "window": {
             "current": "0.032",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "UP",
-            "previous_position": 105,
-            "position_delta": 59
+            "previous_position": 104,
+            "position_delta": 58
           }
         },
         {
           "position": 47,
           "game_id": "vlg_000886",
-          "power": "0.022560",
+          "power": "0.022800",
           "window": {
             "current": "0.000",
             "m1": "0.023",
             "m2": "0.115",
-            "m3": "0.146"
+            "m3": "0.150"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 16,
-            "position_delta": -31
+            "previous_position": 15,
+            "position_delta": -32
           }
         },
         {
@@ -63637,12 +63589,12 @@
         {
           "position": 63,
           "game_id": "vlg_000192",
-          "power": "0.015580",
+          "power": "0.015700",
           "window": {
             "current": "0.016",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.073"
+            "m3": "0.075"
           },
           "movement": {
             "status": "UP",
@@ -63653,12 +63605,12 @@
         {
           "position": 64,
           "game_id": "vlg_000799",
-          "power": "0.015580",
+          "power": "0.015700",
           "window": {
             "current": "0.016",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.073"
+            "m3": "0.075"
           },
           "movement": {
             "status": "UP",
@@ -63806,8 +63758,8 @@
           },
           "movement": {
             "status": "UP",
-            "previous_position": 93,
-            "position_delta": 20
+            "previous_position": 92,
+            "position_delta": 19
           }
         },
         {
@@ -63973,12 +63925,12 @@
         {
           "position": 84,
           "game_id": "vlg_000454",
-          "power": "0.006660",
+          "power": "0.006720",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.058",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "DOWN",
@@ -63989,12 +63941,12 @@
         {
           "position": 85,
           "game_id": "vlg_000392",
-          "power": "0.006090",
+          "power": "0.006210",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.019",
-            "m3": "0.073"
+            "m3": "0.075"
           },
           "movement": {
             "status": "DOWN",
@@ -64005,17 +63957,17 @@
         {
           "position": 86,
           "game_id": "vlg_000110",
-          "power": "0.005880",
+          "power": "0.006000",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.098"
+            "m3": "0.100"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 47,
-            "position_delta": -39
+            "previous_position": 46,
+            "position_delta": -40
           }
         },
         {
@@ -64117,12 +64069,12 @@
         {
           "position": 93,
           "game_id": "vlg_000107",
-          "power": "0.004380",
+          "power": "0.004500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.073"
+            "m3": "0.075"
           },
           "movement": {
             "status": "DOWN",
@@ -64133,12 +64085,12 @@
         {
           "position": 94,
           "game_id": "vlg_000258",
-          "power": "0.004380",
+          "power": "0.004500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.073"
+            "m3": "0.075"
           },
           "movement": {
             "status": "DOWN",
@@ -64149,12 +64101,12 @@
         {
           "position": 95,
           "game_id": "vlg_000326",
-          "power": "0.004380",
+          "power": "0.004500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.073"
+            "m3": "0.075"
           },
           "movement": {
             "status": "DOWN",
@@ -64165,12 +64117,12 @@
         {
           "position": 96,
           "game_id": "vlg_000403",
-          "power": "0.004380",
+          "power": "0.004500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.073"
+            "m3": "0.075"
           },
           "movement": {
             "status": "DOWN",
@@ -64181,12 +64133,12 @@
         {
           "position": 97,
           "game_id": "vlg_000559",
-          "power": "0.004380",
+          "power": "0.004500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.073"
+            "m3": "0.075"
           },
           "movement": {
             "status": "DOWN",
@@ -64197,12 +64149,12 @@
         {
           "position": 98,
           "game_id": "vlg_000735",
-          "power": "0.004380",
+          "power": "0.004500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.073"
+            "m3": "0.075"
           },
           "movement": {
             "status": "DOWN",
@@ -64213,12 +64165,12 @@
         {
           "position": 99,
           "game_id": "vlg_000873",
-          "power": "0.004380",
+          "power": "0.004500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.073"
+            "m3": "0.075"
           },
           "movement": {
             "status": "DOWN",
@@ -64334,8 +64286,8 @@
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 77,
-            "position_delta": -29
+            "previous_position": 76,
+            "position_delta": -30
           }
         },
         {
@@ -64350,8 +64302,8 @@
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 78,
-            "position_delta": -29
+            "previous_position": 77,
+            "position_delta": -30
           }
         },
         {
@@ -64366,8 +64318,8 @@
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 79,
-            "position_delta": -29
+            "previous_position": 78,
+            "position_delta": -30
           }
         },
         {
@@ -64382,8 +64334,8 @@
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 80,
-            "position_delta": -29
+            "previous_position": 79,
+            "position_delta": -30
           }
         },
         {
@@ -64405,76 +64357,76 @@
         {
           "position": 111,
           "game_id": "vlg_000081",
-          "power": "0.002940",
+          "power": "0.003000",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.049"
+            "m3": "0.050"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 83,
-            "position_delta": -28
+            "previous_position": 82,
+            "position_delta": -29
           }
         },
         {
           "position": 112,
           "game_id": "vlg_000219",
-          "power": "0.002940",
+          "power": "0.003000",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.049"
+            "m3": "0.050"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 85,
-            "position_delta": -27
+            "previous_position": 84,
+            "position_delta": -28
           }
         },
         {
           "position": 113,
           "game_id": "vlg_000517",
-          "power": "0.002940",
+          "power": "0.003000",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.049"
+            "m3": "0.050"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 86,
-            "position_delta": -27
+            "previous_position": 85,
+            "position_delta": -28
           }
         },
         {
           "position": 114,
           "game_id": "vlg_000695",
-          "power": "0.002940",
+          "power": "0.003000",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.049"
+            "m3": "0.050"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 87,
-            "position_delta": -27
+            "previous_position": 86,
+            "position_delta": -28
           }
         },
         {
           "position": 115,
           "game_id": "vlg_000702",
-          "power": "0.002940",
+          "power": "0.003000",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.049"
+            "m3": "0.050"
           },
           "movement": {
             "status": "DOWN",
@@ -64485,33 +64437,33 @@
         {
           "position": 116,
           "game_id": "vlg_000714",
-          "power": "0.002940",
+          "power": "0.003000",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.049"
+            "m3": "0.050"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 88,
-            "position_delta": -28
+            "previous_position": 87,
+            "position_delta": -29
           }
         },
         {
           "position": 117,
           "game_id": "vlg_000908",
-          "power": "0.002940",
+          "power": "0.003000",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.049"
+            "m3": "0.050"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 89,
-            "position_delta": -28
+            "previous_position": 88,
+            "position_delta": -29
           }
         },
         {
@@ -64526,8 +64478,8 @@
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 97,
-            "position_delta": -21
+            "previous_position": 96,
+            "position_delta": -22
           }
         },
         {
@@ -64542,131 +64494,131 @@
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 99,
-            "position_delta": -20
+            "previous_position": 98,
+            "position_delta": -21
           }
         },
         {
           "position": 120,
           "game_id": "vlg_000100",
-          "power": "0.001440",
+          "power": "0.001500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 100,
-            "position_delta": -20
+            "previous_position": 99,
+            "position_delta": -21
           }
         },
         {
           "position": 121,
           "game_id": "vlg_000108",
-          "power": "0.001440",
+          "power": "0.001500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 101,
-            "position_delta": -20
+            "previous_position": 100,
+            "position_delta": -21
           }
         },
         {
           "position": 122,
           "game_id": "vlg_000142",
-          "power": "0.001440",
+          "power": "0.001500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 102,
-            "position_delta": -20
+            "previous_position": 101,
+            "position_delta": -21
           }
         },
         {
           "position": 123,
           "game_id": "vlg_000202",
-          "power": "0.001440",
+          "power": "0.001500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 103,
-            "position_delta": -20
+            "previous_position": 102,
+            "position_delta": -21
           }
         },
         {
           "position": 124,
           "game_id": "vlg_000296",
-          "power": "0.001440",
+          "power": "0.001500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 90,
-            "position_delta": -34
+            "previous_position": 89,
+            "position_delta": -35
           }
         },
         {
           "position": 125,
           "game_id": "vlg_000408",
-          "power": "0.001440",
+          "power": "0.001500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 104,
-            "position_delta": -21
+            "previous_position": 103,
+            "position_delta": -22
           }
         },
         {
           "position": 126,
-          "game_id": "vlg_000455",
-          "power": "0.001440",
+          "game_id": "vlg_000614",
+          "power": "0.001500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "DOWN",
-            "previous_position": 76,
-            "position_delta": -50
+            "previous_position": 105,
+            "position_delta": -21
           }
         },
         {
           "position": 127,
-          "game_id": "vlg_000614",
-          "power": "0.001440",
+          "game_id": "vlg_000660",
+          "power": "0.001500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "DOWN",
@@ -64676,13 +64628,13 @@
         },
         {
           "position": 128,
-          "game_id": "vlg_000660",
-          "power": "0.001440",
+          "game_id": "vlg_000687",
+          "power": "0.001500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "DOWN",
@@ -64692,34 +64644,18 @@
         },
         {
           "position": 129,
-          "game_id": "vlg_000687",
-          "power": "0.001440",
-          "window": {
-            "current": "0.000",
-            "m1": "0.000",
-            "m2": "0.000",
-            "m3": "0.024"
-          },
-          "movement": {
-            "status": "DOWN",
-            "previous_position": 108,
-            "position_delta": -21
-          }
-        },
-        {
-          "position": 130,
           "game_id": "vlg_000924",
-          "power": "0.001440",
+          "power": "0.001500",
           "window": {
             "current": "0.000",
             "m1": "0.000",
             "m2": "0.000",
-            "m3": "0.024"
+            "m3": "0.025"
           },
           "movement": {
             "status": "DOWN",
             "previous_position": 61,
-            "position_delta": -69
+            "position_delta": -68
           }
         }
       ],
@@ -64727,7 +64663,7 @@
         {
           "position": 1,
           "game_id": "vlg_000240",
-          "annual": "3.681",
+          "annual": "3.797",
           "months_present": 7,
           "top3_months": 7,
           "n1_total": 29,
@@ -64739,47 +64675,47 @@
         },
         {
           "position": 2,
-          "game_id": "vlg_000140",
-          "annual": "1.109",
-          "months_present": 7,
-          "top3_months": 2,
-          "n1_total": 5,
-          "movement": {
-            "status": "UP",
-            "previous_position": 3,
-            "position_delta": 1
-          }
-        },
-        {
-          "position": 3,
-          "game_id": "vlg_000379",
-          "annual": "1.105",
-          "months_present": 6,
-          "top3_months": 4,
-          "n1_total": 8,
-          "movement": {
-            "status": "UP",
-            "previous_position": 4,
-            "position_delta": 1
-          }
-        },
-        {
-          "position": 4,
           "game_id": "vlg_000542",
-          "annual": "1.101",
+          "annual": "1.153",
           "months_present": 6,
           "top3_months": 1,
           "n1_total": 6,
           "movement": {
-            "status": "DOWN",
+            "status": "SAME",
             "previous_position": 2,
-            "position_delta": -2
+            "position_delta": 0
+          }
+        },
+        {
+          "position": 3,
+          "game_id": "vlg_000140",
+          "annual": "1.147",
+          "months_present": 7,
+          "top3_months": 2,
+          "n1_total": 5,
+          "movement": {
+            "status": "SAME",
+            "previous_position": 3,
+            "position_delta": 0
+          }
+        },
+        {
+          "position": 4,
+          "game_id": "vlg_000379",
+          "annual": "1.124",
+          "months_present": 6,
+          "top3_months": 4,
+          "n1_total": 8,
+          "movement": {
+            "status": "SAME",
+            "previous_position": 4,
+            "position_delta": 0
           }
         },
         {
           "position": 5,
           "game_id": "vlg_000886",
-          "annual": "0.925",
+          "annual": "0.964",
           "months_present": 6,
           "top3_months": 1,
           "n1_total": 5,
@@ -64792,7 +64728,7 @@
         {
           "position": 6,
           "game_id": "vlg_000274",
-          "annual": "0.629",
+          "annual": "0.644",
           "months_present": 6,
           "top3_months": 1,
           "n1_total": 3,
@@ -64805,20 +64741,20 @@
         {
           "position": 7,
           "game_id": "vlg_000331",
-          "annual": "0.543",
+          "annual": "0.544",
           "months_present": 4,
           "top3_months": 1,
           "n1_total": 7,
           "movement": {
             "status": "UP",
-            "previous_position": 19,
-            "position_delta": 12
+            "previous_position": 18,
+            "position_delta": 11
           }
         },
         {
           "position": 8,
           "game_id": "vlg_000679",
-          "annual": "0.488",
+          "annual": "0.506",
           "months_present": 5,
           "top3_months": 0,
           "n1_total": 3,
@@ -64831,7 +64767,7 @@
         {
           "position": 9,
           "game_id": "vlg_000856",
-          "annual": "0.486",
+          "annual": "0.487",
           "months_present": 4,
           "top3_months": 0,
           "n1_total": 4,
@@ -64844,7 +64780,7 @@
         {
           "position": 10,
           "game_id": "vlg_000735",
-          "annual": "0.430",
+          "annual": "0.451",
           "months_present": 4,
           "top3_months": 0,
           "n1_total": 3,
@@ -64857,7 +64793,7 @@
         {
           "position": 11,
           "game_id": "vlg_000228",
-          "annual": "0.412",
+          "annual": "0.413",
           "months_present": 3,
           "top3_months": 1,
           "n1_total": 4,
@@ -64870,7 +64806,7 @@
         {
           "position": 12,
           "game_id": "vlg_000199",
-          "annual": "0.376",
+          "annual": "0.384",
           "months_present": 5,
           "top3_months": 0,
           "n1_total": 1,
@@ -64883,20 +64819,20 @@
         {
           "position": 13,
           "game_id": "vlg_000418",
-          "annual": "0.338",
+          "annual": "0.349",
           "months_present": 4,
           "top3_months": 0,
           "n1_total": 1,
           "movement": {
             "status": "UP",
-            "previous_position": 18,
-            "position_delta": 5
+            "previous_position": 16,
+            "position_delta": 3
           }
         },
         {
           "position": 14,
           "game_id": "vlg_000204",
-          "annual": "0.323",
+          "annual": "0.332",
           "months_present": 4,
           "top3_months": 0,
           "n1_total": 3,
@@ -64909,47 +64845,47 @@
         {
           "position": 15,
           "game_id": "vlg_000786",
-          "annual": "0.314",
+          "annual": "0.321",
           "months_present": 3,
           "top3_months": 1,
           "n1_total": 1,
           "movement": {
-            "status": "UP",
-            "previous_position": 16,
-            "position_delta": 1
+            "status": "DOWN",
+            "previous_position": 14,
+            "position_delta": -1
           }
         },
         {
           "position": 16,
           "game_id": "vlg_000428",
-          "annual": "0.312",
+          "annual": "0.317",
           "months_present": 3,
           "top3_months": 0,
           "n1_total": 3,
           "movement": {
             "status": "UP",
-            "previous_position": 25,
-            "position_delta": 9
+            "previous_position": 24,
+            "position_delta": 8
           }
         },
         {
-          "position": 16,
+          "position": 17,
           "game_id": "vlg_000802",
-          "annual": "0.312",
+          "annual": "0.315",
           "months_present": 3,
           "top3_months": 0,
           "n1_total": 3,
           "movement": {
             "status": "DOWN",
             "previous_position": 10,
-            "position_delta": -6
+            "position_delta": -7
           }
         },
         {
           "position": 18,
-          "game_id": "vlg_000455",
-          "annual": "0.303",
-          "months_present": 4,
+          "game_id": "vlg_000702",
+          "annual": "0.308",
+          "months_present": 3,
           "top3_months": 0,
           "n1_total": 1,
           "movement": {
@@ -64960,11 +64896,11 @@
         },
         {
           "position": 19,
-          "game_id": "vlg_000702",
-          "annual": "0.295",
-          "months_present": 3,
+          "game_id": "vlg_000952",
+          "annual": "0.300",
+          "months_present": 4,
           "top3_months": 0,
-          "n1_total": 1,
+          "n1_total": 0,
           "movement": {
             "status": "DOWN",
             "previous_position": 13,
@@ -64974,79 +64910,79 @@
         {
           "position": 20,
           "game_id": "vlg_000847",
-          "annual": "0.294",
+          "annual": "0.295",
           "months_present": 4,
           "top3_months": 0,
           "n1_total": 1,
           "movement": {
-            "status": "SAME",
-            "previous_position": 20,
-            "position_delta": 0
+            "status": "DOWN",
+            "previous_position": 19,
+            "position_delta": -1
           }
         },
         {
           "position": 21,
-          "game_id": "vlg_000952",
-          "annual": "0.287",
-          "months_present": 4,
-          "top3_months": 0,
-          "n1_total": 0,
-          "movement": {
-            "status": "DOWN",
-            "previous_position": 14,
-            "position_delta": -7
-          }
-        },
-        {
-          "position": 22,
           "game_id": "vlg_000879",
-          "annual": "0.267",
+          "annual": "0.273",
           "months_present": 4,
           "top3_months": 0,
           "n1_total": 2,
           "movement": {
-            "status": "SAME",
-            "previous_position": 22,
-            "position_delta": 0
+            "status": "DOWN",
+            "previous_position": 20,
+            "position_delta": -1
           }
         },
         {
-          "position": 23,
+          "position": 22,
           "game_id": "vlg_000224",
-          "annual": "0.255",
+          "annual": "0.257",
           "months_present": 4,
           "top3_months": 0,
           "n1_total": 1,
           "movement": {
             "status": "UP",
-            "previous_position": 32,
+            "previous_position": 31,
             "position_delta": 9
           }
         },
         {
-          "position": 24,
+          "position": 23,
           "game_id": "vlg_000615",
-          "annual": "0.252",
+          "annual": "0.253",
           "months_present": 4,
           "top3_months": 1,
           "n1_total": 2,
           "movement": {
             "status": "DOWN",
             "previous_position": 21,
-            "position_delta": -3
+            "position_delta": -2
           }
         },
         {
-          "position": 25,
+          "position": 24,
           "game_id": "vlg_000675",
-          "annual": "0.210",
+          "annual": "0.212",
           "months_present": 4,
           "top3_months": 0,
           "n1_total": 2,
           "movement": {
             "status": "UP",
-            "previous_position": 26,
+            "previous_position": 25,
             "position_delta": 1
+          }
+        },
+        {
+          "position": 25,
+          "game_id": "vlg_000939",
+          "annual": "0.204",
+          "months_present": 4,
+          "top3_months": 0,
+          "n1_total": 3,
+          "movement": {
+            "status": "UP",
+            "previous_position": 29,
+            "position_delta": 4
           }
         },
         {
@@ -65064,32 +65000,19 @@
         },
         {
           "position": 27,
-          "game_id": "vlg_000939",
-          "annual": "0.202",
-          "months_present": 4,
-          "top3_months": 0,
-          "n1_total": 3,
-          "movement": {
-            "status": "UP",
-            "previous_position": 31,
-            "position_delta": 4
-          }
-        },
-        {
-          "position": 28,
           "game_id": "vlg_000454",
-          "annual": "0.193",
+          "annual": "0.201",
           "months_present": 3,
           "top3_months": 0,
           "n1_total": 1,
           "movement": {
             "status": "DOWN",
-            "previous_position": 23,
+            "previous_position": 22,
             "position_delta": -5
           }
         },
         {
-          "position": 29,
+          "position": 28,
           "game_id": "vlg_000904",
           "annual": "0.191",
           "months_present": 2,
@@ -65097,38 +65020,38 @@
           "n1_total": 3,
           "movement": {
             "status": "UP",
-            "previous_position": 39,
+            "previous_position": 38,
             "position_delta": 10
           }
         },
         {
-          "position": 30,
+          "position": 29,
           "game_id": "vlg_000110",
-          "annual": "0.186",
+          "annual": "0.191",
           "months_present": 2,
           "top3_months": 0,
           "n1_total": 1,
           "movement": {
             "status": "DOWN",
-            "previous_position": 24,
+            "previous_position": 23,
             "position_delta": -6
           }
         },
         {
-          "position": 31,
+          "position": 30,
           "game_id": "vlg_000345",
-          "annual": "0.185",
+          "annual": "0.186",
           "months_present": 3,
           "top3_months": 0,
           "n1_total": 1,
           "movement": {
             "status": "UP",
-            "previous_position": 35,
+            "previous_position": 34,
             "position_delta": 4
           }
         },
         {
-          "position": 32,
+          "position": 31,
           "game_id": "vlg_000897",
           "annual": "0.175",
           "months_present": 3,
@@ -65136,77 +65059,77 @@
           "n1_total": 1,
           "movement": {
             "status": "UP",
-            "previous_position": 33,
+            "previous_position": 32,
             "position_delta": 1
           }
         },
         {
-          "position": 33,
+          "position": 32,
+          "game_id": "vlg_000746",
+          "annual": "0.167",
+          "months_present": 1,
+          "top3_months": 0,
+          "n1_total": 1,
+          "movement": {
+            "status": "DOWN",
+            "previous_position": 26,
+            "position_delta": -6
+          }
+        },
+        {
+          "position": 32,
+          "game_id": "vlg_000798",
+          "annual": "0.167",
+          "months_present": 1,
+          "top3_months": 0,
+          "n1_total": 1,
+          "movement": {
+            "status": "DOWN",
+            "previous_position": 26,
+            "position_delta": -6
+          }
+        },
+        {
+          "position": 34,
           "game_id": "vlg_000403",
-          "annual": "0.161",
+          "annual": "0.166",
           "months_present": 2,
           "top3_months": 0,
           "n1_total": 2,
           "movement": {
             "status": "DOWN",
-            "previous_position": 27,
-            "position_delta": -6
-          }
-        },
-        {
-          "position": 34,
-          "game_id": "vlg_000746",
-          "annual": "0.158",
-          "months_present": 1,
-          "top3_months": 0,
-          "n1_total": 1,
-          "movement": {
-            "status": "DOWN",
             "previous_position": 28,
             "position_delta": -6
           }
         },
         {
-          "position": 34,
-          "game_id": "vlg_000798",
-          "annual": "0.158",
-          "months_present": 1,
-          "top3_months": 0,
-          "n1_total": 1,
-          "movement": {
-            "status": "DOWN",
-            "previous_position": 28,
-            "position_delta": -6
-          }
-        },
-        {
-          "position": 36,
+          "position": 35,
           "game_id": "vlg_000891",
-          "annual": "0.153",
+          "annual": "0.159",
           "months_present": 2,
           "top3_months": 0,
           "n1_total": 1,
           "movement": {
             "status": "UP",
-            "previous_position": 38,
+            "previous_position": 37,
             "position_delta": 2
           }
         },
         {
-          "position": 37,
+          "position": 36,
           "game_id": "vlg_000312",
-          "annual": "0.142",
+          "annual": "0.143",
           "months_present": 3,
           "top3_months": 0,
           "n1_total": 2,
           "movement": {
             "status": "UP",
-            "previous_position": 40,
+            "previous_position": 39,
             "position_delta": 3
           }
         },
         {
-          "position": 38,
+          "position": 37,
           "game_id": "vlg_000073",
           "annual": "0.137",
           "months_present": 3,
@@ -65214,8 +65137,21 @@
           "n1_total": 2,
           "movement": {
             "status": "UP",
-            "previous_position": 42,
-            "position_delta": 4
+            "previous_position": 43,
+            "position_delta": 6
+          }
+        },
+        {
+          "position": 38,
+          "game_id": "vlg_000932",
+          "annual": "0.134",
+          "months_present": 2,
+          "top3_months": 0,
+          "n1_total": 0,
+          "movement": {
+            "status": "DOWN",
+            "previous_position": 33,
+            "position_delta": -5
           }
         },
         {
@@ -65227,54 +65163,54 @@
           "n1_total": 1,
           "movement": {
             "status": "UP",
-            "previous_position": 45,
+            "previous_position": 44,
+            "position_delta": 5
+          }
+        },
+        {
+          "position": 40,
+          "game_id": "vlg_000190",
+          "annual": "0.123",
+          "months_present": 2,
+          "top3_months": 0,
+          "n1_total": 2,
+          "movement": {
+            "status": "UP",
+            "previous_position": 46,
             "position_delta": 6
           }
         },
         {
           "position": 40,
-          "game_id": "vlg_000932",
-          "annual": "0.128",
+          "game_id": "vlg_000292",
+          "annual": "0.123",
           "months_present": 2,
           "top3_months": 0,
-          "n1_total": 0,
+          "n1_total": 2,
+          "movement": {
+            "status": "UP",
+            "previous_position": 46,
+            "position_delta": 6
+          }
+        },
+        {
+          "position": 42,
+          "game_id": "vlg_000639",
+          "annual": "0.119",
+          "months_present": 3,
+          "top3_months": 0,
+          "n1_total": 1,
           "movement": {
             "status": "DOWN",
-            "previous_position": 34,
-            "position_delta": -6
-          }
-        },
-        {
-          "position": 41,
-          "game_id": "vlg_000190",
-          "annual": "0.121",
-          "months_present": 2,
-          "top3_months": 0,
-          "n1_total": 2,
-          "movement": {
-            "status": "UP",
-            "previous_position": 47,
-            "position_delta": 6
-          }
-        },
-        {
-          "position": 41,
-          "game_id": "vlg_000292",
-          "annual": "0.121",
-          "months_present": 2,
-          "top3_months": 0,
-          "n1_total": 2,
-          "movement": {
-            "status": "UP",
-            "previous_position": 47,
-            "position_delta": 6
+            "previous_position": 35,
+            "position_delta": -7
           }
         },
         {
           "position": 43,
-          "game_id": "vlg_000639",
-          "annual": "0.118",
-          "months_present": 3,
+          "game_id": "vlg_000924",
+          "annual": "0.116",
+          "months_present": 2,
           "top3_months": 0,
           "n1_total": 1,
           "movement": {
@@ -65285,45 +65221,32 @@
         },
         {
           "position": 44,
-          "game_id": "vlg_000924",
-          "annual": "0.112",
-          "months_present": 2,
-          "top3_months": 0,
-          "n1_total": 1,
-          "movement": {
-            "status": "DOWN",
-            "previous_position": 37,
-            "position_delta": -7
-          }
-        },
-        {
-          "position": 45,
           "game_id": "vlg_000016",
-          "annual": "0.110",
+          "annual": "0.112",
           "months_present": 3,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "UP",
-            "previous_position": 46,
+            "previous_position": 45,
             "position_delta": 1
           }
         },
         {
-          "position": 46,
+          "position": 45,
           "game_id": "vlg_000650",
-          "annual": "0.107",
+          "annual": "0.109",
           "months_present": 2,
           "top3_months": 0,
           "n1_total": 1,
           "movement": {
             "status": "UP",
-            "previous_position": 59,
+            "previous_position": 58,
             "position_delta": 13
           }
         },
         {
-          "position": 47,
+          "position": 46,
           "game_id": "vlg_000851",
           "annual": "0.102",
           "months_present": 2,
@@ -65331,116 +65254,181 @@
           "n1_total": 1,
           "movement": {
             "status": "UP",
-            "previous_position": 56,
+            "previous_position": 55,
             "position_delta": 9
           }
         },
         {
-          "position": 48,
+          "position": 47,
           "game_id": "vlg_000392",
-          "annual": "0.092",
+          "annual": "0.094",
           "months_present": 2,
+          "top3_months": 0,
+          "n1_total": 1,
+          "movement": {
+            "status": "DOWN",
+            "previous_position": 40,
+            "position_delta": -7
+          }
+        },
+        {
+          "position": 48,
+          "game_id": "vlg_000192",
+          "annual": "0.091",
+          "months_present": 2,
+          "top3_months": 0,
+          "n1_total": 1,
+          "movement": {
+            "status": "DOWN",
+            "previous_position": 46,
+            "position_delta": -2
+          }
+        },
+        {
+          "position": 48,
+          "game_id": "vlg_000799",
+          "annual": "0.091",
+          "months_present": 2,
+          "top3_months": 0,
+          "n1_total": 1,
+          "movement": {
+            "status": "DOWN",
+            "previous_position": 46,
+            "position_delta": -2
+          }
+        },
+        {
+          "position": 50,
+          "game_id": "vlg_000053",
+          "annual": "0.091",
+          "months_present": 1,
           "top3_months": 0,
           "n1_total": 1,
           "movement": {
             "status": "DOWN",
             "previous_position": 41,
-            "position_delta": -7
+            "position_delta": -9
           }
         },
         {
-          "position": 49,
-          "game_id": "vlg_000192",
-          "annual": "0.089",
-          "months_present": 2,
-          "top3_months": 0,
-          "n1_total": 1,
-          "movement": {
-            "status": "DOWN",
-            "previous_position": 47,
-            "position_delta": -2
-          }
-        },
-        {
-          "position": 49,
-          "game_id": "vlg_000799",
-          "annual": "0.089",
-          "months_present": 2,
-          "top3_months": 0,
-          "n1_total": 1,
-          "movement": {
-            "status": "DOWN",
-            "previous_position": 47,
-            "position_delta": -2
-          }
-        },
-        {
-          "position": 51,
-          "game_id": "vlg_000053",
-          "annual": "0.088",
-          "months_present": 1,
-          "top3_months": 0,
-          "n1_total": 1,
-          "movement": {
-            "status": "DOWN",
-            "previous_position": 43,
-            "position_delta": -8
-          }
-        },
-        {
-          "position": 51,
+          "position": 50,
           "game_id": "vlg_000574",
-          "annual": "0.088",
+          "annual": "0.091",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 1,
           "movement": {
             "status": "DOWN",
-            "previous_position": 43,
-            "position_delta": -8
+            "previous_position": 41,
+            "position_delta": -9
           }
         },
         {
-          "position": 53,
+          "position": 52,
           "game_id": "vlg_000154",
-          "annual": "0.081",
+          "annual": "0.082",
           "months_present": 2,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "UP",
-            "previous_position": 74,
+            "previous_position": 73,
             "position_delta": 21
           }
         },
         {
-          "position": 54,
+          "position": 53,
           "game_id": "vlg_000814",
-          "annual": "0.077",
+          "annual": "0.078",
           "months_present": 2,
           "top3_months": 0,
           "n1_total": 1,
           "movement": {
             "status": "UP",
-            "previous_position": 93,
+            "previous_position": 92,
             "position_delta": 39
           }
         },
         {
-          "position": 55,
+          "position": 54,
           "game_id": "vlg_000422",
-          "annual": "0.075",
+          "annual": "0.077",
           "months_present": 2,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "UP",
-            "previous_position": 59,
+            "previous_position": 58,
             "position_delta": 4
           }
         },
         {
-          "position": 56,
+          "position": 55,
+          "game_id": "vlg_000107",
+          "annual": "0.075",
+          "months_present": 1,
+          "top3_months": 0,
+          "n1_total": 1,
+          "movement": {
+            "status": "DOWN",
+            "previous_position": 46,
+            "position_delta": -9
+          }
+        },
+        {
+          "position": 55,
+          "game_id": "vlg_000258",
+          "annual": "0.075",
+          "months_present": 1,
+          "top3_months": 0,
+          "n1_total": 1,
+          "movement": {
+            "status": "DOWN",
+            "previous_position": 46,
+            "position_delta": -9
+          }
+        },
+        {
+          "position": 55,
+          "game_id": "vlg_000326",
+          "annual": "0.075",
+          "months_present": 1,
+          "top3_months": 0,
+          "n1_total": 1,
+          "movement": {
+            "status": "DOWN",
+            "previous_position": 46,
+            "position_delta": -9
+          }
+        },
+        {
+          "position": 55,
+          "game_id": "vlg_000559",
+          "annual": "0.075",
+          "months_present": 1,
+          "top3_months": 0,
+          "n1_total": 1,
+          "movement": {
+            "status": "DOWN",
+            "previous_position": 46,
+            "position_delta": -9
+          }
+        },
+        {
+          "position": 55,
+          "game_id": "vlg_000873",
+          "annual": "0.075",
+          "months_present": 1,
+          "top3_months": 0,
+          "n1_total": 1,
+          "movement": {
+            "status": "DOWN",
+            "previous_position": 46,
+            "position_delta": -9
+          }
+        },
+        {
+          "position": 60,
           "game_id": "vlg_000208",
           "annual": "0.074",
           "months_present": 2,
@@ -65448,77 +65436,12 @@
           "n1_total": 1,
           "movement": {
             "status": "UP",
-            "previous_position": 65,
-            "position_delta": 9
+            "previous_position": 64,
+            "position_delta": 4
           }
         },
         {
-          "position": 57,
-          "game_id": "vlg_000107",
-          "annual": "0.073",
-          "months_present": 1,
-          "top3_months": 0,
-          "n1_total": 1,
-          "movement": {
-            "status": "DOWN",
-            "previous_position": 47,
-            "position_delta": -10
-          }
-        },
-        {
-          "position": 57,
-          "game_id": "vlg_000258",
-          "annual": "0.073",
-          "months_present": 1,
-          "top3_months": 0,
-          "n1_total": 1,
-          "movement": {
-            "status": "DOWN",
-            "previous_position": 47,
-            "position_delta": -10
-          }
-        },
-        {
-          "position": 57,
-          "game_id": "vlg_000326",
-          "annual": "0.073",
-          "months_present": 1,
-          "top3_months": 0,
-          "n1_total": 1,
-          "movement": {
-            "status": "DOWN",
-            "previous_position": 47,
-            "position_delta": -10
-          }
-        },
-        {
-          "position": 57,
-          "game_id": "vlg_000559",
-          "annual": "0.073",
-          "months_present": 1,
-          "top3_months": 0,
-          "n1_total": 1,
-          "movement": {
-            "status": "DOWN",
-            "previous_position": 47,
-            "position_delta": -10
-          }
-        },
-        {
-          "position": 57,
-          "game_id": "vlg_000873",
-          "annual": "0.073",
-          "months_present": 1,
-          "top3_months": 0,
-          "n1_total": 1,
-          "movement": {
-            "status": "DOWN",
-            "previous_position": 47,
-            "position_delta": -10
-          }
-        },
-        {
-          "position": 62,
+          "position": 61,
           "game_id": "vlg_000491",
           "annual": "0.071",
           "months_present": 2,
@@ -65526,12 +65449,12 @@
           "n1_total": 1,
           "movement": {
             "status": "UP",
-            "previous_position": 104,
+            "previous_position": 103,
             "position_delta": 42
           }
         },
         {
-          "position": 63,
+          "position": 62,
           "game_id": "vlg_000231",
           "annual": "0.070",
           "months_present": 1,
@@ -65539,12 +65462,12 @@
           "n1_total": 1,
           "movement": {
             "status": "DOWN",
-            "previous_position": 56,
+            "previous_position": 55,
             "position_delta": -7
           }
         },
         {
-          "position": 63,
+          "position": 62,
           "game_id": "vlg_000776",
           "annual": "0.070",
           "months_present": 1,
@@ -65552,12 +65475,12 @@
           "n1_total": 1,
           "movement": {
             "status": "DOWN",
-            "previous_position": 56,
+            "previous_position": 55,
             "position_delta": -7
           }
         },
         {
-          "position": 65,
+          "position": 64,
           "game_id": "vlg_000597",
           "annual": "0.067",
           "months_present": 2,
@@ -65565,64 +65488,64 @@
           "n1_total": 1,
           "movement": {
             "status": "UP",
-            "previous_position": 112,
+            "previous_position": 111,
             "position_delta": 47
           }
         },
         {
-          "position": 66,
+          "position": 65,
           "game_id": "vlg_000094",
-          "annual": "0.059",
+          "annual": "0.061",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 59,
+            "previous_position": 58,
             "position_delta": -7
           }
         },
         {
-          "position": 66,
+          "position": 65,
           "game_id": "vlg_000201",
-          "annual": "0.059",
+          "annual": "0.061",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 59,
+            "previous_position": 58,
             "position_delta": -7
           }
         },
         {
-          "position": 66,
+          "position": 65,
           "game_id": "vlg_000848",
-          "annual": "0.059",
+          "annual": "0.061",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 59,
+            "previous_position": 58,
             "position_delta": -7
           }
         },
         {
-          "position": 66,
+          "position": 65,
           "game_id": "vlg_000895",
-          "annual": "0.059",
+          "annual": "0.061",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 59,
+            "previous_position": 58,
             "position_delta": -7
           }
         },
         {
-          "position": 70,
+          "position": 69,
           "game_id": "vlg_000365",
           "annual": "0.058",
           "months_present": 1,
@@ -65630,12 +65553,12 @@
           "n1_total": 1,
           "movement": {
             "status": "DOWN",
-            "previous_position": 65,
+            "previous_position": 64,
             "position_delta": -5
           }
         },
         {
-          "position": 70,
+          "position": 69,
           "game_id": "vlg_000450",
           "annual": "0.058",
           "months_present": 1,
@@ -65643,12 +65566,12 @@
           "n1_total": 1,
           "movement": {
             "status": "DOWN",
-            "previous_position": 65,
+            "previous_position": 64,
             "position_delta": -5
           }
         },
         {
-          "position": 70,
+          "position": 69,
           "game_id": "vlg_000737",
           "annual": "0.058",
           "months_present": 1,
@@ -65656,12 +65579,12 @@
           "n1_total": 1,
           "movement": {
             "status": "DOWN",
-            "previous_position": 65,
+            "previous_position": 64,
             "position_delta": -5
           }
         },
         {
-          "position": 70,
+          "position": 69,
           "game_id": "vlg_000825",
           "annual": "0.058",
           "months_present": 1,
@@ -65669,12 +65592,12 @@
           "n1_total": 1,
           "movement": {
             "status": "DOWN",
-            "previous_position": 65,
+            "previous_position": 64,
             "position_delta": -5
           }
         },
         {
-          "position": 70,
+          "position": 69,
           "game_id": "vlg_000894",
           "annual": "0.058",
           "months_present": 1,
@@ -65682,12 +65605,12 @@
           "n1_total": 1,
           "movement": {
             "status": "DOWN",
-            "previous_position": 65,
+            "previous_position": 64,
             "position_delta": -5
           }
         },
         {
-          "position": 70,
+          "position": 69,
           "game_id": "vlg_000950",
           "annual": "0.058",
           "months_present": 1,
@@ -65695,21 +65618,34 @@
           "n1_total": 1,
           "movement": {
             "status": "DOWN",
-            "previous_position": 65,
+            "previous_position": 64,
             "position_delta": -5
           }
         },
         {
-          "position": 76,
+          "position": 75,
           "game_id": "vlg_000535",
-          "annual": "0.056",
+          "annual": "0.057",
           "months_present": 2,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "UP",
-            "previous_position": 95,
+            "previous_position": 94,
             "position_delta": 19
+          }
+        },
+        {
+          "position": 76,
+          "game_id": "vlg_000846",
+          "annual": "0.056",
+          "months_present": 1,
+          "top3_months": 0,
+          "n1_total": 0,
+          "movement": {
+            "status": "DOWN",
+            "previous_position": 71,
+            "position_delta": -5
           }
         },
         {
@@ -65721,8 +65657,21 @@
           "n1_total": 0,
           "movement": {
             "status": "UP",
-            "previous_position": 104,
-            "position_delta": 27
+            "previous_position": 103,
+            "position_delta": 26
+          }
+        },
+        {
+          "position": 77,
+          "game_id": "vlg_000296",
+          "annual": "0.055",
+          "months_present": 2,
+          "top3_months": 0,
+          "n1_total": 0,
+          "movement": {
+            "status": "DOWN",
+            "previous_position": 72,
+            "position_delta": -5
           }
         },
         {
@@ -65734,12 +65683,12 @@
           "n1_total": 0,
           "movement": {
             "status": "UP",
-            "previous_position": 104,
-            "position_delta": 27
+            "previous_position": 103,
+            "position_delta": 26
           }
         },
         {
-          "position": 79,
+          "position": 80,
           "game_id": "vlg_000078",
           "annual": "0.054",
           "months_present": 2,
@@ -65747,27 +65696,14 @@
           "n1_total": 0,
           "movement": {
             "status": "UP",
-            "previous_position": 86,
-            "position_delta": 7
-          }
-        },
-        {
-          "position": 80,
-          "game_id": "vlg_000296",
-          "annual": "0.053",
-          "months_present": 2,
-          "top3_months": 0,
-          "n1_total": 0,
-          "movement": {
-            "status": "DOWN",
-            "previous_position": 72,
-            "position_delta": -8
+            "previous_position": 85,
+            "position_delta": 5
           }
         },
         {
           "position": 81,
-          "game_id": "vlg_000846",
-          "annual": "0.053",
+          "game_id": "vlg_000081",
+          "annual": "0.050",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
@@ -65778,85 +65714,72 @@
           }
         },
         {
-          "position": 82,
-          "game_id": "vlg_000081",
-          "annual": "0.049",
-          "months_present": 1,
-          "top3_months": 0,
-          "n1_total": 0,
-          "movement": {
-            "status": "DOWN",
-            "previous_position": 74,
-            "position_delta": -8
-          }
-        },
-        {
-          "position": 82,
+          "position": 81,
           "game_id": "vlg_000219",
-          "annual": "0.049",
+          "annual": "0.050",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 74,
+            "previous_position": 73,
             "position_delta": -8
           }
         },
         {
-          "position": 82,
+          "position": 81,
           "game_id": "vlg_000517",
-          "annual": "0.049",
+          "annual": "0.050",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 74,
+            "previous_position": 73,
             "position_delta": -8
           }
         },
         {
-          "position": 82,
+          "position": 81,
           "game_id": "vlg_000695",
-          "annual": "0.049",
+          "annual": "0.050",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 74,
+            "previous_position": 73,
             "position_delta": -8
           }
         },
         {
-          "position": 82,
+          "position": 81,
           "game_id": "vlg_000714",
-          "annual": "0.049",
+          "annual": "0.050",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 74,
+            "previous_position": 73,
             "position_delta": -8
           }
         },
         {
-          "position": 82,
+          "position": 81,
           "game_id": "vlg_000908",
-          "annual": "0.049",
+          "annual": "0.050",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 74,
+            "previous_position": 73,
             "position_delta": -8
           }
         },
         {
-          "position": 88,
+          "position": 87,
           "game_id": "vlg_000025",
           "annual": "0.048",
           "months_present": 1,
@@ -65869,7 +65792,7 @@
           }
         },
         {
-          "position": 88,
+          "position": 87,
           "game_id": "vlg_000086",
           "annual": "0.048",
           "months_present": 1,
@@ -65882,7 +65805,7 @@
           }
         },
         {
-          "position": 88,
+          "position": 87,
           "game_id": "vlg_000102",
           "annual": "0.048",
           "months_present": 1,
@@ -65895,7 +65818,7 @@
           }
         },
         {
-          "position": 88,
+          "position": 87,
           "game_id": "vlg_000777",
           "annual": "0.048",
           "months_present": 1,
@@ -65908,7 +65831,7 @@
           }
         },
         {
-          "position": 92,
+          "position": 91,
           "game_id": "vlg_000415",
           "annual": "0.048",
           "months_present": 1,
@@ -65921,7 +65844,7 @@
           }
         },
         {
-          "position": 93,
+          "position": 92,
           "game_id": "vlg_000002",
           "annual": "0.047",
           "months_present": 1,
@@ -65929,12 +65852,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 81,
+            "previous_position": 80,
             "position_delta": -12
           }
         },
         {
-          "position": 93,
+          "position": 92,
           "game_id": "vlg_000084",
           "annual": "0.047",
           "months_present": 1,
@@ -65942,12 +65865,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 81,
+            "previous_position": 80,
             "position_delta": -12
           }
         },
         {
-          "position": 93,
+          "position": 92,
           "game_id": "vlg_000200",
           "annual": "0.047",
           "months_present": 1,
@@ -65955,12 +65878,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 81,
+            "previous_position": 80,
             "position_delta": -12
           }
         },
         {
-          "position": 93,
+          "position": 92,
           "game_id": "vlg_000678",
           "annual": "0.047",
           "months_present": 1,
@@ -65968,12 +65891,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 81,
+            "previous_position": 80,
             "position_delta": -12
           }
         },
         {
-          "position": 93,
+          "position": 92,
           "game_id": "vlg_000758",
           "annual": "0.047",
           "months_present": 1,
@@ -65981,12 +65904,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 81,
+            "previous_position": 80,
             "position_delta": -12
           }
         },
         {
-          "position": 98,
+          "position": 97,
           "game_id": "vlg_000019",
           "annual": "0.039",
           "months_present": 2,
@@ -65994,12 +65917,12 @@
           "n1_total": 0,
           "movement": {
             "status": "UP",
-            "previous_position": 104,
+            "previous_position": 103,
             "position_delta": 6
           }
         },
         {
-          "position": 98,
+          "position": 97,
           "game_id": "vlg_000730",
           "annual": "0.039",
           "months_present": 2,
@@ -66007,12 +65930,12 @@
           "n1_total": 0,
           "movement": {
             "status": "UP",
-            "previous_position": 104,
+            "previous_position": 103,
             "position_delta": 6
           }
         },
         {
-          "position": 100,
+          "position": 99,
           "game_id": "vlg_000109",
           "annual": "0.038",
           "months_present": 1,
@@ -66020,12 +65943,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 86,
+            "previous_position": 85,
             "position_delta": -14
           }
         },
         {
-          "position": 100,
+          "position": 99,
           "game_id": "vlg_000198",
           "annual": "0.038",
           "months_present": 1,
@@ -66033,12 +65956,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 86,
+            "previous_position": 85,
             "position_delta": -14
           }
         },
         {
-          "position": 100,
+          "position": 99,
           "game_id": "vlg_000579",
           "annual": "0.038",
           "months_present": 1,
@@ -66046,12 +65969,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 86,
+            "previous_position": 85,
             "position_delta": -14
           }
         },
         {
-          "position": 100,
+          "position": 99,
           "game_id": "vlg_000606",
           "annual": "0.038",
           "months_present": 1,
@@ -66059,12 +65982,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 86,
+            "previous_position": 85,
             "position_delta": -14
           }
         },
         {
-          "position": 100,
+          "position": 99,
           "game_id": "vlg_000736",
           "annual": "0.038",
           "months_present": 1,
@@ -66072,12 +65995,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 86,
+            "previous_position": 85,
             "position_delta": -14
           }
         },
         {
-          "position": 100,
+          "position": 99,
           "game_id": "vlg_000893",
           "annual": "0.038",
           "months_present": 1,
@@ -66085,12 +66008,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 86,
+            "previous_position": 85,
             "position_delta": -14
           }
         },
         {
-          "position": 106,
+          "position": 105,
           "game_id": "vlg_000001",
           "annual": "0.032",
           "months_present": 1,
@@ -66103,7 +66026,7 @@
           }
         },
         {
-          "position": 106,
+          "position": 105,
           "game_id": "vlg_000170",
           "annual": "0.032",
           "months_present": 1,
@@ -66116,7 +66039,7 @@
           }
         },
         {
-          "position": 106,
+          "position": 105,
           "game_id": "vlg_000193",
           "annual": "0.032",
           "months_present": 1,
@@ -66129,7 +66052,7 @@
           }
         },
         {
-          "position": 106,
+          "position": 105,
           "game_id": "vlg_000381",
           "annual": "0.032",
           "months_present": 1,
@@ -66142,7 +66065,7 @@
           }
         },
         {
-          "position": 106,
+          "position": 105,
           "game_id": "vlg_000398",
           "annual": "0.032",
           "months_present": 1,
@@ -66155,7 +66078,7 @@
           }
         },
         {
-          "position": 106,
+          "position": 105,
           "game_id": "vlg_000469",
           "annual": "0.032",
           "months_present": 1,
@@ -66168,7 +66091,7 @@
           }
         },
         {
-          "position": 106,
+          "position": 105,
           "game_id": "vlg_000570",
           "annual": "0.032",
           "months_present": 1,
@@ -66181,7 +66104,7 @@
           }
         },
         {
-          "position": 106,
+          "position": 105,
           "game_id": "vlg_000572",
           "annual": "0.032",
           "months_present": 1,
@@ -66194,7 +66117,7 @@
           }
         },
         {
-          "position": 106,
+          "position": 105,
           "game_id": "vlg_000680",
           "annual": "0.032",
           "months_present": 1,
@@ -66207,7 +66130,7 @@
           }
         },
         {
-          "position": 106,
+          "position": 105,
           "game_id": "vlg_000778",
           "annual": "0.032",
           "months_present": 1,
@@ -66220,7 +66143,7 @@
           }
         },
         {
-          "position": 106,
+          "position": 105,
           "game_id": "vlg_000837",
           "annual": "0.032",
           "months_present": 1,
@@ -66233,7 +66156,7 @@
           }
         },
         {
-          "position": 106,
+          "position": 105,
           "game_id": "vlg_000880",
           "annual": "0.032",
           "months_present": 1,
@@ -66246,7 +66169,7 @@
           }
         },
         {
-          "position": 106,
+          "position": 105,
           "game_id": "vlg_000896",
           "annual": "0.032",
           "months_present": 1,
@@ -66259,7 +66182,7 @@
           }
         },
         {
-          "position": 106,
+          "position": 105,
           "game_id": "vlg_000931",
           "annual": "0.032",
           "months_present": 1,
@@ -66272,124 +66195,124 @@
           }
         },
         {
-          "position": 120,
+          "position": 119,
           "game_id": "vlg_000385",
-          "annual": "0.029",
+          "annual": "0.030",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 93,
+            "previous_position": 92,
             "position_delta": -27
           }
         },
         {
-          "position": 121,
+          "position": 120,
           "game_id": "vlg_000100",
-          "annual": "0.024",
+          "annual": "0.025",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 95,
+            "previous_position": 94,
             "position_delta": -26
           }
         },
         {
-          "position": 121,
+          "position": 120,
           "game_id": "vlg_000108",
-          "annual": "0.024",
+          "annual": "0.025",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 95,
+            "previous_position": 94,
             "position_delta": -26
           }
         },
         {
-          "position": 121,
+          "position": 120,
           "game_id": "vlg_000142",
-          "annual": "0.024",
+          "annual": "0.025",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 95,
+            "previous_position": 94,
             "position_delta": -26
           }
         },
         {
-          "position": 121,
+          "position": 120,
           "game_id": "vlg_000202",
-          "annual": "0.024",
+          "annual": "0.025",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 95,
+            "previous_position": 94,
             "position_delta": -26
           }
         },
         {
-          "position": 121,
+          "position": 120,
           "game_id": "vlg_000408",
-          "annual": "0.024",
+          "annual": "0.025",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 95,
+            "previous_position": 94,
             "position_delta": -26
           }
         },
         {
-          "position": 121,
+          "position": 120,
           "game_id": "vlg_000614",
-          "annual": "0.024",
+          "annual": "0.025",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 95,
+            "previous_position": 94,
             "position_delta": -26
           }
         },
         {
-          "position": 121,
+          "position": 120,
           "game_id": "vlg_000660",
-          "annual": "0.024",
+          "annual": "0.025",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 95,
+            "previous_position": 94,
             "position_delta": -26
           }
         },
         {
-          "position": 121,
+          "position": 120,
           "game_id": "vlg_000687",
-          "annual": "0.024",
+          "annual": "0.025",
           "months_present": 1,
           "top3_months": 0,
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 95,
+            "previous_position": 94,
             "position_delta": -26
           }
         },
         {
-          "position": 129,
+          "position": 128,
           "game_id": "vlg_000592",
           "annual": "0.023",
           "months_present": 1,
@@ -66397,12 +66320,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 104,
+            "previous_position": 103,
             "position_delta": -25
           }
         },
         {
-          "position": 129,
+          "position": 128,
           "game_id": "vlg_000596",
           "annual": "0.023",
           "months_present": 1,
@@ -66410,12 +66333,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 104,
+            "previous_position": 103,
             "position_delta": -25
           }
         },
         {
-          "position": 129,
+          "position": 128,
           "game_id": "vlg_000905",
           "annual": "0.023",
           "months_present": 1,
@@ -66423,12 +66346,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 104,
+            "previous_position": 103,
             "position_delta": -25
           }
         },
         {
-          "position": 132,
+          "position": 131,
           "game_id": "vlg_000113",
           "annual": "0.019",
           "months_present": 1,
@@ -66436,12 +66359,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 112,
+            "previous_position": 111,
             "position_delta": -20
           }
         },
         {
-          "position": 132,
+          "position": 131,
           "game_id": "vlg_000634",
           "annual": "0.019",
           "months_present": 1,
@@ -66449,12 +66372,12 @@
           "n1_total": 0,
           "movement": {
             "status": "DOWN",
-            "previous_position": 112,
+            "previous_position": 111,
             "position_delta": -20
           }
         },
         {
-          "position": 134,
+          "position": 133,
           "game_id": "vlg_000045",
           "annual": "0.016",
           "months_present": 1,
@@ -66467,7 +66390,7 @@
           }
         },
         {
-          "position": 134,
+          "position": 133,
           "game_id": "vlg_000298",
           "annual": "0.016",
           "months_present": 1,
@@ -66480,7 +66403,7 @@
           }
         },
         {
-          "position": 134,
+          "position": 133,
           "game_id": "vlg_000332",
           "annual": "0.016",
           "months_present": 1,
@@ -66493,7 +66416,7 @@
           }
         },
         {
-          "position": 134,
+          "position": 133,
           "game_id": "vlg_000401",
           "annual": "0.016",
           "months_present": 1,
@@ -66506,7 +66429,7 @@
           }
         },
         {
-          "position": 134,
+          "position": 133,
           "game_id": "vlg_000482",
           "annual": "0.016",
           "months_present": 1,
@@ -66519,7 +66442,7 @@
           }
         },
         {
-          "position": 134,
+          "position": 133,
           "game_id": "vlg_000870",
           "annual": "0.016",
           "months_present": 1,
@@ -66532,7 +66455,7 @@
           }
         },
         {
-          "position": 134,
+          "position": 133,
           "game_id": "vlg_000918",
           "annual": "0.016",
           "months_present": 1,
@@ -66664,7 +66587,7 @@
           "game_id": "vlg_000053",
           "movement": {
             "status": "OUT",
-            "previous_position": 81,
+            "previous_position": 80,
             "position_delta": null
           }
         },
@@ -66672,7 +66595,7 @@
           "game_id": "vlg_000574",
           "movement": {
             "status": "OUT",
-            "previous_position": 82,
+            "previous_position": 81,
             "position_delta": null
           }
         },
@@ -66680,7 +66603,7 @@
           "game_id": "vlg_000094",
           "movement": {
             "status": "OUT",
-            "previous_position": 91,
+            "previous_position": 90,
             "position_delta": null
           }
         },
@@ -66688,7 +66611,7 @@
           "game_id": "vlg_000201",
           "movement": {
             "status": "OUT",
-            "previous_position": 92,
+            "previous_position": 91,
             "position_delta": null
           }
         },
@@ -66696,7 +66619,7 @@
           "game_id": "vlg_000848",
           "movement": {
             "status": "OUT",
-            "previous_position": 95,
+            "previous_position": 94,
             "position_delta": null
           }
         },
@@ -66704,7 +66627,7 @@
           "game_id": "vlg_000895",
           "movement": {
             "status": "OUT",
-            "previous_position": 96,
+            "previous_position": 95,
             "position_delta": null
           }
         },
@@ -66712,7 +66635,7 @@
           "game_id": "vlg_000385",
           "movement": {
             "status": "OUT",
-            "previous_position": 109,
+            "previous_position": 108,
             "position_delta": null
           }
         }
@@ -66720,42 +66643,35 @@
       "annual_departures": [],
       "tie_groups": [
         {
-          "position": 16,
-          "game_ids": [
-            "vlg_000428",
-            "vlg_000802"
-          ]
-        },
-        {
-          "position": 34,
+          "position": 32,
           "game_ids": [
             "vlg_000746",
             "vlg_000798"
           ]
         },
         {
-          "position": 41,
+          "position": 40,
           "game_ids": [
             "vlg_000190",
             "vlg_000292"
           ]
         },
         {
-          "position": 49,
+          "position": 48,
           "game_ids": [
             "vlg_000192",
             "vlg_000799"
           ]
         },
         {
-          "position": 51,
+          "position": 50,
           "game_ids": [
             "vlg_000053",
             "vlg_000574"
           ]
         },
         {
-          "position": 57,
+          "position": 55,
           "game_ids": [
             "vlg_000107",
             "vlg_000258",
@@ -66765,14 +66681,14 @@
           ]
         },
         {
-          "position": 63,
+          "position": 62,
           "game_ids": [
             "vlg_000231",
             "vlg_000776"
           ]
         },
         {
-          "position": 66,
+          "position": 65,
           "game_ids": [
             "vlg_000094",
             "vlg_000201",
@@ -66781,7 +66697,7 @@
           ]
         },
         {
-          "position": 70,
+          "position": 69,
           "game_ids": [
             "vlg_000365",
             "vlg_000450",
@@ -66795,11 +66711,12 @@
           "position": 77,
           "game_ids": [
             "vlg_000197",
+            "vlg_000296",
             "vlg_000591"
           ]
         },
         {
-          "position": 82,
+          "position": 81,
           "game_ids": [
             "vlg_000081",
             "vlg_000219",
@@ -66810,7 +66727,7 @@
           ]
         },
         {
-          "position": 88,
+          "position": 87,
           "game_ids": [
             "vlg_000025",
             "vlg_000086",
@@ -66819,7 +66736,7 @@
           ]
         },
         {
-          "position": 93,
+          "position": 92,
           "game_ids": [
             "vlg_000002",
             "vlg_000084",
@@ -66829,14 +66746,14 @@
           ]
         },
         {
-          "position": 98,
+          "position": 97,
           "game_ids": [
             "vlg_000019",
             "vlg_000730"
           ]
         },
         {
-          "position": 100,
+          "position": 99,
           "game_ids": [
             "vlg_000109",
             "vlg_000198",
@@ -66847,7 +66764,7 @@
           ]
         },
         {
-          "position": 106,
+          "position": 105,
           "game_ids": [
             "vlg_000001",
             "vlg_000170",
@@ -66866,7 +66783,7 @@
           ]
         },
         {
-          "position": 121,
+          "position": 120,
           "game_ids": [
             "vlg_000100",
             "vlg_000108",
@@ -66879,7 +66796,7 @@
           ]
         },
         {
-          "position": 129,
+          "position": 128,
           "game_ids": [
             "vlg_000592",
             "vlg_000596",
@@ -66887,14 +66804,14 @@
           ]
         },
         {
-          "position": 132,
+          "position": 131,
           "game_ids": [
             "vlg_000113",
             "vlg_000634"
           ]
         },
         {
-          "position": 134,
+          "position": 133,
           "game_ids": [
             "vlg_000045",
             "vlg_000298",
