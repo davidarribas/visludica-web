@@ -64,8 +64,11 @@ function slugify(text) {
     .replace(/^-|-$/g, '');
 }
 
-// Extrae el ID UUID del GUID de Captivate
-function extractCaptivateId(guid) {
+// El GUID de los episodios importados pertenece al alojamiento anterior.
+// El enclosure de Captivate incluye el ID que acepta su reproductor.
+function extractCaptivateId(guid, audioUrl = '') {
+  const audioId = audioUrl.match(/^https:\/\/(?:podcasts\.captivate\.fm\/media|episodes\.captivate\.fm\/episode)\/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})(?:\/|\.mp3(?:[?#]|$))/i);
+  if (audioId) return audioId[1];
   // Formato típico: UUID o URL terminando en UUID
   const uuidMatch = guid.match(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i);
   return uuidMatch ? uuidMatch[0] : guid;
@@ -91,7 +94,8 @@ export function parseFeedXml(xml) {
 
   const episodes = items.map((item) => {
     const rawGuid = String(item.guid?.['#text'] ?? item.guid ?? '');
-    const captivateId = extractCaptivateId(rawGuid);
+    const audioUrl = item.enclosure?.['@_url'] ?? '';
+    const captivateId = extractCaptivateId(rawGuid, audioUrl);
 
     const rawSlug = slugify(item.title ?? captivateId);
     slugCount[rawSlug] = (slugCount[rawSlug] ?? 0) + 1;
@@ -115,7 +119,7 @@ export function parseFeedXml(xml) {
         item['itunes:image']?.['@_href'] ??
         meta.imageUrl ??
         '',
-      audioUrl: item.enclosure?.['@_url'] ?? '',
+      audioUrl,
     };
   });
 
@@ -197,6 +201,7 @@ export function reviveSnapshot(raw, origin = 'el snapshot') {
   const feed = {
     episodes: (data?.episodes ?? []).map((episode) => ({
       ...episode,
+      captivateId: extractCaptivateId(episode?.guid ?? '', episode?.audioUrl),
       pubDate: new Date(episode?.pubDate),
     })),
     meta: data?.meta ?? {},

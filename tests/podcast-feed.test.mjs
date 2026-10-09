@@ -7,6 +7,7 @@ import {
   FEED_TIMEOUT_MS,
   loadFeed,
   parseFeedXml,
+  reviveSnapshot,
 } from "../src/lib/podcast-feed.mjs";
 
 const root = dirname(fileURLToPath(new URL("../package.json", import.meta.url)));
@@ -117,6 +118,38 @@ test("parseFeedXml rechaza XML inválido y feeds sin estructura mínima", () => 
   assert.throws(() => parseFeedXml("no es xml"));
   assert.throws(() => parseFeedXml("<rss><channel><title>solo título</title></channel></rss>"), /no es válido/);
   assert.throws(() => parseFeedXml("<rss><channel><item><title>sin guid</title></item></channel></rss>"), /no es válido/);
+});
+
+test("episodios importados usan el ID del audio de Captivate y conservan el GUID histórico", () => {
+  const guid = "D822A6E8-7622-4DA6-BFC8-35DCBD2BFDB3";
+  const id = "1d0412e0-0b00-41be-808a-a33ba6f654ac";
+  for (const audioUrl of [
+    `https://podcasts.captivate.fm/media/${id}/visludica037.mp3`,
+    `https://episodes.captivate.fm/episode/${id}.mp3`,
+  ]) {
+    const xml = VALID_XML
+      .replace("https://feeds.captivate.fm/visludica/123e4567-e89b-12d3-a456-426614174000", guid)
+      .replace("https://media.captivate.fm/ep1.mp3", audioUrl);
+    const [episode] = parseFeedXml(xml).episodes;
+    assert.equal(episode.guid, guid);
+    assert.equal(episode.captivateId, id);
+
+    // Las copias existentes guardaron por error el GUID como ID del player.
+    const [cached] = reviveSnapshot(snapshotFixture([{ ...episode, captivateId: guid }])).episodes;
+    assert.equal(cached.guid, guid);
+    assert.equal(cached.slug, episode.slug);
+    assert.equal(cached.captivateId, id);
+  }
+});
+
+test("snapshot histórico: Dominant Species y todo el archivo tienen el ID del enclosure", async () => {
+  const snapshot = reviveSnapshot(await readFile(join(root, "src/data/podcast/feed-snapshot.json"), "utf8"));
+  const dominantSpecies = snapshot.episodes.find((episode) => episode.slug === "dominant-species");
+  assert.equal(dominantSpecies.captivateId, "1d0412e0-0b00-41be-808a-a33ba6f654ac");
+  assert.equal(dominantSpecies.guid, "D822A6E8-7622-4DA6-BFC8-35DCBD2BFDB3");
+  for (const episode of snapshot.episodes) {
+    assert.equal(episode.captivateId, new URL(episode.audioUrl).pathname.split("/")[2].replace(/\.mp3$/, ""), episode.slug);
+  }
 });
 
 test("slugs estables: acentos normalizados y duplicados con sufijo -2", () => {
