@@ -67,6 +67,8 @@ test('el endpoint de septiembre contiene las tablas completas y las crónicas ti
       for (const title of ['Queen Alice', 'Arkham Horror LCG', 'Race for the Galaxy', 'Nippon: Zaibatsu', 'Arcs', 'Unstoppable']) assert.ok(panel.includes(title));
     } else {
       assert.match(panel, /D-Day at Omaha Beach mantiene el dominio/);
+      assert.match(panel, /55 votantes en septiembre/);
+      assert.doesNotMatch(panel, /De 15 a 55 votantes/);
       assert.doesNotMatch(panel, /The Elder Scrolls consolida el liderazgo/);
       for (const title of ['Fields of Fire', 'Burning Banners', 'Twilight Struggle', 'Guerra del Anillo', 'Churchill', 'Imperial Struggle', 'El Rey Planeta']) assert.ok(panel.includes(title));
     }

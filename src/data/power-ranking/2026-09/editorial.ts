@@ -101,6 +101,11 @@ export const editorial = {
   "vis-belica": {
     "name": "Vis Bélica",
     "eyebrow": "El Power Ranking de Vis Bélica",
+    "voterGrowth": {
+      "label": "La muestra de septiembre",
+      "headline": "55 votantes en septiembre",
+      "deck": "Esta edición reúne 45 juegos distintos y 152 puntos."
+    },
     "intro": "D-Day at Omaha Beach mantiene el dominio del Power Ranking de Vis Bélica en el ciclo observado. Encabeza septiembre con 21 puntos y un normalizado de 0,382, por delante de Fields of Fire y Burning Banners. También lidera el Power y la acumulada de esta clasificación. La edición de septiembre del Power Ranking de Vis Bélica reúne 55 votantes, 45 juegos distintos y 152 puntos. Estos son los diez primeros del mes.",
     "methodology": "El normalizado relaciona los puntos con los 55 votantes de Vis Bélica de este mes. La tabla recoge septiembre; el Power combina los cuatro últimos meses y la acumulada suma los resultados normalizados del ciclo observado, de febrero a septiembre de 2026.",
     "power": {
