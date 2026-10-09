@@ -22,7 +22,7 @@ export function defineParticipationConfig({ mode, formsUrl = null, formsCutover 
 // Cambiar este valor requiere una decisión editorial explícita. PART-075C
 // autoriza únicamente PART_075C_FORMS_URL para un corte manual de contingencia.
 export const participationConfig = defineParticipationConfig({
-  mode: 'native',
+  mode: 'closed',
   formsUrl: null,
   formsCutover: null,
 });

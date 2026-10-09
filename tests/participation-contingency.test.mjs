@@ -17,7 +17,7 @@ const root = dirname(fileURLToPath(new URL('../package.json', import.meta.url)))
 const response = (body, status = 200) => new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
 
 test('la configuración editorial admite native, forms y closed, pero Forms exige su URL aprobada', () => {
-  assert.deepEqual(participationConfig, { mode: 'native', formsUrl: null, formsCutover: null });
+  assert.deepEqual(participationConfig, { mode: 'closed', formsUrl: null, formsCutover: null });
   assert.equal(defineParticipationConfig({ mode: 'native' }).mode, 'native');
   assert.deepEqual(
     defineParticipationConfig({ mode: 'forms', formsUrl: PART_075C_FORMS_URL, formsCutover: '2026-09-15T12:00:00+02:00' }),
@@ -69,7 +69,8 @@ test('la presentación separa formulario nativo, CTA Forms, cierre y contador we
   assert.match(page, /Participar con Google Forms/);
   assert.match(page, /contador de papeletas de la web no se muestra/);
   assert.match(card, /papeletas recibidas en la web/);
-  assert.match(builtVote, /data-ballot-form/);
+  assert.doesNotMatch(builtVote, /data-ballot-form/);
+  assert.match(builtVote, /La votación no está abierta en este momento/);
   assert.match(builtVote, /Privacidad de esta participación/);
 });
 

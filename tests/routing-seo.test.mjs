@@ -9,7 +9,7 @@ const SITEMAP_URL = "https://visludica.com/sitemap-index.xml";
 
 // Extensiones que son ficheros servidos directamente: un href hacia ellas no
 // lleva barra final.
-const FILE_EXTENSIONS = /\.(astro|css|js|mjs|json|xml|txt|webmanifest|ico|png|jpe?g|webp|gif|svg|woff2?|mp3|pdf)$/i;
+const FILE_EXTENSIONS = /\.(astro|css|js|mjs|json|xml|txt|webmanifest|ico|png|jpe?g|webp|gif|svg|woff2?|mp3|pdf|xlsx)$/i;
 
 async function* htmlFiles(dir) {
   for (const entry of await readdir(dir, { withFileTypes: true })) {

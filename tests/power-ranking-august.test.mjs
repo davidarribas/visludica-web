@@ -31,15 +31,17 @@ async function zipEntryText(file, entry) {
   }
 }
 
-test("agosto es la edición por defecto y julio sigue en el histórico", async () => {
+test("septiembre es la edición por defecto y agosto y julio siguen en el histórico", async () => {
   const [current, august, july] = await Promise.all([
     readFile(join(root, "dist/power-ranking/index.html"), "utf8"),
     readFile(join(root, "dist/power-ranking/2026/08/index.html"), "utf8"),
     readFile(join(root, "dist/power-ranking/2026/07/index.html"), "utf8"),
   ]);
 
-  assert.match(current, /<title>Power Ranking — Agosto 2026/);
-  assert.match(current, /<option value="\/power-ranking\/2026\/08\/" selected/);
+  assert.match(current, /<title>Power Ranking — Septiembre 2026/);
+  assert.match(current, /<option value="\/power-ranking\/2026\/09\/" selected/);
+  assert.match(current, /<option value="\/power-ranking\/2026\/08\/"/);
+  assert.match(august, /<title>Power Ranking — Agosto 2026/);
   assert.match(current, /<option value="\/power-ranking\/2026\/07\/"/);
   assert.match(august, />Acumulado 2026</);
   assert.doesNotMatch(august, /Palmarés/i);
@@ -92,7 +94,7 @@ test("ningún Excel público del ranking expone papeletas individuales", async (
   }
 });
 
-test("la página del ranking ya no enlaza descargas de Excel", async () => {
-  const ranking = await readFile(join(root, "dist/power-ranking/index.html"), "utf8");
+test("agosto conserva su presentación sin descargas de Excel", async () => {
+  const ranking = await readFile(join(root, "dist/power-ranking/2026/08/index.html"), "utf8");
   assert.doesNotMatch(ranking, /href="[^"]*\.xlsx"/);
 });

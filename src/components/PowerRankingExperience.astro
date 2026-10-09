@@ -381,6 +381,18 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
                     {copy.chronicle.sections.map((section: any) => (
                       <section>
                         <h3>{section.title}</h3>
+                        {section.monthlyTop10 && (
+                          <div class="ranking-table-scroll chronicle-top10">
+                            <table aria-label={`TOP 10 mensual de ${copy.name}`}>
+                              <thead><tr><th scope="col">Puesto</th><th scope="col">Juego</th><th scope="col">Puntos</th><th scope="col">Normalizado</th></tr></thead>
+                              <tbody>
+                                {project.rankings.monthly.slice(0, 10).map((row: any) => (
+                                  <tr><td>{row.rank}</td><td>{gameTitle(project, row.id)}</td><td>{row.points}</td><td>{String(row.normalized).replace('.', ',')}</td></tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+                        )}
                         {section.paragraphs.map((paragraph: string) => <p>{paragraph}</p>)}
                       </section>
                     ))}
@@ -447,6 +459,11 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
             </div>
           </details>
         </section>
+        {edition.downloads?.[projectId] && (
+          <section class="container ranking-downloads" aria-label={`Descarga de resultados de ${copy.name}`}>
+            <a class="btn btn-outline" href={edition.downloads[projectId]} download>Descargar resultados de {copy.name} (XLSX)</a>
+          </section>
+        )}
       </section>
     );
   })}
@@ -1048,6 +1065,9 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
   .ranking-search input:focus { border-color: var(--ranking-accent); outline: 2px solid color-mix(in srgb, var(--ranking-accent) 20%, transparent); }
   .ranking-table-shell { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow: hidden; }
   .ranking-table-scroll { overflow-x: auto; }
+  .chronicle-top10 { margin-block: var(--space-4); }
+  .chronicle-top10 table { min-width: 520px; }
+  .ranking-downloads { padding-bottom: var(--space-12); }
   table { width: 100%; border-collapse: collapse; }
   th, td { padding: var(--space-4); border-bottom: 1px solid var(--color-border); text-align: left; vertical-align: middle; }
   thead th { background: var(--color-surface-raised); color: var(--color-text-tertiary); font-size: var(--text-xs); font-weight: var(--fw-medium); text-transform: uppercase; }

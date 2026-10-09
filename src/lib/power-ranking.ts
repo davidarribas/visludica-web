@@ -1,3 +1,5 @@
+import september2026Contract from '../data/power-ranking/2026-09/public-results.json';
+import { editorial as septemberEditorial } from '../data/power-ranking/2026-09/editorial';
 import august2026Contract from '../data/power-ranking/2026-08/public-results.json';
 import { editorial as augustEditorial } from '../data/power-ranking/2026-08/editorial';
 import july2026 from '../data/power-ranking/2026-07/data.json';
@@ -15,8 +17,17 @@ type ContractMovement = {
 };
 
 const august2026 = loadPublicResultsV1(august2026Contract);
+const september2026 = loadPublicResultsV1(september2026Contract);
 
 export const editions = [
+  {
+    ...september2026,
+    editorial: septemberEditorial,
+    downloads: {
+      'vis-ludica': '/downloads/power-ranking/2026-09/power_ranking_septiembre_2026_publico.xlsx',
+      'vis-belica': '/downloads/power-ranking/2026-09/power_ranking_vis_belica_septiembre_2026_publico.xlsx',
+    },
+  },
   {
     ...august2026,
     editorial: augustEditorial,
