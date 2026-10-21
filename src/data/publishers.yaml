@@ -114,3 +114,19 @@
 - name: Ediciones MasQueOca
   slug: ediciones-masqueoca
   aliases: []
+
+- name: Arrakis Games
+  slug: arrakis-games
+  aliases: []
+
+- name: Libellud
+  slug: libellud
+  aliases: []
+
+- name: Ludonova
+  slug: ludonova
+  aliases: []
+
+- name: Exploding Kittens
+  slug: exploding-kittens
+  aliases: []
