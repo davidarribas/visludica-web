@@ -17,7 +17,7 @@ const root = dirname(fileURLToPath(new URL('../package.json', import.meta.url)))
 const response = (body, status = 200) => new Response(JSON.stringify(body), { status, headers: { 'Content-Type': 'application/json' } });
 
 test('la configuración editorial admite native, forms y closed, pero Forms exige su URL aprobada', () => {
-  assert.deepEqual(participationConfig, { mode: 'closed', formsUrl: null, formsCutover: null });
+  assert.deepEqual(participationConfig, { mode: 'native', formsUrl: null, formsCutover: null });
   assert.equal(defineParticipationConfig({ mode: 'native' }).mode, 'native');
   assert.deepEqual(
     defineParticipationConfig({ mode: 'forms', formsUrl: PART_075C_FORMS_URL, formsCutover: '2026-09-15T12:00:00+02:00' }),
@@ -69,8 +69,8 @@ test('la presentación separa formulario nativo, CTA Forms, cierre y contador we
   assert.match(page, /Participar con Google Forms/);
   assert.match(page, /contador de papeletas de la web no se muestra/);
   assert.match(card, /papeletas recibidas en la web/);
-  assert.doesNotMatch(builtVote, /data-ballot-form/);
-  assert.match(builtVote, /La votación no está abierta en este momento/);
+  assert.match(builtVote, /data-ballot-form/);
+  assert.doesNotMatch(builtVote, /La votación no está abierta en este momento/);
   assert.match(builtVote, /Privacidad de esta participación/);
 });
 
@@ -109,12 +109,12 @@ test('el CSS compilado aplica layout y separación a los nodos creados dinámica
   }
 });
 
-test('el runbook documenta Static Assets, ausencia de Route de producción y retención pendiente', async () => {
+test('el runbook documenta Static Assets, la API independiente y el preflight de producción', async () => {
   const source = await readFile(join(root, 'docs/power-ranking.md'), 'utf8');
   assert.match(source, /Worker visludica-web → Static Assets/);
-  assert.match(source, /npx wrangler deploy --config wrangler\.jsonc --name visludica-web/);
-  assert.match(source, /staging\.visludica\.com/);
-  assert.match(source, /todavía no existen/);
+  assert.match(source, /npm run deploy:production/);
+  assert.match(source, /son independientes del Worker web/);
+  assert.match(source, /bloquea `mode: 'closed'` si la campaña está `open`/);
   assert.match(source, /PENDIENTE DE\n+RATIFICACIÓN de David/);
   assert.doesNotMatch(source, /Cloudflare Pages despliega solo/);
 });

@@ -12,6 +12,7 @@ tener que releer el código.
 - [La web publicada](#la-web-publicada)
 - [Participación actual](#participación-actual)
 - [Hosting y despliegue web](#hosting-y-despliegue-web)
+- [Protección de despliegues de participación](#protección-de-despliegues-de-participación)
 - [Trampas conocidas](#trampas-conocidas)
 
 ---
@@ -497,7 +498,8 @@ visludica.com → Worker visludica-web → Static Assets (dist/) → custom doma
 
 `wrangler.jsonc` declara `name: visludica-web` y `assets.directory: ./dist/`; no hay CI/CD
 de despliegue configurado. La API de participación de producción y su Route
-`visludica.com/api/power-ranking/*` todavía no existen y no deben describirse como activas.
+`visludica.com/api/power-ranking/*` son independientes del Worker web y no se despliegan
+desde este repositorio.
 
 Staging es independiente: `staging.visludica.com` apunta al Worker web
 `visludica-staging`, y su Route `staging.visludica.com/api/power-ranking/*` corresponde
@@ -509,10 +511,31 @@ El procedimiento manual para una publicación web autorizada es:
 cd /Volumes/Dyson/Vibe/visludica
 npm test
 npx wrangler deployments list --name visludica-web
-npx wrangler deploy --config wrangler.jsonc --name visludica-web --message "Web: SHA_GIT"
+npm run deploy:production
 npx wrangler deployments status --name visludica-web
 curl -fsSIL https://visludica.com/
 ```
+
+### Protección de despliegues de participación
+
+El despliegue del lote de noticias del 21/10/2026 volvió a publicar un artefacto con
+`mode: 'closed'` aunque la campaña `2026-10` seguía abierta y el Worker aceptaba votos.
+El contenido de noticias no modificó la API: el problema fue construir desde una revisión
+web que no contenía el corte editorial `native`.
+
+`npm run deploy:production` ejecuta `scripts/deploy-production-safe.mjs` después del build y
+antes de invocar Wrangler. La comprobación es de solo lectura:
+
+- inspecciona `dist/power-ranking/votar/index.html` y exige un modo inequívoco;
+- consulta `GET /api/power-ranking/v1/campaign` en producción;
+- permite `NO_ACTIVE_CAMPAIGN` solo cuando la API lo confirma explícitamente;
+- bloquea `mode: 'closed'` si la campaña está `open`;
+- bloquea cualquier error de red, HTTP inesperado, JSON inválido o artefacto ambiguo.
+
+La guarda no abre, cierra, pausa, migra ni modifica la campaña y no consulta papeletas.
+Las pruebas están en `tests/deploy-production-safe.test.mjs`. Los despliegues de noticias
+deben incluir el modo editorial versionado y usar este comando, nunca un parche temporal
+aplicado después del commit.
 
 Registrar la versión estable antes de desplegar. Para rollback de **web/static assets**,
 sin tocar DNS, API ni D1:

@@ -89,10 +89,14 @@ test('las descargas de septiembre existen y su contenido no expone participació
   }
 });
 
-test('octubre permanece cerrado sin formularios ni llamadas a participar desde las portadas', async () => {
+test('octubre ofrece participación nativa desde las portadas sin activar Forms', async () => {
   for (const path of ['dist/index.html', 'dist/power-ranking/index.html', 'dist/power-ranking/votar/index.html']) {
     const html = await readFile(new URL(path, root), 'utf8');
-    assert.match(html, /La votación no está abierta en este momento/);
-    assert.doesNotMatch(html, /data-ballot-form|data-participation-cta|href="https:\/\/forms\.gle/);
+    assert.doesNotMatch(html, /La votación no está abierta en este momento|href="https:\/\/forms\.gle/);
+    if (path.includes('/votar/')) assert.match(html, /data-ballot-form/);
+    else {
+      assert.match(html, /data-participation-cta/);
+      assert.match(html, /href="\/power-ranking\/votar\/"/);
+    }
   }
 });
