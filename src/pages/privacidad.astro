@@ -4,13 +4,210 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Política de privacidad"
-  description="Política de privacidad de visludica.com"
+  description="Qué datos recoge visludica.com, cuándo, para qué y cuánto tiempo se conservan."
 >
   <section class="section">
     <div class="container legal-layout">
-      <h1>Política de privacidad</h1>
-      <div class="prose">
-        <p><em>[Placeholder — añade aquí la política de privacidad]</em></p>
+      <header class="page-header">
+        <span class="label">Información legal</span>
+        <h1>Política de privacidad</h1>
+        <p class="legal-updated">Última actualización: 30 de octubre de 2026</p>
+      </header>
+
+      <div class="prose legal-content">
+        <h2>Quién es el responsable</h2>
+        {/*
+          FALTA: identificación del responsable del tratamiento (nombre o razón social,
+          NIF si procede y domicilio). El marcador vive en /aviso-legal/, que es donde se
+          publican esos datos; esta página remite allí para no duplicarlos. El correo sí
+          está: es el que el sitio ya publica en el pie (hola@visludica.com).
+        */}
+        <p>
+          Esta es la política de privacidad de <strong>visludica.com</strong>, la web del
+          podcast de juegos de mesa Vis Ludica. El responsable del tratamiento de los datos
+          que se describen aquí es el titular del sitio, cuyos datos de identificación
+          figuran en el <a href="/aviso-legal/">aviso legal</a>. Para cualquier cuestión
+          sobre privacidad puedes escribir a
+          <a href="mailto:hola@visludica.com">hola@visludica.com</a>.
+        </p>
+
+        <h2>Qué pasa si solo navegas por la web</h2>
+        <p>
+          Nada. Las páginas de visludica.com son estáticas y no llevan analítica, ni
+          estadísticas de visitas, ni cookies publicitarias, ni perfilado, ni botones de
+          redes sociales que te sigan la pista. Leer una noticia, consultar el Power Ranking
+          o repasar la lista de episodios no instala ninguna cookie.
+        </p>
+        <p>
+          La única excepción técnica es la preferencia de tema claro u oscuro: cuando la
+          cambias, tu navegador la guarda en su propio almacenamiento local
+          (<code>localStorage</code>) para recordarla la próxima vez. Ese valor no sale del
+          navegador, no se envía a ningún servidor y desaparece si borras los datos del sitio.
+        </p>
+
+        <h2>El reproductor de los episodios</h2>
+        <p>
+          El podcast se aloja en <strong>Captivate</strong> y esta web consume su feed RSS. En
+          las páginas de episodio se incrusta el reproductor de Captivate
+          (<code>player.captivate.fm</code>): al abrir una de esas páginas, tu navegador se
+          conecta directamente a los servidores de Captivate, que pueden registrar esa
+          petición conforme a su propia política de privacidad. Las demás plataformas donde se
+          publica el podcast —Spotify, Apple Podcasts, iVoox o YouTube— son servicios ajenos
+          con sus propias políticas: esta web solo enlaza a ellos.
+        </p>
+
+        <h2>La votación del Power Ranking</h2>
+        <p>
+          El único lugar de la web donde se recogen datos tuyos es el formulario de votación
+          del Power Ranking, en <a href="/power-ranking/votar/">/power-ranking/votar/</a>.
+          Participar es voluntario y no hace falta crear ninguna cuenta: si no envías una
+          papeleta, no se guarda nada.
+        </p>
+
+        <h3>Qué se guarda cuando envías una papeleta</h3>
+        <ul>
+          <li>
+            <strong>Tus elecciones</strong>: hasta tres juegos con la posición que les has
+            dado y, si has usado la opción de proponer un juego que no aparece en el catálogo,
+            el nombre que hayas escrito.
+          </li>
+          <li>
+            <strong>Un apodo o alias, si lo rellenas</strong>: es opcional (máximo 100
+            caracteres). No sirve para identificarte, no se publica y nunca se usa para
+            agrupar ni descartar papeletas.
+          </li>
+          <li>
+            <strong>Un comentario, si lo rellenas</strong>: es opcional (máximo 4.000
+            caracteres) y de texto libre.
+          </li>
+          <li>
+            <strong>Identificadores técnicos opacos</strong>: uno de participante, uno de
+            papeleta y uno por cada revisión que guardes. Son valores internos sin
+            significado, que no contienen tu nombre ni tu apodo.
+          </li>
+          <li>
+            <strong>Marcas de tiempo</strong> de cuándo llega cada versión de la papeleta y el
+            canal por el que entró (la web).
+          </li>
+          <li>
+            <strong>Una procedencia orientativa</strong>, solo si llegas al formulario desde un
+            enlace que la indique. Es un valor de una lista cerrada y corta —enlace directo,
+            Telegram, X, Bluesky, newsletter, Substack, YouTube u «otro»—: no es una URL, no
+            registra de qué página concreta vienes y solo se conserva la del primer envío.
+          </li>
+        </ul>
+
+        <h3>Qué no se guarda</h3>
+        <p>
+          No se guarda tu dirección IP como identidad, ni el navegador o el dispositivo que
+          usas, ni ninguna huella digital del navegador. El límite de intentos que protege el
+          formulario frente a abusos se aplica por sesión técnica, no por IP. Tampoco se pide
+          ni se almacena correo, teléfono ni cuenta de ningún tipo.
+        </p>
+
+        <h3>La cookie de la votación</h3>
+        <p>
+          Al empezar a votar se crea una cookie propia y técnica,
+          <code>__Host-vlpr_session</code>, con los atributos <code>Secure</code>,
+          <code>HttpOnly</code> y <code>SameSite=Lax</code>. Su contenido es una credencial
+          aleatoria que el servidor no conserva tal cual: solo guarda su huella criptográfica
+          y una fecha de caducidad. Está configurada para durar 30 días.
+        </p>
+        <p>
+          Esa cookie sirve para una sola cosa: que puedas recuperar y modificar tu propia
+          papeleta desde el mismo navegador mientras la votación siga abierta. No es una
+          cookie de analítica ni de publicidad y no te identifica como persona. Si borras las
+          cookies o cambias de navegador o de dispositivo, dejarás de poder recuperar esa
+          papeleta y una participación nueva contará como otra papeleta distinta; por eso el
+          recuento público habla de «papeletas recibidas» y no de personas.
+        </p>
+        <p>
+          Las consultas que solo leen información del Power Ranking —la campaña activa, el
+          buscador de juegos o el recuento— no crean sesión ni cookie.
+        </p>
+
+        <h3>Para qué se usan</h3>
+        <p>
+          Para calcular y publicar el Power Ranking mensual, y para poder reproducir y auditar
+          después un resultado ya publicado. Los apodos y los comentarios no intervienen en el
+          cálculo: se conservan como material de trabajo editorial y no se publican de forma
+          automática.
+        </p>
+        <p>
+          La base para tratar estos datos es tu envío voluntario del formulario, que eres
+          libre de no hacer, junto con el interés legítimo en mantener el servicio seguro
+          frente a abusos (el límite de intentos y la protección de la sesión).
+        </p>
+
+        <h3>Qué se publica y qué no</h3>
+        <p>
+          El resultado público del Power Ranking es agregado. El artefacto que alimenta las
+          páginas publicadas contiene juegos, puntuaciones y posiciones, y no incluye apodos,
+          comentarios, votos individuales ni identificadores de participante. Un comentario
+          solo podría llegar a aparecer en público por una decisión editorial expresa y caso
+          por caso.
+        </p>
+
+        <h2>Dónde se guardan y quién los trata</h2>
+        <p>
+          La web y la recepción de papeletas funcionan sobre <strong>Cloudflare</strong>. Las
+          papeletas se guardan en una base de datos Cloudflare D1 creada con jurisdicción
+          europea, aislada del resto del sitio.
+        </p>
+        <p>
+          Cloudflare registra además trazas técnicas de las peticiones a la API de la votación
+          —identificadores de petición y metadatos de la operación—. Se revisaron
+          expresamente para comprobar que no incluyen cookies, credenciales, apodos,
+          comentarios ni el contenido de la papeleta. La plataforma mantiene también copias de
+          seguridad operativas de la base de datos, con el plazo propio de su servicio.
+        </p>
+        <p>
+          Los episodios se alojan en <strong>Captivate</strong>, como se explica más arriba. Si
+          alguna vez hiciera falta recoger la votación mediante un formulario de contingencia
+          de Google Forms, se anunciaría de forma expresa al abrirlo y esas respuestas se
+          tratarían en ese servicio; hoy la votación es nativa de esta web.
+        </p>
+        <p>
+          Fuera de esos proveedores, los datos no se ceden a terceros, no se venden y no se
+          usan para publicidad.
+        </p>
+
+        <h2>Cuánto tiempo se conservan</h2>
+        <ul>
+          <li>La sesión técnica de la votación caduca a los 30 días.</li>
+          <li>Los contadores que limitan los intentos trabajan en ventanas de un minuto.</li>
+          <li>
+            Las papeletas, sus revisiones y los paquetes mensuales que permiten reproducir el
+            cálculo se conservan mientras sean necesarios para sostener y auditar los rankings
+            publicados.
+          </li>
+        </ul>
+        <p>
+          Conviene decirlo con claridad: hoy no hay un borrado automático programado de las
+          papeletas. Existe un procedimiento de purga controlada preparado y probado, pero su
+          aplicación a los datos reales es una decisión que todavía no se ha ejecutado.
+        </p>
+
+        <h2>Tus derechos</h2>
+        <p>
+          Puedes solicitar el acceso a tus datos, su rectificación o su supresión, así como la
+          limitación u oposición a su tratamiento y su portabilidad, escribiendo a
+          <a href="mailto:hola@visludica.com">hola@visludica.com</a>. También puedes presentar
+          una reclamación ante la Agencia Española de Protección de Datos.
+        </p>
+        <p>
+          Hay un límite técnico que merece explicarse: como la votación no usa cuentas, la
+          única forma de reconocer una papeleta es la sesión del navegador con la que se envió,
+          y un apodo no prueba quién eres. Para acceder a una papeleta o pedir que se borre,
+          probablemente haga falta hacerlo desde el mismo navegador con el que votaste o
+          aportar datos suficientes para localizarla sin ambigüedad.
+        </p>
+
+        <h2>Cambios en esta política</h2>
+        <p>
+          Si cambia lo que la web recoge o cómo lo trata, se actualizará esta página junto con
+          la fecha del encabezado.
+        </p>
       </div>
     </div>
   </section>
@@ -18,5 +215,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <style>
 .legal-layout { max-width: 720px; }
-h1 { margin-bottom: var(--space-8); }
+
+.page-header {
+  margin-bottom: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.legal-updated {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+
+.legal-content h3 { color: var(--color-text); }
 </style>

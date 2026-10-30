@@ -4,13 +4,91 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Aviso legal"
-  description="Aviso legal de visludica.com"
+  description="Titular, condiciones de uso, propiedad intelectual y enlaces externos de visludica.com."
 >
   <section class="section">
     <div class="container legal-layout">
-      <h1>Aviso legal</h1>
-      <div class="prose">
-        <p><em>[Placeholder — añade aquí el aviso legal]</em></p>
+      <header class="page-header">
+        <span class="label">Información legal</span>
+        <h1>Aviso legal</h1>
+        <p class="legal-updated">Última actualización: 30 de octubre de 2026</p>
+      </header>
+
+      <div class="prose legal-content">
+        <h2>Titular y contacto</h2>
+        {/*
+          FALTA: datos de identificación del titular. Faltan, como mínimo:
+            - nombre y apellidos o razón social;
+            - NIF o CIF, si la actividad del sitio lo exige;
+            - domicilio o dirección postal de contacto.
+          El correo de contacto no falta: es el que el propio sitio ya publica en el pie
+          de todas las páginas (hola@visludica.com), así que se usa aquí y en la política
+          de privacidad. Si prefieres una dirección distinta para asuntos legales o de
+          privacidad, cámbiala en los dos sitios.
+          Los datos de identificación son los que la normativa de servicios de la
+          sociedad de la información obliga a publicar: mientras falten, este aviso legal
+          y la política de privacidad están incompletos.
+        */}
+        <p>
+          <strong>visludica.com</strong> es la web del podcast de juegos de mesa Vis Ludica.
+          Para cualquier cuestión relacionada con el sitio, incluido lo previsto en este
+          aviso y en la <a href="/privacidad/">política de privacidad</a>, la dirección de
+          contacto es <a href="mailto:hola@visludica.com">hola@visludica.com</a>.
+        </p>
+
+        <h2>Objeto y condiciones de uso</h2>
+        <p>
+          Este sitio es informativo y divulgativo: publica los episodios del podcast,
+          noticias sobre novedades de juegos de mesa y los resultados del Power Ranking
+          mensual. No vende productos, no cobra suscripciones y no exige registro. El acceso
+          es libre y gratuito.
+        </p>
+        <p>
+          La única interacción que admite es la votación voluntaria del Power Ranking. Al
+          participar te comprometes a hacerlo de buena fe: una sola papeleta por edición, sin
+          automatizar envíos y sin usar el campo de comentario para contenido ilícito,
+          ofensivo o publicitario. Los comentarios no se publican de forma automática.
+        </p>
+
+        <h2>Propiedad intelectual</h2>
+        <p>
+          Los episodios, los textos propios, la marca Vis Ludica y la elaboración del Power
+          Ranking pertenecen a su titular. Puedes citarlos y enlazarlos indicando la fuente;
+          reproducirlos de forma íntegra requiere permiso.
+        </p>
+        <p>
+          Las portadas, las imágenes y los nombres de los juegos que aparecen en las noticias
+          pertenecen a sus editoriales, autores o titulares respectivos, y se utilizan con
+          finalidad informativa citando la editorial en cada noticia. Si eres titular de
+          alguno de esos materiales y quieres que se retire o que se corrija la atribución,
+          basta con escribir a la dirección de contacto.
+        </p>
+
+        <h2>Contenido de las noticias</h2>
+        <p>
+          Las noticias se elaboran a partir de información pública de las editoriales y de los
+          propios proyectos: anuncios, fichas de producto y campañas de financiación. Fechas,
+          precios y disponibilidad son los anunciados en el momento de publicar y pueden
+          cambiar después sin que esta web lo controle. Si detectas un error, se corrige.
+        </p>
+
+        <h2>Enlaces a sitios ajenos</h2>
+        <p>
+          La web enlaza a plataformas de escucha (Captivate, Spotify, Apple Podcasts, iVoox,
+          YouTube), a espacios de comunidad (Telegram, Twitch, Substack), a los proyectos
+          hermanos (Vis Bélica, Academia Vis Bélica, Campamento Barton) y a editoriales y
+          campañas citadas en las noticias. Esos sitios son ajenos: su contenido, sus
+          condiciones y sus políticas de privacidad son responsabilidad de quien los gestiona.
+        </p>
+
+        <h2>Privacidad</h2>
+        <p>
+          El detalle de qué datos recoge esta web, cuándo, para qué y cuánto tiempo se
+          conservan está en la <a href="/privacidad/">política de privacidad</a>.
+        </p>
+
+        <h2>Legislación aplicable</h2>
+        <p>Esta web se rige por la legislación española.</p>
       </div>
     </div>
   </section>
@@ -18,5 +96,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <style>
 .legal-layout { max-width: 720px; }
-h1 { margin-bottom: var(--space-8); }
+
+.page-header {
+  margin-bottom: var(--space-10);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.legal-updated {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
 </style>
