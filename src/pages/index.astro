@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import EpisodeCard from '../components/EpisodeCard.astro';
 import CommunityCard from '../components/CommunityCard.astro';
 import { getEpisodes, getFeedMeta } from '../lib/rss';
-import { SITE, COMMUNITY_LINKS } from '../config';
+import { SITE, COMMUNITY_LINKS, SISTER_SITES } from '../config';
 import { latestEdition, formatIndex, gameTitle } from '../lib/power-ranking';
 import PowerRankingParticipation from '../components/PowerRankingParticipation.astro';
 
@@ -13,6 +13,7 @@ const recentEpisodes = episodes.slice(1, 4);
 const rankingProject = latestEdition.projects['vis-ludica'];
 const rankingTop = rankingProject.rankings.power.slice(0, 3);
 const communityLink = (label: string) => COMMUNITY_LINKS.find((l) => l.label === label)!;
+const sisterLink = (label: string) => SISTER_SITES.find((l) => l.label === label)!;
 ---
 
 <BaseLayout
@@ -149,7 +150,14 @@ const communityLink = (label: string) => COMMUNITY_LINKS.find((l) => l.label ===
           <span class="label">Evento anual presencial</span>
           <h2>Campamento Barton</h2>
           <p>Cuatro días para encontrarnos en persona, jugar sin prisa y disfrutar de los juegos de mesa. Ediciones anuales con aforo limitado.</p>
-          <a href="/barton/" class="btn btn-outline">Más información →</a>
+          <a
+            href={sisterLink('Barton').href}
+            class="btn btn-outline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Más información ↗
+          </a>
         </div>
       </div>
     </div>

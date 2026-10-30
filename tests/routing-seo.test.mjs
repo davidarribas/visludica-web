@@ -43,6 +43,24 @@ test("/listen redirige a la URL canónica con barra final, sin cadenas", async (
   for (const rule of listenRules) assert.match(rule, /\/escuchar\/ 301$/);
 });
 
+test("/barton redirige al sitio oficial y la página ya no se construye", async () => {
+  const redirects = (await readFile(join(root, "public/_redirects"), "utf8")).trim().split("\n");
+  const bartonRules = redirects.filter((line) => line.startsWith("/barton")).sort();
+  assert.deepEqual(bartonRules, [
+    "/barton https://campamentobarton.com/ 301",
+    "/barton/ https://campamentobarton.com/ 301",
+  ]);
+  // La ruta dejó de existir: si alguien recrea la página, el 301 quedaría muerto.
+  await assert.rejects(() => readFile(join(root, "dist/barton/index.html"), "utf8"));
+  // Y ningún enlace interno debe seguir apuntando a la ruta retirada.
+  const offenders = [];
+  for await (const file of htmlFiles(join(root, "dist"))) {
+    const html = await readFile(file, "utf8");
+    if (/href="\/barton\/?"/.test(html)) offenders.push(file);
+  }
+  assert.deepEqual(offenders, [], "enlaces internos a la ruta /barton/ retirada");
+});
+
 test("robots.txt existe, referencia el sitemap real y no bloquea producción", async () => {
   const robots = await readFile(join(root, "public/robots.txt"), "utf8");
   assert.match(robots, /^User-agent: \*\nAllow: \/$/m);
