@@ -321,7 +321,7 @@ El archivo exporta `editorial` con una clave por proyecto (`'vis-ludica'` y
 | `power` | sí | Vista Power Ranking |
 | `monthly` | sí | Vista Ranking mensual |
 | `annual` | sí | Vista Acumulado anual |
-| `quotes` | sí (puede ir `[]`) | Bloque «La grada», **solo en la vista mensual** |
+| `quotes` | no, lo aporta `quotes.json` | Bloque «Los mejores comentarios», **solo en la vista mensual** |
 | `chronicle` | no | Pestaña Análisis |
 | `voterGrowth` | no | Barras de evolución, **solo se renderiza en Vis Bélica** |
 

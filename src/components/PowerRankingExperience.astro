@@ -343,9 +343,8 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
                 <section class="community-voices">
                   <div class="container">
                     <div class="voices-heading">
-                      <span class="label">La grada</span>
-                      <h2>Lo mejor de las papeletas</h2>
-                      <p>Comentarios, confesiones y pequeñas historias que explican mejor el mes que cualquier decimal.</p>
+                      <h2>Los mejores comentarios</h2>
+                      <p>Comentarios y confesiones.</p>
                     </div>
                     <div class="quotes-grid">
                       {copy.quotes.map((quote: any) => (
@@ -409,7 +408,6 @@ function sparklineSvg(history: Array<number | string | null>, editionMonth: numb
 
                   {copy.chronicle.voices.length > 0 && (
                     <div class="chronicle-voices">
-                      <span class="label">La grada</span>
                       <h3>Las frases de {edition.monthName.toLowerCase()}</h3>
                       {copy.chronicle.voices.map((voice: any) => (
                         <blockquote>

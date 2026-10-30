@@ -69,11 +69,11 @@ test('junio conserva las citas que se publicaron escritas a mano', async () => {
   const fuente = await readFile(new URL('src/data/power-ranking/2026-06/editorial.ts', root), 'utf8');
   assert.match(fuente, /La frase del mes/);
   const html = await readFile(new URL('dist/power-ranking/2026/06/index.html', root), 'utf8');
-  assert.match(html, /Lo mejor de las papeletas/);
+  assert.match(html, /Los mejores comentarios/);
   assert.match(html, /La frase del mes/);
 });
 
 test('septiembre no inventa una sección vacía', async () => {
   const html = await readFile(new URL('dist/power-ranking/2026/09/index.html', root), 'utf8');
-  assert.equal(html.includes('Lo mejor de las papeletas'), false);
+  assert.equal(html.includes('Los mejores comentarios'), false);
 });
