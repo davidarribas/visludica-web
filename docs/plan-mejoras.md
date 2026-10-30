@@ -36,6 +36,7 @@ sesión futura sin releer aquella conversación.
 | `d42783b` | Quick wins: bugs del ranking (mes hardcodeado, estado del selector de edición, búsqueda sin acentos), contraste AA del gris terciario (`#6D7480`), `/listen`→`/escuchar` + redirect 301, enlaces centralizados en `src/config.ts`, RSS alternate + theme-color, escala única del índice (×100), separador de millares, token `--header-height` |
 | `859af03` | Buscador de episodios en `/podcast` (índice `indice.json` en build + filtrado cliente; se descartó Pagefind) y modo oscuro completo (tokens duplicados en media query + `[data-theme]`, toggle en header, `--ranking-on-accent` para contraste sobre acento) |
 | `d5c3a5a` | Power Ranking: top 100 estático + `datos.json` bajo demanda (1,3 MB→383 KB), NEW→«Vuelve», movimientos numéricos silenciados con rank>50 en power/annual, sparklines SVG en el top 10. Reglas unificadas en `presentRow` (`src/lib/power-ranking.ts`) |
+| `1d2b927` | Autodescubrimiento de ediciones del ranking: el array manual `editions` de `src/lib/power-ranking.ts` se sustituye por `import.meta.glob` sobre `src/data/power-ranking/*/`, ordenado por id descendente. Desaparece el paso de registro del runbook y la trampa del orden; una carpeta incompleta ahora rompe el build con un mensaje que la nombra. `downloads.ts` por edición para los XLSX (opcional) |
 
 ## Proyecto: buscadores independientes
 
@@ -178,23 +179,18 @@ consulta sin resultados, borrado de consulta, navegación por teclado y fallo si
 
 Por orden de prioridad recomendado:
 
-1. **Autodescubrir ediciones del ranking** — sustituir el registro manual del array
-   `editions` en `src/lib/power-ranking.ts` por `import.meta.glob` sobre
-   `src/data/power-ranking/*/`, ordenando por id descendente. Elimina el paso 3 del runbook
-   mensual y la trampa «insertar al final deja la portada en un mes viejo». Actualizar
-   `docs/power-ranking.md` al hacerlo.
-2. **JSON-LD** — `PodcastSeries` en la home y `PodcastEpisode` en `/podcast/[slug]`
+1. **JSON-LD** — `PodcastSeries` en la home y `PodcastEpisode` en `/podcast/[slug]`
    (Google muestra player en resultados). Va en `BaseLayout` o en las páginas.
-3. **Identidad tipográfica** — todo es Inter y queda anónimo. Decisión pendiente: familia
+2. **Identidad tipográfica** — todo es Inter y queda anónimo. Decisión pendiente: familia
    display solo para H1/H2 (serif editorial o geométrica) o Inter con tracking negativo y
    pesos más extremos en títulos grandes. Requiere decisión de David con propuestas visuales.
-4. **Tipado del pipeline del ranking** — hoy casi todo es `any`. Definir interfaces
+3. **Tipado del pipeline del ranking** — hoy casi todo es `any`. Definir interfaces
    `Edition`/`Project`/`RankingRow`, y en build avisar si una clave de `notes` del editorial
    no casa con ningún slug del podio (la trampa más probable cada mes).
-5. **Separar Vis Bélica a su propia ruta** (`/power-ranking/belica/…`) — reduce la página a
+4. **Separar Vis Bélica a su propia ruta** (`/power-ranking/belica/…`) — reduce la página a
    la mitad. Tiene más sentido hacerlo cuando se monte visbelica.com (el repo se diseñó
    para clonarse: cambiar `tokens.css` y el feed en `src/lib/rss.ts`).
-6. **Página por juego** (`/power-ranking/juego/[slug]`) — historial completo con enlace
+5. **Página por juego** (`/power-ranking/juego/[slug]`) — historial completo con enlace
    permanente, oro para compartir en Telegram. Los datos ya están en `games[id].history`.
 
 ## Pendiente — contenido (David)
