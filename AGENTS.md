@@ -46,6 +46,51 @@ Para tareas de desarrollo normales puedes:
 
 No limites tu trabajo a las noticias.
 
+## Las tres superficies del sitio
+
+La web tiene tres contenidos vivos y cada uno se actualiza de una forma
+distinta:
+
+```text
+noticias        Markdown en src/content/news/ — se escriben a mano
+podcast         feed de Captivate — paso manual, ver abajo
+power ranking   artefacto importado del repositorio del motor
+```
+
+**El podcast no se actualiza solo.** El build nunca escribe en el repositorio:
+lee el snapshot y el registro de slugs de `src/data/podcast/`. Un episodio nuevo
+en el feed **no se publica** hasta que alguien ejecuta:
+
+```bash
+npm run podcast:refresh
+```
+
+que le asigna un slug estable y actualiza los dos ficheros, para commitear
+después. Si el último episodio de la web parece viejo, es casi siempre esto.
+El script sustituye el snapshot entero por lo que devuelva el feed, así que
+comprueba que el feed trae todos los episodios antes de fiarte del resultado.
+
+El Power Ranking se importa con `npm run ranking:import` desde los artefactos
+que produce `/Volumes/Dyson/Vibe/visludica-power-ranking`. El detalle está en
+`docs/power-ranking.md`, que es la fuente de verdad.
+
+`src/data/power-ranking/participation.mjs` decide si la web muestra el
+formulario nativo, el de contingencia o la votación cerrada. **Cambiarlo es una
+decisión editorial de David**, no un ajuste técnico: afecta a una votación real
+en curso.
+
+## Despliegue
+
+Producción se publica con:
+
+```bash
+npm run deploy:production
+```
+
+que antes de subir comprueba el estado real de la campaña contra la API y se
+niega a publicar una página de voto cerrada mientras haya campaña abierta. No
+uses `wrangler deploy` directamente: te saltarías esa comprobación.
+
 ## Antes de implementar
 
 Comprueba:

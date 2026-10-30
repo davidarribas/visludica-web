@@ -26,3 +26,6 @@ __pycache__/
 
 # jetbrains setting folder
 .idea/
+
+# herramientas locales de agentes (ajustes propios y worktrees temporales)
+.claude/
