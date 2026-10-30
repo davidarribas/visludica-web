@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
+import { readdir, readFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
@@ -101,14 +101,39 @@ test('el artefacto de agosto no incorpora campos privados', () => {
   walk(raw);
 });
 
-test('un contrato v1 inválido falla sin caer a XLSX y las ediciones legacy siguen declaradas', async () => {
+test('un contrato v1 inválido falla sin caer a XLSX y el contrato manda sobre el data.json de su carpeta', async () => {
   const invalid = clone(raw);
   delete invalid.projects['vis-belica'].stats.total_points;
   assert.throws(() => loadPublicResultsV1(invalid), /falta total_points/);
 
-  const source = await readFile(join(root, 'src/lib/power-ranking.ts'), 'utf8');
-  assert.match(source, /loadPublicResultsV1\(august2026Contract\)/);
-  assert.doesNotMatch(source, /2026-08\/data\.json/);
-  assert.match(source, /july2026/);
-  assert.match(source, /june2026/);
+  // Agosto conserva los dos archivos en su carpeta: el contrato del motor y el
+  // `data.json` legacy. Publicarse desde el legacy sería un error silencioso,
+  // así que se comprueba contra el único dato en el que discrepan: los
+  // votantes de Vis Bélica (63 en el contrato, 64 en el legacy).
+  const august = await readFile(join(root, 'dist/power-ranking/2026/08/index.html'), 'utf8');
+  assert.match(august, /<strong[^>]*>63<\/strong><span[^>]*>votantes de guerra</);
+  assert.doesNotMatch(august, /<strong[^>]*>64<\/strong><span[^>]*>votantes de guerra</);
+});
+
+test('las ediciones se descubren por carpeta y se publican de la más reciente a la más antigua', async () => {
+  const folders = (await readdir(join(root, 'src/data/power-ranking'), { withFileTypes: true }))
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => entry.name)
+    .sort()
+    .reverse();
+  assert.deepEqual(folders, ['2026-09', '2026-08', '2026-07', '2026-06']);
+
+  // El selector de la portada refleja el orden de `editions`: su primera
+  // opción es la edición que sirve `/power-ranking/`.
+  const current = await readFile(join(root, 'dist/power-ranking/index.html'), 'utf8');
+  const options = [...current.matchAll(/<option value="\/power-ranking\/(\d{4})\/(\d{2})\//g)].map(
+    ([, year, month]) => `${year}-${month}`,
+  );
+  assert.deepEqual(options, folders);
+
+  // Y cada carpeta descubierta tiene su ruta publicada.
+  for (const folder of folders) {
+    const [year, month] = folder.split('-');
+    await readFile(join(root, `dist/power-ranking/${year}/${month}/index.html`), 'utf8');
+  }
 });

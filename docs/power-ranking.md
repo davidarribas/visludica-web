@@ -20,9 +20,9 @@ tener que releer el código.
 ## Dónde encaja este repo
 
 ```
-motor Python → public-results.json → repositorio web → validación → Astro
-                                                     ↓
-                                              editorial.ts → npm run build
+motor Python → public-results.json ┐
+                                   ├→ src/data/power-ranking/YYYY-MM/ → validación → Astro
+                    editorial.ts ──┘        (se descubre sola)
 ```
 
 Para las nuevas ediciones, el motor Python es la autoridad de cálculo. Su
@@ -67,31 +67,42 @@ Dos ejemplares de referencia en el repo:
 
 Los campos están detallados en [Campos de `editorial.ts`](#campos-de-editorialts).
 
-### 3. Registrar la edición y activar el loader autoritativo
+### 3. Las descargas, si las hay (opcional)
 
-En [`src/lib/power-ranking.ts`](../src/lib/power-ranking.ts), importar los dos archivos y
-**añadir la entrada al principio** del array `editions`:
+Si la edición publica los XLSX públicos, dejarlos en
+`public/downloads/power-ranking/YYYY-MM/` y declarar sus rutas en
+`src/data/power-ranking/YYYY-MM/downloads.ts`:
 
 ```ts
-import september2026Contract from '../data/power-ranking/2026-09/public-results.json';
-import { editorial as septemberEditorial } from '../data/power-ranking/2026-09/editorial';
-import { loadPublicResultsV1 } from './public-results-v1.mjs';
-
-export const editions = [
-  { ...loadPublicResultsV1(september2026Contract), editorial: septemberEditorial }, // ← la nueva, arriba
-  { ...july2026, editorial: julyEditorial },
-  { ...june2026, editorial: juneEditorial },
-];
+export const downloads = {
+  'vis-ludica': '/downloads/power-ranking/2026-09/power_ranking_septiembre_2026_publico.xlsx',
+  'vis-belica': '/downloads/power-ranking/2026-09/power_ranking_vis_belica_septiembre_2026_publico.xlsx',
+} as const;
 ```
 
-El orden importa: `latestEdition = editions[0]` es lo que sirve `/power-ranking/`.
+Sin este archivo la edición se publica igual, sin botones de descarga —así están junio,
+julio y agosto de 2026.
+
+**No hay que registrar la edición en ningún sitio.** `src/lib/power-ranking.ts` descubre las
+carpetas de `src/data/power-ranking/` con `import.meta.glob` y las ordena por id
+descendente, así que `latestEdition` (lo que sirve `/power-ranking/`) es siempre la más
+reciente. De cada carpeta `YYYY-MM` lee:
+
+| Archivo | Papel |
+|---|---|
+| `public-results.json` | datos autoritativos del motor; **manda sobre `data.json`** si están los dos |
+| `data.json` | vía legacy; sólo se usa en las ediciones que nunca tuvieron artefacto |
+| `editorial.ts` | obligatorio, con los textos de los dos proyectos |
+| `downloads.ts` | opcional |
+
+Una carpeta incompleta **rompe el build** con un mensaje que la nombra: falta el artefacto,
+falta `editorial.ts`, el editorial no trae uno de los dos proyectos, el nombre de la carpeta
+no es `YYYY-MM`, o los datos dicen ser de otra edición (un artefacto copiado del mes
+equivocado). No se publica un mes a medias en silencio.
 
 El adaptador conserva los IDs estables `vlg_*`, orden y posiciones del contrato. Puede
 convertir un decimal a `Number` sólo para texto o un gráfico SVG; no suma histórico, decide
 empates, calcula movimientos ni deduce `NEW`/`RETURNS`.
-
-Las ediciones anteriores que importan `data.json` permanecen en la vía legacy. La selección
-es explícita por edición, no automática.
 
 ### 4. Construir y comprobar
 
@@ -379,7 +390,7 @@ movieron a `chronicle.voices`.
 
 | Ruta | Qué muestra |
 |---|---|
-| `/power-ranking/` | `latestEdition`, es decir `editions[0]` |
+| `/power-ranking/` | `latestEdition`: la edición con el id más alto de `src/data/power-ranking/` |
 | `/power-ranking/YYYY/MM/` | Una edición concreta; se generan todas las de `editions` con `getStaticPaths` |
 
 El mes va con dos dígitos: `/power-ranking/2026/07/`. El selector de edición de la cabecera
@@ -581,8 +592,6 @@ del rollback web.
   veces con distinta grafía, para cada mes se conserva el valor **mayor**, no la suma. Si
   los dos registros tienen datos reales, se pierde información: mejor unificar el nombre en
   el Excel.
-- **`editions` va de más reciente a más antigua.** Insertar la edición nueva al final deja
-  `/power-ranking/` mostrando un mes viejo, sin ningún aviso.
 - **Cuidado al citar el índice en la prosa.** Julio 2026 escribe «un índice de 0,1855»
   mientras la tabla de al lado muestra `18,6`: son el mismo número en escalas distintas.
   Conviene elegir una y mantenerla.
