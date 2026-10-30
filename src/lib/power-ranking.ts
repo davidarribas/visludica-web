@@ -1,4 +1,5 @@
 import { loadPublicResultsV1, presentContractMovement } from './public-results-v1.mjs';
+import { readQuotesV1 } from './quotes-v1.mjs';
 
 export type ProjectId = 'vis-ludica' | 'vis-belica';
 export type RankingView = 'power' | 'monthly' | 'analysis' | 'annual';
@@ -19,6 +20,7 @@ const PROJECT_IDS: ProjectId[] = ['vis-ludica', 'vis-belica'];
 //   data.json            datos legacy; solo se usa si no hay contrato
 //   editorial.ts         textos de la edición (obligatorio)
 //   downloads.ts         rutas públicas de los XLSX (opcional)
+//   quotes.json          citas de papeleta elegidas (quotes-v1, opcional)
 //
 // Una carpeta incompleta rompe el build con un mensaje que la nombra; lo que
 // no se quiere es publicar un mes a medias en silencio.
@@ -37,6 +39,10 @@ const editorials = import.meta.glob<any>('../data/power-ranking/*/editorial.ts',
 const editionDownloads = import.meta.glob<any>('../data/power-ranking/*/downloads.ts', {
   eager: true,
   import: 'downloads',
+});
+const editionQuotes = import.meta.glob<any>('../data/power-ranking/*/quotes.json', {
+  eager: true,
+  import: 'default',
 });
 
 function editionIdFromPath(path: string) {
@@ -78,12 +84,27 @@ function buildEdition(editionId: string) {
     fail(editionId, `los datos dicen ser de la edición «${data.id}»`);
   }
 
-  return { ...data, editorial, ...(downloads ? { downloads } : {}) };
+  // Las citas pasan a vivir en su propio artefacto, para que la sección deje de
+  // depender de que alguien se acuerde de rellenar un array a mano. Junio las
+  // lleva escritas en su editorial.ts y se publicaron así: mientras una edición
+  // no traiga quotes.json, se respeta lo que ya tenga escrito.
+  const leidas = readQuotesV1(editionId, editionQuotes[`${folder}/quotes.json`]);
+  if (leidas.problem) fail(editionId, leidas.problem);
+  const quotes = leidas.quotes!;
+  const editorialConCitas = Object.fromEntries(
+    PROJECT_IDS.map((projectId) => {
+      const delArtefacto = quotes[projectId];
+      const escritasAMano = editorial[projectId].quotes ?? [];
+      return [projectId, { ...editorial[projectId], quotes: delArtefacto.length ? delArtefacto : escritasAMano }];
+    }),
+  );
+
+  return { ...data, editorial: editorialConCitas, ...(downloads ? { downloads } : {}) };
 }
 
 function discoverEditionIds() {
   const ids = new Set<string>();
-  for (const source of [contracts, legacyData, editorials, editionDownloads]) {
+  for (const source of [contracts, legacyData, editorials, editionDownloads, editionQuotes]) {
     for (const path of Object.keys(source)) ids.add(editionIdFromPath(path));
   }
   // Orden descendente: los ids YYYY-MM se comparan bien como texto.
