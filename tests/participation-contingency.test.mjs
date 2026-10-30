@@ -100,10 +100,27 @@ test('el CSS compilado aplica layout y separación a los nodos creados dinámica
   assert.ok(voteStylesheet, 'el build debe incluir la hoja de estilos de votar');
   const css = await readFile(join(root, 'dist/_astro', voteStylesheet), 'utf8');
 
-  assert.match(css, /\.ballot-position\{display:grid/);
-  assert.match(css, /\.position-heading\{display:flex;gap:/);
-  assert.match(css, /\.position-actions\{grid-column:2;display:flex;flex-wrap:wrap;gap:/);
-  assert.match(css, /\.position-edit-actions\{display:flex;flex-wrap:wrap;gap:/);
+  // El minificador de CSS reordena las declaraciones dentro de cada regla, así que
+  // comprobamos que estén presentes en lugar de fijar el orden exacto del build.
+  const declarations = (selectorClass) => {
+    const rule = new RegExp(`\\.${selectorClass}\\{([^}]*)\\}`).exec(css);
+    assert.ok(rule, `el CSS debe declarar .${selectorClass}`);
+    return rule[1].split(';').map((declaration) => declaration.trim());
+  };
+  const assertDeclares = (selectorClass, expected) => {
+    const found = declarations(selectorClass);
+    for (const declaration of expected) {
+      assert.ok(
+        found.some((candidate) => candidate === declaration || candidate.startsWith(`${declaration}:`)),
+        `.${selectorClass} debe declarar ${declaration}`,
+      );
+    }
+  };
+
+  assertDeclares('ballot-position', ['display:grid', 'grid-template-columns', 'column-gap']);
+  assertDeclares('position-heading', ['display:flex', 'gap']);
+  assertDeclares('position-actions', ['display:flex', 'flex-wrap:wrap', 'grid-column:2', 'gap']);
+  assertDeclares('position-edit-actions', ['display:flex', 'flex-wrap:wrap', 'gap']);
   for (const dynamicClass of ['ballot-position', 'position-heading', 'position-actions', 'position-edit-actions', 'game-search']) {
     assert.doesNotMatch(css, new RegExp(`\\.${dynamicClass}\\[data-astro-cid-`));
   }
