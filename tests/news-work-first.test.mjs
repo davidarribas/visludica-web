@@ -5,7 +5,7 @@ import {
   formatDuration, formatPlayers, formatPrice, formatProductContext,
 } from "../src/lib/news-model.mjs";
 import {
-  validateNewsEntries, validateNewsFilenames, validatePublisherRegistry,
+  validateNewsEntries, validateNewsFilenames, validateNewsPublicationDates, validatePublisherRegistry,
 } from "../scripts/validate-news-content.mjs";
 
 test("la ficha deriva los datos planos de products", () => {
@@ -50,5 +50,19 @@ test("la validación exige el prefijo de fecha en los ficheros de noticias", () 
     "noticia-sin-fecha.md",
   ]), [
     "news/noticia-sin-fecha.md: debe usar YYYY-MM-DD-<slug-descriptivo>.md",
+  ]);
+});
+
+test("desde la fecha de corte el prefijo del fichero coincide con published_at en Madrid", () => {
+  const entry = (filePath, published_at) => ({ filePath, data: { published_at: new Date(published_at) } });
+  const entries = new Map([
+    ["correcta", entry("src/content/news/2026-11-03-correcta.md", "2026-11-03T22:30:00+01:00")],
+    // 23:30 en Madrid del día 3 son las 22:30 UTC: cuenta el día local.
+    ["medianoche", entry("src/content/news/2026-11-03-medianoche.md", "2026-11-03T22:30:00Z")],
+    ["desfasada", entry("src/content/news/2026-11-01-desfasada.md", "2026-11-03T10:00:00+01:00")],
+    ["historica", entry("src/content/news/2026-10-02-historica.md", "2026-09-29T22:31:00+02:00")],
+  ]);
+  assert.deepEqual(validateNewsPublicationDates(entries), [
+    "news/desfasada: el fichero empieza por 2026-11-01 pero published_at cae el 2026-11-03 en Europe/Madrid; renómbralo a 2026-11-03-desfasada.md",
   ]);
 });

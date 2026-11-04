@@ -507,8 +507,9 @@ La producción no usa Cloudflare Pages. El recorrido real es:
 visludica.com → Worker visludica-web → Static Assets (dist/) → custom domain
 ```
 
-`wrangler.jsonc` declara `name: visludica-web` y `assets.directory: ./dist/`; no hay CI/CD
-de despliegue configurado. La API de participación de producción y su Route
+`wrangler.jsonc` declara `name: visludica-web` y `assets.directory: ./dist/`. Desde el 4 de
+noviembre de 2026 el despliegue lo hace GitHub Actions (`.github/workflows/web.yml`) en cada
+push a `main`, después de `npm test` y siempre con `npm run deploy:production`. La API de participación de producción y su Route
 `visludica.com/api/power-ranking/*` son independientes del Worker web y no se despliegan
 desde este repositorio.
 
@@ -516,7 +517,7 @@ Staging es independiente: `staging.visludica.com` apunta al Worker web
 `visludica-staging`, y su Route `staging.visludica.com/api/power-ranking/*` corresponde
 al Worker API staging. No implica que la Route de producción exista.
 
-El procedimiento manual para una publicación web autorizada es:
+El procedimiento manual (emergencia o sin GitHub Actions) para una publicación web autorizada es:
 
 ```sh
 cd /Volumes/Dyson/Vibe/visludica

@@ -81,7 +81,9 @@ en curso.
 
 ## Despliegue
 
-Producción se publica con:
+**Un push a `main` publica la web.** GitHub Actions (`.github/workflows/web.yml`)
+ejecuta `npm test` en cada pull request y en cada push a `main`; si pasa, el push
+a `main` despliega producción con:
 
 ```bash
 npm run deploy:production
@@ -89,7 +91,11 @@ npm run deploy:production
 
 que antes de subir comprueba el estado real de la campaña contra la API y se
 niega a publicar una página de voto cerrada mientras haya campaña abierta. No
-uses `wrangler deploy` directamente: te saltarías esa comprobación.
+uses `wrangler deploy` directamente: te saltarías esa comprobación. El mismo
+comando sigue sirviendo para un despliegue manual de emergencia desde el Mac.
+
+Por eso «haz push» equivale a «publica»: aplica la regla de autorización de la
+sección 3.
 
 ## Antes de implementar
 

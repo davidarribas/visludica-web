@@ -1,6 +1,6 @@
 import { access, readFile, readdir, stat } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
-import { resolve } from "node:path";
+import { basename, resolve } from "node:path";
 import { unflatten } from "devalue";
 import { load } from "js-yaml";
 
@@ -70,6 +70,29 @@ export function validateNewsFilenames(files) {
   return errors;
 }
 
+// El prefijo YYYY-MM-DD del fichero es la fecha local (Europe/Madrid) de
+// published_at: cuándo publica Vis Ludica, no la fecha comercial del juego.
+// Se exige desde FILENAME_DATE_RULE_FROM; las noticias anteriores conservan su
+// nombre histórico. El prefijo no forma parte de la URL pública.
+export const FILENAME_DATE_RULE_FROM = "2026-10-17";
+const madridDate = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Europe/Madrid", year: "numeric", month: "2-digit", day: "2-digit",
+});
+
+export function validateNewsPublicationDates(entries) {
+  const errors = [];
+  for (const [id, entry] of entries ?? []) {
+    const prefix = basename(entry.filePath ?? "").slice(0, 10);
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(prefix) || !entry.data?.published_at) continue;
+    const local = madridDate.format(new Date(entry.data.published_at));
+    if (prefix < FILENAME_DATE_RULE_FROM && local < FILENAME_DATE_RULE_FROM) continue;
+    if (prefix !== local) {
+      errors.push(`news/${id}: el fichero empieza por ${prefix} pero published_at cae el ${local} en Europe/Madrid; renómbralo a ${local}-${id}.md`);
+    }
+  }
+  return errors;
+}
+
 export function validateNewsEntries(entries, publishers) {
   const errors = [];
   const validPublishers = publishers?.filter((publisher) =>
@@ -126,6 +149,7 @@ async function main() {
     ...validatePublisherRegistry(publishers),
     ...validateNewsFilenames(await readdir(resolve(contentRoot, "news"))),
     ...validateNewsEntries(entries, Array.isArray(publishers) ? publishers : []),
+    ...validateNewsPublicationDates(entries),
     ...(await validateImageFiles(entries)),
   ];
   if (errors.length > 0) throw new Error(`Contenido Work-first inválido:\n- ${errors.join("\n- ")}`);

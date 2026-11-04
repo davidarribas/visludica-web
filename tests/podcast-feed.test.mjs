@@ -89,7 +89,13 @@ function hangingFetch() {
     assert.ok(signal instanceof AbortSignal, "el fetch debe recibir un AbortSignal");
     return new Promise((_, reject) => {
       if (signal.aborted) return reject(signal.reason ?? new Error("aborted"));
-      signal.addEventListener("abort", () => reject(new Error("The operation was aborted due to timeout")));
+      // El temporizador de AbortSignal.timeout() no mantiene vivo el proceso:
+      // sin este, el runner da la promesa por abandonada y cancela el test.
+      const keepAlive = setTimeout(() => {}, 10_000);
+      signal.addEventListener("abort", () => {
+        clearTimeout(keepAlive);
+        reject(new Error("The operation was aborted due to timeout"));
+      });
     });
   };
 }

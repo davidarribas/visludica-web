@@ -1,0 +1,74 @@
+# Validación y publicación de visludica.com.
+#
+# - En cada pull request: validación de contenido, build y tests (npm test).
+#   Es la puerta que decide si una noticia (o cualquier cambio) puede entrar.
+# - En cada push a main: lo mismo y, si pasa, publicación en producción con
+#   npm run deploy:production, que conserva la guarda de la votación del
+#   Power Ranking. Nunca se llama a `wrangler deploy` directamente.
+#
+# Secretos necesarios (Settings → Secrets and variables → Actions):
+#   CLOUDFLARE_API_TOKEN   token con la plantilla «Edit Cloudflare Workers»
+#   CLOUDFLARE_ACCOUNT_ID  ID de la cuenta de Cloudflare
+name: Web
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: web-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  test:
+    name: Validación, tests y build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm test
+
+  deploy:
+    name: Publicar en producción
+    needs: test
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: production
+      url: https://visludica.com/
+    concurrency:
+      group: production-deploy
+      cancel-in-progress: false
+    env:
+      WRANGLER_VERSION: 4.157.0
+      WRANGLER_SEND_METRICS: "false"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      # wrangler no es dependencia del proyecto: se fija aquí su versión para
+      # que el despliegue sea reproducible sin tocar el lockfile.
+      - run: npm install --no-save "wrangler@${WRANGLER_VERSION}"
+      - name: Desplegar con la guarda de participación
+        run: npm run deploy:production
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Comprobar la web publicada
+        run: curl -fsSIL https://visludica.com/ -o /dev/null
