@@ -31,6 +31,10 @@
   slug: asmodee
   aliases: []
 
+- name: Office Dog
+  slug: office-dog
+  aliases: []
+
 - name: Maldito Games
   slug: maldito-games
   aliases: []
@@ -129,4 +133,8 @@
 
 - name: Exploding Kittens
   slug: exploding-kittens
+  aliases: []
+
+- name: Tranjis Games
+  slug: tranjis-games
   aliases: []
