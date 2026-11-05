@@ -1,5 +1,40 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Equipo en orden alfabético. Biografías redactadas a partir del archivo de
+// transcripciones (visludica-archivo); fotos de 480×600 px en public/images/equipo/.
+const equipo = [
+  {
+    nombre: 'Amarillo 114',
+    foto: 'amarillo',
+    desde: 'Desde 2018',
+    bio: 'Fue oyente antes que micrófono: en 2016 ya mandaba preguntas al programa y en 2018 se sentó a la mesa. Pone la música (la canción de temporada de la cabecera la canta él) y se declara eurogamer, aunque Blood on the Clocktower, Stationfall y los Commands & Colors napoleónicos le pueden.',
+  },
+  {
+    nombre: 'Cartesius',
+    foto: 'cartesius',
+    desde: 'Desde 2011',
+    bio: 'Omnívoro declarado: euros, wargames, abstractos o chorrijuegos, aunque si le obligan a elegir se queda con los juegos económicos. Twilight Struggle es su juego perfecto y le escribió una guía de estrategia que todavía le agradecen. Lo último que le ha robado horas: SETI y Heat.',
+  },
+  {
+    nombre: 'Clint Barton',
+    foto: 'clint',
+    desde: 'Desde 2012',
+    bio: 'Llegó con blog propio y se quedó. Le tiran los temáticos de verdad, como Arkham Horror: el juego de cartas, Cthulhu: Death May Die o Mage Knight, sin renunciar a un euro duro con tablero individual y combos. Su nombre ya es un verbo: «clintear» es comprar un juego, venderlo y volver a comprarlo.',
+  },
+  {
+    nombre: 'David Arribas',
+    foto: 'david',
+    desde: 'Fundador · 2008',
+    bio: 'Fundó Vis Lúdica en 2008, con un primer episodio sobre Galaxy Trucker, El Capitán y Glory to Rome, y en 2020 abrió Vis Bélica para los wargames. Le gustan los juegos de trenes y los que tienen interacción, y entre sencillez y complejidad elige siempre la sencillez. Jura que no tiene top 10.',
+  },
+  {
+    nombre: 'Kalino',
+    foto: 'kalino',
+    desde: 'Desde 2021',
+    bio: 'Entró en 2021 como cuarto miembro de Vis Bélica y desde 2022 se sienta también en Vis Lúdica. Wargamer de los que acaban la partida con un libro de historia abierto: Churchill, Atlantic Chase o Fields of Fire. Cuando sale de las trincheras, le tiran Arydia y Ants.',
+  },
+];
 ---
 
 <BaseLayout
@@ -29,19 +64,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </p>
 
         <h2>Quién está detrás</h2>
-        {/*
-          Reparto en orden alfabético. FALTA, si se quiere: una línea de presentación
-          de cada uno.
-        */}
         <p>Vis Ludica es un podcast coral. Lo hacen:</p>
-        <ul>
-          <li>Amarillo 114</li>
-          <li>Cartesius</li>
-          <li>Clint Barton</li>
-          <li>David Arribas</li>
-          <li>Kalino</li>
-        </ul>
+      </div>
 
+      <ul class="equipo" role="list">
+        {equipo.map((p) => (
+          <li class="equipo__card">
+            <div class="equipo__marco">
+              <img
+                class="equipo__foto"
+                src={`/images/equipo/${p.foto}.webp`}
+                alt={`Retrato de ${p.nombre}`}
+                width="480"
+                height="600"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="equipo__texto">
+              <div class="equipo__cab">
+                <h3 class="equipo__nombre">{p.nombre}</h3>
+                <span class="equipo__desde">{p.desde}</span>
+              </div>
+              <p class="equipo__bio">{p.bio}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <div class="prose sobre-content">
         {/*
           FALTA: la sección «La filosofía». Deliberadamente no se publica un párrafo
           inventado: cuando la escribas, añade aquí un encabezado de nivel 2 «La
@@ -80,4 +131,86 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .sobre-content li { margin-bottom: var(--space-2); color: var(--color-text-secondary); }
 .sobre-content a { color: var(--color-accent); }
 .sobre-content a:hover { color: var(--color-accent-hover); }
+
+/* Equipo: tarjeta horizontal con el retrato recortado sobre papel claro */
+.equipo {
+  list-style: none;
+  margin: 0 0 var(--space-6);
+  padding: 0;
+  display: grid;
+  gap: var(--space-6);
+}
+
+.equipo__card {
+  display: grid;
+  grid-template-columns: 9.5rem 1fr;
+  background: var(--color-surface);
+  border: var(--border);
+  box-shadow: var(--shadow-md);
+}
+
+.equipo__marco {
+  background: var(--color-surface-raised);
+  border-right: var(--border);
+}
+
+.equipo__foto {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+}
+
+.equipo__texto {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5) var(--space-6);
+}
+
+.equipo__cab {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.equipo__nombre {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  letter-spacing: var(--tracking-display);
+  font-size: var(--text-2xl);
+  line-height: 1.1;
+}
+
+.equipo__desde {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.equipo__bio {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-base);
+  line-height: 1.6;
+  color: var(--color-text);
+}
+
+/* Móvil: retrato pequeño junto al nombre y la biografía a todo el ancho */
+@media (max-width: 520px) {
+  .equipo__card {
+    grid-template-columns: 5.5rem 1fr;
+    grid-template-areas: "foto cab" "bio bio";
+    column-gap: var(--space-4);
+    padding: var(--space-4);
+  }
+  .equipo__marco { grid-area: foto; border: var(--border-thin); }
+  .equipo__texto { display: contents; }
+  .equipo__cab { grid-area: cab; align-self: center; }
+  .equipo__bio { grid-area: bio; margin-top: var(--space-4); }
+  .equipo__nombre { font-size: var(--text-xl); }
+}
 </style>
