@@ -30,21 +30,18 @@ const listenLink = (label: string) => LISTEN_PLATFORMS.find((l) => l.label === l
             label={communityLink('Telegram').label}
             description="El corazón de la comunidad. Canal de noticias, novedades lúdicas, análisis rápidos y conversación directa. Más de 1.500 miembros."
             icon={communityLink('Telegram').icon}
-            accent={communityLink('Telegram').accent}
           />
           <CommunityCard
             href={communityLink('YouTube').href}
             label={communityLink('YouTube').label}
             description="El canal principal. Vídeos de análisis en profundidad, reseñas, partidas comentadas y directos grabados. Más de 7.000 suscriptores."
             icon={communityLink('YouTube').icon}
-            accent={communityLink('YouTube').accent}
           />
           <CommunityCard
             href={communityLink('Twitch').href}
             label={communityLink('Twitch').label}
             description="Directos con partidas en vivo, presentaciones de novedades de feria y charlas sin guión sobre el hobby."
             icon={communityLink('Twitch').icon}
-            accent={communityLink('Twitch').accent}
           />
         </div>
       </div>
@@ -57,7 +54,6 @@ const listenLink = (label: string) => LISTEN_PLATFORMS.find((l) => l.label === l
             label={communityLink('Destroquelar').label}
             description="La newsletter de Vis Ludica. Reflexiones largas, ensayos y textos que no caben en un episodio. En Substack."
             icon={communityLink('Destroquelar').icon}
-            accent={communityLink('Destroquelar').accent}
           />
           <CommunityCard
             href={listenLink('Spotify').href}
@@ -105,9 +101,10 @@ const listenLink = (label: string) => LISTEN_PLATFORMS.find((l) => l.label === l
 
 .community-group { margin-bottom: var(--space-10); }
 .group-title {
+  font-family: var(--font-mono);
   font-size: var(--text-xs);
-  font-weight: var(--fw-medium);
-  letter-spacing: 0;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-text-tertiary);
   margin-bottom: var(--space-4);

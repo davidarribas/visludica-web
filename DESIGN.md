@@ -1,31 +1,64 @@
 ---
 name: Vis Lúdica
-description: Medio en español sobre juegos de mesa modernos — dirección brutalista elegante (rediseño en curso)
+description: Medio en español sobre juegos de mesa modernos — dirección brutalista elegante (v3, decisiones cerradas el 5 nov 2026)
 colors:
+  papel: "#F4F4F0"
+  blanco: "#FFFFFF"
+  tinta: "#111111"
+  gris-meta: "#3D3D3D"
   azul-vis: "#084A88"
   rosa-golpe: "#FF29DB"
-  tinta: "#111111"
-  blanco: "#FFFFFF"
-  # crema: PENDIENTE — fondo de página, tono por decidir
 typography:
   logo:
     fontFamily: "Caprasimo, serif"
-  # headline: PENDIENTE — fuente de titulares sin decidir (Space Mono es candidata, no decidida)
+  headline:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontWeight: 800
+    letterSpacing: "-0.03em"
+    lineHeight: "1.0 (H1) · 1.1 (tarjetas)"
+  body:
+    fontFamily: "Literata Variable, serif"
+    fontSize: "20px escritorio · 18px móvil"
+    lineHeight: 1.6
+    maxWidth: "66ch"
+  label:
+    fontFamily: "Space Mono, monospace"
+    fontSize: "12-13px"
+    textTransform: "uppercase (etiquetas)"
+  ui:
+    fontFamily: "Bricolage Grotesque Variable, sans-serif"
+    fontWeight: "500-700"
 rounded:
   none: "0px"
+shadows:
+  contenedor: "4px 4px 0 #111111"
+  imagen-noticia: "6px 6px 0 #111111"
+  boton: "3px 3px 0 #111111"
 components:
   contenedor:
     backgroundColor: "{colors.blanco}"
     textColor: "{colors.tinta}"
+    border: "2px solid {colors.tinta}"
+    shadow: "{shadows.contenedor}"
     rounded: "{rounded.none}"
+  boton-principal:
+    backgroundColor: "{colors.azul-vis}"
+    textColor: "{colors.blanco}"
+    border: "2px solid {colors.tinta}"
+    shadow: "{shadows.boton}"
+    minHeight: "44px"
+  etiqueta:
+    fontFamily: "{typography.label.fontFamily}"
+    backgroundColor: "{colors.blanco}"
+    border: "1.5px solid {colors.tinta}"
 ---
 
 # Design System: Vis Lúdica
 
-> Estado: **dirección para el rediseño**, no descripción de la web actual. La
-> web publicada todavía usa el sistema anterior (`src/styles/tokens.css`:
-> naranja `#FF6B35`, Inter). El parche de la v2 en `.claude/design-preview/`
-> no está aplicado.
+> Estado: **v3, decisiones cerradas el 5 de noviembre de 2026.** En la revisión
+> del PR el fondo pasó del crema `#F3EBD8` al gris papel `#F4F4F0`, que queda
+> como definitivo: el crema contrastaba mal con las cajas blancas. Este documento manda
+> sobre cualquier herramienta de apoyo (Impeccable incluido).
 
 ## Overview
 
@@ -36,78 +69,121 @@ lectura. Es un brutalismo contenido: decide con firmeza dónde va cada borde y
 cada sombra, y por eso usa pocos. Nada agresivo; la página tiene que leerse
 muy bien en móvil y en escritorio.
 
+**Principio de color:** el gris papel es el neutro y la paleta de marca va
+solo en acentos. Nunca toda la página en colores de marca.
+
 Descartado: la v1 (bordes negros de 3 px, bloque azul saturado, pie negro),
 por «demasiado bestia».
 
-**Key Characteristics:**
-- Fondo crema, texto en tinta `#111111`.
-- Bordes de tinta de 2 px solo en contenedores.
-- Sombras duras y cortas, sin difuminado.
-- Esquinas rectas.
-- Etiquetas discretas.
-
 ## Colors
 
-Paleta corta de marca: azul para acentos, rosa como golpe puntual, tinta y
-blanco como base, sobre fondo crema.
+| Token | Valor | Uso |
+|---|---|---|
+| Gris papel | `#F4F4F0` | Fondo de página. El neutro. |
+| Blanco | `#FFFFFF` | Contenedores, sobre el gris papel. |
+| Tinta | `#111111` | Texto, bordes y sombras duras. |
+| Gris de metadatos | `#3D3D3D` | Fechas, créditos, datos secundarios. |
+| Azul Vis | `#084A88` | Acentos, enlaces, botón principal. |
+| Rosa golpe | `#FF29DB` | Solo los dos golpes descritos abajo. |
 
-### Primary
-- **Azul Vis** (#084A88): acentos y texto destacado. Contraste ≈ 9:1 sobre
-  blanco; válido para texto.
+### Contrastes sobre gris papel
 
-### Secondary
-- **Rosa golpe** (#FF29DB): solo como golpe puntual (un detalle, un subrayado,
-  un sello). Nunca superficie grande.
-
-### Neutral
-- **Tinta** (#111111): texto, bordes de contenedor y sombras duras.
-- **Blanco** (#FFFFFF): superficies de contenedor.
-- **Crema** (PENDIENTE): fondo de página; tono por decidir.
+| Combinación | Ratio | Veredicto |
+|---|---|---|
+| Tinta sobre papel | 17,1:1 | Texto |
+| `#3D3D3D` sobre papel | 9,9:1 | Texto |
+| Azul sobre papel | 8,1:1 | Texto |
+| Rosa sobre papel | 2,9:1 | **Nunca texto rosa** |
+| Tinta sobre rosa | 5,9:1 | Válido |
+| Blanco sobre rosa | — | **Prohibido** |
 
 ### Named Rules
-**La regla del rosa.** El rosa es un golpe, no un fondo. **Nunca texto blanco
-sobre rosa** (contraste ≈ 3,2:1). Si hay texto sobre rosa, es tinta.
+
+**La regla del rosa.** El rosa solo da dos golpes: el subrayado de 4 px bajo la
+sección activa del menú y un cuadrado de 14 px con borde de tinta delante de
+los títulos de sección. Nunca texto rosa, nunca superficie amplia, nunca texto
+blanco sobre rosa.
 
 **La regla de la tinta.** `#111111` es una decisión, no un error. No
-sustituirla por grises suaves.
+sustituirla por grises suaves. El único gris es `#3D3D3D`, para metadatos.
 
 ## Typography
 
-**Logo:** Caprasimo — **solo** para el logo.
-**Titulares:** PENDIENTE. Space Mono aparece en la v2 como candidata, sin
-decidir.
-**Texto:** PENDIENTE (hoy, Inter Variable).
+| Papel | Fuente | Detalle |
+|---|---|---|
+| Logo | Caprasimo | **Solo** el logo, en azul: la marca de la cabecera, la del pie y el nombre grande de la portada. |
+| Titulares | Bricolage Grotesque | Peso 800, `letter-spacing: -0.03em`, `line-height` ≈ 1,0 en H1 y ≈ 1,1 en tarjetas. |
+| Texto largo | Literata (serif) | ≈ 20 px en escritorio y ≈ 18 px en móvil, `line-height` ≈ 1,6, medida máxima ≈ 66ch. |
+| Etiquetas, fechas, datos de ficha | Space Mono | 12–13 px; mayúsculas en las etiquetas. |
+| UI (navegación, botones) | Bricolage Grotesque | Pesos 500–700. |
+
+Las fuentes se autoalojan (`@fontsource` / `@fontsource-variable`, subconjunto
+latino, `font-display: swap`). Nada de Google Fonts en producción. Se precargan
+solo Bricolage (titulares) y Literata regular.
 
 ### Named Rules
-**La regla de Caprasimo.** Caprasimo no se usa fuera del logo.
+
+**La regla de Caprasimo.** Caprasimo no se usa fuera del logo. El nombre
+«Vis Ludica» del hero de la portada es el logo compuesto en grande, no un
+titular: va en Caprasimo azul.
 
 ## Elevation & Depth
 
-Profundidad con sombras duras y cortas en tinta, desplazadas y sin
-difuminado. No hay sombras ambientales ni difusas.
+Profundidad con sombras duras en tinta, desplazadas y sin difuminado:
+
+- Contenedores: `4px 4px 0 #111`.
+- Imagen principal de una noticia: `6px 6px 0 #111`.
+- Botón principal: `3px 3px 0 #111`.
 
 ### Named Rules
-**La regla de la sombra dura.** Las sombras duras son una decisión. No
-convertirlas en sombras difuminadas ni suavizarlas. Valores exactos
-pendientes de fijar en la implementación.
+
+**La regla de la sombra dura.** No convertirlas en sombras difuminadas ni
+suavizarlas. No hay sombras ambientales.
 
 ## Shapes
 
 Esquinas rectas (radio 0). Borde de tinta de 2 px **solo en contenedores**
-(tarjetas, bloques); no en cada elemento.
+(tarjetas, bloques); 1,5 px en etiquetas.
 
 ## Components
 
-- **Contenedor / tarjeta:** fondo blanco sobre crema, borde de tinta 2 px,
-  sombra dura corta, esquinas rectas.
-- **Etiquetas:** discretas; no compiten con el titular.
+- **Contenedor / tarjeta:** fondo blanco sobre el gris papel, borde de tinta 2 px,
+  sombra `4px 4px 0 #111`, radio 0.
+- **Botón principal:** fondo azul, texto blanco, borde de tinta 2 px, sombra de
+  3 px, altura mínima de 44 px.
+- **Etiquetas:** Space Mono sobre blanco, borde de tinta de 1,5 px, mayúsculas.
+- **Cabecera:** blanca, con borde inferior de tinta. Sección activa del menú
+  con subrayado rosa de 4 px.
+- **Títulos de sección:** precedidos por un cuadrado rosa de 14 px con borde
+  de tinta.
+- **Pie:** sobre el gris papel, con borde superior de tinta. **Nunca pie negro.**
+
+## Modo oscuro
+
+Aprobado el 5 nov 2026. Mismo sistema que el claro, con los neutros
+invertidos a tonos cálidos oscuros:
+
+| Token | Valor | Uso |
+|---|---|---|
+| Fondo | `#17150F` | Fondo de página. |
+| Superficie | `#22201A` | Contenedores. |
+| Superficie elevada | `#2A2620` | Fondos secundarios. |
+| «Tinta» | `#E9E0CB` | Bordes y sombras duras. |
+| Texto | `#F3EBD8` | Texto principal (13,7:1 sobre superficie). |
+| Texto secundario | `#CFC6B2` | Metadatos (9,6:1 sobre superficie). |
+| Azul claro | `#8EC1F2` | Enlaces y logo (8,6:1 sobre superficie). |
+
+El botón principal conserva el azul de marca `#084A88` con texto blanco
+(9:1). El rosa sigue con sus dos golpes y nunca lleva texto. Los valores
+viven en `src/styles/tokens.css`.
 
 ## Do's and Don'ts
 
 - **Do:** priorizar la legibilidad del texto largo en móvil y escritorio.
-- **Do:** usar el azul para acentos y texto destacado.
-- **Don't:** texto blanco sobre rosa.
-- **Don't:** usar el rosa como superficie amplia.
+- **Do:** dejar el gris papel como neutro y la marca en los acentos.
+- **Do:** usar el azul para acentos, enlaces y el botón principal.
+- **Don't:** texto rosa, texto blanco sobre rosa, rosa como superficie.
+- **Don't:** pintar toda la página en colores de marca.
 - **Don't:** reemplazar la tinta o las sombras duras por grises suaves o
   sombras difuminadas.
 - **Don't:** volver a la v1: bordes de 3 px, bloque azul saturado, pie negro.

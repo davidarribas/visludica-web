@@ -42,8 +42,8 @@ mes y el podcast tiene un reparto coral. No es un agregador de notas de prensa.
 - El formulario de voto que se muestra lo decide
   `src/data/power-ranking/participation.mjs`; cambiarlo es una decisión
   editorial, no de diseño.
-- Rediseño en curso: dirección brutalista elegante (ver DESIGN.md). El tono
-  exacto del fondo crema y la fuente de titulares están **sin decidir**.
+- Rediseño en curso: dirección brutalista elegante, v3 cerrada el 5 nov 2026
+  (ver DESIGN.md).
 
 ## Brand Commitments
 

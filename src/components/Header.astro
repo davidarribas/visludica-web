@@ -82,7 +82,7 @@ function isActive(href: string) {
   top: 0;
   z-index: 100;
   background: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: var(--border);
 }
 
 .header-inner {
@@ -102,13 +102,15 @@ function isActive(href: string) {
   text-decoration: none;
 }
 .logo {
-  border-radius: var(--radius-sm);
+  border: var(--border-thin);
   object-fit: cover;
 }
 .logo-name {
-  font-weight: var(--fw-bold);
-  font-size: var(--text-lg);
-  letter-spacing: 0;
+  font-family: var(--font-logo);
+  font-weight: 400;
+  font-size: var(--text-xl);
+  letter-spacing: -0.01em;
+  color: var(--color-logo);
 }
 
 /* Nav */
@@ -125,24 +127,27 @@ function isActive(href: string) {
   align-items: center;
   gap: var(--space-1);
   padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-md);
+  min-height: 44px;
   font-size: var(--text-sm);
-  font-weight: var(--fw-medium);
-  color: var(--color-text-secondary);
+  font-weight: var(--fw-semibold);
+  color: var(--color-text);
   text-decoration: none;
-  transition: color var(--transition), background-color var(--transition);
+  transition: box-shadow var(--transition);
   background: none;
   border: none;
   cursor: pointer;
   white-space: nowrap;
 }
-.nav-link:hover,
-.nav-link:focus-visible {
+.nav-link:hover {
   color: var(--color-text);
-  background-color: var(--color-surface-raised);
+  box-shadow: inset 0 -2px 0 var(--ink);
 }
-.nav-link--active {
-  color: var(--color-accent);
+/* Sección activa: subrayado rosa de 4px (golpe de rosa n.º 1, ver DESIGN.md) */
+.nav-link--active,
+.nav-link--active:hover {
+  color: var(--color-text);
+  font-weight: var(--fw-bold);
+  box-shadow: inset 0 -4px 0 var(--color-pop);
 }
 
 /* Dropdown */
@@ -155,8 +160,7 @@ function isActive(href: string) {
   right: 0;
   min-width: 180px;
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border: var(--border);
   box-shadow: var(--shadow-md);
   list-style: none;
   padding: var(--space-2) 0;
@@ -191,21 +195,22 @@ function isActive(href: string) {
 .theme-toggle {
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   padding: var(--space-2);
-  border: none;
-  border-radius: var(--radius-md);
-  background: none;
-  color: var(--color-text-secondary);
+  border: var(--border-thin);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
   cursor: pointer;
-  transition: color var(--transition), background-color var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition);
 }
 .theme-toggle:hover,
 .theme-toggle:focus-visible {
-  color: var(--color-text);
-  background-color: var(--color-surface-raised);
+  transform: translate(-1px, -1px);
+  box-shadow: var(--shadow-md);
 }
+.theme-toggle:active { transform: translate(3px, 3px); box-shadow: none; }
 .theme-toggle__icon { grid-area: 1 / 1; }
 .theme-toggle__icon--sun { display: none; }
 .theme-toggle__icon--moon { display: block; }
@@ -226,9 +231,9 @@ function isActive(href: string) {
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 36px;
-  height: 36px;
-  padding: var(--space-2);
+  width: 44px;
+  height: 44px;
+  padding: var(--space-2) 10px;
   background: none;
   border: none;
   cursor: pointer;
@@ -237,9 +242,8 @@ function isActive(href: string) {
 .menu-toggle span {
   display: block;
   width: 100%;
-  height: 2px;
+  height: 3px;
   background: var(--color-text);
-  border-radius: 2px;
   transition: transform var(--transition), opacity var(--transition);
 }
 .menu-toggle[aria-expanded="true"] span:nth-child(1) {
@@ -262,7 +266,7 @@ function isActive(href: string) {
     left: 0;
     right: 0;
     background: var(--color-surface);
-    border-bottom: 1px solid var(--color-border);
+    border-bottom: var(--border);
     padding: var(--space-4);
   }
   .main-nav.open { display: block; }

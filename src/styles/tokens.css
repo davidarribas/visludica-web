@@ -1,47 +1,84 @@
 /*
-  tokens.css — sistema de diseño de Vis Ludica
+  tokens.css — sistema de diseño de Vis Ludica: brutalismo elegante (v3)
+
+  La fuente de verdad es DESIGN.md. Resumen:
+  - el gris papel #F4F4F0 es el neutro de la página; los contenedores son blancos encima;
+  - la marca va solo en acentos: azul para enlaces, logo y botón principal;
+  - el rosa solo da dos golpes (subrayado del menú activo y el cuadrado de
+    los títulos de sección) y nunca lleva texto;
+  - bordes y sombras duras en tinta, esquinas rectas.
+
   Para Vis Bélica: cambia este bloque :root y nada más.
 */
 :root {
-  /* Acento de marca */
-  --color-accent:         #FF6B35;
-  --color-accent-hover:   #E55A25;
-  --color-accent-warm:    #FFB347;
-  --color-accent-subtle:  #FFF1EB;
+  /* Marca */
+  --brand-blue:           #084A88;
+  --brand-pink:           #FF29DB;
+
+  /* Neutros */
+  --paper:                #F4F4F0;
+  --paper-light:          #FAFAF7;
+  --ink:                  #111111;
+  --shadow-color:         var(--ink);
+
+  /* Acentos */
+  --color-accent:         var(--brand-blue);
+  --color-accent-hover:   #05325E;
+  --color-accent-subtle:  var(--paper-light);
+  --color-pop:            var(--brand-pink);   /* solo los dos golpes; nunca texto */
+  --color-logo:           var(--brand-blue);
+  --color-focus:          var(--brand-blue);
+
+  /* Botón principal */
+  --color-primary-bg:     var(--brand-blue);
+  --color-primary-bg-hover: #05325E;
+  --color-on-primary:     #FFFFFF;
 
   /* Fondos y superficies */
-  --color-bg:             #FAFAF8;
+  --color-bg:             var(--paper);
   --color-surface:        #FFFFFF;
-  --color-surface-raised: #F5F5F3;
+  --color-surface-raised: var(--paper-light);
 
   /* Texto */
-  --color-text:           #0A0A0A;
-  --color-text-secondary: #6B7280;
-  --color-text-tertiary:  #6D7480;
+  --color-text:           var(--ink);
+  --color-text-secondary: #3D3D3D;
+  --color-text-tertiary:  #3D3D3D;
 
-  /* Bordes y separadores */
-  --color-border:         #E5E5E3;
-  --color-border-strong:  #D1D1CF;
+  /* Bordes: tinta en contenedores; separadores internos en gris papel oscuro */
+  --color-border:         #DCDCD4;
+  --color-border-strong:  #B5B5AC;
+  --border-w:             2px;
+  --border:               var(--border-w) solid var(--ink);
+  --border-thin:          1.5px solid var(--ink);
 
   /* Layout: altura del header sticky */
-  --header-height: 64px;
+  --header-height: 68px;
 
-  /* Tipografía */
-  --font-sans:            'Inter Variable', 'Inter', system-ui, sans-serif;
+  /* Tipografía (ver BaseLayout para la carga de las fuentes) */
+  --font-sans:            'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-display:         var(--font-sans);
+  --font-serif:           'Literata Variable', 'Literata', Georgia, serif;
+  --font-mono:            'Space Mono', ui-monospace, monospace;
+  --font-logo:            'Caprasimo', 'Cooper Black', Georgia, serif;
   --fw-regular:           400;
   --fw-medium:            500;
+  --fw-semibold:          600;
   --fw-bold:              700;
+  --fw-display:           800;
+  --tracking-display:     -0.03em;
 
   /* Escala tipográfica */
-  --text-xs:    0.75rem;
+  --text-xs:    0.75rem;    /* 12px: etiquetas */
+  --text-meta:  0.8125rem;  /* 13px: fechas y datos de ficha */
   --text-sm:    0.875rem;
   --text-base:  1rem;
   --text-lg:    1.125rem;
   --text-xl:    1.25rem;
   --text-2xl:   1.5rem;
   --text-3xl:   1.875rem;
-  --text-4xl:   2.25rem;
-  --text-5xl:   3rem;
+  --text-4xl:   2.5rem;
+  --text-5xl:   3.25rem;
+  --text-reading: 1.125rem; /* 18px en móvil, 20px en escritorio (abajo) */
 
   /* Espaciado */
   --space-1:  0.25rem;
@@ -60,94 +97,97 @@
   /* Layout */
   --container-max:  1200px;
   --container-pad:  1.25rem;
+  --measure:        66ch;
 
-  /* Bordes redondeados */
-  --radius-sm:  4px;
-  --radius-md:  8px;
-  --radius-lg:  12px;
-  --radius-xl:  16px;
+  /* Esquinas: rectas. Se conservan los nombres para no tocar cada componente. */
+  --radius-sm:  0;
+  --radius-md:  0;
+  --radius-lg:  0;
+  --radius-xl:  0;
 
-  /* Sombras */
-  --shadow-sm:  0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
-  --shadow-md:  0 3px 10px rgba(0,0,0,.06), 0 1px 3px rgba(0,0,0,.04);
-  --shadow-lg:  0 8px 20px rgba(0,0,0,.08), 0 3px 6px rgba(0,0,0,.04);
+  /* Sombras duras en tinta, sin desenfoque */
+  --shadow-sm:  3px 3px 0 0 var(--shadow-color);   /* botones */
+  --shadow-md:  4px 4px 0 0 var(--shadow-color);   /* contenedores */
+  --shadow-lg:  6px 6px 0 0 var(--shadow-color);   /* imagen principal, hover */
 
   /* Transiciones */
-  --transition: 150ms ease;
+  --transition: 120ms ease;
 
   /* Colores de movimiento del ranking (Power Ranking) */
-  --movement-up-bg:      #eaf6ef;
-  --movement-up-text:    #177342;
-  --movement-down-bg:    #fff0ed;
-  --movement-down-text:  #b53b25;
-
-  /* Bloque destacado invertido ("Sigue la conversación") */
-  --callout-bg:   #0A0A0A;
-  --callout-text: #FAFAF8;
+  --movement-up-bg:      #DDF5E4;
+  --movement-up-text:    #0E5C2C;
+  --movement-down-bg:    #FDE2DC;
+  --movement-down-text:  #8F2412;
 }
 
-/* Modo oscuro — sigue la preferencia del sistema salvo que se fuerce con data-theme. */
+@media (min-width: 768px) {
+  :root { --text-reading: 1.25rem; }
+}
+
+/*
+  Modo oscuro (ver DESIGN.md): neutros invertidos a tonos cálidos oscuros,
+  con el mismo sistema (borde y sombra dura en el color de «tinta», que aquí
+  es crema) y el azul aclarado solo donde hace de texto. El botón principal
+  conserva el azul de marca con texto blanco (9:1). El rosa sigue sin llevar
+  texto.
+
+  Sigue la preferencia del sistema salvo que se fuerce con data-theme.
+*/
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     /* mantener sincronizado con :root[data-theme="dark"] más abajo */
-    --color-accent:         #FF7A47;
-    --color-accent-hover:   #FF8F63;
-    --color-accent-warm:    #FFB347;
-    --color-accent-subtle:  #2E1E15;
+    --ink:                  #E9E0CB;
 
-    --color-bg:             #141412;
-    --color-surface:        #1C1C1A;
-    --color-surface-raised: #242422;
+    --color-accent:         #8EC1F2;
+    --color-accent-hover:   #B5D6F6;
+    --color-accent-subtle:  #2A2620;
+    --color-logo:           #8EC1F2;
+    --color-focus:          #8EC1F2;
+    --color-primary-bg-hover: #0A5BA8;
 
-    --color-text:           #F4F4F1;
-    --color-text-secondary: #B0B4BC;
-    --color-text-tertiary:  #9BA0A8;
+    --color-bg:             #17150F;
+    --color-surface:        #22201A;
+    --color-surface-raised: #2A2620;
 
-    --color-border:         #2E2E2B;
-    --color-border-strong:  #3F3F3B;
+    --color-text:           #F3EBD8;
+    --color-text-secondary: #CFC6B2;
+    --color-text-tertiary:  #CFC6B2;
 
-    --shadow-sm:  0 1px 3px rgba(0,0,0,.4), 0 1px 2px rgba(0,0,0,.3);
-    --shadow-md:  0 3px 10px rgba(0,0,0,.4), 0 1px 3px rgba(0,0,0,.3);
-    --shadow-lg:  0 8px 20px rgba(0,0,0,.5), 0 3px 6px rgba(0,0,0,.3);
+    --color-border:         #4A4436;
+    --color-border-strong:  #6A624F;
 
     --movement-up-bg:      #16301F;
     --movement-up-text:    #7BD8A0;
     --movement-down-bg:    #38201B;
     --movement-down-text:  #F09380;
-
-    --callout-bg:   #242422;
-    --callout-text: #F4F4F1;
   }
 }
 
-/* Modo oscuro forzado manualmente (toggle en el header). */
+/* Modo oscuro forzado manualmente (toggle en el header). Ver arriba. */
 :root[data-theme="dark"] {
   /* mantener sincronizado con @media (prefers-color-scheme: dark) más arriba */
-  --color-accent:         #FF7A47;
-  --color-accent-hover:   #FF8F63;
-  --color-accent-warm:    #FFB347;
-  --color-accent-subtle:  #2E1E15;
+  --ink:                  #E9E0CB;
 
-  --color-bg:             #141412;
-  --color-surface:        #1C1C1A;
-  --color-surface-raised: #242422;
+  --color-accent:         #8EC1F2;
+  --color-accent-hover:   #B5D6F6;
+  --color-accent-subtle:  #2A2620;
+  --color-logo:           #8EC1F2;
+  --color-focus:          #8EC1F2;
+  --color-primary-bg-hover: #0A5BA8;
 
-  --color-text:           #F4F4F1;
-  --color-text-secondary: #B0B4BC;
-  --color-text-tertiary:  #9BA0A8;
+  --color-bg:             #17150F;
+  --color-surface:        #22201A;
+  --color-surface-raised: #2A2620;
 
-  --color-border:         #2E2E2B;
-  --color-border-strong:  #3F3F3B;
+  --color-text:           #F3EBD8;
+  --color-text-secondary: #CFC6B2;
+  --color-text-tertiary:  #CFC6B2;
 
-  --shadow-sm:  0 1px 3px rgba(0,0,0,.4), 0 1px 2px rgba(0,0,0,.3);
-  --shadow-md:  0 3px 10px rgba(0,0,0,.4), 0 1px 3px rgba(0,0,0,.3);
-  --shadow-lg:  0 8px 20px rgba(0,0,0,.5), 0 3px 6px rgba(0,0,0,.3);
+  --color-border:         #4A4436;
+  --color-border-strong:  #6A624F;
 
   --movement-up-bg:      #16301F;
   --movement-up-text:    #7BD8A0;
   --movement-down-bg:    #38201B;
   --movement-down-text:  #F09380;
-
-  --callout-bg:   #242422;
-  --callout-text: #F4F4F1;
 }
