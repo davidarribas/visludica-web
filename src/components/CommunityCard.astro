@@ -56,29 +56,18 @@ const { href, label, description, external = true, icon = 'link', accent } = Ast
   min-height: 92px;
   padding: var(--space-4);
   background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
+  border: var(--border);
+  box-shadow: var(--shadow-md);
   text-decoration: none;
   color: var(--color-text);
-  transition: background-color var(--transition), border-color var(--transition), transform var(--transition);
+  transition: transform var(--transition), box-shadow var(--transition);
   --card-accent: var(--color-accent);
 }
-.community-card::before {
-  content: '';
-  position: absolute;
-  inset: var(--space-3) auto var(--space-3) 0;
-  width: 2px;
-  border-radius: 999px;
-  background: var(--card-accent);
-  opacity: 0;
-  transition: opacity var(--transition);
-}
 .community-card:hover {
-  background: color-mix(in srgb, var(--card-accent) 4%, var(--color-surface));
-  border-color: color-mix(in srgb, var(--card-accent) 28%, var(--color-border));
-  transform: translateY(-1px);
+  color: var(--color-text);
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-lg);
 }
-.community-card:hover::before { opacity: 1; }
 
 .community-card__icon {
   width: 38px;
@@ -86,9 +75,9 @@ const { href, label, description, external = true, icon = 'link', accent } = Ast
   display: flex;
   align-items: center;
   justify-content: center;
-  background: color-mix(in srgb, var(--card-accent) 8%, var(--color-surface-raised));
-  border-radius: var(--radius-md);
-  color: var(--card-accent);
+  background: var(--card-accent);
+  border: var(--border-thin);
+  color: #fff;
   flex-shrink: 0;
 }
 .community-card__icon svg {
