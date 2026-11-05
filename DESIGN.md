@@ -1,6 +1,6 @@
 ---
 name: Vis Lúdica
-description: Medio en español sobre juegos de mesa modernos — dirección brutalista elegante (v3, decisiones cerradas el 5 nov 2026; fondo cambiado a gris papel en revisión)
+description: Medio en español sobre juegos de mesa modernos — dirección brutalista elegante (v3, decisiones cerradas el 5 nov 2026)
 colors:
   papel: "#F4F4F0"
   blanco: "#FFFFFF"
@@ -56,8 +56,8 @@ components:
 # Design System: Vis Lúdica
 
 > Estado: **v3, decisiones cerradas el 5 de noviembre de 2026.** En la revisión
-> del PR el fondo pasó del crema `#F3EBD8` al gris papel `#F4F4F0`, en prueba,
-> porque el crema contrastaba mal con las cajas blancas. Este documento manda
+> del PR el fondo pasó del crema `#F3EBD8` al gris papel `#F4F4F0`, que queda
+> como definitivo: el crema contrastaba mal con las cajas blancas. Este documento manda
 > sobre cualquier herramienta de apoyo (Impeccable incluido).
 
 ## Overview
@@ -160,9 +160,22 @@ Esquinas rectas (radio 0). Borde de tinta de 2 px **solo en contenedores**
 
 ## Modo oscuro
 
-Sin paleta oscura decidida. Hay una solución provisional en
-`src/styles/tokens.css` (neutros cálidos oscuros, bordes y sombras en crema,
-azul aclarado solo donde es texto); la decisión está pendiente.
+Aprobado el 5 nov 2026. Mismo sistema que el claro, con los neutros
+invertidos a tonos cálidos oscuros:
+
+| Token | Valor | Uso |
+|---|---|---|
+| Fondo | `#17150F` | Fondo de página. |
+| Superficie | `#22201A` | Contenedores. |
+| Superficie elevada | `#2A2620` | Fondos secundarios. |
+| «Tinta» | `#E9E0CB` | Bordes y sombras duras. |
+| Texto | `#F3EBD8` | Texto principal (13,7:1 sobre superficie). |
+| Texto secundario | `#CFC6B2` | Metadatos (9,6:1 sobre superficie). |
+| Azul claro | `#8EC1F2` | Enlaces y logo (8,6:1 sobre superficie). |
+
+El botón principal conserva el azul de marca `#084A88` con texto blanco
+(9:1). El rosa sigue con sus dos golpes y nunca lleva texto. Los valores
+viven en `src/styles/tokens.css`.
 
 ## Do's and Don'ts
 

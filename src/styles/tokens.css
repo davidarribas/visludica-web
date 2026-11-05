@@ -125,12 +125,11 @@
 }
 
 /*
-  Modo oscuro — PROVISIONAL. No hay paleta oscura decidida en DESIGN.md.
-  Es una inversión mecánica de los neutros a tonos cálidos oscuros, con el
-  mismo sistema (borde y sombra dura en el color de «tinta», que aquí es
-  crema) y el azul aclarado solo donde hace de texto. El botón principal
+  Modo oscuro (ver DESIGN.md): neutros invertidos a tonos cálidos oscuros,
+  con el mismo sistema (borde y sombra dura en el color de «tinta», que aquí
+  es crema) y el azul aclarado solo donde hace de texto. El botón principal
   conserva el azul de marca con texto blanco (9:1). El rosa sigue sin llevar
-  texto. Pendiente de decisión aparte.
+  texto.
 
   Sigue la preferencia del sistema salvo que se fuerce con data-theme.
 */
@@ -164,7 +163,7 @@
   }
 }
 
-/* Modo oscuro forzado manualmente (toggle en el header). PROVISIONAL, ver arriba. */
+/* Modo oscuro forzado manualmente (toggle en el header). Ver arriba. */
 :root[data-theme="dark"] {
   /* mantener sincronizado con @media (prefers-color-scheme: dark) más arriba */
   --ink:                  #E9E0CB;
