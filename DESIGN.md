@@ -1,8 +1,8 @@
 ---
 name: Vis Lúdica
-description: Medio en español sobre juegos de mesa modernos — dirección brutalista elegante (v3, decisiones cerradas el 5 nov 2026)
+description: Medio en español sobre juegos de mesa modernos — dirección brutalista elegante (v3, decisiones cerradas el 5 nov 2026; fondo cambiado a gris papel en revisión)
 colors:
-  crema: "#F3EBD8"
+  papel: "#F4F4F0"
   blanco: "#FFFFFF"
   tinta: "#111111"
   gris-meta: "#3D3D3D"
@@ -55,8 +55,10 @@ components:
 
 # Design System: Vis Lúdica
 
-> Estado: **v3, decisiones cerradas el 5 de noviembre de 2026.** Este documento
-> manda sobre cualquier herramienta de apoyo (Impeccable incluido).
+> Estado: **v3, decisiones cerradas el 5 de noviembre de 2026.** En la revisión
+> del PR el fondo pasó del crema `#F3EBD8` al gris papel `#F4F4F0`, en prueba,
+> porque el crema contrastaba mal con las cajas blancas. Este documento manda
+> sobre cualquier herramienta de apoyo (Impeccable incluido).
 
 ## Overview
 
@@ -67,8 +69,8 @@ lectura. Es un brutalismo contenido: decide con firmeza dónde va cada borde y
 cada sombra, y por eso usa pocos. Nada agresivo; la página tiene que leerse
 muy bien en móvil y en escritorio.
 
-**Principio de color:** el crema es el neutro y la paleta de marca va solo en
-acentos. Nunca toda la página en colores de marca.
+**Principio de color:** el gris papel es el neutro y la paleta de marca va
+solo en acentos. Nunca toda la página en colores de marca.
 
 Descartado: la v1 (bordes negros de 3 px, bloque azul saturado, pie negro),
 por «demasiado bestia».
@@ -77,21 +79,21 @@ por «demasiado bestia».
 
 | Token | Valor | Uso |
 |---|---|---|
-| Crema | `#F3EBD8` | Fondo de página. El neutro. |
-| Blanco | `#FFFFFF` | Contenedores, sobre el crema. |
+| Gris papel | `#F4F4F0` | Fondo de página. El neutro. |
+| Blanco | `#FFFFFF` | Contenedores, sobre el gris papel. |
 | Tinta | `#111111` | Texto, bordes y sombras duras. |
 | Gris de metadatos | `#3D3D3D` | Fechas, créditos, datos secundarios. |
 | Azul Vis | `#084A88` | Acentos, enlaces, botón principal. |
 | Rosa golpe | `#FF29DB` | Solo los dos golpes descritos abajo. |
 
-### Contrastes sobre crema
+### Contrastes sobre gris papel
 
 | Combinación | Ratio | Veredicto |
 |---|---|---|
-| Tinta sobre crema | 15,9:1 | Texto |
-| `#3D3D3D` sobre crema | 9,2:1 | Texto |
-| Azul sobre crema | 7,5:1 | Texto |
-| Rosa sobre crema | 2,7:1 | **Nunca texto rosa** |
+| Tinta sobre papel | 17,1:1 | Texto |
+| `#3D3D3D` sobre papel | 9,9:1 | Texto |
+| Azul sobre papel | 8,1:1 | Texto |
+| Rosa sobre papel | 2,9:1 | **Nunca texto rosa** |
 | Tinta sobre rosa | 5,9:1 | Válido |
 | Blanco sobre rosa | — | **Prohibido** |
 
@@ -109,7 +111,7 @@ sustituirla por grises suaves. El único gris es `#3D3D3D`, para metadatos.
 
 | Papel | Fuente | Detalle |
 |---|---|---|
-| Logo | Caprasimo | **Solo** el logo, en azul. |
+| Logo | Caprasimo | **Solo** el logo, en azul: la marca de la cabecera, la del pie y el nombre grande de la portada. |
 | Titulares | Bricolage Grotesque | Peso 800, `letter-spacing: -0.03em`, `line-height` ≈ 1,0 en H1 y ≈ 1,1 en tarjetas. |
 | Texto largo | Literata (serif) | ≈ 20 px en escritorio y ≈ 18 px en móvil, `line-height` ≈ 1,6, medida máxima ≈ 66ch. |
 | Etiquetas, fechas, datos de ficha | Space Mono | 12–13 px; mayúsculas en las etiquetas. |
@@ -121,7 +123,9 @@ solo Bricolage (titulares) y Literata regular.
 
 ### Named Rules
 
-**La regla de Caprasimo.** Caprasimo no se usa fuera del logo.
+**La regla de Caprasimo.** Caprasimo no se usa fuera del logo. El nombre
+«Vis Ludica» del hero de la portada es el logo compuesto en grande, no un
+titular: va en Caprasimo azul.
 
 ## Elevation & Depth
 
@@ -143,7 +147,7 @@ Esquinas rectas (radio 0). Borde de tinta de 2 px **solo en contenedores**
 
 ## Components
 
-- **Contenedor / tarjeta:** fondo blanco sobre crema, borde de tinta 2 px,
+- **Contenedor / tarjeta:** fondo blanco sobre el gris papel, borde de tinta 2 px,
   sombra `4px 4px 0 #111`, radio 0.
 - **Botón principal:** fondo azul, texto blanco, borde de tinta 2 px, sombra de
   3 px, altura mínima de 44 px.
@@ -152,17 +156,18 @@ Esquinas rectas (radio 0). Borde de tinta de 2 px **solo en contenedores**
   con subrayado rosa de 4 px.
 - **Títulos de sección:** precedidos por un cuadrado rosa de 14 px con borde
   de tinta.
-- **Pie:** sobre crema, con borde superior de tinta. **Nunca pie negro.**
+- **Pie:** sobre el gris papel, con borde superior de tinta. **Nunca pie negro.**
 
 ## Modo oscuro
 
-Sin paleta oscura decidida. Ver la solución provisional en el PR del
-rediseño; la decisión está pendiente.
+Sin paleta oscura decidida. Hay una solución provisional en
+`src/styles/tokens.css` (neutros cálidos oscuros, bordes y sombras en crema,
+azul aclarado solo donde es texto); la decisión está pendiente.
 
 ## Do's and Don'ts
 
 - **Do:** priorizar la legibilidad del texto largo en móvil y escritorio.
-- **Do:** dejar el crema como neutro y la marca en los acentos.
+- **Do:** dejar el gris papel como neutro y la marca en los acentos.
 - **Do:** usar el azul para acentos, enlaces y el botón principal.
 - **Don't:** texto rosa, texto blanco sobre rosa, rosa como superficie.
 - **Don't:** pintar toda la página en colores de marca.

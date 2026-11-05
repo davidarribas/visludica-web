@@ -2,7 +2,7 @@
   tokens.css — sistema de diseño de Vis Ludica: brutalismo elegante (v3)
 
   La fuente de verdad es DESIGN.md. Resumen:
-  - el crema es el neutro de la página; los contenedores son blancos encima;
+  - el gris papel #F4F4F0 es el neutro de la página; los contenedores son blancos encima;
   - la marca va solo en acentos: azul para enlaces, logo y botón principal;
   - el rosa solo da dos golpes (subrayado del menú activo y el cuadrado de
     los títulos de sección) y nunca lleva texto;
@@ -16,15 +16,15 @@
   --brand-pink:           #FF29DB;
 
   /* Neutros */
-  --cream:                #F3EBD8;
-  --cream-light:          #FAF6EC;
+  --paper:                #F4F4F0;
+  --paper-light:          #FAFAF7;
   --ink:                  #111111;
   --shadow-color:         var(--ink);
 
   /* Acentos */
   --color-accent:         var(--brand-blue);
   --color-accent-hover:   #05325E;
-  --color-accent-subtle:  var(--cream-light);
+  --color-accent-subtle:  var(--paper-light);
   --color-pop:            var(--brand-pink);   /* solo los dos golpes; nunca texto */
   --color-logo:           var(--brand-blue);
   --color-focus:          var(--brand-blue);
@@ -35,18 +35,18 @@
   --color-on-primary:     #FFFFFF;
 
   /* Fondos y superficies */
-  --color-bg:             var(--cream);
+  --color-bg:             var(--paper);
   --color-surface:        #FFFFFF;
-  --color-surface-raised: var(--cream-light);
+  --color-surface-raised: var(--paper-light);
 
   /* Texto */
   --color-text:           var(--ink);
   --color-text-secondary: #3D3D3D;
   --color-text-tertiary:  #3D3D3D;
 
-  /* Bordes: tinta en contenedores; separadores internos en crema oscuro */
-  --color-border:         #DCD0B4;
-  --color-border-strong:  #BDAE8D;
+  /* Bordes: tinta en contenedores; separadores internos en gris papel oscuro */
+  --color-border:         #DCDCD4;
+  --color-border-strong:  #B5B5AC;
   --border-w:             2px;
   --border:               var(--border-w) solid var(--ink);
   --border-thin:          1.5px solid var(--ink);

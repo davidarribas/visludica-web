@@ -159,7 +159,7 @@ const sisterLink = (label: string) => SISTER_SITES.find((l) => l.label === label
 </BaseLayout>
 
 <style>
-/* Hero: sobre crema; la marca va en el titular azul, no en el fondo */
+/* Hero: sobre el fondo neutro; la marca va en el nombre, compuesto como el logo */
 .hero {
   border-bottom: var(--border);
 }
@@ -180,8 +180,11 @@ const sisterLink = (label: string) => SISTER_SITES.find((l) => l.label === label
 .hero-text { display: flex; flex-direction: column; gap: var(--space-4); max-width: 600px; }
 .hero h1 {
   font-size: clamp(3.25rem, 8vw, 5.75rem);
+  font-family: var(--font-logo);
+  font-weight: 400;
+  letter-spacing: -0.01em;
   line-height: 1;
-  color: var(--color-text);
+  color: var(--color-logo);
 }
 .hero-tagline {
   max-width: 520px;
