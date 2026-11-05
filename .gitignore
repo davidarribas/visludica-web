@@ -28,4 +28,12 @@ __pycache__/
 .idea/
 
 # herramientas locales de agentes (ajustes propios y worktrees temporales)
-.claude/
+.claude/*
+# salvo las skills y subagentes de Impeccable, compartidos con Codex (.agents/)
+!.claude/skills/
+!.claude/agents/
+# el motor de Impeccable es un binario de ~20 MB por plataforma: el lanzador
+# lo descarga y verifica en la primera ejecución
+.claude/skills/impeccable/scripts/bin/
+.agents/skills/impeccable/scripts/bin/
+.impeccable/config.local.json
