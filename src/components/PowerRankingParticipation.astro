@@ -117,7 +117,15 @@ import { participationConfig } from '../data/power-ranking/participation.mjs';
   .participation-card h2 { margin-top: var(--space-2); font-size: var(--text-2xl); }
   .participation-card p { margin-top: var(--space-2); color: var(--color-text-secondary); }
   .participation-card__count { font-size: var(--text-sm); font-weight: var(--fw-medium); }
-  .participation-card__cta { flex: 0 0 auto; }
+  /* Es la acción principal de la página: más grande que el botón estándar */
+  .participation-card__cta {
+    flex: 0 0 auto;
+    min-height: 56px;
+    padding: var(--space-3) var(--space-10);
+    font-size: var(--text-lg);
+    box-shadow: var(--shadow-md);
+  }
+  .participation-card__cta:hover { box-shadow: var(--shadow-lg); }
   @media (max-width: 640px) {
     .participation-card { align-items: flex-start; flex-direction: column; gap: var(--space-4); }
     .participation-card__cta { width: 100%; text-align: center; }
