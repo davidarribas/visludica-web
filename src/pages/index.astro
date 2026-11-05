@@ -47,7 +47,7 @@ const sisterLink = (label: string) => SISTER_SITES.find((l) => l.label === label
     <section class="section-sm">
       <div class="container">
         <div class="section-header">
-          <span class="label">Último episodio</span>
+          <h2 class="section-title">Último episodio</h2>
         </div>
         <EpisodeCard episode={latestEpisode} featured={true} />
       </div>
@@ -59,7 +59,7 @@ const sisterLink = (label: string) => SISTER_SITES.find((l) => l.label === label
     <section class="section-sm">
       <div class="container">
         <div class="section-header">
-          <h2>Episodios recientes</h2>
+          <h2 class="section-title">Episodios recientes</h2>
           <a href="/podcast/" class="section-link">Ver todos →</a>
         </div>
         <div class="episodes-list">
@@ -101,10 +101,7 @@ const sisterLink = (label: string) => SISTER_SITES.find((l) => l.label === label
   <section class="section community-section" id="comunidad">
     <div class="container">
       <div class="section-header">
-        <div>
-          <span class="label">Comunidad</span>
-          <h2>Encuéntranos aquí</h2>
-        </div>
+        <h2 class="section-title">Encuéntranos aquí</h2>
       </div>
       <div class="community-grid">
         <CommunityCard
@@ -112,28 +109,24 @@ const sisterLink = (label: string) => SISTER_SITES.find((l) => l.label === label
           label={communityLink('Telegram').label}
           description="El grupo principal donde se reune la comunidad. Noticias, análisis y conversación sobre juegos de mesa."
           icon={communityLink('Telegram').icon}
-          accent={communityLink('Telegram').accent}
         />
         <CommunityCard
           href={communityLink('YouTube').href}
           label={communityLink('YouTube').label}
           description="Más de 7.000 suscriptores. Vídeos de análisis, partidas comentadas y directos."
           icon={communityLink('YouTube').icon}
-          accent={communityLink('YouTube').accent}
         />
         <CommunityCard
           href={communityLink('Destroquelar').href}
           label={communityLink('Destroquelar').label}
           description="La newsletter. Reflexiones largas sobre el hobby que no caben en un episodio."
           icon={communityLink('Destroquelar').icon}
-          accent={communityLink('Destroquelar').accent}
         />
         <CommunityCard
           href={communityLink('Twitch').href}
           label={communityLink('Twitch').label}
           description="Directos con partidas en vivo, presentaciones de novedades y charlas sin guión."
           icon={communityLink('Twitch').icon}
-          accent={communityLink('Twitch').accent}
         />
       </div>
       <div class="community-more">
@@ -166,9 +159,8 @@ const sisterLink = (label: string) => SISTER_SITES.find((l) => l.label === label
 </BaseLayout>
 
 <style>
-/* Hero */
+/* Hero: sobre crema; la marca va en el titular azul, no en el fondo */
 .hero {
-  background: var(--color-surface-raised);
   border-bottom: var(--border);
 }
 .hero.section { padding-block: var(--space-20); }
@@ -188,16 +180,16 @@ const sisterLink = (label: string) => SISTER_SITES.find((l) => l.label === label
 .hero-text { display: flex; flex-direction: column; gap: var(--space-4); max-width: 600px; }
 .hero h1 {
   font-size: clamp(3.25rem, 8vw, 5.75rem);
-  line-height: 0.95;
-  color: var(--color-accent);
-  text-shadow: 4px 4px 0 var(--brand-pink);
+  line-height: 1;
+  color: var(--color-text);
 }
 .hero-tagline {
   max-width: 520px;
-  font-size: var(--text-xl);
-  font-weight: var(--fw-bold);
+  font-family: var(--font-serif);
+  font-size: var(--text-reading);
+  font-weight: var(--fw-regular);
   color: var(--color-text);
-  line-height: 1.4;
+  line-height: 1.5;
 }
 .hero-note {
   max-width: 480px;
@@ -228,8 +220,7 @@ const sisterLink = (label: string) => SISTER_SITES.find((l) => l.label === label
   height: 280px;
   border: var(--border);
   object-fit: cover;
-  box-shadow: 10px 10px 0 0 var(--brand-pink);
-  transform: rotate(2deg);
+  box-shadow: var(--shadow-lg);
 }
 
 @media (max-width: 640px) {
@@ -264,8 +255,6 @@ const sisterLink = (label: string) => SISTER_SITES.find((l) => l.label === label
 
 /* Comunidad */
 .community-section {
-  background: var(--color-surface-raised);
-  border-block: var(--border);
   /* compensa la altura del header sticky en el scroll */
   scroll-margin-top: calc(var(--header-height) + 8px);
 }
@@ -283,7 +272,7 @@ const sisterLink = (label: string) => SISTER_SITES.find((l) => l.label === label
 }
 
 /* Power Ranking */
-.ranking-feature-section { background: var(--color-surface); }
+
 .ranking-feature {
   display: grid;
   grid-template-columns: 1fr minmax(360px, .8fr);
@@ -291,39 +280,37 @@ const sisterLink = (label: string) => SISTER_SITES.find((l) => l.label === label
   align-items: center;
   padding: var(--space-10);
   border: var(--border);
-  background: var(--color-pop-soft);
-  box-shadow: var(--shadow-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
   transition: transform var(--transition), box-shadow var(--transition);
 }
 .ranking-feature:hover {
   color: inherit;
   transform: translate(-2px, -2px);
-  box-shadow: 8px 8px 0 0 var(--shadow-color);
+  box-shadow: var(--shadow-lg);
 }
 .ranking-feature + :global(.participation-card) { margin-top: var(--space-8); }
 .ranking-feature__copy h2 { margin-top: var(--space-3); }
 .ranking-feature__copy p { max-width: 600px; margin-top: var(--space-4); color: var(--color-text-secondary); }
-.ranking-feature__link { display: inline-block; margin-top: var(--space-6); padding: var(--space-2) var(--space-4); border: var(--border); background: var(--color-pop); color: var(--color-on-pop); box-shadow: var(--shadow-sm); font-size: var(--text-sm); font-weight: var(--fw-bold); }
+.ranking-feature__link { display: inline-flex; align-items: center; min-height: 44px; margin-top: var(--space-6); padding: var(--space-2) var(--space-5); border: var(--border); background: var(--color-primary-bg); color: var(--color-on-primary); box-shadow: var(--shadow-sm); font-size: var(--text-sm); font-weight: var(--fw-bold); }
 .ranking-feature__podium { display: flex; flex-direction: column; gap: var(--space-3); list-style: none; padding: 0; }
-.ranking-feature__podium li { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4); border: var(--border); background: var(--color-surface); box-shadow: var(--shadow-sm); }
+.ranking-feature__podium li { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-4); border: var(--border-thin); background: var(--color-surface-raised); }
 .ranking-feature__podium li:nth-child(2) { margin-left: var(--space-5); }
 .ranking-feature__podium li:nth-child(3) { margin-left: var(--space-10); }
-.ranking-feature__podium li > span { display: grid; place-items: center; width: 40px; height: 40px; flex: 0 0 auto; border: var(--border); background: var(--color-surface-raised); color: var(--color-accent); font-family: var(--font-display); font-size: var(--text-xl); }
-.ranking-feature__podium li:first-child > span { background: var(--brand-blue); color: #fff; }
+.ranking-feature__podium li > span { display: grid; place-items: center; width: 40px; height: 40px; flex: 0 0 auto; border: var(--border); background: var(--color-surface); color: var(--color-text); font-family: var(--font-display); font-weight: var(--fw-display); font-size: var(--text-xl); }
+.ranking-feature__podium li:first-child > span { background: var(--color-primary-bg); color: var(--color-on-primary); }
 .ranking-feature__podium strong, .ranking-feature__podium small { display: block; }
-.ranking-feature__podium strong { line-height: 1.35; }
-.ranking-feature__podium small { margin-top: 2px; color: var(--color-text-tertiary); font-family: var(--font-mono); font-size: var(--text-xs); }
+.ranking-feature__podium strong { font-weight: var(--fw-bold); line-height: 1.25; }
+.ranking-feature__podium small { margin-top: 2px; color: var(--color-text-tertiary); font-family: var(--font-mono); font-size: var(--text-meta); }
 @media (max-width: 800px) {
   .ranking-feature { grid-template-columns: 1fr; gap: var(--space-8); padding: var(--space-6); }
 }
 
 /* Barton */
-.barton-section { background: var(--color-surface); }
 .barton-card {
   background: var(--color-surface);
   border: var(--border);
-  border-left: 10px solid var(--brand-blue);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
   padding: var(--space-12);
 }
 .barton-text {

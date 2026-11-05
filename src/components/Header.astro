@@ -106,11 +106,11 @@ function isActive(href: string) {
   object-fit: cover;
 }
 .logo-name {
-  font-family: var(--font-display);
-
+  font-family: var(--font-logo);
   font-weight: 400;
   font-size: var(--text-xl);
   letter-spacing: -0.01em;
+  color: var(--color-logo);
 }
 
 /* Nav */
@@ -127,29 +127,27 @@ function isActive(href: string) {
   align-items: center;
   gap: var(--space-1);
   padding: var(--space-2) var(--space-3);
+  min-height: 44px;
   font-size: var(--text-sm);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
   color: var(--color-text);
   text-decoration: none;
-  transition: background-color var(--transition), border-color var(--transition);
+  transition: box-shadow var(--transition);
   background: none;
-  border: var(--border-thin);
-  border-color: transparent;
+  border: none;
   cursor: pointer;
   white-space: nowrap;
 }
-.nav-link:hover,
-.nav-link:focus-visible {
+.nav-link:hover {
   color: var(--color-text);
-  border-color: var(--ink);
-  background-color: var(--color-surface);
+  box-shadow: inset 0 -2px 0 var(--ink);
 }
+/* Sección activa: subrayado rosa de 4px (golpe de rosa n.º 1, ver DESIGN.md) */
 .nav-link--active,
 .nav-link--active:hover {
   color: var(--color-text);
-  background-color: var(--color-pop-soft);
-  border-color: var(--ink);
-  box-shadow: inset 0 -3px 0 var(--color-pop);
+  font-weight: var(--fw-bold);
+  box-shadow: inset 0 -4px 0 var(--color-pop);
 }
 
 /* Dropdown */
@@ -183,7 +181,7 @@ function isActive(href: string) {
 }
 .dropdown-item:hover {
   color: var(--color-text);
-  background-color: var(--color-pop-soft);
+  background-color: var(--color-surface-raised);
 }
 
 /* Acciones del header (toggle de tema + hamburguesa) */
@@ -197,8 +195,8 @@ function isActive(href: string) {
 .theme-toggle {
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   padding: var(--space-2);
   border: var(--border-thin);
   background: var(--color-surface);
@@ -233,9 +231,9 @@ function isActive(href: string) {
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 36px;
-  height: 36px;
-  padding: var(--space-2);
+  width: 44px;
+  height: 44px;
+  padding: var(--space-2) 10px;
   background: none;
   border: none;
   cursor: pointer;

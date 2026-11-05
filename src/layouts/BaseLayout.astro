@@ -3,6 +3,15 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { SITE } from '../config';
 import '../styles/global.css';
+// Fuentes autoalojadas, solo el subconjunto latino (cubre el español). Se
+// declaran aquí y no con los index.css de @fontsource para no arrastrar los
+// demás subconjuntos y poder precargar exactamente los mismos ficheros.
+import bricolageUrl from '@fontsource-variable/bricolage-grotesque/files/bricolage-grotesque-latin-wght-normal.woff2?url';
+import literataUrl from '@fontsource-variable/literata/files/literata-latin-wght-normal.woff2?url';
+import literataItalicUrl from '@fontsource-variable/literata/files/literata-latin-wght-italic.woff2?url';
+import spaceMono400Url from '@fontsource/space-mono/files/space-mono-latin-400-normal.woff2?url';
+import spaceMono700Url from '@fontsource/space-mono/files/space-mono-latin-700-normal.woff2?url';
+import caprasimoUrl from '@fontsource/caprasimo/files/caprasimo-latin-400-normal.woff2?url';
 
 interface Props {
   title: string;
@@ -20,6 +29,18 @@ const {
   type = 'website',
   noCanonical = false,
 } = Astro.props;
+
+const LATIN = 'U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD';
+const face = (family: string, url: string, weight: string, style = 'normal', format = 'woff2') =>
+  `@font-face{font-family:'${family}';font-style:${style};font-display:swap;font-weight:${weight};src:url(${url}) format('${format}');unicode-range:${LATIN}}`;
+const fontFaces = [
+  face('Bricolage Grotesque Variable', bricolageUrl, '200 800', 'normal', 'woff2-variations'),
+  face('Literata Variable', literataUrl, '200 900', 'normal', 'woff2-variations'),
+  face('Literata Variable', literataItalicUrl, '200 900', 'italic', 'woff2-variations'),
+  face('Space Mono', spaceMono400Url, '400'),
+  face('Space Mono', spaceMono700Url, '700'),
+  face('Caprasimo', caprasimoUrl, '400'),
+].join('');
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
@@ -42,6 +63,9 @@ const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preload" href={bricolageUrl} as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href={literataUrl} as="font" type="font/woff2" crossorigin />
+  <style is:inline set:html={fontFaces}></style>
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
   {!noCanonical && <link rel="canonical" href={canonicalURL} />}
@@ -67,8 +91,8 @@ const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
   <link rel="alternate" type="application/rss+xml" title={`${SITE.name} — Noticias`} href="/noticias/rss.xml" />
   <meta name="application-name" content={SITE.name} />
   <meta name="apple-mobile-web-app-title" content={SITE.name} />
-  <meta name="theme-color" content="#FAFAF8" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#141412" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#F3EBD8" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#17150F" media="(prefers-color-scheme: dark)" />
 </head>
 <body>
   <a class="skip-link" href="#contenido-principal">Saltar al contenido</a>
@@ -90,9 +114,9 @@ const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
     left: var(--space-2);
     z-index: 1000;
     padding: var(--space-2) var(--space-4);
-    background: var(--color-accent);
-    color: #fff;
-    border-radius: var(--radius-md);
+    background: var(--color-primary-bg);
+    color: var(--color-on-primary);
+    border: var(--border);
     font-weight: var(--fw-bold);
     text-decoration: none;
     transform: translateY(calc(-100% - var(--space-4)));

@@ -55,25 +55,21 @@ export const COMMUNITY_LINKS = [
     href: 'https://t.me/visludicaarmy',
     label: 'Telegram',
     icon: 'telegram',
-    accent: '#0088cc',
   },
   {
     href: 'https://youtube.com/visludica',
     label: 'YouTube',
     icon: 'youtube',
-    accent: '#FF0000',
   },
   {
     href: 'https://twitch.tv/visludica',
     label: 'Twitch',
     icon: 'twitch',
-    accent: '#9146FF',
   },
   {
     href: 'https://visludica.substack.com',
     label: 'Destroquelar',
     icon: 'substack',
-    accent: '#FF6719',
   },
 ] as const;
 

@@ -75,13 +75,12 @@ const href = `/noticias/${news.slug}/`;
   gap: var(--space-1);
   color: var(--color-text-secondary);
   font-family: var(--font-mono);
-  font-size: var(--text-xs);
+  font-size: var(--text-meta);
   text-transform: uppercase;
 }
 .news-card__title {
   font-size: var(--text-xl);
-  font-weight: 800;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 .news-card__title a { color: var(--color-text); }
 .news-card__title a:hover { color: var(--color-accent); }
@@ -97,10 +96,9 @@ const href = `/noticias/${news.slug}/`;
   font-weight: var(--fw-bold);
   text-decoration: underline;
   text-decoration-thickness: 2px;
-  text-decoration-color: var(--color-pop);
   text-underline-offset: 4px;
 }
-.news-card__cta:hover { color: var(--color-accent-hover); background: var(--color-pop-soft); }
+.news-card__cta:hover { color: var(--color-accent-hover); text-decoration-thickness: 3px; }
 
 @media (max-width: 640px) {
   .news-card { grid-template-columns: 112px minmax(0, 1fr); gap: var(--space-4); padding: var(--space-4); }

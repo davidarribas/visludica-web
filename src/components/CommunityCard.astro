@@ -5,16 +5,14 @@ interface Props {
   description: string;
   external?: boolean;
   icon?: 'youtube' | 'telegram' | 'twitch' | 'substack' | 'spotify' | 'apple' | 'rss' | 'link';
-  accent?: string;
 }
 
-const { href, label, description, external = true, icon = 'link', accent } = Astro.props;
+const { href, label, description, external = true, icon = 'link' } = Astro.props;
 ---
 
 <a
   href={href}
   class="community-card"
-  style={accent ? `--card-accent: ${accent}` : ''}
   target={external ? '_blank' : undefined}
   rel={external ? 'noopener noreferrer' : undefined}
 >
@@ -61,7 +59,6 @@ const { href, label, description, external = true, icon = 'link', accent } = Ast
   text-decoration: none;
   color: var(--color-text);
   transition: transform var(--transition), box-shadow var(--transition);
-  --card-accent: var(--color-accent);
 }
 .community-card:hover {
   color: var(--color-text);
@@ -75,9 +72,9 @@ const { href, label, description, external = true, icon = 'link', accent } = Ast
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--card-accent);
+  background: var(--color-surface);
   border: var(--border-thin);
-  color: #fff;
+  color: var(--color-text);
   flex-shrink: 0;
 }
 .community-card__icon svg {
@@ -108,7 +105,7 @@ const { href, label, description, external = true, icon = 'link', accent } = Ast
   transition: color var(--transition), transform var(--transition);
 }
 .community-card:hover .community-card__arrow {
-  color: var(--card-accent);
+  color: var(--color-accent);
   transform: translate(2px, -2px);
 }
 

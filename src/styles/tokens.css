@@ -1,15 +1,12 @@
 /*
-  tokens.css — sistema de diseño de Vis Ludica: brutalismo elegante
+  tokens.css — sistema de diseño de Vis Ludica: brutalismo elegante (v3)
 
-  Parte de la guía de marca (artefacto «Vis Ludica»): azul #084A88,
-  rosa #FF29DB, tinta #111111 y blanco; Caprasimo como sustituta de Cooper.
-  La web es lectura, no miniatura, así que se templa:
-  - fondos en azules claros; el azul de marca para texto y sombras;
-  - bordes de tinta finos (2px) solo en lo estructural; los separadores
-    internos van en azul claro;
-  - sombras duras sin desenfoque, en azul y cortas;
-  - el rosa es un golpe puntual de relleno y siempre lleva texto tinta.
-  - esquinas rectas.
+  La fuente de verdad es DESIGN.md. Resumen:
+  - el crema es el neutro de la página; los contenedores son blancos encima;
+  - la marca va solo en acentos: azul para enlaces, logo y botón principal;
+  - el rosa solo da dos golpes (subrayado del menú activo y el cuadrado de
+    los títulos de sección) y nunca lleva texto;
+  - bordes y sombras duras en tinta, esquinas rectas.
 
   Para Vis Bélica: cambia este bloque :root y nada más.
 */
@@ -18,39 +15,38 @@
   --brand-blue:           #084A88;
   --brand-pink:           #FF29DB;
 
-  /* Escala de azules claros (derivados del azul de marca) */
-  --blue-50:              #F5F9FD;
-  --blue-100:             #E6F0FA;
-  --blue-200:             #CFE0F3;
-  --blue-300:             #A9C7E8;
-  --pink-100:             #FFE6FA;
-
-  /* Tinta: bordes estructurales y texto principal */
+  /* Neutros */
+  --cream:                #F3EBD8;
+  --cream-light:          #FAF6EC;
   --ink:                  #111111;
-  --shadow-color:         var(--brand-blue);
+  --shadow-color:         var(--ink);
 
-  /* Acento de texto (enlaces, activo) y relleno destacado */
+  /* Acentos */
   --color-accent:         var(--brand-blue);
   --color-accent-hover:   #05325E;
-  --color-accent-warm:    var(--brand-pink);
-  --color-accent-subtle:  var(--blue-100);
-  --color-pop:            var(--brand-pink);
-  --color-pop-soft:       var(--pink-100);
-  --color-on-pop:         #111111;
+  --color-accent-subtle:  var(--cream-light);
+  --color-pop:            var(--brand-pink);   /* solo los dos golpes; nunca texto */
+  --color-logo:           var(--brand-blue);
+  --color-focus:          var(--brand-blue);
+
+  /* Botón principal */
+  --color-primary-bg:     var(--brand-blue);
+  --color-primary-bg-hover: #05325E;
+  --color-on-primary:     #FFFFFF;
 
   /* Fondos y superficies */
-  --color-bg:             var(--blue-50);
+  --color-bg:             var(--cream);
   --color-surface:        #FFFFFF;
-  --color-surface-raised: var(--blue-100);
+  --color-surface-raised: var(--cream-light);
 
   /* Texto */
-  --color-text:           #111111;
-  --color-text-secondary: #3B4654;
-  --color-text-tertiary:  #4F5B6A;
+  --color-text:           var(--ink);
+  --color-text-secondary: #3D3D3D;
+  --color-text-tertiary:  #3D3D3D;
 
-  /* Bordes: tinta en contenedores, azul claro en separadores */
-  --color-border:         var(--blue-200);
-  --color-border-strong:  var(--blue-300);
+  /* Bordes: tinta en contenedores; separadores internos en crema oscuro */
+  --color-border:         #DCD0B4;
+  --color-border-strong:  #BDAE8D;
   --border-w:             2px;
   --border:               var(--border-w) solid var(--ink);
   --border-thin:          1.5px solid var(--ink);
@@ -58,24 +54,31 @@
   /* Layout: altura del header sticky */
   --header-height: 68px;
 
-  /* Tipografía */
-  --font-sans:            'Inter Variable', 'Inter', system-ui, sans-serif;
-  --font-display:         'Caprasimo', 'Cooper Black', Georgia, serif;
+  /* Tipografía (ver BaseLayout para la carga de las fuentes) */
+  --font-sans:            'Bricolage Grotesque Variable', 'Bricolage Grotesque', system-ui, sans-serif;
+  --font-display:         var(--font-sans);
+  --font-serif:           'Literata Variable', 'Literata', Georgia, serif;
   --font-mono:            'Space Mono', ui-monospace, monospace;
+  --font-logo:            'Caprasimo', 'Cooper Black', Georgia, serif;
   --fw-regular:           400;
   --fw-medium:            500;
+  --fw-semibold:          600;
   --fw-bold:              700;
+  --fw-display:           800;
+  --tracking-display:     -0.03em;
 
   /* Escala tipográfica */
-  --text-xs:    0.75rem;
+  --text-xs:    0.75rem;    /* 12px: etiquetas */
+  --text-meta:  0.8125rem;  /* 13px: fechas y datos de ficha */
   --text-sm:    0.875rem;
   --text-base:  1rem;
   --text-lg:    1.125rem;
   --text-xl:    1.25rem;
   --text-2xl:   1.5rem;
   --text-3xl:   1.875rem;
-  --text-4xl:   2.375rem;
+  --text-4xl:   2.5rem;
   --text-5xl:   3.25rem;
+  --text-reading: 1.125rem; /* 18px en móvil, 20px en escritorio (abajo) */
 
   /* Espaciado */
   --space-1:  0.25rem;
@@ -94,6 +97,7 @@
   /* Layout */
   --container-max:  1200px;
   --container-pad:  1.25rem;
+  --measure:        66ch;
 
   /* Esquinas: rectas. Se conservan los nombres para no tocar cada componente. */
   --radius-sm:  0;
@@ -101,10 +105,10 @@
   --radius-lg:  0;
   --radius-xl:  0;
 
-  /* Sombras duras, sin desenfoque, en azul */
-  --shadow-sm:  3px 3px 0 0 var(--shadow-color);
-  --shadow-md:  4px 4px 0 0 var(--shadow-color);
-  --shadow-lg:  6px 6px 0 0 var(--shadow-color);
+  /* Sombras duras en tinta, sin desenfoque */
+  --shadow-sm:  3px 3px 0 0 var(--shadow-color);   /* botones */
+  --shadow-md:  4px 4px 0 0 var(--shadow-color);   /* contenedores */
+  --shadow-lg:  6px 6px 0 0 var(--shadow-color);   /* imagen principal, hover */
 
   /* Transiciones */
   --transition: 120ms ease;
@@ -114,72 +118,77 @@
   --movement-up-text:    #0E5C2C;
   --movement-down-bg:    #FDE2DC;
   --movement-down-text:  #8F2412;
-
-  /* Bloque destacado invertido */
-  --callout-bg:   var(--brand-blue);
-  --callout-text: #FFFFFF;
 }
 
-/* Modo oscuro — sigue la preferencia del sistema salvo que se fuerce con data-theme. */
+@media (min-width: 768px) {
+  :root { --text-reading: 1.25rem; }
+}
+
+/*
+  Modo oscuro — PROVISIONAL. No hay paleta oscura decidida en DESIGN.md.
+  Es una inversión mecánica de los neutros a tonos cálidos oscuros, con el
+  mismo sistema (borde y sombra dura en el color de «tinta», que aquí es
+  crema) y el azul aclarado solo donde hace de texto. El botón principal
+  conserva el azul de marca con texto blanco (9:1). El rosa sigue sin llevar
+  texto. Pendiente de decisión aparte.
+
+  Sigue la preferencia del sistema salvo que se fuerce con data-theme.
+*/
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     /* mantener sincronizado con :root[data-theme="dark"] más abajo */
-    --ink:                  #C9D9EA;
-    --shadow-color:         #2E6FB0;
+    --ink:                  #E9E0CB;
 
     --color-accent:         #8EC1F2;
     --color-accent-hover:   #B5D6F6;
-    --color-accent-subtle:  #16283B;
-    --color-pop-soft:       #3A1033;
+    --color-accent-subtle:  #2A2620;
+    --color-logo:           #8EC1F2;
+    --color-focus:          #8EC1F2;
+    --color-primary-bg-hover: #0A5BA8;
 
-    --color-bg:             #0C1622;
-    --color-surface:        #13202F;
-    --color-surface-raised: #182A3E;
+    --color-bg:             #17150F;
+    --color-surface:        #22201A;
+    --color-surface-raised: #2A2620;
 
-    --color-text:           #EEF3F9;
-    --color-text-secondary: #C3CFDC;
-    --color-text-tertiary:  #A9B6C4;
+    --color-text:           #F3EBD8;
+    --color-text-secondary: #CFC6B2;
+    --color-text-tertiary:  #CFC6B2;
 
-    --color-border:         #2A4058;
-    --color-border-strong:  #3A5574;
+    --color-border:         #4A4436;
+    --color-border-strong:  #6A624F;
 
     --movement-up-bg:      #16301F;
     --movement-up-text:    #7BD8A0;
     --movement-down-bg:    #38201B;
     --movement-down-text:  #F09380;
-
-    --callout-bg:   #0A3A6B;
-    --callout-text: #FFFFFF;
   }
 }
 
-/* Modo oscuro forzado manualmente (toggle en el header). */
+/* Modo oscuro forzado manualmente (toggle en el header). PROVISIONAL, ver arriba. */
 :root[data-theme="dark"] {
   /* mantener sincronizado con @media (prefers-color-scheme: dark) más arriba */
-  --ink:                  #C9D9EA;
-  --shadow-color:         #2E6FB0;
+  --ink:                  #E9E0CB;
 
   --color-accent:         #8EC1F2;
   --color-accent-hover:   #B5D6F6;
-  --color-accent-subtle:  #16283B;
-  --color-pop-soft:       #3A1033;
+  --color-accent-subtle:  #2A2620;
+  --color-logo:           #8EC1F2;
+  --color-focus:          #8EC1F2;
+  --color-primary-bg-hover: #0A5BA8;
 
-  --color-bg:             #0C1622;
-  --color-surface:        #13202F;
-  --color-surface-raised: #182A3E;
+  --color-bg:             #17150F;
+  --color-surface:        #22201A;
+  --color-surface-raised: #2A2620;
 
-  --color-text:           #EEF3F9;
-  --color-text-secondary: #C3CFDC;
-  --color-text-tertiary:  #A9B6C4;
+  --color-text:           #F3EBD8;
+  --color-text-secondary: #CFC6B2;
+  --color-text-tertiary:  #CFC6B2;
 
-  --color-border:         #2A4058;
-  --color-border-strong:  #3A5574;
+  --color-border:         #4A4436;
+  --color-border-strong:  #6A624F;
 
   --movement-up-bg:      #16301F;
   --movement-up-text:    #7BD8A0;
   --movement-down-bg:    #38201B;
   --movement-down-text:  #F09380;
-
-  --callout-bg:   #0A3A6B;
-  --callout-text: #FFFFFF;
 }
