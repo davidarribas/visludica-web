@@ -1,11 +1,13 @@
 import { access, readFile, readdir, stat } from "node:fs/promises";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { basename, resolve } from "node:path";
 import { unflatten } from "devalue";
 import { load } from "js-yaml";
 
-const STORE_URL = new URL("../node_modules/.astro/data-store.json", import.meta.url);
 const ROOT = fileURLToPath(new URL("..", import.meta.url));
+const STORE_URL = process.env.ASTRO_CACHE_DIR
+  ? pathToFileURL(resolve(ROOT, process.env.ASTRO_CACHE_DIR, "data-store.json"))
+  : new URL("../node_modules/.astro/data-store.json", import.meta.url);
 const PUBLISHERS_PATH = resolve(ROOT, "src/data/publishers.yaml");
 const EXTERNAL_MARKDOWN_LINK = /\]\(\s*<?https?:\/\/|\]:\s*<?https?:\/\//im;
 const NEWS_FILENAME = /^\d{4}-\d{2}-\d{2}-[a-z0-9]+(?:-[a-z0-9]+)*\.md$/;
@@ -131,7 +133,7 @@ async function validateImageFiles(entries) {
   const errors = [];
   for (const [id, entry] of entries ?? []) {
     if (!entry.data.image) continue;
-    const path = resolve(new URL("../public", import.meta.url).pathname, entry.data.image.src.slice(1));
+    const path = resolve(ROOT, process.env.ASTRO_NEWS_PUBLIC_DIR ?? "./public", entry.data.image.src.slice(1));
     let stats;
     try { stats = await stat(path); }
     catch { errors.push(`news/${id}.image.src: no existe ${entry.data.image.src}`); continue; }

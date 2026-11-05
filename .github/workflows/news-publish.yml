@@ -1,0 +1,101 @@
+# Publicación de una noticia (WORK_FIRST_NEWS_PLAN §37).
+#
+# n8n lo lanza cuando David pulsa Publicar (o a las 09:00 para las programadas):
+#   1. fija published_at con la hora real de Madrid y renombra si cambia el día;
+#   2. pasa npm test sobre la rama;
+#   3. fusiona el PR en main (squash) y borra la rama;
+#   4. lanza el workflow Web, que despliega con la guarda de la votación.
+#
+# El paso 4 es explícito porque un merge hecho con GITHUB_TOKEN no dispara el
+# workflow de push a main. n8n debe confirmar la publicación comprobando que la
+# URL pública de la noticia responde 200 y solo entonces publicar en Telegram.
+name: Noticia · publicar
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: "Número del pull request de la noticia"
+        required: true
+        type: number
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+concurrency:
+  group: news-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Fijar fecha, fusionar y desplegar
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Comprobar el pull request
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ inputs.pr }}
+        run: |
+          data="$(gh pr view "$PR" --repo "$GITHUB_REPOSITORY" --json state,headRefName,baseRefName)"
+          state="$(jq -r .state <<<"$data")"
+          branch="$(jq -r .headRefName <<<"$data")"
+          base="$(jq -r .baseRefName <<<"$data")"
+          if [ "$state" != "OPEN" ] || [ "$base" != "main" ] || [[ "$branch" != news/* ]]; then
+            echo "::error::El PR #$PR no es una noticia abierta contra main (estado $state, rama $branch)."
+            exit 1
+          fi
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
+          echo "slug=${branch#news/}" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.pr.outputs.branch }}
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+
+      - name: Fijar published_at
+        env:
+          SLUG: ${{ steps.pr.outputs.slug }}
+        run: node scripts/news-publish.mjs "$SLUG" | tee "$RUNNER_TEMP/publicacion.json"
+
+      - name: Validar, construir y probar
+        run: npm test
+
+      - name: Subir la fecha definitiva
+        env:
+          BRANCH: ${{ steps.pr.outputs.branch }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A src/content/news
+          git commit -m "Publica: fija la fecha de publicación"
+          git push origin "$BRANCH"
+
+      - name: Fusionar en main
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ inputs.pr }}
+        run: gh pr merge "$PR" --squash --delete-branch
+
+      - name: Desplegar
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run web.yml --ref main
+
+      - name: Resumen
+        run: |
+          {
+            echo "### Noticia publicada en main"
+            echo '```json'
+            cat "$RUNNER_TEMP/publicacion.json"
+            echo '```'
+            echo "El despliegue sigue en el workflow Web."
+          } >> "$GITHUB_STEP_SUMMARY"

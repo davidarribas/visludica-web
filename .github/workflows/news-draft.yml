@@ -1,0 +1,135 @@
+# Borrador de noticia (WORK_FIRST_NEWS_PLAN §35).
+#
+# n8n lo lanza con la pieza que devuelve el paso editorial. El workflow:
+#   1. escribe la noticia y su imagen con scripts/news-materialize.mjs;
+#   2. pasa npm test (validación, build y tests): si falla, no hay PR;
+#   3. sube la rama news/<slug> y abre o actualiza su pull request.
+# No publica nada: la publicación es news-publish.yml.
+#
+# Corregir o cambiar imagen = volver a lanzarlo con la pieza nueva y
+# reemplazar=true: actualiza la misma rama y el mismo PR.
+#
+# Los PR que abre GITHUB_TOKEN no disparan otros workflows; por eso la
+# validación se ejecuta aquí, antes de subir nada.
+#
+# Secreto opcional: TELEGRAM_BOT_TOKEN, solo para image.telegram_file_path.
+name: Noticia · borrador
+
+on:
+  workflow_dispatch:
+    inputs:
+      pieza:
+        description: "Pieza en JSON (salida del paso editorial)"
+        required: true
+        type: string
+      reemplazar:
+        description: "Actualizar una noticia en curso con el mismo slug"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: news-draft
+  cancel-in-progress: false
+
+jobs:
+  draft:
+    name: Materializar y abrir PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .node-version
+          cache: npm
+      - run: npm ci
+
+      - name: Guardar la pieza
+        env:
+          PIEZA: ${{ inputs.pieza }}
+        run: printf '%s' "$PIEZA" > "$RUNNER_TEMP/pieza.json"
+
+      - name: Preparar la rama
+        id: rama
+        env:
+          REEMPLAZAR: ${{ inputs.reemplazar }}
+        run: |
+          slug="$(node scripts/news-materialize.mjs --print-slug "$RUNNER_TEMP/pieza.json")"
+          branch="news/$slug"
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+          echo "branch=$branch" >> "$GITHUB_OUTPUT"
+          if git ls-remote --exit-code --heads origin "$branch" >/dev/null; then
+            if [ "$REEMPLAZAR" != "true" ]; then
+              echo "::error::Ya existe la rama $branch. Para corregir esa noticia, lanza el workflow con reemplazar=true."
+              exit 1
+            fi
+            git fetch origin "$branch"
+            git switch "$branch"
+            echo "replace=--replace" >> "$GITHUB_OUTPUT"
+          else
+            git switch -c "$branch"
+            echo "replace=" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Materializar
+        id: materializar
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          REPLACE: ${{ steps.rama.outputs.replace }}
+        run: |
+          node scripts/news-materialize.mjs "$RUNNER_TEMP/pieza.json" $REPLACE \
+            --pr-body "$RUNNER_TEMP/pr-body.md" > "$RUNNER_TEMP/resultado.json"
+          cat "$RUNNER_TEMP/resultado.json"
+          echo "title=$(node -p 'require(process.argv[1]).title' "$RUNNER_TEMP/resultado.json")" >> "$GITHUB_OUTPUT"
+
+      - name: Validar, construir y probar
+        run: npm test
+
+      - name: Subir la rama
+        env:
+          BRANCH: ${{ steps.rama.outputs.branch }}
+          TITLE: ${{ steps.materializar.outputs.title }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A src/content/news public/images/news
+          if git diff --cached --quiet; then
+            echo "Sin cambios respecto a la rama."
+          else
+            git commit -m "Noticia: $TITLE"
+          fi
+          git push origin "$BRANCH"
+
+      - name: Abrir o actualizar el pull request
+        id: pr
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.rama.outputs.branch }}
+          TITLE: ${{ steps.materializar.outputs.title }}
+        run: |
+          gh label create noticia --color FF29DB --description "Noticia en curso del modo automático" 2>/dev/null || true
+          number="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number')"
+          if [ -n "$number" ]; then
+            gh pr edit "$number" --title "Noticia: $TITLE" --body-file "$RUNNER_TEMP/pr-body.md"
+          else
+            gh pr create --base main --head "$BRANCH" --title "Noticia: $TITLE" \
+              --body-file "$RUNNER_TEMP/pr-body.md" --label noticia
+            number="$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number')"
+          fi
+          echo "number=$number" >> "$GITHUB_OUTPUT"
+          {
+            echo "### Noticia lista para revisar"
+            echo
+            echo "- PR: #$number"
+            echo "- Rama: \`$BRANCH\`"
+            echo '```json'
+            cat "$RUNNER_TEMP/resultado.json"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
