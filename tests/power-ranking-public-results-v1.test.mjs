@@ -121,7 +121,7 @@ test('las ediciones se descubren por carpeta y se publican de la más reciente a
     .map((entry) => entry.name)
     .sort()
     .reverse();
-  assert.deepEqual(folders, ['2026-09', '2026-08', '2026-07', '2026-06']);
+  assert.deepEqual(folders, ['2026-10', '2026-09', '2026-08', '2026-07', '2026-06']);
 
   // El selector de la portada refleja el orden de `editions`: su primera
   // opción es la edición que sirve `/power-ranking/`.

@@ -1,0 +1,50 @@
+{
+  "schema_version": "quotes-v1",
+  "period_id": "2026-10",
+  "generated_at": "2026-11-06T10:31:30.169648Z",
+  "projects": {
+    "vis-ludica": [
+      {
+        "label": "La frase del mes",
+        "text": "Le doy un áccesit de 0'5 puntos al Morgenland, porque me ha parecido un juego sencillo, pero con mucho puteo. Tanto, que perdí estrepitosamente sin ganar ni una subasta y mi ego está tan dolido que no sé si quiero volver a sacarlo.",
+        "attribution": "Krev"
+      },
+      {
+        "label": "Queen Alice",
+        "text": "Queen Alice sigue siendo lo mejor. La expansión de Splendor Duel añade más decisiones sin embarrar. Blue Lagoon, un Knizia clásico muy navajero.",
+        "attribution": "Antonio Arenillas"
+      },
+      {
+        "label": "The Elder Scrolls: La Traición de la Segunda Era",
+        "text": "Y van 12 camapañas al Elder Scrolls",
+        "attribution": "Khorkyn"
+      },
+      {
+        "label": "Contrapunto",
+        "text": "Muy decepcionado también con el Elders.  Muy buena gestión de personaje (la mejor?), pero fatal exploración y narrativa.",
+        "attribution": "Akhorahil"
+      },
+      {
+        "label": "Propuesta para el ranking",
+        "text": "Encuentro que el power ranking deberia ser doble,algo asi como el de toda la vida y el de estrenos,novedades,descubrimientos.Es dificil destacar alguno cuando un mes juegas un Brass,City of the big shoulders,Pax pamir...",
+        "attribution": "FLASFLAS"
+      },
+      {
+        "label": "Tammany Hall",
+        "text": "Meses complicados que hacen ir a juegos ya jugados para aprovechar al máximo el\nTiempo de juego, las viejas glorias nunca mueren, hay que escapar del hype.",
+        "attribution": "Davalej"
+      },
+      {
+        "label": "Confesión",
+        "text": "Football Manager 27 killed the boardgame star"
+      }
+    ],
+    "vis-belica": [
+      {
+        "label": "D-Day at Omaha Beach",
+        "text": "Más solo que la una",
+        "attribution": "currocl"
+      }
+    ]
+  }
+}

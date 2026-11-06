@@ -578,3 +578,38 @@ La arquitectura no crece sin una fricción real.
 ```
 
 **Estado actual: sistema validado en uso real y listo para continuar como flujo editorial normal.**
+
+---
+
+# 22. Power Ranking — edición de octubre de 2026 (PR-2026-10-F)
+
+Fecha: 06/11/2026. Integración local; sin push ni despliegue.
+
+**Archivos.** `src/data/power-ranking/2026-10/` con:
+
+```text
+public-results.json  copia exacta del build aprobado en GATE 4  sha256:96d64722…7dee01
+editorial.ts         el entregado por Chat, sin tocar            sha256:e320f99e…025187
+quotes.json          quotes-export del motor                     sha256:79f8a84a…cfdbe
+```
+
+Sin `downloads.ts`: los XLSX públicos de octubre siguen pendientes de decisión.
+
+**Pruebas.** Las dos que fijaban septiembre como edición vigente pasan a
+octubre (`power-ranking-august`, `power-ranking-public-results-v1`). Nueva
+`tests/power-ranking-october.test.mjs`: hash del artefacto, notas del podio
+enlazadas por `vlg_*` en Power y mes de los dos proyectos, «Zona noble» en el
+Power, citas 7 + 1 solo en la pestaña del mes y en el orden elegido, tarjeta
+«47 votantes en octubre» y TOP 10 dentro de la sección marcada de cada crónica.
+`npm test` 141/141 y `npm run build` en verde.
+
+**Comprobado en el build local** (`astro preview`): `/power-ranking/` abre
+octubre con Power por defecto; las doce notas del podio, las dos «Zona noble»,
+las citas (la primera a todo el ancho), las crónicas completas (todas sus
+cadenas presentes) y las barras de votantes de Vis Bélica (18, 18, 34, 41, 53,
+46, 68, 61, 47). Septiembre, agosto, julio y junio, comparados con un build del
+commit anterior: la única diferencia es la nueva opción «Octubre 2026» del
+selector.
+
+**Pendiente.** Despliegue (`npm run deploy:production`) solo con la orden
+expresa de David; la producción no se ha comprobado.
